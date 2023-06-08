@@ -3,10 +3,11 @@
 .feedHeader {
 	font-weight: 500;
 	position: sticky;
-	top: 0;
+	top: 0px;
 	z-index: 1;
-	background-color: $dark;
 	border-bottom: 1px solid $border;
+	padding-top: 20px;
+	background-color: $darker;
 	.header {
 		background-color: lighten($dark, 7%);
 		height: 45px;
@@ -14,6 +15,7 @@
 		align-items: center;
 		padding-left: 15px;
 		gap: 5px;
+		background-color: $dark;
 
 		.back,
 		.label {

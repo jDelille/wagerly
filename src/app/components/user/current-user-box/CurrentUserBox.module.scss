@@ -1,0 +1,64 @@
+@use '../../../styles/variables' as *;
+
+.currentUserBox {
+	width: 100%;
+	height: 95px;
+	display: flex;
+	gap: 10px;
+	color: $light;
+	padding-top: 10px;
+	margin-top: 10px;
+	position: relative;
+	.displayName {
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		strong {
+			font-weight: 500;
+			font-size: $fontSizeLg;
+		}
+		span {
+			font-weight: 300;
+			color: $lightText;
+			font-size: $fontSizeMd;
+		}
+	}
+	.menuButton {
+		position: absolute;
+		right: 0;
+		cursor: pointer;
+	}
+}
+
+.overlay {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	left: 0;
+	top: 0;
+}
+.currentUserMenu {
+	background-color: $light;
+	color: $dark;
+	height: fit-content;
+	padding: 5px 0;
+	width: 130px;
+	border-radius: 4px;
+	position: absolute;
+	right: 15px;
+	font-size: $fontSizeSm;
+	z-index: 99;
+	.option {
+		padding: 5px 15px;
+		&:hover {
+			background-color: $accent;
+			color: $light;
+			cursor: pointer;
+		}
+	}
+	.divider {
+		background-color: lightgray;
+		height: 1px;
+		margin: 5px 0;
+	}
+}

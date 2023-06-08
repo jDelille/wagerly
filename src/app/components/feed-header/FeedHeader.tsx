@@ -21,9 +21,7 @@ const FeedHeader: React.FC<Props> = ({ label, isBack, currentUser }) => {
    <div className={styles.header}>
     {isBack ? <strong onClick={() => router.push('/')} className={styles.back}>{label}</strong> : <strong className={styles.label}>{label}</strong>}
    </div>
-   {currentUser && (
-    <button onClick={() => signOut()}>Logout</button>
-   )}
+
   </div>
  );
 }

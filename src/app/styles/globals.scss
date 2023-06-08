@@ -12,7 +12,6 @@ body {
 
 .layout {
 	width: 1174px;
-	// background-color: $accent;
 	margin: 0 auto;
 	display: flex;
 	.left-sidebar,
@@ -20,5 +19,24 @@ body {
 		width: 287px;
 		min-width: 287px;
 		padding: 0 15px;
+		position: sticky;
+		top: 10px;
+		height: calc(100vh - 10px);
+		.disclaimer {
+			color: lightgray;
+			font-size: 11px;
+			position: absolute;
+			padding: 0 5px;
+			bottom: 20px;
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			left: 0;
+			p {
+				a {
+					color: lightgray;
+				}
+			}
+		}
 	}
 }

@@ -24,6 +24,11 @@ const PostCardMenu: React.FC<Props> = ({ setIsMenuOpen, postId }) => {
 
     <div className={styles.divider}></div>
 
+    <p className={styles.option}>Bookmark</p>
+    <p className={styles.option}>Favorite</p>
+
+    <div className={styles.divider}></div>
+
     <p className={styles.option}>Edit</p>
     <p className={styles.option}>Delete & re-draft</p>
     <p className={styles.option}>Delete</p>

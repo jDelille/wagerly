@@ -3,7 +3,7 @@
 .overlay {
 	width: 100vw;
 	height: 100vh;
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 0;
 }
@@ -27,6 +27,8 @@
 		}
 	}
 	.divider {
-		background-color: $dark;
+		background-color: lightgray;
+		height: 1px;
+		margin: 5px 0;
 	}
 }
