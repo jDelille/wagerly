@@ -7,14 +7,15 @@ import PostFeedHeader from './post-feed-header/PostFeedHeader';
 
 type Props = {
  posts: any;
+ isProfilePage: boolean;
 }
 
-const PostFeed: React.FC<Props> = ({ posts }) => {
+const PostFeed: React.FC<Props> = ({ posts, isProfilePage }) => {
  return (
   <div className={styles.postFeed}>
-   <PostFeedHeader />
+   <PostFeedHeader isProfilePage={isProfilePage} />
    {posts.map((post: Post) => (
-    <PostCard key={post.id} post={post} />
+    <PostCard key={post.id} post={post} isExpanded={false} />
    ))}
 
   </div>

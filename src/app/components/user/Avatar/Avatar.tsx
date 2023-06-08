@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 type Props = {
  photo: string;
- username: string;
+ username?: string;
 }
 
 const Avatar: React.FC<Props> = ({ photo, username }) => {

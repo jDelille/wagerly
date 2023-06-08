@@ -1,0 +1,82 @@
+@use '../../../styles/variables' as *;
+
+.profileHeader {
+	background-color: lighten($dark, 5%);
+	padding: 1rem;
+	.top {
+		display: flex;
+		gap: 10px;
+		img {
+			min-width: 75px;
+			min-height: 75px;
+		}
+		.displayName {
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+			strong {
+				font-size: 28px;
+			}
+			span {
+				font-size: 16px;
+			}
+		}
+	}
+	.bio,
+	.noBioMessage {
+		padding: 1rem 0;
+		font-size: 13px;
+		color: $light;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		gap: 1rem;
+		.joined {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+			background-color: lighten($dark, 10%);
+			padding: 10px;
+			border-radius: 4px;
+			width: 100%;
+			p {
+				text-transform: uppercase;
+				color: lighten($dark, 50%);
+				font-weight: 500;
+				font-size: 13px;
+			}
+			span {
+				color: lighten($dark, 75%);
+				font-size: 12px;
+			}
+		}
+	}
+	.noBioMessage {
+		font-style: italic;
+		display: flex;
+		span {
+			color: $accent;
+			font-style: normal;
+			cursor: pointer;
+			width: fit-content;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	.userInfo {
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+		font-size: 13px;
+		padding-top: 10px;
+		p {
+			font-weight: 600;
+			color: $light;
+		}
+		span {
+			color: #bec8db;
+			font-weight: 400;
+		}
+	}
+}

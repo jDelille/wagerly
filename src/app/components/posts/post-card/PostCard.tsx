@@ -16,8 +16,6 @@ type Props = {
 
 const PostCard: React.FC<Props> = ({ post, isExpanded }) => {
 
- console.log(post.body)
-
  return (
   <div className={styles.postCard}>
    <PostCardHeader user={post.user} createdAt={post.createdAt} postId={post.id} />

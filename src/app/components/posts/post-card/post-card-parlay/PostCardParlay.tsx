@@ -27,7 +27,7 @@ const PostCardParlay: React.FC<Props> = ({ post, odds, wager, payout, isExpanded
     </strong>
     <div className={styles.odds}>{odds}</div>
     <div className={styles.viewPicks} onClick={(e) => { setShowPicks(!showPicks); e.stopPropagation() }}>
-     <p>{!showPicks || !isExpanded ? (
+     <p>{!showPicks ? (
       <>
        View Picks <AiOutlineDown size={12} />
       </>
@@ -39,7 +39,7 @@ const PostCardParlay: React.FC<Props> = ({ post, odds, wager, payout, isExpanded
     </div>
    </div>
    <div className={styles.showPicks}>
-    {showPicks || isExpanded && (
+    {showPicks && (
      post.map((bet: Bet) => (
       <div className={styles.bet} key={bet.id}>
        <div className={styles.dot}></div>
