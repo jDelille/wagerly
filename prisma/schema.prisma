@@ -1,0 +1,145 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  body          String?
+  photo         Json?
+  userId        String    @db.ObjectId
+  user          User      @relation(fields: [userId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  Bet           Bet?      @relation(fields: [betId], references: [id])
+  betId         String?   @db.ObjectId
+  Parlay        Parlay?   @relation(fields: [parlayId], references: [id])
+  parlayId      String?   @db.ObjectId
+  Poll          Poll?     @relation(fields: [pollId], references: [id])
+  pollId        String?   @db.ObjectId
+  likedIds      String[]  @db.ObjectId
+  commentedIds  String[]  @db.ObjectId
+  comments      Comment[]
+  taggedUserIds String[]  @db.ObjectId
+  isPinned      Boolean?  @default(false)
+  Group         Group?    @relation(fields: [groupId], references: [id])
+  groupId       String?   @db.ObjectId
+  tags          String[]
+}
+
+model Comment {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  body       String
+  photo      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  userId     String   @db.ObjectId
+  postId     String   @db.ObjectId
+  name       String
+  username   String
+  likedIds   String[] @db.ObjectId
+  isVerified Boolean  @default(false)
+  Post       Post     @relation(fields: [postId], references: [id])
+}
+
+model User {
+  id                  String         @id @default(auto()) @map("_id") @db.ObjectId
+  email               String         @unique
+  name                String
+  username            String
+  bio                 String?
+  password            String
+  photo               String?
+  Post                Post[]
+  totalBets           Int            @default(0)
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  emailVerified       DateTime?
+  followingIds        String[]       @db.ObjectId
+  isVerified          Boolean        @default(false)
+  groupIds            String[]       @db.ObjectId
+  notification        Notification[]
+  hasNotification     Boolean?
+  betNotificationIds  String[]
+  postNotificationIds String[]
+  points              Float?         @default(0)
+  affiliated          Boolean?       @default(false)
+}
+
+model Poll {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  option1      String
+  option2      String
+  option1Votes Int      @default(0)
+  option2Votes Int      @default(0)
+  expiration   String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  votersIds    String[] @db.ObjectId
+  Post         Post[]
+}
+
+model Bet {
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  league       String
+  status       String
+  homeTeam     String?
+  awayTeam     String?
+  abbreviation String?
+  team         String?
+  name         String
+  location     String
+  favorite     Boolean
+  odds         Int
+  type         String
+  value        Float?
+  thoughts     String?
+  wager        Float?
+  payout       Float?
+  confidence   String?
+  Post         Post[]
+  gameId       Int?
+  homeId       Int?
+  awayId       Int?
+  sport        String
+  parlay       Parlay? @relation(name: "ParlayBets", fields: [parlayId], references: [id])
+  parlayId     String? @map("_parlayId") @db.ObjectId
+}
+
+model Parlay {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  bets   Bet[]  @relation(name: "ParlayBets")
+  Post   Post[]
+  odds   Float
+  wager  String
+  payout Float
+}
+
+model Group {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  photo       String
+  isPrivate   Boolean  @default(false)
+  betFilters  String[]
+  Post        Post[]
+  adminId     String   @db.ObjectId
+  memberIds   String[] @db.ObjectId
+  memberLimit Int?
+}
+
+model Notification {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  body      String
+  userId    String   @db.ObjectId
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

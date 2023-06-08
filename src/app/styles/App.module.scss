@@ -1,0 +1,11 @@
+@use './variables' as *;
+
+.app {
+	background-color: $darker;
+	width: 100%;
+	min-height: 100vh;
+	position: relative;
+	.main {
+		max-width: 600px;
+	}
+}

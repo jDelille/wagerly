@@ -1,0 +1,24 @@
+@use './variables' as *;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: $darker;
+}
+
+.layout {
+	width: 1174px;
+	background-color: $accent;
+	margin: 0 auto;
+	display: flex;
+	.left-sidebar,
+	.right-sidebar {
+		width: 287px;
+		min-width: 287px;
+		background-color: $accent;
+	}
+}

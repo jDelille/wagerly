@@ -1,0 +1,9 @@
+@use '../../../styles/_variables.scss' as *;
+
+.postCard {
+	min-height: 152.14px;
+	width: 100%;
+	border-bottom: 1px solid $lighter;
+	padding: 15px;
+	font-size: $fontSizeMd;
+}

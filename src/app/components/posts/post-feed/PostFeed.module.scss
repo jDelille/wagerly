@@ -1,0 +1,8 @@
+@use '../../../styles/_variables.scss' as *;
+
+.postFeed {
+	background-color: $dark;
+	color: $light;
+	height: 100%;
+	min-height: 100vh;
+}
