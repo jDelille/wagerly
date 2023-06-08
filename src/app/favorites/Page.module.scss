@@ -1,0 +1,15 @@
+@use '../styles/mixins' as *;
+@use '../styles/variables' as *;
+
+.main {
+	@include page();
+	.noFavoritesMessage {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: $fontSizeLg;
+		padding: 20px;
+		text-align: center;
+		height: calc(100vh - 2rem);
+	}
+}

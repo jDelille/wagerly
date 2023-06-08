@@ -9,10 +9,9 @@ import styles from './FeedHeader.module.scss';
 type Props = {
  label: string;
  isBack: boolean;
- currentUser: SafeUser | null;
 }
 
-const FeedHeader: React.FC<Props> = ({ label, isBack, currentUser }) => {
+const FeedHeader: React.FC<Props> = ({ label, isBack }) => {
 
  const router = useRouter();
 
