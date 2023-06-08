@@ -10,7 +10,7 @@ export default async function Home() {
   return (
     <main className={styles.app}>
       <div className={styles.main}>
-        <FeedHeader label='Explore' />
+        <FeedHeader label='Explore' isBack={false} />
         <PostFeed posts={posts} />
       </div>
     </main>

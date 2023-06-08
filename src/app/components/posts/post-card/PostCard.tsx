@@ -10,16 +10,17 @@ import styles from './PostCard.module.scss';
 
 type Props = {
  post: any;
+ isExpanded: boolean;
 }
 
 
-const PostCard: React.FC<Props> = ({ post }) => {
+const PostCard: React.FC<Props> = ({ post, isExpanded }) => {
 
  console.log(post.body)
 
  return (
   <div className={styles.postCard}>
-   <PostCardHeader user={post.user} createdAt={post.createdAt} />
+   <PostCardHeader user={post.user} createdAt={post.createdAt} postId={post.id} />
    <div className={styles.postBody}>
     <p>{post?.Bet?.thoughts || post?.Parlay?.bets[0].thoughts || post?.body}</p>
    </div>
@@ -32,6 +33,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
      odds={post.Parlay.odds}
      wager={post.Parlay.wager}
      payout={post.Parlay.payout}
+     isExpanded={isExpanded}
     />
    )}
    {post.Poll && (

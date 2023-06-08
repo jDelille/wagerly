@@ -15,11 +15,15 @@
 		padding-left: 15px;
 		gap: 5px;
 
-		strong {
+		.back,
+		.label {
 			cursor: pointer;
 			color: $light;
 			text-decoration: none;
 			font-weight: 500;
+		}
+		.back {
+			color: $accent;
 			&:hover {
 				text-decoration: underline;
 			}

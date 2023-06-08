@@ -1,0 +1,13 @@
+@use './variables' as *;
+
+@mixin page {
+	flex-grow: 1;
+	background-color: $dark;
+	max-width: 600px;
+	position: relative;
+	min-height: 100vh;
+	height: fit-content;
+	padding-top: 0;
+	color: $light;
+	padding-bottom: 2rem;
+}

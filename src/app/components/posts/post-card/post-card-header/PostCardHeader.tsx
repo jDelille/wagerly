@@ -14,9 +14,10 @@ import PostCardMenu from '../post-card-menu/PostCardMenu';
 type Props = {
  user: User;
  createdAt: string;
+ postId: string
 };
 
-const PostCardHeader: React.FC<Props> = ({ user, createdAt }) => {
+const PostCardHeader: React.FC<Props> = ({ user, createdAt, postId }) => {
 
  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -38,7 +39,7 @@ const PostCardHeader: React.FC<Props> = ({ user, createdAt }) => {
    <div className={styles.menu}>
     <p className={styles.createdAt}>{postCreationDate}</p>
     <BsThreeDotsVertical onClick={() => setIsMenuOpen(!isMenuOpen)} />
-    {isMenuOpen && <PostCardMenu setIsMenuOpen={setIsMenuOpen} />}
+    {isMenuOpen && <PostCardMenu setIsMenuOpen={setIsMenuOpen} postId={postId} />}
    </div>
   </div>
  );
