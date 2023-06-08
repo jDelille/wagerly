@@ -4,6 +4,7 @@ import PostCardBet from './post-card-bet/PostCardBet';
 import PostCardHeader from './post-card-header/PostCardHeader';
 import PostCardParlay from './post-card-parlay/PostCardParlay';
 import PostCardPoll from './post-card-poll/PostCardPoll';
+import Image from 'next/image';
 
 import styles from './PostCard.module.scss';
 
@@ -44,6 +45,21 @@ const PostCard: React.FC<Props> = ({ post }) => {
      />
     </div>
 
+   )}
+   {post?.photo && (
+    <div className={post?.photo.url ? styles.postGif : styles.postPhoto}>
+     <Image
+      src={post?.photo.url || post?.photo}
+      fill
+      alt='Uploaded Image'
+      className={styles.imagePreview}
+      style={{ objectFit: 'cover' }}
+      onClick={(e) => {
+       e.stopPropagation();
+       // setImageView(post?.photo.url || post?.photo);
+      }}
+     />
+    </div>
    )}
    {/* post footer */}
   </div >
