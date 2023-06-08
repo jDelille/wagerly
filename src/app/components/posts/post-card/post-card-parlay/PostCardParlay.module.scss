@@ -1,0 +1,130 @@
+@use '../../../../styles/variables' as *;
+
+.parlayContainer {
+	padding: 10px 1rem;
+	background-color: $lighter;
+	border: 1px solid $border;
+	width: 100%;
+	border-radius: 4px;
+	.header {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		gap: 10px;
+		border-bottom: 1px solid lighten($dark, 15%);
+		padding-bottom: 15px;
+		.title {
+			font-weight: 600;
+			text-transform: uppercase;
+			align-items: center;
+			position: relative;
+			font-size: $fontSizeMd;
+		}
+		.viewPicks {
+			background-color: lighten($lighter, 10%);
+			width: fit-content;
+			padding: 5px 10px;
+			border-radius: 22px;
+			font-size: 11px;
+			text-transform: uppercase;
+			font-weight: 600;
+			cursor: pointer;
+			p {
+				display: flex;
+				align-items: center;
+				gap: 3px;
+			}
+		}
+		.odds {
+			background-color: darken($lighter, 5%);
+			padding: 8px 20px;
+			border-radius: 4px;
+			font-weight: 600;
+			margin-left: auto;
+			width: 60px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: $accent;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+	}
+	.showPicks {
+		padding-top: 15px;
+		.bet {
+			border-radius: 4px;
+			padding: 10px;
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+			position: relative;
+			padding-left: 20px;
+			.dot {
+				background-color: $dark;
+				width: 15px;
+				height: 15px;
+				border-radius: 50%;
+				position: absolute;
+				left: 0px;
+				top: 10px;
+				z-index: 99;
+			}
+			.line {
+				position: absolute;
+				background-color: $border;
+				height: calc(100% - 25px);
+				width: 1px;
+				left: 7px;
+				top: 12px;
+			}
+			.team {
+				display: flex;
+				gap: 5px;
+				align-items: center;
+				font-weight: 600;
+				justify-content: space-between;
+				position: relative;
+				font-size: $fontSizeMd;
+				.odds {
+					background-color: darken($lighter, 5%);
+					color: $accent;
+					padding: 7px 20px;
+					border-radius: 4px;
+					font-size: 12px;
+					position: absolute;
+					right: -10px;
+					width: 60px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: $fontSizeMd;
+				}
+				.betOdds {
+					margin-left: auto;
+					color: #33ee91;
+					font-size: 16px;
+					font-weight: 600;
+				}
+			}
+			.type {
+				font-size: 12px;
+				color: lightgray;
+			}
+			.name {
+				font-size: 13px;
+				color: lightgray;
+			}
+		}
+	}
+	.disclaimer {
+		font-size: 10px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding-top: 25px;
+		color: lighten($dark, 55%);
+	}
+}

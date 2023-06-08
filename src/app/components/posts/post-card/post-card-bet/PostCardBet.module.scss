@@ -1,0 +1,41 @@
+@use '../../../../styles/variables' as *;
+
+.betContainer {
+	padding: 10px 1rem;
+	background-color: $lighter;
+	border: 1px solid $border;
+	width: 100%;
+	border-radius: 4px;
+	.bet {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		font-size: $fontSizeMd;
+		position: relative;
+		.odds {
+			background-color: darken($lighter, 5%);
+			padding: 8px 20px;
+			border-radius: 4px;
+			font-weight: 600;
+			margin-left: auto;
+			width: 60px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: $accent;
+			position: absolute;
+			right: 0;
+			top: 0;
+			font-size: $fontSizeLg;
+		}
+	}
+	.disclaimer {
+		font-size: 10px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding-top: 25px;
+		color: lighten($dark, 55%);
+	}
+}
