@@ -1,0 +1,32 @@
+@use '../../../../styles/variables' as *;
+
+.overlay {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.postCardMenu {
+	background-color: $light;
+	color: $dark;
+	height: fit-content;
+	padding: 5px 0;
+	width: 130px;
+	border-radius: 4px;
+	position: absolute;
+	right: 30px;
+	font-size: $fontSizeSm;
+	z-index: 99;
+	.option {
+		padding: 5px 15px;
+		&:hover {
+			background-color: $accent;
+			color: $light;
+			cursor: pointer;
+		}
+	}
+	.divider {
+		background-color: $dark;
+	}
+}

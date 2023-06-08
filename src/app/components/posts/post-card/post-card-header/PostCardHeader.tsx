@@ -2,10 +2,14 @@
 
 import { User } from '@prisma/client';
 
-import styles from './PostCardHeader.module.scss';
+import { useMemo, useState } from 'react';
 import Avatar from '@/app/components/user/Avatar/Avatar';
 import { createdAtFormatter } from '@/app/utils/dateUtils';
-import { useMemo } from 'react';
+import { BsThreeDotsVertical } from 'react-icons/bs'
+
+import styles from './PostCardHeader.module.scss';
+import PostCardMenu from '../post-card-menu/PostCardMenu';
+
 
 type Props = {
  user: User;
@@ -13,6 +17,9 @@ type Props = {
 };
 
 const PostCardHeader: React.FC<Props> = ({ user, createdAt }) => {
+
+ const [isMenuOpen, setIsMenuOpen] = useState(false)
+
 
  const postCreationDate = useMemo(() => {
   return createdAtFormatter(createdAt);
@@ -28,7 +35,11 @@ const PostCardHeader: React.FC<Props> = ({ user, createdAt }) => {
     <strong>{user.name}</strong>
     <span>@{user.username}</span>
    </div>
-   <p className={styles.createdAt}>{postCreationDate}</p>
+   <div className={styles.menu}>
+    <p className={styles.createdAt}>{postCreationDate}</p>
+    <BsThreeDotsVertical onClick={() => setIsMenuOpen(!isMenuOpen)} />
+    {isMenuOpen && <PostCardMenu setIsMenuOpen={setIsMenuOpen} />}
+   </div>
   </div>
  );
 };

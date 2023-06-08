@@ -12,13 +12,13 @@ body {
 
 .layout {
 	width: 1174px;
-	background-color: $accent;
+	// background-color: $accent;
 	margin: 0 auto;
 	display: flex;
 	.left-sidebar,
 	.right-sidebar {
 		width: 287px;
 		min-width: 287px;
-		background-color: $accent;
+		// background-color: $accent;
 	}
 }

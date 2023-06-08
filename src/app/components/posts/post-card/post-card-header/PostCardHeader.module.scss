@@ -17,10 +17,17 @@
 			font-size: $fontSizeMd;
 		}
 	}
-	.createdAt {
+	.menu {
 		margin-left: auto;
-		color: $lightText;
-		font-weight: 300;
-		font-size: $fontSizeMd;
+		display: flex;
+		gap: 5px;
+		.createdAt {
+			color: $lightText;
+			font-weight: 300;
+			font-size: $fontSizeMd;
+		}
+		svg {
+			cursor: pointer;
+		}
 	}
 }
