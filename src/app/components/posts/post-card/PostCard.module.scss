@@ -6,4 +6,7 @@
 	border-bottom: 1px solid $lighter;
 	padding: 15px;
 	font-size: $fontSizeMd;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
 }

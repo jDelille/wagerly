@@ -1,4 +1,5 @@
 import styles from './PostCard.module.scss';
+import PostCardHeader from './post-card-header/PostCardHeader';
 
 type Props = {
  post: any;
@@ -8,7 +9,7 @@ type Props = {
 const PostCard: React.FC<Props> = ({ post }) => {
  return (
   <div className={styles.postCard}>
-   {/* post header */}
+   <PostCardHeader user={post.user} />
    <div className={styles.postBody}>
     <p>{post.body}</p>
    </div>

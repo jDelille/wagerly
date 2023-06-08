@@ -1,0 +1,16 @@
+@use '../../../../styles/variables' as *;
+
+.postCardHeader {
+	display: flex;
+	gap: 15px;
+	.displayName {
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		font-size: $fontSizeMd;
+		span {
+			font-weight: 300;
+			color: lighten($lighter, 50%);
+		}
+	}
+}
