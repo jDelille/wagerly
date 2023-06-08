@@ -1,27 +1,28 @@
-import { ChangeEventHandler } from "react";
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
+
 import styles from './Input.module.scss';
 
 type InputProps = {
  label: string;
  id: string;
- onChange: ChangeEventHandler<HTMLInputElement>
  placeholder: string;
- value: string;
+ value?: string;
  type: string;
  required?: boolean;
+ register: UseFormRegister<FieldValues>;
+
 }
 
-const Input: React.FC<InputProps> = ({ id, label, onChange, placeholder, value, type, required }) => {
+const Input: React.FC<InputProps> = ({ id, label, placeholder, value, type, required, register }) => {
  return (
   <div className={styles.input}>
    <label htmlFor={id}>{label}</label>
    <input
     type={type}
     id={id}
-    onChange={onChange}
-    value={value}
     placeholder={placeholder}
     required={required}
+    {...register(id, { required })}
    />
   </div>
  );

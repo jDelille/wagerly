@@ -1,3 +1,4 @@
+import getCurrentUser from './actions/getCurrentUser';
 import Auth from './components/user/auth/Auth';
 import './styles/globals.scss';
 import { Inter } from 'next/font/google'
@@ -9,13 +10,15 @@ export const metadata = {
   description: 'Social platform for sports betters and fans.',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
 
-  
+  const [currentUser] = await Promise.all([getCurrentUser()])
+
+
 
   return (
     <html lang="en">
@@ -23,9 +26,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className='layout'>
           <div className='left-sidebar'>
-            <Auth />
+            {!currentUser && (
+              <Auth currentUser={currentUser} />
+            )}
           </div>
-
           {children}
           <div className='right-sidebar'>
             -

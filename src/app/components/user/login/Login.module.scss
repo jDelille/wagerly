@@ -7,6 +7,8 @@
 	justify-content: center;
 	width: 600px;
 	margin: 0 auto;
+	position: relative;
+	z-index: 9999;
 	.authContainer {
 		background-color: $dark;
 		max-width: 400px;

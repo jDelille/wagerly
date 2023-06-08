@@ -1,10 +1,10 @@
 
 import Login from '../components/user/login/Login';
-import './Page.module.scss';
+import styles from './Page.module.scss';
 
 const LoginPage = () => {
  return (
-  <div className="page">
+  <div className={styles.page}>
    <Login />
   </div>
  );

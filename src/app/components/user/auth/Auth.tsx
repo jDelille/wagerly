@@ -4,18 +4,28 @@ import Button from '../../button/Button';
 import { useRouter } from 'next/navigation';
 
 import styles from './Auth.module.scss';
+import { useEffect, useState } from 'react';
+import { SafeUser } from '@/app/types/SafeUser';
 
-const Auth = () => {
+type Props = {
+ currentUser: SafeUser | null;
+}
 
- const shouldRenderColumns = (path: string) => {
-  return !['/signup', '/login'].includes(path);
- };
-
+const Auth: React.FC<Props> = ({ currentUser }) => {
+ const [shouldRender, setShouldRender] = useState(false);
  const router = useRouter();
 
- if (!shouldRenderColumns(window.location.pathname)) {
+ useEffect(() => {
+  router.refresh()
+  const path = window.location.pathname;
+  const shouldRenderColumns = !['/signup', '/login'].includes(path);
+  setShouldRender(shouldRenderColumns);
+ }, []);
+
+ if (currentUser) {
   return null;
  }
+
 
  return (
   <div className={styles.authContainer}>

@@ -3,6 +3,8 @@ import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link'
 import axios from 'axios';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { signIn } from 'next-auth/react'
 
 import Input from '../../input/Input';
 import Button from '../../button/Button';
@@ -12,86 +14,117 @@ import styles from './Signup.module.scss';
 
 const Signup = () => {
 
- const router = useRouter();
+  const router = useRouter();
 
- const [name, setName] = useState('');
- const [email, setEmail] = useState('');
- const [password, setPassword] = useState('');
- const [error, setError] = useState(null)
+  const [name, setName] = useState('');
+  const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(false);
 
- async function handleSubmit(e: React.FormEvent) {
-  e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+    watch,
+    reset
+  } = useForm<FieldValues>({
+    defaultValues: {
+      name: '',
+      username: '',
+      email: '',
+      password: '',
+      photo: '',
+    },
+  });
 
-  try {
-   await axios.post('http://localhost:5000/auth/login', {
-    email,
-    password
-   }).then((res) => {
+  const email = watch('email')
+  const password = watch("password")
 
-    if (res.data.message === 'User does not exist.') {
-     return setError(res.data.message)
-    }
+  const setCustomValue = (id: string, value: any) => {
+    setValue(id, value, {
+      shouldDirty: true,
+      shouldValidate: true,
+      shouldTouch: true,
+    });
+  };
 
-    if (res.data.message === 'Invalid E-mail address or password.') {
-     return setError(res.data.message)
-    }
-    localStorage.setItem('token', res.data.token);
-    localStorage.setItem('userId', res.data.userID);
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
 
-    return router.push('/')
-   })
-  } catch (error) {
-   console.log(error)
-  }
- }
+    axios
+      .post('/api/register', data)
+      .then(() => {
+        signIn('credentials', {
+          ...data,
+          redirect: false
+        }).then(() => {
+          router.push('/');
+          router.refresh()
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(error.response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
- return (
-  <div className={styles.page}>
-   <div className={styles.authContainer}>
-    <div className={styles.header}>
-     <h1>Lets get you set up on Wagerly.</h1>
-     <p>With an account youll be able to post, follow users, like, comment, and fully interact with other users on the site.</p>
+
+  return (
+    <div className={styles.page}>
+      <div className={styles.authContainer}>
+        <div className={styles.header}>
+          <h1>Lets get you set up on Wagerly.</h1>
+          <p>With an account youll be able to post, follow users, like, comment, and fully interact with other users on the site.</p>
+        </div>
+        {error && <div className={styles.error}>
+          <strong>{error}</strong></div>}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            type="text"
+            label='Name'
+            id='name'
+            register={register}
+            placeholder="John Smith"
+
+            required
+          />
+          <Input
+            type="text"
+            label='Username'
+            id='username'
+            register={register}
+            placeholder="@john"
+            required
+          />
+          <Input
+            type="text"
+            label='Email'
+            id='email'
+            register={register}
+            placeholder="something@email.com"
+            required
+          />
+          <Input
+            type="password"
+            label='Password'
+            id='password'
+            register={register}
+            placeholder="********"
+            required
+          />
+          <Button label='Signup' />
+          <div className={styles.footer}>
+            <p>Already have an account?  <Link href='/login'>Log in</Link></p>
+
+          </div>
+        </form>
+      </div>
     </div>
-    {error && <div className={styles.error}>
-     <strong>{error}</strong></div>}
-    <form action='POST' onSubmit={handleSubmit}>
-     <Input
-      type="text"
-      label='Name'
-      id='name'
-      onChange={(e) => setName(e.target.value)}
-      placeholder="John Smith"
-      value={name}
-      required
-     />
-     <Input
-      type="text"
-      label='Email'
-      id='email'
-      onChange={(e) => setEmail(e.target.value)}
-      placeholder="something@email.com"
-      value={email}
-      required
-     />
-     <Input
-      type="password"
-      label='Password'
-      id='password'
-      onChange={(e) => setPassword(e.target.value)}
-      placeholder="********"
-      value={password}
-      required
-     />
-     <Button label='Log in' />
-     <div className={styles.footer}>
-      <p>Already have an account?  <Link href='/login'>Log in</Link></p>
 
-     </div>
-    </form>
-   </div>
-  </div>
-
- );
+  );
 }
 
 export default Signup;

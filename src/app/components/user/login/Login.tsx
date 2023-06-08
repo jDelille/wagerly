@@ -3,6 +3,8 @@ import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link'
 import axios from 'axios';
+import { signIn } from 'next-auth/react'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 import Input from '../../input/Input';
 import Button from '../../button/Button';
@@ -17,32 +19,40 @@ const Login = () => {
  const [email, setEmail] = useState('');
  const [password, setPassword] = useState('');
  const [error, setError] = useState("");
+ const [isLoading, setIsLoading] = useState(false);
 
- async function handleSubmit(e: React.FormEvent) {
-  e.preventDefault();
+ const {
+  register,
+  handleSubmit,
+  formState: { errors },
+  reset
+ } = useForm<FieldValues>({
+  defaultValues: {
+   email: '',
+   password: '',
+  },
+ });
 
-  try {
-   await axios.post('http://localhost:5000/auth/login', {
-    email,
-    password
-   }).then((res) => {
+ const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  setIsLoading(true);
 
-    if (res.data.message === 'User does not exist.') {
-     return setError(res.data.message)
-    }
+  signIn('credentials', {
+   ...data,
+   redirect: false
+  }).then((callback) => {
+   setIsLoading(false)
 
-    if (res.data.message === 'Invalid E-mail address or password.') {
-     return setError(res.data.message)
-    }
-    localStorage.setItem('token', res.data.token);
-    localStorage.setItem('userId', res.data.userID);
+   if (callback?.ok) {
+    router.push('/')
+    router.refresh()
+   }
 
-    return router.push('/')
-   })
-  } catch (error) {
-   console.log(error)
-  }
- }
+   if (callback?.error) {
+    setError('Invalid credentials')
+   }
+  })
+ };
+
 
  return (
   <div className={styles.page}>
@@ -53,22 +63,22 @@ const Login = () => {
     </div>
     {error && <div className={styles.error}>
      <strong>{error}</strong></div>}
-    <form action='POST' onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
      <Input
       id='email'
       type='text'
       label='Email'
       placeholder='something@email.com'
+      register={register}
       value={email}
-      onChange={(e) => setEmail(e.target.value)}
      />
      <Input
       id='password'
       type='password'
       label='Password'
-      placeholder='********'
+      placeholder='••••••••'
       value={password}
-      onChange={(e) => setPassword(e.target.value)}
+      register={register}
      />
      <Button label='Log in' />
      <div className={styles.footer}>
