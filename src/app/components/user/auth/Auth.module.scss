@@ -1,0 +1,32 @@
+@use '../../../styles/variables' as *;
+
+.authContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	.message {
+		padding-top: 1.2rem;
+		font-size: 12px;
+		color: lightgray;
+		padding: 10px;
+		margin-top: 1rem;
+	}
+	.authButtons {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		button {
+			font-weight: 600;
+			font-size: $fontSizeMd;
+			&:nth-of-type(2) {
+				background-color: $darker;
+				outline: 1px solid $accent;
+				color: $accent;
+				&:hover {
+					background-color: $accent;
+					color: $light;
+				}
+			}
+		}
+	}
+}

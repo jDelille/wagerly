@@ -1,3 +1,4 @@
+import Auth from './components/user/auth/Auth';
 import './styles/globals.scss';
 import { Inter } from 'next/font/google'
 
@@ -13,14 +14,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+  
+
   return (
     <html lang="en">
 
       <body className={inter.className}>
         <div className='layout'>
           <div className='left-sidebar'>
-            -
+            <Auth />
           </div>
+
           {children}
           <div className='right-sidebar'>
             -

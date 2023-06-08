@@ -1,0 +1,25 @@
+@use '../../styles/variables' as *;
+
+.button {
+	padding: 10px 30px;
+	outline: none;
+	border: none;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	width: 100%;
+	justify-content: center;
+	background-color: $accent;
+	color: $light;
+	position: relative;
+	border-radius: 5px;
+	cursor: pointer;
+	&:disabled {
+		background-color: lighten($lighter, 1%) !important;
+		cursor: default !important;
+	}
+	.buttonIcon {
+		position: absolute;
+		left: 10px;
+	}
+}
