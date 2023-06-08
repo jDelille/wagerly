@@ -9,12 +9,12 @@ type Props = {
 const PostCard: React.FC<Props> = ({ post }) => {
  return (
   <div className={styles.postCard}>
-   <PostCardHeader user={post.user} />
+   <PostCardHeader user={post.user} createdAt={post.createdAt} />
    <div className={styles.postBody}>
     <p>{post.body}</p>
    </div>
    {/* post footer */}
-  </div>
+  </div >
  );
 }
 

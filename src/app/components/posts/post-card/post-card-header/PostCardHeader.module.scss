@@ -7,10 +7,20 @@
 		display: flex;
 		flex-direction: column;
 		gap: 3px;
-		font-size: $fontSizeMd;
+		strong {
+			font-weight: 500;
+			font-size: $fontSizeLg;
+		}
 		span {
 			font-weight: 300;
-			color: lighten($lighter, 50%);
+			color: $lightText;
+			font-size: $fontSizeMd;
 		}
+	}
+	.createdAt {
+		margin-left: auto;
+		color: $lightText;
+		font-weight: 300;
+		font-size: $fontSizeMd;
 	}
 }

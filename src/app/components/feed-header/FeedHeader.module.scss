@@ -1,0 +1,28 @@
+@use '../../styles/variables' as *;
+
+.feedHeader {
+	font-weight: 500;
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	background-color: $dark;
+	border-bottom: 1px solid $border;
+	.header {
+		background-color: lighten($dark, 7%);
+		height: 45px;
+		display: flex;
+		align-items: center;
+		padding-left: 15px;
+		gap: 5px;
+
+		strong {
+			cursor: pointer;
+			color: $light;
+			text-decoration: none;
+			font-weight: 500;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
