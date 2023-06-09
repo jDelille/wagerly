@@ -13,8 +13,8 @@ export default async function Home() {
     <main className={styles.app}>
 
       <div className={styles.main}>
-        <FeedHeader label='Explore' isBack={false} currentUser={currentUser} />
-        <PostFeed posts={posts} isProfilePage={false} />
+        <FeedHeader label='Explore' isBack={false} />
+        <PostFeed posts={posts} isProfilePage={false} isMainPage={true} />
       </div>
     </main>
   )

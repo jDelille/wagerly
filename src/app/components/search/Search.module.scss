@@ -1,0 +1,39 @@
+@use '../../styles/variables' as *;
+
+.inputContainer {
+	background-color: $dark;
+	height: 45px;
+	width: 100%;
+	margin-top: 10px;
+	position: relative;
+	input {
+		height: 45px;
+		width: 100%;
+		background: transparent;
+		outline: none;
+		border: none;
+		padding: 10px;
+		color: lightgray;
+		&::placeholder {
+			color: lightgray;
+		}
+		&:focus {
+			&::placeholder {
+				display: none;
+			}
+		}
+	}
+	svg {
+		position: absolute;
+		right: 10px;
+		top: 0;
+		height: 45px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		&:hover {
+			fill: $light;
+		}
+	}
+}

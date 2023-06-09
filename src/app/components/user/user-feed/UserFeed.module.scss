@@ -1,0 +1,37 @@
+@use '../../../styles/variables' as *;
+
+.userFeed {
+	background-color: $dark;
+	color: $light;
+	height: 100%;
+	padding: 20px 0;
+	padding-top: 5px;
+	.user {
+		display: flex;
+		padding: 20px 15px;
+		gap: 10px;
+		border-bottom: 1px solid $lighter;
+		&:hover {
+			cursor: pointer;
+			.displayName {
+				strong {
+					text-decoration: underline;
+				}
+			}
+		}
+		.displayName {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+			strong {
+				font-weight: 500;
+				font-size: $fontSizeLg;
+			}
+			span {
+				font-weight: 300;
+				color: $lightText;
+				font-size: $fontSizeMd;
+			}
+		}
+	}
+}

@@ -1,4 +1,5 @@
 import getCurrentUser from './actions/getCurrentUser';
+import Search from './components/search/Search';
 import Auth from './components/user/auth/Auth';
 import CurrentUserBox from './components/user/current-user-box/CurrentUserBox';
 import './styles/globals.scss';
@@ -30,7 +31,10 @@ export default async function RootLayout({
             {!currentUser ? (
               <Auth currentUser={currentUser} />
             ) : (
-              <CurrentUserBox currentUser={currentUser} />
+              <>
+                <Search />
+                <CurrentUserBox currentUser={currentUser} />
+              </>
             )}
             <div className='disclaimer'>
               <p>Sports data is provided by ESPN. To learn more about the api used, <a href="https://gist.github.com/akeaswaran/b48b02f1c94f873c6655e7129910fc3b" target='_blank'>click here.</a></p>
