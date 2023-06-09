@@ -1,29 +1,25 @@
 'use client';
 
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useRef, useState } from 'react';
-import { MdGifBox, MdPoll } from 'react-icons/md'
-import { AiFillCloseCircle } from 'react-icons/ai'
-import ImageUpload from '../../image-upload/ImageUpload';
-import Image from 'next/image'
-import Button from '../../button/Button';
-import axios from 'axios';
 import { useRouter } from 'next/navigation'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
-import styles from './CreatePost.module.scss';
-import Gifs from '../../gifs/Gifs';
+import styles from './CreateComment.module.scss';
+import axios from 'axios';
 import postPreviewStore from '@/app/store/postPreviewStore';
-import CreateComment from '../create-comment/CreateComment';
-import { observer } from 'mobx-react';
+import Button from '../../button/Button';
+import ImageUpload from '../../image-upload/ImageUpload';
+import { MdGifBox, MdPoll } from 'react-icons/md';
 
-
-const CreatePost = observer(() => {
+const CreateComment = () => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(false)
+  const [photo, setPhoto] = useState('');
   const [error, setError] = useState(false)
   const [showGifs, setShowGifs] = useState(false);
-  const [photo, setPhoto] = useState('');
-  const [isLoading, setIsLoading] = useState(false)
-  const isOpen = postPreviewStore.isOpen
+  const [showOutline, setShowOutline] = useState(false);
+
   const router = useRouter();
 
   const {
@@ -45,6 +41,9 @@ const CreatePost = observer(() => {
   const postPhoto = watch('photo');
   const postBodyLength = body.length || 0
 
+  const postId = postPreviewStore.post.id
+  const postUsername = postPreviewStore.post.user.username
+
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
       shouldDirty: true,
@@ -58,22 +57,22 @@ const CreatePost = observer(() => {
 
     data.groupId = null;
 
-    const newPost = {
-      id: '',
-      userId: data.userId,
-      body: body,
-      photo: photo,
-      groupId: null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      betId: '',
-      parlayId: '',
-      pollId: '',
-      likedIds: [], commentedIds: [], taggedUserIds: [], isPinned: false, tags: []
-    }
+    // const newPost = {
+    //  id: '',
+    //  userId: data.userId,
+    //  body: body,
+    //  photo: photo,
+    //  groupId: null,
+    //  createdAt: new Date(),
+    //  updatedAt: new Date(),
+    //  betId: '',
+    //  parlayId: '',
+    //  pollId: '',
+    //  likedIds: [], commentedIds: [], taggedUserIds: [], isPinned: false, tags: []
+    // }
 
     axios
-      .post('/api/post', data)
+      .post(`/api/comment/${postId}`, data)
       .then(() => {
         router.refresh();
         reset();
@@ -130,15 +129,30 @@ const CreatePost = observer(() => {
     setPhoto && setPhoto('')
   }
 
-  if (isOpen) {
-    return <CreateComment />
-  }
+  useEffect(() => {
+    const containerElement = containerRef.current;
+
+
+    if (postPreviewStore.post) {
+      setShowOutline(true)
+    }
+
+    setTimeout(() => {
+      setShowOutline(false);
+    }, 1000);
+  }, [postPreviewStore.post]);
+
+  console.log(showOutline)
+
 
   return (
     <>
-      <div className={styles.createPost}>
+      <div
+        className={`${styles.createComment} ${showOutline ? styles.outline : ''}`}
+        ref={containerRef}
+      >
         <textarea
-          placeholder="What's on your mind?"
+          placeholder={`@${postUsername}`}
           className={styles.textarea}
           onChange={(event) => {
             event.stopPropagation();
@@ -148,52 +162,6 @@ const CreatePost = observer(() => {
           ref={textAreaRef}
           rows={1}>
         </textarea>
-        {photo && (
-          <div className={styles.imagePreview}>
-
-            <div
-              className={styles.closeImagePreview}
-              onClick={clearPhoto}>
-              <AiFillCloseCircle size={30} />
-            </div>
-
-            <Image
-              src={photo}
-              fill
-              alt='Uploaded Image'
-              className={styles.imagePreview}
-              style={{ objectFit: 'cover' }}
-            />
-          </div>
-
-        )}
-        {postPhoto.url && (
-          <div className={styles.imagePreview}>
-
-            <div
-              className={styles.closeImagePreview}
-              onClick={clearPhoto}>
-              <AiFillCloseCircle size={30} />
-            </div>
-
-            <Image
-              src={postPhoto.url}
-              fill
-              alt='Uploaded Image'
-              className={styles.imagePreview}
-              style={{ objectFit: 'cover' }}
-            />
-          </div>
-        )}
-        {showGifs && (
-          <Gifs
-            onChange={(image) => setPhoto(image)}
-            setCustomValue={setCustomValue}
-            register={register}
-            errors={errors}
-            setShowGifs={setShowGifs}
-          />
-        )}
         <div className={styles.createPostButtons}>
           <div className={styles.icon}>
             <ImageUpload
@@ -220,20 +188,20 @@ const CreatePost = observer(() => {
             )}
           </div>
         </div>
-
       </div>
+
       <div className={styles.postButton}>
         <Button
           onClick={handleSubmit(onSubmit)}
-          label='Post'
+          label='Comment'
           isButtonDisabled={!body || postBodyLength > 500}
-          ariaLabel='Publish post'
+          ariaLabel='Publish comment'
         />
 
       </div>
     </>
 
   );
-})
+}
 
-export default CreatePost;
+export default CreateComment;

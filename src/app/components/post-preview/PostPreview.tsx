@@ -22,8 +22,6 @@ const PostPreview: React.FC = observer(() => {
   return null;
  }
 
- console.log(post.photo)
-
 
  return (
   <div className={styles.postPreview}>

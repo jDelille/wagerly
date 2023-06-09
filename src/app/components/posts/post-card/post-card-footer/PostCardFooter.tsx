@@ -49,7 +49,7 @@ const PostCardFooter: React.FC<Props> = ({ postId, currentUser, post }) => {
     <div className={styles.postCardFooter}>
       <div className={styles.icon} onClick={() => openPostPreview(post)} >
         <FaReply size={15} color='#5E616F' />
-        <span>0</span>
+        <span>{post.comments.length || 0}</span>
       </div>
       <div className={styles.icon}>
         <AiTwotoneLike size={15} color='#5E616F' />

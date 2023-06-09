@@ -1,0 +1,55 @@
+@use '../../../../../styles/variables' as *;
+
+.postCardComment {
+	border-bottom: 1px solid $lighter;
+	padding: 0 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	.header {
+		display: flex;
+		gap: 15px;
+		.avatar {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			.line {
+				width: 1px;
+				background-color: $lighter;
+				height: 15px;
+			}
+		}
+		.displayName {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+			padding-top: 15px;
+			strong {
+				font-weight: 500;
+				font-size: $fontSizeLg;
+			}
+			span {
+				font-weight: 300;
+				color: $lightText;
+				font-size: $fontSizeMd;
+			}
+		}
+	}
+	.body {
+		p {
+			display: flex;
+			gap: 5px;
+			span {
+				color: $accent;
+				cursor: pointer;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	.footer {
+		padding-bottom: 1rem;
+	}
+}
