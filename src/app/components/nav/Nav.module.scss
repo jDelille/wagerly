@@ -1,0 +1,36 @@
+@use '../../styles/variables' as *;
+
+.nav {
+	width: 100%;
+	height: 60vh;
+	margin-top: 10px;
+	padding: 0 10px;
+	.logo {
+		height: 45px;
+		display: flex;
+		align-items: center;
+		font-size: 22px;
+		color: $light;
+	}
+	.links {
+		display: flex;
+		flex-direction: column;
+		.link {
+			padding: 20px 0;
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			svg {
+				font-size: 16px;
+			}
+			a {
+				color: lightgray;
+				text-decoration: none;
+				&:hover {
+					text-decoration: underline;
+					color: $light;
+				}
+			}
+		}
+	}
+}

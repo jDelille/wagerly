@@ -4,6 +4,7 @@ import Search from './components/search/Search';
 import CreatePost from './components/text-input/create-post/CreatePost';
 import Auth from './components/user/auth/Auth';
 import CurrentUserBox from './components/user/current-user-box/CurrentUserBox';
+import Nav from './components/nav/Nav';
 import './styles/globals.scss';
 import { Inter } from 'next/font/google'
 
@@ -47,7 +48,7 @@ export default async function RootLayout({
           </div>
           {children}
           <div className='right-sidebar'>
-            -
+            <Nav />
           </div>
         </div>
       </body>
