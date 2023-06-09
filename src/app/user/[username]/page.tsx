@@ -19,7 +19,7 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
   <div className={styles.main}>
    <FeedHeader label='Back' isBack />
    <ProfileHeader user={user} currentUserId={currentUser?.id} bio={user?.bio as string} />
-   <PostFeed isProfilePage posts={posts} />
+   <PostFeed isProfilePage posts={posts} currentUser={currentUser} />
   </div>
  );
 }

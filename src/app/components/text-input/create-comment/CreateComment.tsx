@@ -142,7 +142,6 @@ const CreateComment = () => {
     }, 1000);
   }, [postPreviewStore.post]);
 
-  console.log(showOutline)
 
 
   return (

@@ -1,0 +1,44 @@
+@use '../../../styles/variables' as *;
+
+.match {
+	padding: 2rem 1rem;
+	background-color: lighten($dark, 5%);
+	display: flex;
+	align-items: center;
+	font-size: $fontSizeMd;
+	justify-content: space-between;
+	border-bottom: 1px solid $border;
+	color: $light;
+	text-decoration: none;
+	&:hover {
+		background-color: lighten($dark, 10%);
+		cursor: pointer;
+	}
+	.teams {
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+		width: 70%;
+		gap: 10px;
+		.team {
+			.home,
+			.away {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+			.home {
+				strong {
+					width: 75px;
+					text-align: right;
+				}
+			}
+			.away {
+				strong {
+					width: 75px;
+					text-align: left;
+				}
+			}
+		}
+	}
+}

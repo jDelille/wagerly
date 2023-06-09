@@ -1,0 +1,28 @@
+@use '../../../styles/variables' as *;
+
+.selector {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	justify-content: space-evenly;
+	padding: 1rem 2rem;
+	.sport,
+	.sportHideOnMobile,
+	.selectedSport,
+	.selectedSportHideOnMobile {
+		border: 1px solid $border;
+		padding: 6px 12px;
+		border-radius: 22px;
+		font-size: 12px;
+		text-transform: uppercase;
+		cursor: pointer;
+		color: lightgray;
+		&:hover {
+			color: $light;
+		}
+	}
+	.selectedSport {
+		color: $light;
+		border: 1px solid $light;
+	}
+}

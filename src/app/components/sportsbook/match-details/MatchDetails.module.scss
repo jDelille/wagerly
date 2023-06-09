@@ -1,0 +1,107 @@
+@use '../../../styles/variables' as *;
+
+.matchHeader {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	.league {
+		border-bottom: 1px solid $border;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 10px 0;
+		width: 100%;
+		background-color: lighten($dark, 5%);
+	}
+	.teams {
+		display: flex;
+		padding: 1rem 0;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		gap: 1rem;
+		.at {
+			background-color: lighten($dark, 10%);
+			padding: 5px;
+			border-radius: 4px;
+			color: $accent;
+		}
+		.home,
+		.away {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			flex: 1;
+			.name {
+				display: flex;
+				flex-direction: column;
+				gap: 3px;
+				span {
+					font-size: $fontSizeSm;
+				}
+			}
+		}
+		.home {
+			justify-content: flex-start;
+			.name {
+				align-items: flex-start;
+			}
+		}
+		.away {
+			justify-content: flex-end;
+			.name {
+				align-items: flex-end;
+			}
+		}
+	}
+	.predictor {
+		background: rgba(58, 128, 255, 0.1);
+		border: 1px solid rgba(58, 128, 255, 0.5);
+		color: #3a80ff;
+		width: 98%;
+		margin: 10px 0;
+		padding: 10px;
+		border-radius: 4px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.odds {
+		border-top: 1px solid $border;
+		border-bottom: 1px solid $border;
+		width: 100%;
+		padding: 10px;
+
+		.home,
+		.away {
+			padding: 10px 0;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			.values {
+				display: flex;
+				gap: 10px;
+				.spread,
+				.total,
+				.moneyline {
+					display: flex;
+					flex-direction: column;
+					gap: 5px;
+					justify-content: center;
+					font-size: $fontSizeMd;
+					align-items: center;
+					background-color: lighten($dark, 10%);
+					width: 105px;
+					padding: 5px;
+					border-radius: 4px;
+					strong {
+						display: flex;
+						flex-direction: column;
+						gap: 5px;
+						font-weight: 400;
+					}
+				}
+			}
+		}
+	}
+}

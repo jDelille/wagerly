@@ -7,14 +7,15 @@ type Props = {
  label: string;
  id: number;
  icon: IconType
+ href: string;
 }
 
 
-const NavLink: React.FC<Props> = ({ id, label, icon: Icon }) => {
+const NavLink: React.FC<Props> = ({ id, label, icon: Icon, href }) => {
  return (
   <div className={styles.link}>
    <Icon color="lightgray" />
-   <Link href={'/'} key={id}>{label}</Link>
+   <Link href={href} key={id}>{label}</Link>
   </div>
  );
 }
