@@ -21,9 +21,13 @@ const PostCardFooter: React.FC<Props> = ({ postId, currentUser, post }) => {
 
   const router = useRouter();
   const isBookmarked = currentUser?.bookmarks.includes(postId)
+  const hasLiked = post.likedIds.includes(currentUser?.id)
 
 
   const [bookmark, setBookmark] = useState(isBookmarked)
+  const [like, setLike] = useState(hasLiked)
+  const [localLike, setLocalLike] = useState(false || hasLiked)
+  const [localLikeCount, setLocalLikeCount] = useState(0 || post.likedIds.length)
 
 
   const onBookmark = useCallback(() => {
@@ -38,6 +42,32 @@ const PostCardFooter: React.FC<Props> = ({ postId, currentUser, post }) => {
       })
   }, [postId, router])
 
+  const onLike = useCallback(
+    (id: string) => {
+
+
+      if (!currentUser?.id) {
+        return;
+      }
+
+      setLocalLikeCount((prevLikeCount: number) => prevLikeCount + 1);
+      setLocalLike(true);
+
+      axios
+        .post(`/api/like-post/${id}`)
+        .then(() => {
+          router.refresh();
+        })
+        .catch((error) => {
+          console.log(error)
+          setLocalLikeCount((prevLikeCount: number) => prevLikeCount - 1);
+          setLocalLike(false)
+        })
+
+    },
+    [currentUser?.id, router]
+  );
+
   const openPostPreview = (post: Post) => {
     postPreviewStore.clearPost(); // Clear the previous post (if any)
     postPreviewStore.setOpen(true);
@@ -51,9 +81,9 @@ const PostCardFooter: React.FC<Props> = ({ postId, currentUser, post }) => {
         <FaReply size={15} color='#5E616F' />
         <span>{post.comments.length || 0}</span>
       </div>
-      <div className={styles.icon}>
-        <AiTwotoneLike size={15} color='#5E616F' />
-        <span>0</span>
+      <div className={styles.icon} onClick={() => onLike(postId)}>
+        <AiTwotoneLike size={15} color='#5E616F' className={localLike ? styles.liked : ""} />
+        <span>{localLikeCount || 0}</span>
       </div>
       <div className={styles.icon} onClick={() => onBookmark()}>
         <BsFillBookmarkFill size={15} color='#5E616F' className={bookmark ? styles.bookmarked : ""} />
@@ -64,7 +94,7 @@ const PostCardFooter: React.FC<Props> = ({ postId, currentUser, post }) => {
       <div className={styles.icon}>
         <BsThreeDots size={15} color='#5E616F' />
       </div>
-    </div>
+    </div >
   );
 }
 
