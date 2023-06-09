@@ -13,6 +13,8 @@
     "schema": "./src/prisma/schema.prisma"
   },
   "dependencies": {
+    "@giphy/js-fetch-api": "^4.9.3",
+    "@giphy/react-components": "^6.9.4",
     "@next-auth/prisma-adapter": "^1.0.6",
     "@prisma/client": "^4.15.0",
     "@types/node": "20.2.5",
@@ -30,8 +32,10 @@
     "next-auth": "^4.22.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.44.3",
     "react-icons": "^4.9.0",
+    "react-resize-observer": "^1.1.1",
     "sass": "^1.63.1",
     "typescript": "5.1.3"
   },

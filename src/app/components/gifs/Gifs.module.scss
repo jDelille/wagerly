@@ -1,0 +1,40 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.overlay {
+	@include overlay();
+	z-index: 9999;
+}
+.gifs {
+	width: fit-content;
+	min-height: 500px;
+	position: absolute;
+	z-index: 9999;
+	top: 100px;
+
+	z-index: 99999;
+	overflow-x: hidden;
+	background-color: $light;
+	border-radius: 6px;
+	outline: 1px solid lightgray;
+	width: 500px;
+	max-height: 500px;
+	max-width: 500px;
+	overflow-y: auto;
+	padding: 10px 0;
+
+	.search {
+		position: sticky;
+		top: 0;
+		background-color: $light;
+		z-index: 99999999;
+		padding: 10px 1rem;
+		width: 100%;
+
+		input {
+			background-color: $light !important;
+			border: 1px solid #dadada;
+			color: $darker;
+		}
+	}
+}

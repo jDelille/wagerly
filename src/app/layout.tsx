@@ -1,5 +1,6 @@
 import getCurrentUser from './actions/getCurrentUser';
 import Search from './components/search/Search';
+import CreatePost from './components/text-input/create-post/CreatePost';
 import Auth from './components/user/auth/Auth';
 import CurrentUserBox from './components/user/current-user-box/CurrentUserBox';
 import './styles/globals.scss';
@@ -34,6 +35,7 @@ export default async function RootLayout({
               <>
                 <Search />
                 <CurrentUserBox currentUser={currentUser} />
+                <CreatePost />
               </>
             )}
             <div className='disclaimer'>

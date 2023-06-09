@@ -14,6 +14,7 @@ body {
 	width: 1174px;
 	margin: 0 auto;
 	display: flex;
+	position: relative;
 	.left-sidebar,
 	.right-sidebar {
 		width: 287px;
@@ -22,6 +23,7 @@ body {
 		position: sticky;
 		top: 10px;
 		height: calc(100vh - 10px);
+		z-index: 9999;
 		.disclaimer {
 			color: lightgray;
 			font-size: 11px;

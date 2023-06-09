@@ -1,0 +1,129 @@
+@use '../../../styles/variables' as *;
+
+.createPost {
+	background-color: $light;
+	width: 100%;
+	min-height: 175px;
+	height: auto;
+	border-radius: 4px;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	max-height: 500px;
+	.textarea {
+		padding: 10px;
+		width: 100%;
+		min-height: 130px;
+		height: fit-content;
+		resize: none;
+		border: none;
+		outline: none;
+		max-height: 300px;
+	}
+	.imagePreview {
+		max-height: 150px;
+		min-height: 150px;
+		height: 150px;
+		width: 100%;
+		position: relative;
+		margin-top: auto;
+		padding: 10px;
+		overflow: hidden;
+		border-radius: 4px !important;
+
+		img {
+			border-radius: 4px !important;
+		}
+		.closeImagePreview {
+			position: absolute;
+			top: 13px;
+			right: 13px;
+			z-index: 999;
+			cursor: pointer;
+		}
+	}
+	.createPostButtons {
+		height: 45px;
+		background-color: #ebebeb;
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		padding: 0 10px;
+		.icon {
+			display: flex;
+			gap: 5px;
+			align-items: center;
+			cursor: pointer;
+			&:nth-of-type(1) {
+				&:hover {
+					&::after {
+						position: absolute;
+						content: 'Post a photo';
+						background-color: $dark;
+						color: $light;
+						padding: 3px 5px;
+						border-radius: 2px;
+						font-size: $fontSizeXs;
+						bottom: 36px;
+					}
+				}
+			}
+			&:nth-of-type(2) {
+				padding: 2px 5px;
+				&:hover {
+					&::after {
+						position: absolute;
+						content: 'Post a gif';
+						background-color: $dark;
+						color: $light;
+						padding: 3px 5px;
+						border-radius: 2px;
+						font-size: $fontSizeXs;
+						bottom: 36px;
+					}
+				}
+			}
+			&:nth-of-type(3) {
+				padding: 2px 5px;
+				&:hover {
+					&::after {
+						position: absolute;
+						content: 'Post a poll';
+						background-color: $dark;
+						color: $light;
+						padding: 3px 5px;
+						border-radius: 2px;
+						font-size: $fontSizeXs;
+						bottom: 36px;
+					}
+				}
+			}
+			cursor: pointer;
+			&:hover {
+				background-color: darken(#ebebeb, 5%);
+			}
+		}
+		.textCount {
+			margin-left: auto;
+			font-weight: 500;
+			font-size: 14px;
+			color: $darker;
+			.lengthError {
+				color: red;
+			}
+		}
+	}
+}
+
+.postButton {
+	margin-top: 15px;
+	button {
+		position: unset !important;
+		margin-left: auto;
+		width: fit-content;
+		&:hover {
+			background-color: lighten($accent, 5%);
+		}
+	}
+}
