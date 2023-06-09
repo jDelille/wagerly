@@ -10,54 +10,58 @@ import { RiMoneyDollarBoxFill } from 'react-icons/ri'
 import { AiFillLike } from 'react-icons/ai';
 
 type Props = {
-
+ currentUsername?: string;
 }
 
-const links = [
- {
-  id: 1,
-  label: 'Explore',
-  icon: FaHashtag,
-  href: '/'
- },
- {
-  id: 2,
-  label: 'Sportsbook',
-  icon: RiMoneyDollarBoxFill,
-  href: '/sportsbook'
- },
- {
-  id: 3,
-  label: 'Profile',
-  icon: FaUserCircle,
-  href: '/'
 
- },
- {
-  id: 4,
-  label: 'Notifications',
-  icon: FaBell,
-  href: '/'
 
- },
- {
-  id: 5,
-  label: 'Bookmarks',
-  icon: BsFillBookmarkFill,
-  href: '/'
+const Nav: React.FC<Props> = ({ currentUsername }) => {
 
- },
- {
-  id: 6,
-  label: 'Likes',
-  icon: AiFillLike,
-  href: '/'
+ const links = [
+  {
+   id: 1,
+   label: 'Explore',
+   icon: FaHashtag,
+   href: '/'
+  },
+  {
+   id: 2,
+   label: 'Sportsbook',
+   icon: RiMoneyDollarBoxFill,
+   href: '/sportsbook'
+  },
+  {
+   id: 3,
+   label: 'Profile',
+   icon: FaUserCircle,
+   href: `/user/${currentUsername}`
 
- },
+  },
+  {
+   id: 4,
+   label: 'Notifications',
+   icon: FaBell,
+   href: '/'
 
-]
+  },
+  {
+   id: 5,
+   label: 'Bookmarks',
+   icon: BsFillBookmarkFill,
+   href: '/'
 
-const Nav: React.FC<Props> = () => {
+  },
+  {
+   id: 6,
+   label: 'Likes',
+   icon: AiFillLike,
+   href: '/'
+
+  },
+
+ ]
+
+
  return (
   <div className={styles.nav}>
    <div className={styles.logo}>

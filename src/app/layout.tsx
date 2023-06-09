@@ -48,7 +48,7 @@ export default async function RootLayout({
           </div>
           {children}
           <div className='right-sidebar'>
-            <Nav />
+            <Nav currentUsername={currentUser?.username} />
           </div>
         </div>
       </body>
