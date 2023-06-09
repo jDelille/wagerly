@@ -8,14 +8,16 @@ import PostFeed from '../posts/post-feed/PostFeed';
 
 import styles from './SearchFeed.module.scss';
 import tabStore from '@/app/store/tabStore';
+import { SafeUser } from '@/app/types/SafeUser';
 
 
 type Props = {
  users: User[]
  posts: any;
+ currentUser: SafeUser | null;
 }
 
-const SearchFeed: React.FC<Props> = observer(({ users, posts }) => {
+const SearchFeed: React.FC<Props> = observer(({ users, posts, currentUser }) => {
 
  const activeTab = tabStore.tab
 
@@ -25,7 +27,7 @@ const SearchFeed: React.FC<Props> = observer(({ users, posts }) => {
    {tabStore.tab === 'All' && (
     <>
      <UserFeed users={users} />
-     <PostFeed posts={posts} isProfilePage={false} isSearchPage={true} hideHeader={true} />
+     <PostFeed posts={posts} isProfilePage={false} isSearchPage={true} hideHeader={true} currentUser={currentUser} />
     </>
    )}
 
@@ -34,7 +36,7 @@ const SearchFeed: React.FC<Props> = observer(({ users, posts }) => {
    )}
 
    {tabStore.tab === 'Posts' && (
-    <PostFeed posts={posts} isProfilePage={false} isSearchPage={true} hideHeader={true} />
+    <PostFeed posts={posts} isProfilePage={false} isSearchPage={true} hideHeader={true} currentUser={currentUser} />
    )}
 
   </>

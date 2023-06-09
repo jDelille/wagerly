@@ -24,7 +24,7 @@ const Search = async ({ params }: { params: IParams }) => {
  return (
   <div className={styles.main}>
    <FeedHeader label='Search' isBack={false} />
-   <SearchFeed users={users} posts={posts} />
+   <SearchFeed users={users} posts={posts} currentUser={currentUser} />
   </div>
  );
 }

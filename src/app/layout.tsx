@@ -1,4 +1,5 @@
 import getCurrentUser from './actions/getCurrentUser';
+import PostPreview from './components/post-preview/PostPreview';
 import Search from './components/search/Search';
 import CreatePost from './components/text-input/create-post/CreatePost';
 import Auth from './components/user/auth/Auth';
@@ -35,6 +36,7 @@ export default async function RootLayout({
               <>
                 <Search />
                 <CurrentUserBox currentUser={currentUser} />
+                <PostPreview />
                 <CreatePost />
               </>
             )}

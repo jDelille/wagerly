@@ -6,6 +6,7 @@ import PostCard from '../post-card/PostCard';
 import PostFeedHeader from './post-feed-header/PostFeedHeader';
 import searchStore from '@/app/store/searchStore';
 import { observer } from 'mobx-react';
+import { SafeUser } from '@/app/types/SafeUser';
 
 type Props = {
  posts: any;
@@ -13,9 +14,10 @@ type Props = {
  isSearchPage?: boolean;
  hideHeader?: boolean;
  isMainPage?: boolean;
+ currentUser: SafeUser | null;
 }
 
-const PostFeed: React.FC<Props> = observer(({ posts, isProfilePage, isSearchPage, hideHeader, isMainPage }) => {
+const PostFeed: React.FC<Props> = observer(({ posts, isProfilePage, isSearchPage, hideHeader, isMainPage, currentUser }) => {
 
  const storeSearch = searchStore.search
 
@@ -27,7 +29,7 @@ const PostFeed: React.FC<Props> = observer(({ posts, isProfilePage, isSearchPage
    )}
    {!storeSearch && (
     posts.map((post: Post) => (
-     <PostCard key={post.id} post={post} isExpanded={false} />
+     <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
     ))
    )}
 
@@ -36,7 +38,7 @@ const PostFeed: React.FC<Props> = observer(({ posts, isProfilePage, isSearchPage
     posts.map((post: any) => {
      if (post.body?.includes(storeSearch) || post?.Bet?.thoughts.includes(storeSearch) || post?.Parlay?.bets[0].thoughts.includes(storeSearch)) {
       return (
-       <PostCard key={post.id} post={post} isExpanded={false} />
+       <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
       )
      }
     })

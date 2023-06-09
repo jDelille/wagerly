@@ -14,7 +14,7 @@ export default async function Home() {
 
       <div className={styles.main}>
         <FeedHeader label='Explore' isBack={false} />
-        <PostFeed posts={posts} isProfilePage={false} isMainPage={true} />
+        <PostFeed posts={posts} isProfilePage={false} isMainPage={true} currentUser={currentUser} />
       </div>
     </main>
   )
