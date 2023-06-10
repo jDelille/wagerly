@@ -21,7 +21,7 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
 
  return (
   <div className={styles.postCard}>
-   <PostCardHeader user={post.user} createdAt={post.createdAt} postId={post.id} currentUserId={currentUser?.id} isPinned={post.isPinned} />
+   <PostCardHeader user={post.user} createdAt={post.createdAt} postId={post.id} currentUserId={currentUser?.id} isPinned={post.isPinned} currentUser={currentUser} />
    <div className={styles.postBody}>
     <p>{post?.Bet?.thoughts || post?.Parlay?.bets[0].thoughts || post?.body}</p>
    </div>
