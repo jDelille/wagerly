@@ -12,7 +12,7 @@ const Bookmarks = async () => {
 
  return (
   <div className={styles.main}>
-   <FeedHeader label='Back' isBack />
+   <FeedHeader label='Bookmarks' isBack={false} />
    {posts.length < 1 ? (
     <div className={styles.noBookmarksMessage}>
      You dont have any bookmarked posts yet. When you bookmark one, it will show up here.

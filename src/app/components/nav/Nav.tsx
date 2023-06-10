@@ -48,7 +48,7 @@ const Nav: React.FC<Props> = ({ currentUsername }) => {
    id: 5,
    label: 'Bookmarks',
    icon: BsFillBookmarkFill,
-   href: '/'
+   href: '/bookmarks'
 
   },
   {

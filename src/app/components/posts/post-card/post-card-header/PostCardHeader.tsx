@@ -9,15 +9,18 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 
 import styles from './PostCardHeader.module.scss';
 import PostCardMenu from '../post-card-menu/PostCardMenu';
+import { AiFillPushpin } from 'react-icons/ai';
 
 
 type Props = {
  user: User;
  createdAt: string;
  postId: string
+ currentUserId?: string;
+ isPinned: boolean;
 };
 
-const PostCardHeader: React.FC<Props> = ({ user, createdAt, postId }) => {
+const PostCardHeader: React.FC<Props> = ({ user, createdAt, postId, currentUserId, isPinned }) => {
 
  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -37,9 +40,11 @@ const PostCardHeader: React.FC<Props> = ({ user, createdAt, postId }) => {
     <span>@{user.username}</span>
    </div>
    <div className={styles.menu}>
+    {isPinned && <AiFillPushpin size={14} />}
+
     <p className={styles.createdAt}>{postCreationDate}</p>
     <BsThreeDotsVertical onClick={() => setIsMenuOpen(!isMenuOpen)} />
-    {isMenuOpen && <PostCardMenu setIsMenuOpen={setIsMenuOpen} postId={postId} />}
+    {isMenuOpen && <PostCardMenu setIsMenuOpen={setIsMenuOpen} postId={postId} currentUserId={currentUserId} isPinned={isPinned} />}
    </div>
   </div>
  );

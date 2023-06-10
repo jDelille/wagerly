@@ -2,15 +2,15 @@
 import FeedHeader from '../components/feed-header/FeedHeader';
 import styles from './Page.module.scss';
 
-const Favorites = () => {
+const Likes = () => {
  return (
   <div className={styles.main}>
    <FeedHeader label='Back' isBack />
    <div className={styles.noFavoritesMessage}>
-    You dont have any favorite posts yet. When you favourite one, it will show up here.
+    You dont have any liked posts yet. When you like one, it will show up here.
    </div>
   </div>
  );
 }
 
-export default Favorites;
+export default Likes;

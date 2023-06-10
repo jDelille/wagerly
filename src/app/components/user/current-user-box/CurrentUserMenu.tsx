@@ -43,10 +43,10 @@ const CurrentUserMenu: React.FC<Props> = ({ setIsMenuOpen, currentUser }) => {
      }}>Bookmarks</p>
     <p className={styles.option}
      onClick={() => {
-      router.push(`favorites`);
+      router.push(`likes`);
       closeMenu();
      }}
-    >Favorites</p>
+    >Likes</p>
 
     <div className={styles.divider}></div>
 

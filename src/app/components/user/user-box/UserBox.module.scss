@@ -1,0 +1,49 @@
+@use '../../../styles/variables' as *;
+
+.peopleBox {
+	width: 100%;
+	padding: 1rem;
+
+	display: flex;
+	gap: 1rem;
+	flex-direction: column;
+	position: relative;
+	border-bottom: 1px solid $border;
+	&:hover {
+		background-color: lighten($dark, 15%);
+		cursor: pointer;
+	}
+	.addUser {
+		position: absolute;
+		right: 15px;
+		top: 15px;
+		cursor: pointer;
+	}
+	.top {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		img {
+			border-radius: 4px;
+		}
+		.displayName {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+			strong {
+				font-weight: 500;
+				font-size: $fontSizeLg;
+			}
+			span {
+				font-weight: 300;
+				color: $lightText;
+				font-size: $fontSizeMd;
+			}
+		}
+	}
+	.bio {
+		// padding-left: 55px;
+		font-size: 13px;
+		color: $light;
+	}
+}

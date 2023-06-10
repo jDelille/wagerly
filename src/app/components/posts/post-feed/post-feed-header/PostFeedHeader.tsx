@@ -18,7 +18,7 @@ type Props = {
 }
 
 const PostFeedHeader: React.FC<Props> = observer(({ isProfilePage, isSearchPage, isMainPage }) => {
- const activeTab = tabStore.tab
+ const activeTab = tabStore.tab || "Posts"
 
  const setTab = (tab: string) => {
   tabStore.setTab(tab)
