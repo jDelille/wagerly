@@ -21,7 +21,7 @@ type Props = {
 const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
   const router = useRouter();
 
-  const { localLike, setLocalLike, setLocalLikeCount, localLikeCount, setLocalBookmark, localBookmark } = useContext(PostContext)
+  const { localLike, setLocalLike, setLocalLikeCount, localLikeCount, setLocalBookmark, localBookmark } = useContext(PostContext) ?? {}
 
   const { handleBookmarkPost, handleUnBookmarkPost } = useBookmarkPost(post.id);
 
