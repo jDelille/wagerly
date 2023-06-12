@@ -1,30 +1,30 @@
 'use client';
 
+import matchStore from '@/app/store/matchStore';
 import styles from './SportSelector.module.scss';
 
 type Props = {
  setSport: (value: string) => void;
- setLeague: (value: string) => void;
  sport: string;
 }
 
-const SportSelector: React.FC<Props> = ({ setSport, setLeague, sport }) => {
+const SportSelector: React.FC<Props> = ({ setSport, sport }) => {
  return (
   <div className={styles.selector}>
-   <p className={sport === 'baseball' ? styles.selectedSport : styles.sport} onClick={() => { setSport('baseball'); setLeague('mlb') }}>
+   <p className={sport === 'baseball' ? styles.selectedSport : styles.sport} onClick={() => { setSport('baseball'); matchStore.setLeague('mlb') }}>
     Baseball
    </p>
    <p className={sport === 'basketball' ? styles.selectedSport : styles.sport}
-    onClick={() => { setSport('basketball'); setLeague('nba') }}>
+    onClick={() => { setSport('basketball'); matchStore.setLeague('nba') }}>
     Basketball
    </p>
-   <p className={sport === 'football' ? styles.selectedSport : styles.sport} onClick={() => { setSport('football'); setLeague('nfl') }}>
+   <p className={sport === 'football' ? styles.selectedSport : styles.sport} onClick={() => { setSport('football'); matchStore.setLeague('nfl') }}>
     Football
    </p>
-   <p className={sport === 'hockey' ? styles.selectedSport : styles.sport} onClick={() => { setSport('hockey'); setLeague('nhl') }}>
+   <p className={sport === 'hockey' ? styles.selectedSport : styles.sport} onClick={() => { setSport('hockey'); matchStore.setLeague('nhl') }}>
     Hockey
    </p>
-   <p className={sport === 'soccer' ? styles.selectedSportHideOnMobile : styles.sportHideOnMobile} onClick={() => { setSport('soccer'); setLeague('usa.1') }}>
+   <p className={sport === 'soccer' ? styles.selectedSportHideOnMobile : styles.sportHideOnMobile} onClick={() => { setSport('soccer'); matchStore.setLeague('usa.1') }}>
     Soccer
    </p>
   </div>

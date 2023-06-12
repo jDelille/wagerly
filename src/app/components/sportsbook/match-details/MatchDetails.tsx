@@ -13,6 +13,7 @@ import { getMatch, getOdds } from '@/app/api/sportsbookData';
 
 type Props = {
  matchId: string;
+
 }
 
 const MatchDetails: React.FC<Props> = ({ matchId }) => {
@@ -24,19 +25,24 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
  const [totalBreakdown, setTotalBreakdown] = useState<Breakdown>()
  const [winnerBreakdown, setWinnerBreakdown] = useState<Breakdown>()
 
+ const league = matchStore.league;
+
+
  useEffect(() => {
   async function fetchData() {
    try {
     setIsLoading(true);
     const delay = 0;
     setTimeout(async () => {
-     const header = await getMatch(matchId)
-     const odds = await getOdds(matchId)
+     const header = await getMatch(matchId, league)
+     const odds = await getOdds(matchId, league)
      setHeader(header.header);
-     setOdds(odds.sectionList[0].modules[0].model)
+     if (odds) {
+      setOdds(odds.sectionList[0].modules[0].model)
+     }
      setSpreadBreakdown(odds.sectionList[0].modules[3].model)
-     setWinnerBreakdown(odds.sectionList[0].modules[5].model)
-     setTotalBreakdown(odds.sectionList[0].modules[7].model)
+     setWinnerBreakdown(odds.sectionList[0].modules[5]?.model)
+     setTotalBreakdown(odds.sectionList[0].modules[7]?.model || odds.sectionList[0].modules[4]?.model)
      setIsLoading(false);
     }, delay);
    } catch (error) {
@@ -47,7 +53,7 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
   }
 
   fetchData();
- }, [matchId]);
+ }, [league, matchId]);
 
  console.log(totalBreakdown)
 
@@ -80,23 +86,23 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
   winnerBreakdownTitle: winnerBreakdown?.title,
   winnerBreakdownDescription: winnerBreakdown?.description,
   leftTeam: {
-   name: spreadBreakdown?.items[0].leftName,
-   spreadPercent: spreadBreakdown?.items[0].leftValue,
-   color: spreadBreakdown?.items[0].leftColor,
-   spreadDisplayValue: spreadBreakdown?.items[0].leftDisplay, totalPercent: totalBreakdown?.items[0].leftValue,
-   totalDisplayValue: totalBreakdown?.items[0].leftDisplay,
-   winnerDisplayValue: winnerBreakdown?.items[0].leftDisplay,
-   winnerPercent: winnerBreakdown?.items[0].leftValue,
+   name: spreadBreakdown?.items?.[0].leftName,
+   spreadPercent: spreadBreakdown?.items?.[0].leftValue,
+   color: spreadBreakdown?.items?.[0].leftColor,
+   spreadDisplayValue: spreadBreakdown?.items?.[0].leftDisplay, totalPercent: totalBreakdown?.items?.[0].leftValue,
+   totalDisplayValue: totalBreakdown?.items?.[0].leftDisplay,
+   winnerDisplayValue: winnerBreakdown?.items?.[0].leftDisplay,
+   winnerPercent: winnerBreakdown?.items?.[0].leftValue,
   },
   rightTeam: {
-   name: spreadBreakdown?.items[0].rightName,
-   spreadPercent: spreadBreakdown?.items[0].rightValue,
-   color: spreadBreakdown?.items[0].rightColor,
-   spreadDisplayValue: spreadBreakdown?.items[0].rightDisplay,
-   totalPercent: totalBreakdown?.items[0].rightValue,
-   totalDisplayValue: totalBreakdown?.items[0].rightDisplay,
-   winnerDisplayValue: winnerBreakdown?.items[0].rightDisplay,
-   winnerPercent: winnerBreakdown?.items[0].rightValue,
+   name: spreadBreakdown?.items?.[0].rightName,
+   spreadPercent: spreadBreakdown?.items?.[0].rightValue,
+   color: spreadBreakdown?.items?.[0].rightColor,
+   spreadDisplayValue: spreadBreakdown?.items?.[0].rightDisplay,
+   totalPercent: totalBreakdown?.items?.[0].rightValue,
+   totalDisplayValue: totalBreakdown?.items?.[0].rightDisplay,
+   winnerDisplayValue: winnerBreakdown?.items?.[0].rightDisplay,
+   winnerPercent: winnerBreakdown?.items?.[0].rightValue,
 
   }
  }
@@ -115,156 +121,179 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 
 
  return (
-  <div className={styles.matchup}>
-   <div className={styles.header}>
-    <div className={styles.leftTeam}>
-     <div className={styles.displayName}>
-      <Image
-       src={matchHeader.leftTeam.logo as string}
-       alt={matchHeader.leftTeam.imageAltText as string}
-       width={40}
-       height={40}
-      />
-      <strong>{matchHeader.leftTeam.longName}</strong>
-     </div>
-
-    </div>
-
-    <div className={styles.status}>
-     <span>{header?.statusLine}</span>
-     <div className={styles.location}>
-      <Image src={header?.sportLogoUrl as string} alt='sport logo url' width={20} height={20} />
-      <div className={styles.venue}>
-       <span>{header?.venueName}</span>
-       <span>{header?.venueLocation}</span>
-      </div>
-     </div>
-    </div>
-
-
-    <div className={styles.rightTeam}>
-     <div className={styles.displayName}>
-      <Image
-       src={matchHeader.rightTeam.logo as string}
-       alt={matchHeader.rightTeam.imageAltText as string}
-       width={40}
-       height={40}
-      />
-      <strong>{matchHeader.rightTeam.longName}</strong>
-     </div>
-
-    </div>
-   </div>
-
-   <div className={styles.odds}>
-    <strong>{odds?.title}</strong>
-    <div className={styles.columnHeaders}>
-     {odds?.odds.columnHeaders.map((label) => (
-      <span key={label}>{label}</span>
-     ))}
-    </div>
-    <div className={styles.rows}>
-     <div className={styles.row}>
+  isLoading || !odds ? (
+   <div className={styles.loading}>Loading...</div>
+  ) : (
+   <div className={styles.matchup}>
+    <div className={styles.header}>
+     <div className={styles.leftTeam}>
       <div className={styles.displayName}>
        <Image
-        src={odds?.odds.rows[0].imageUrl as string}
-        alt={odds?.odds.rows[0].imageAltText as string}
-        width={20}
-        height={20}
+        src={matchHeader.leftTeam.logo as string}
+        alt={matchHeader.leftTeam.imageAltText as string}
+        width={40}
+        height={40}
        />
-       <strong>{odds?.odds.rows[0].fullText}</strong>
+       <strong>{matchHeader.leftTeam.longName}</strong>
       </div>
-      {odds?.odds.rows[0].values?.map((value) => (
-       <span key={value.id}>{value.odds}</span>
-      ))}
+
      </div>
-     <div className={styles.row}>
+
+     <div className={styles.status}>
+      <span>{header?.statusLine}</span>
+      <div className={styles.location}>
+       <Image src={header?.sportLogoUrl as string} alt='sport logo url' width={20} height={20} />
+       <div className={styles.venue}>
+        <span>{header?.venueName}</span>
+        <span>{header?.venueLocation}</span>
+       </div>
+      </div>
+     </div>
+
+
+     <div className={styles.rightTeam}>
       <div className={styles.displayName}>
        <Image
-        src={odds?.odds.rows[1].imageUrl as string}
-        alt={odds?.odds.rows[1].imageAltText as string}
-        width={20}
-        height={20}
+        src={matchHeader.rightTeam.logo as string}
+        alt={matchHeader.rightTeam.imageAltText as string}
+        width={40}
+        height={40}
        />
-       <strong>{odds?.odds.rows[1].fullText}</strong>
-
+       <strong>{matchHeader.rightTeam.longName}</strong>
       </div>
 
-      {odds?.odds.rows[1].values?.map((value) => (
-       <span key={value.id}>{value.odds}</span>
-      ))}
      </div>
     </div>
+
+
+    {odds ? (
+     <div className={styles.odds}>
+      <strong>{odds?.title}</strong>
+      <div className={styles.columnHeaders}>
+       {odds?.odds.columnHeaders.map((label) => (
+        <span key={label}>{label}</span>
+       ))}
+      </div>
+      <div className={styles.rows}>
+       <div className={styles.row}>
+        <div className={styles.displayName}>
+         <Image
+          src={odds?.odds.rows[0].imageUrl as string}
+          alt={odds?.odds.rows[0].imageAltText as string}
+          width={20}
+          height={20}
+         />
+         <strong>{odds?.odds.rows[0].fullText}</strong>
+        </div>
+        {odds?.odds.rows[0].values?.map((value) => (
+         <span key={value.id}>{value.odds}</span>
+        ))}
+       </div>
+       <div className={styles.row}>
+        <div className={styles.displayName}>
+         <Image
+          src={odds?.odds.rows[1].imageUrl as string}
+          alt={odds?.odds.rows[1].imageAltText as string}
+          width={20}
+          height={20}
+         />
+         <strong>{odds?.odds.rows[1].fullText}</strong>
+
+        </div>
+
+        {odds?.odds.rows[1].values?.map((value) => (
+         <span key={value.id}>{value.odds}</span>
+        ))}
+       </div>
+      </div>
+     </div>
+    ) : (
+     <strong className={styles.noOddsMessage}> - Odds Not Yet Available -</strong>
+    )}
+
+
+    {spreadBreakdown && (
+     <div className={styles.breakdown}>
+      <strong>{breakdown.spreadBreakdownTitle}</strong>
+      {breakdown.spreadBreakdownDescription && (
+       <div className={styles.description}>
+        {breakdown.spreadBreakdownDescription}
+       </div>
+      )}
+
+      <div className={styles.chart}>
+       <div className={styles.leftTeamBreakdown}>
+        <strong>{breakdown.leftTeam.name}</strong>
+        <span>{breakdown.leftTeam.spreadDisplayValue}</span>
+       </div>
+       <div className={styles.bar}>
+        <div className={styles.leftPercent} style={{ width: leftSpreadWidth }}></div>
+        <div className={styles.rightPercent} style={{ width: rightSpreadWidth }}></div>
+       </div>
+       <div className={styles.rightTeamBreakdown}>
+        <strong>{breakdown.rightTeam.name}</strong>
+        <span>{breakdown.rightTeam.spreadDisplayValue}</span>
+
+       </div>
+      </div>
+
+     </div>
+    )}
+
+
+    {totalBreakdown && (
+     <div className={styles.breakdown}>
+      <strong>{breakdown.totalBreakdownTitle}</strong>
+      <div className={styles.description}>
+       {breakdown.totalBreakdownDescription}
+      </div>
+      <div className={styles.chart}>
+       <div className={styles.leftTeamBreakdown}>
+        <strong>{breakdown.leftTeam.name}</strong>
+        <span>{breakdown.leftTeam.totalDisplayValue}</span>
+       </div>
+       <div className={styles.bar}>
+        <div className={styles.leftPercent} style={{ width: leftTotalWidth }}></div>
+        <div className={styles.rightPercent} style={{ width: rightTotalWidth }}></div>
+       </div>
+       <div className={styles.rightTeamBreakdown}>
+        <strong>{breakdown.rightTeam.name}</strong>
+        <span>{breakdown.rightTeam.totalDisplayValue}</span>
+
+       </div>
+      </div>
+
+     </div>
+    )}
+
+
+    {winnerBreakdown && (
+     <div className={styles.breakdown}>
+      <strong>{breakdown.winnerBreakdownTitle}</strong>
+      <div className={styles.description}>
+       {breakdown.winnerBreakdownDescription}
+      </div>
+      <div className={styles.chart}>
+       <div className={styles.leftTeamBreakdown}>
+        <strong>{breakdown.leftTeam.name}</strong>
+        <span>{breakdown.leftTeam.winnerDisplayValue}</span>
+       </div>
+       <div className={styles.bar}>
+        <div className={styles.leftPercent} style={{ width: leftWinnerWidth }}></div>
+        <div className={styles.rightPercent} style={{ width: rightWinnerWidth }}></div>
+       </div>
+       <div className={styles.rightTeamBreakdown}>
+        <strong>{breakdown.rightTeam.name}</strong>
+        <span>{breakdown.rightTeam.winnerDisplayValue}</span>
+       </div>
+      </div>
+     </div>
+    )}
+
+
    </div>
+  )
 
-   <div className={styles.breakdown}>
-    <strong>{breakdown.spreadBreakdownTitle}</strong>
-    <div className={styles.description}>
-     {breakdown.spreadBreakdownDescription}
-    </div>
-    <div className={styles.chart}>
-     <div className={styles.leftTeamBreakdown}>
-      <strong>{breakdown.leftTeam.name}</strong>
-      <span>{breakdown.leftTeam.spreadDisplayValue}</span>
-     </div>
-     <div className={styles.bar}>
-      <div className={styles.leftPercent} style={{ width: leftSpreadWidth }}></div>
-      <div className={styles.rightPercent} style={{ width: rightSpreadWidth }}></div>
-     </div>
-     <div className={styles.rightTeamBreakdown}>
-      <strong>{breakdown.rightTeam.name}</strong>
-      <span>{breakdown.rightTeam.spreadDisplayValue}</span>
-
-     </div>
-    </div>
-
-   </div>
-
-   <div className={styles.breakdown}>
-    <strong>{breakdown.totalBreakdownTitle}</strong>
-    <div className={styles.description}>
-     {breakdown.totalBreakdownDescription}
-    </div>
-    <div className={styles.chart}>
-     <div className={styles.leftTeamBreakdown}>
-      <strong>{breakdown.leftTeam.name}</strong>
-      <span>{breakdown.leftTeam.totalDisplayValue}</span>
-     </div>
-     <div className={styles.bar}>
-      <div className={styles.leftPercent} style={{ width: leftTotalWidth }}></div>
-      <div className={styles.rightPercent} style={{ width: rightTotalWidth }}></div>
-     </div>
-     <div className={styles.rightTeamBreakdown}>
-      <strong>{breakdown.rightTeam.name}</strong>
-      <span>{breakdown.rightTeam.totalDisplayValue}</span>
-
-     </div>
-    </div>
-
-   </div>
-
-   <div className={styles.breakdown}>
-    <strong>{breakdown.winnerBreakdownTitle}</strong>
-    <div className={styles.description}>
-     {breakdown.winnerBreakdownDescription}
-    </div>
-    <div className={styles.chart}>
-     <div className={styles.leftTeamBreakdown}>
-      <strong>{breakdown.leftTeam.name}</strong>
-      <span>{breakdown.leftTeam.winnerDisplayValue}</span>
-     </div>
-     <div className={styles.bar}>
-      <div className={styles.leftPercent} style={{ width: leftWinnerWidth }}></div>
-      <div className={styles.rightPercent} style={{ width: rightWinnerWidth }}></div>
-     </div>
-     <div className={styles.rightTeamBreakdown}>
-      <strong>{breakdown.rightTeam.name}</strong>
-      <span>{breakdown.rightTeam.winnerDisplayValue}</span>
-     </div>
-    </div>
-   </div>
-
-  </div>
  );
 }
 

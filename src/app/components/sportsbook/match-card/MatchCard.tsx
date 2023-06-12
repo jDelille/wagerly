@@ -11,10 +11,9 @@ import styles from './MatchCard.module.scss';
 type Props = {
  match: Match;
  sport: string;
- league: string;
 }
 
-const MatchCard: React.FC<Props> = ({ match, sport, league }) => {
+const MatchCard: React.FC<Props> = ({ match, sport }) => {
 
 
  const lowerTeam = {
@@ -42,6 +41,8 @@ const MatchCard: React.FC<Props> = ({ match, sport, league }) => {
   matchStore.setAwayTeamId(upperTeam.id)
  }
 
+ const league = matchStore.league;
+
  return (
   <div className={styles.match}>
    <Link
@@ -54,13 +55,13 @@ const MatchCard: React.FC<Props> = ({ match, sport, league }) => {
      <Image src={lowerTeam.logoUrl} alt={lowerTeam.imageAltText} width={20} height={20} />
      <strong>{lowerTeam.longName}</strong>
      <span>{lowerTeam.record}</span>
-     <strong className={styles.score}>{lowerTeam.score}</strong>
+     <strong className={styles.score}>{lowerTeam.score || 0}</strong>
     </div>
     <div className={styles.upperTeam}>
      <Image src={upperTeam.logoUrl} alt={upperTeam.imageAltText} width={20} height={20} />
      <strong>{upperTeam.longName}</strong>
      <span>{upperTeam.record}</span>
-     <strong className={styles.score}>{upperTeam.score}</strong>
+     <strong className={styles.score}>{upperTeam.score || 0}</strong>
     </div>
 
    </Link>

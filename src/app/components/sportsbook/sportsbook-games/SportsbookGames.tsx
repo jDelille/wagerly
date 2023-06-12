@@ -5,16 +5,36 @@ import { useEffect, useState } from 'react';
 import SportSelector from '../sport-selector/SportSelector';
 import MatchCard from '../match-card/MatchCard';
 import { getGames } from '@/app/api/sportsbookData';
+import { Match } from '@/app/types/Match';
 
 import styles from './SportsbookGames.module.scss';
-import { Match } from '@/app/types/Match';
+import matchStore from '@/app/store/matchStore';
+
+type Date = {
+ date: string;
+ id: string;
+}
 
 const SportsbookGames = () => {
  const [sport, setSport] = useState('baseball');
- const [league, setLeague] = useState('mlb');
  const [matches, setMatches] = useState<Match[]>([]);
  const [isLoading, setIsLoading] = useState(false);
+ const [dates, setDates] = useState<Date[]>()
+ const [date, setDate] = useState("");
 
+ function getFormattedDate(): string {
+  const today = new Date();
+
+  const year = today.getFullYear().toString();
+  const month = (today.getMonth() + 1).toString().padStart(2, '0');
+  const day = today.getDate().toString().padStart(2, '0');
+
+  return `${year}${month}${day}`;
+ }
+
+ const formattedDate = getFormattedDate();
+
+ const league = matchStore.league
 
  useEffect(() => {
   async function fetchData() {
@@ -22,8 +42,9 @@ const SportsbookGames = () => {
     setIsLoading(true);
     const delay = 0;
     setTimeout(async () => {
-     const matches = await getGames(league, sport);
-     setMatches(matches);
+     const matches = await getGames(league || 'mlb', date || formattedDate);
+     setDates(matches.quickNav)
+     setMatches(matches.sectionList[0].events);
      setIsLoading(false);
     }, delay);
    } catch (error) {
@@ -34,23 +55,27 @@ const SportsbookGames = () => {
   }
 
   fetchData();
- }, [league, sport]);
+ }, [league, sport, date, formattedDate]);
+
+
 
  return (
   <div>
-
    <SportSelector
     setSport={setSport}
     sport={sport}
-    setLeague={setLeague}
    />
+   <div className={styles.dates}>
+    {dates?.map((date) => (
+     <span key={date.id} onClick={() => setDate(date.id)}>{date.id}</span>
+    ))}
+   </div>
    <div className={`${styles.feed} ${isLoading ? styles.loading : styles.loaded}`}>
     {matches.map((match, i) => (
      <MatchCard
       key={match.id}
       match={match}
       sport={sport}
-      league={league}
      />
     ))}
    </div>

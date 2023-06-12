@@ -1,5 +1,16 @@
 @use '../../../styles/variables' as *;
 
+.loading {
+	background: rgba(255, 255, 0, 0.1);
+	border: 1px solid rgba(255, 255, 0, 0.5);
+	color: #ffd700;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+	border-radius: 4px;
+}
+
 .matchup {
 	.header {
 		display: flex;
@@ -83,6 +94,17 @@
 				}
 			}
 		}
+	}
+	.noOddsMessage {
+		background: rgba(223, 64, 90, 0.1);
+		border: 1px solid rgba(223, 64, 90, 0.5);
+		color: #df405a;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		padding: 10px;
+		border-radius: 4px;
+		margin-top: 1rem;
 	}
 	.breakdown {
 		padding: 15px;
