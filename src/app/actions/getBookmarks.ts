@@ -34,6 +34,7 @@ export default async function getBookmarks() {
 				user: true,
 				comments: true,
 				Poll: true,
+				UserBet: true,
 				Parlay: {
 					include: {
 						bets: true,

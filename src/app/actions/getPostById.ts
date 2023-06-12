@@ -16,6 +16,7 @@ export default async function getPostById(params: IParams) {
 				user: true,
 				comments: true,
 				Poll: true,
+				UserBet: true,
 				Parlay: {
 					include: {
 						bets: true,

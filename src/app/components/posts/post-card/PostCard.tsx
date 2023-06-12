@@ -31,7 +31,7 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
 
  const [localBookmark, setLocalBookmark] = useState(currentUser?.bookmarks.includes(post.id))
 
- const postBody = post?.Bet?.thoughts || post?.Parlay?.bets[0].thoughts || post?.body || post?.UserBet.body
+ const postBody = post?.Bet?.thoughts || post?.Parlay?.bets[0].thoughts || post?.body || post?.UserBet?.body
 
  const postContextValue = {
   localLike,
@@ -41,8 +41,6 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
   localLikeCount,
   setLocalLikeCount
  }
-
- console.log(post.UserBet)
 
  return (
   <PostContext.Provider value={postContextValue}>
