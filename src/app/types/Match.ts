@@ -36,6 +36,9 @@ export type MatchHeader = {
 		longName: string;
 		record: string;
 		score: number;
+		entityLink: {
+			title: string;
+		};
 	};
 	rightTeam: {
 		imageAltText: string;
@@ -44,11 +47,18 @@ export type MatchHeader = {
 		longName: string;
 		record: string;
 		score: number;
+		entityLink: {
+			title: string;
+		};
 	};
 };
 
 export type MatchOdds = {
 	title: string;
+	eventTime: string;
+	betSection: {
+		name: string;
+	};
 	odds: {
 		columnHeaders: string[];
 		rows: {
@@ -93,4 +103,3 @@ export type Breakdown = {
 		}
 	];
 };
-

@@ -1,14 +1,26 @@
 @use '../../../styles/variables' as *;
 
+.header {
+	text-transform: uppercase;
+	padding: 1rem;
+	font-size: 20px;
+}
+
 .dates {
 	display: flex;
 	gap: 10px;
-	padding: 10px;
-	span {
+	padding: 10px 1rem;
+	span,
+	.activeDate {
 		outline: 1px solid $border;
-		padding: 4px;
+		padding: 6px 12px;
 		border-radius: 22px;
 		font-size: $fontSizeSm;
+		cursor: pointer;
+	}
+	.activeDate {
+		outline: 1px solid $accent;
+		color: $light;
 	}
 }
 

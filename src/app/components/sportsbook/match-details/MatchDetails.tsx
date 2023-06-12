@@ -1,14 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Odds } from '@/app/types/Odds';
 import matchStore from '@/app/store/matchStore';
-import { Team } from '@/app/types/Team';
 import Image from 'next/image';
-
-import styles from './MatchDetails.module.scss';
 import { MatchHeader, MatchOdds, Breakdown } from '@/app/types/Match';
 import { getMatch, getOdds } from '@/app/api/sportsbookData';
+
+import styles from './MatchDetails.module.scss';
+import useBetSlipModal from '@/app/hooks/useBetSlipModal';
+import betSlipStore from '@/app/store/betSlipStore';
+
 
 
 type Props = {
@@ -26,6 +27,9 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
  const [winnerBreakdown, setWinnerBreakdown] = useState<Breakdown>()
 
  const league = matchStore.league;
+
+ const betSlipModal = useBetSlipModal();
+
 
 
  useEffect(() => {
@@ -55,8 +59,6 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
   fetchData();
  }, [league, matchId]);
 
- console.log(totalBreakdown)
-
 
  const matchHeader = {
   leftTeam: {
@@ -66,6 +68,7 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
    imageAltText: header?.leftTeam.imageAltText,
    score: header?.leftTeam.score,
    record: header?.leftTeam.record,
+   entityName: header?.leftTeam.entityLink.title
   },
   rightTeam: {
    name: header?.rightTeam.name,
@@ -74,6 +77,8 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
    imageAltText: header?.rightTeam.imageAltText,
    score: header?.rightTeam.score,
    record: header?.rightTeam.record,
+   entityName: header?.rightTeam.entityLink.title
+
   },
 
  }
@@ -118,6 +123,33 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
  const rightTotalWidth = breakdown.rightTeam.totalPercent && `${(breakdown.rightTeam.totalPercent * 100).toFixed(0)}%`
 
  const rightWinnerWidth = breakdown.rightTeam.winnerPercent && `${(breakdown.rightTeam.winnerPercent * 100).toFixed(0)}%`
+
+
+ // betslip store stuff
+
+ const addToBetStore = (value?: any, team?: string) => {
+  console.log(value)
+
+  if (odds) {
+   betSlipModal.onOpen()
+   betSlipStore.setDate(odds.eventTime)
+   betSlipStore.setMatchup(odds.betSection.name)
+   betSlipStore.setSelectedOdds(value.odds)
+   betSlipStore.setSelectedOddsDisplay(value.betSlip.description)
+   betSlipStore.setSelectedBet(value.odds)
+   betSlipStore.setOddsDisplay(value.betSlip.oddsDisplay)
+   betSlipStore.setPayoutMultiplier(value.betSlip.payoutMultiplier)
+  }
+
+  if (team === 'leftTeam') {
+   betSlipStore.setSelectedTeamLogo(matchHeader.leftTeam.logo as string)
+   betSlipStore.setSelectedTeamName(matchHeader.leftTeam.entityName as string)
+
+  } else {
+   betSlipStore.setSelectedTeamLogo(matchHeader.rightTeam.logo as string)
+   betSlipStore.setSelectedTeamName(matchHeader.rightTeam.entityName as string)
+  }
+ }
 
 
  return (
@@ -175,6 +207,7 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
        ))}
       </div>
       <div className={styles.rows}>
+
        <div className={styles.row}>
         <div className={styles.displayName}>
          <Image
@@ -185,10 +218,14 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
          />
          <strong>{odds?.odds.rows[0].fullText}</strong>
         </div>
-        {odds?.odds.rows[0].values?.map((value) => (
-         <span key={value.id}>{value.odds}</span>
+        {odds?.odds.rows[0].values?.map((value, i) => (
+         <span
+          key={i}
+          onClick={() => addToBetStore(value, 'leftTeam')}
+         >{value.odds}</span>
         ))}
        </div>
+
        <div className={styles.row}>
         <div className={styles.displayName}>
          <Image
@@ -201,10 +238,14 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 
         </div>
 
-        {odds?.odds.rows[1].values?.map((value) => (
-         <span key={value.id}>{value.odds}</span>
+        {odds?.odds.rows[1].values?.map((value, i) => (
+         <span
+          key={i}
+          onClick={() => addToBetStore(value, 'rightTeam')}
+         >{value.odds}</span>
         ))}
        </div>
+
       </div>
      </div>
     ) : (

@@ -18,7 +18,7 @@ const SportSelector: React.FC<Props> = ({ setSport, sport }) => {
     onClick={() => { setSport('basketball'); matchStore.setLeague('nba') }}>
     Basketball
    </p>
-   <p className={sport === 'football' ? styles.selectedSport : styles.sport} onClick={() => { setSport('football'); matchStore.setLeague('nfl') }}>
+   {/* <p className={sport === 'football' ? styles.selectedSport : styles.sport} onClick={() => { setSport('football'); matchStore.setLeague('nfl') }}>
     Football
    </p>
    <p className={sport === 'hockey' ? styles.selectedSport : styles.sport} onClick={() => { setSport('hockey'); matchStore.setLeague('nhl') }}>
@@ -26,7 +26,7 @@ const SportSelector: React.FC<Props> = ({ setSport, sport }) => {
    </p>
    <p className={sport === 'soccer' ? styles.selectedSportHideOnMobile : styles.sportHideOnMobile} onClick={() => { setSport('soccer'); matchStore.setLeague('usa.1') }}>
     Soccer
-   </p>
+   </p> */}
   </div>
  );
 }

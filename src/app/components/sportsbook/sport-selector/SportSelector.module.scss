@@ -4,16 +4,13 @@
 	display: flex;
 	gap: 1rem;
 	align-items: center;
-	justify-content: space-evenly;
-	padding: 1rem 2rem;
+	padding: 1rem;
 	.sport,
 	.sportHideOnMobile,
 	.selectedSport,
 	.selectedSportHideOnMobile {
-		border: 1px solid $border;
-		padding: 6px 12px;
 		border-radius: 22px;
-		font-size: 12px;
+		font-size: $fontSizeLg;
 		text-transform: uppercase;
 		cursor: pointer;
 		color: lightgray;
@@ -23,6 +20,9 @@
 	}
 	.selectedSport {
 		color: $light;
-		border: 1px solid $light;
+		// border: 1px solid $light;
+		font-weight: 600;
+		text-decoration: underline;
+		text-decoration-thickness: 4px;
 	}
 }

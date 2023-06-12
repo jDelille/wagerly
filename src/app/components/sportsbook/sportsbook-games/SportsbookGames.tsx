@@ -20,7 +20,7 @@ const SportsbookGames = () => {
  const [matches, setMatches] = useState<Match[]>([]);
  const [isLoading, setIsLoading] = useState(false);
  const [dates, setDates] = useState<Date[]>()
- const [date, setDate] = useState("");
+ const [apiDate, setApiDate] = useState("");
 
  function getFormattedDate(): string {
   const today = new Date();
@@ -42,7 +42,7 @@ const SportsbookGames = () => {
     setIsLoading(true);
     const delay = 0;
     setTimeout(async () => {
-     const matches = await getGames(league || 'mlb', date || formattedDate);
+     const matches = await getGames(league || 'mlb', apiDate || formattedDate);
      setDates(matches.quickNav)
      setMatches(matches.sectionList[0].events);
      setIsLoading(false);
@@ -55,7 +55,9 @@ const SportsbookGames = () => {
   }
 
   fetchData();
- }, [league, sport, date, formattedDate]);
+ }, [league, sport, apiDate, formattedDate]);
+
+ console.log(dates)
 
 
 
@@ -65,9 +67,16 @@ const SportsbookGames = () => {
     setSport={setSport}
     sport={sport}
    />
+   <div className={styles.header}>
+    <strong>{league} Sportsbook</strong>
+   </div>
    <div className={styles.dates}>
     {dates?.map((date) => (
-     <span key={date.id} onClick={() => setDate(date.id)}>{date.id}</span>
+     <span
+      key={date.id}
+      onClick={() => setApiDate(date.id)}
+      className={apiDate === date.id ? styles.activeDate : ""}
+     >{date.id}</span>
     ))}
    </div>
    <div className={`${styles.feed} ${isLoading ? styles.loading : styles.loaded}`}>

@@ -7,6 +7,7 @@ import CurrentUserBox from './components/user/current-user-box/CurrentUserBox';
 import Nav from './components/nav/Nav';
 import './styles/globals.scss';
 import { Inter } from 'next/font/google'
+import BetSlip from './components/modals/bet-slip/BetSlip';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,6 +31,7 @@ export default async function RootLayout({
 
       <body className={inter.className}>
         <div className='layout'>
+          <BetSlip />
           <div className='left-sidebar'>
             {!currentUser ? (
               <Auth currentUser={currentUser} />

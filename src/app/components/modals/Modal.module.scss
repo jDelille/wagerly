@@ -1,0 +1,33 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.overlay {
+	@include overlay();
+}
+
+.showModal,
+.hideModal {
+	position: fixed;
+	max-width: 500px;
+	min-width: 500px;
+	padding: 1rem;
+	border-radius: 12px;
+	background-color: $light;
+	color: $dark;
+	transition: 300ms ease-in-out;
+	opacity: 1;
+	height: fit-content;
+	.header {
+		width: 100%;
+		display: flex;
+		justify-content: flex-end;
+		svg {
+			cursor: pointer;
+		}
+	}
+}
+
+.hideModal {
+	transform: translateY(300px);
+	opacity: 0;
+}

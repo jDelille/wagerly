@@ -1,0 +1,109 @@
+@use '../../../styles/variables' as *;
+
+.header {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	align-items: center;
+	gap: 3px;
+	span {
+		font-size: $fontSizeSm;
+	}
+}
+
+.betContent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+	margin-top: 1rem;
+	.imageWrapper {
+		border: 1px solid lightgray;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 15px;
+		border-radius: 50%;
+	}
+	.description {
+		font-size: $fontSizeSm;
+		width: 50%;
+		text-align: center;
+		line-height: 20px;
+		margin: 10px 0;
+	}
+	.odds {
+		background-color: #f1f2f3;
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		padding: 10px 50px;
+		border-radius: 32px;
+		align-items: center;
+		span {
+			font-size: $fontSizeSm;
+		}
+		strong {
+			font-size: 24px;
+		}
+	}
+	.placeBet {
+		border-top: 1px solid lightgray;
+		border-bottom: 1px solid lightgray;
+		width: 100%;
+		margin: 1rem 0;
+		padding: 1rem 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.inputLabels {
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+			align-items: center;
+			.min,
+			.max,
+			.yourBet {
+				text-transform: uppercase;
+				font-size: 14px;
+				display: flex;
+				flex-direction: column;
+				gap: 3px;
+				align-items: center;
+				color: gray;
+				font-weight: 600;
+				strong {
+					font-size: 18px;
+				}
+			}
+			.min,
+			.max {
+				width: 50px;
+			}
+			.yourBet {
+				flex: 1;
+				strong {
+					font-size: 28px;
+					color: black;
+				}
+			}
+		}
+		input {
+			width: 100%;
+			margin: 10px 0;
+			cursor: pointer;
+		}
+		.payout {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-weight: 600;
+			color: gray;
+			gap: 3px;
+			strong {
+				color: #10a82c;
+				font-size: 28px;
+			}
+		}
+	}
+}
