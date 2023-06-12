@@ -1,105 +1,133 @@
 @use '../../../styles/variables' as *;
 
-.matchHeader {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	.league {
-		border-bottom: 1px solid $border;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 10px 0;
-		width: 100%;
-		background-color: lighten($dark, 5%);
-	}
-	.teams {
+.matchup {
+	.header {
 		display: flex;
 		padding: 1rem 0;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		gap: 1rem;
-		.at {
-			background-color: lighten($dark, 10%);
-			padding: 5px;
-			border-radius: 4px;
-			color: $accent;
-		}
-		.home,
-		.away {
+		.status {
+			width: 200px;
 			display: flex;
+			flex-direction: column;
 			align-items: center;
-			gap: 10px;
-			flex: 1;
-			.name {
+			font-size: $fontSizeSm;
+			height: 100px;
+			.location {
 				display: flex;
-				flex-direction: column;
-				gap: 3px;
-				span {
-					font-size: $fontSizeSm;
+				margin-top: auto;
+				gap: 10px;
+				align-items: center;
+				.venue {
+					display: flex;
+					flex-direction: column;
+					font-size: $fontSizeXs;
 				}
 			}
 		}
-		.home {
-			justify-content: flex-start;
-			.name {
-				align-items: flex-start;
+		.leftTeam,
+		.rightTeam {
+			flex: 1;
+			.displayName {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 10px;
+				strong {
+					font-size: $fontSizeMd;
+				}
 			}
 		}
-		.away {
-			justify-content: flex-end;
-			.name {
-				align-items: flex-end;
-			}
-		}
-	}
-	.predictor {
-		background: rgba(58, 128, 255, 0.1);
-		border: 1px solid rgba(58, 128, 255, 0.5);
-		color: #3a80ff;
-		width: 98%;
-		margin: 10px 0;
-		padding: 10px;
-		border-radius: 4px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
 	}
 	.odds {
-		border-top: 1px solid $border;
-		border-bottom: 1px solid $border;
-		width: 100%;
-		padding: 10px;
-
-		.home,
-		.away {
-			padding: 10px 0;
+		padding: 15px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		margin-bottom: 2rem;
+		.columnHeaders {
+			display: flex;
+			height: 30px;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 1rem;
+			font-size: $fontSizeXs;
+			span {
+				width: 74px;
+				display: flex;
+				justify-content: center;
+			}
+		}
+		.rows {
 			display: flex;
 			flex-direction: column;
 			gap: 10px;
-			.values {
+			.displayName {
+				flex-grow: 1;
 				display: flex;
+				align-items: center;
 				gap: 10px;
-				.spread,
-				.total,
-				.moneyline {
+			}
+			.row {
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				gap: 1rem;
+				span {
+					width: 74px;
+					outline: 1px solid $border;
 					display: flex;
-					flex-direction: column;
-					gap: 5px;
 					justify-content: center;
+					border-radius: 22px;
+					padding: 7px;
 					font-size: $fontSizeMd;
-					align-items: center;
-					background-color: lighten($dark, 10%);
-					width: 105px;
-					padding: 5px;
-					border-radius: 4px;
-					strong {
-						display: flex;
-						flex-direction: column;
-						gap: 5px;
-						font-weight: 400;
-					}
+					font-weight: 600;
+				}
+			}
+		}
+	}
+	.breakdown {
+		padding: 15px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		margin-bottom: 2rem;
+		strong {
+		}
+		.description {
+			font-size: $fontSizeSm;
+			background: rgba(144, 166, 223, 0.1);
+			border: 1px solid rgba(144, 166, 223, 0.5);
+			color: #90a6df;
+			padding: 10px;
+			border-radius: 4px;
+			text-align: center;
+			margin: 1rem 0;
+		}
+		.chart {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			.bar {
+				flex: 1;
+				display: flex;
+				border-radius: 22px;
+				overflow: hidden;
+				height: 20px;
+				.leftPercent {
+					background-color: $accent;
+					height: 100%;
+				}
+				.rightPercent {
+					background-color: darken($accent, 10%);
+					height: 100%;
+				}
+			}
+			.leftTeamBreakdown,
+			.rightTeamBreakdown {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				span {
+					font-size: $fontSizeSm;
 				}
 			}
 		}

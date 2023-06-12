@@ -1,51 +1,71 @@
 'use client';
 
-import { Game } from '@/app/types/Game';
-
-import styles from './MatchCard.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import matchStore from '@/app/store/matchStore';
+import { Match } from '@/app/types/Match';
+
+import styles from './MatchCard.module.scss';
 
 
 type Props = {
- game: Game;
+ match: Match;
  sport: string;
  league: string;
 }
 
-const MatchCard: React.FC<Props> = ({ game, sport, league }) => {
+const MatchCard: React.FC<Props> = ({ match, sport, league }) => {
+
+
+ const lowerTeam = {
+  name: match.lowerTeam.name,
+  longName: match.lowerTeam.longName,
+  record: match.lowerTeam.record,
+  score: match.lowerTeam.score,
+  imageAltText: match.lowerTeam.imageAltText,
+  logoUrl: match.lowerTeam.logoUrl,
+  id: match.lowerTeam.id,
+ }
+
+ const upperTeam = {
+  name: match.upperTeam.name,
+  longName: match.upperTeam.longName,
+  record: match.upperTeam.record,
+  score: match.upperTeam.score,
+  imageAltText: match.upperTeam.imageAltText,
+  logoUrl: match.upperTeam.logoUrl,
+  id: match.upperTeam.id,
+ }
+
+ const setMatchStoreData = () => {
+  matchStore.setHomeTeamId(lowerTeam.id)
+  matchStore.setAwayTeamId(upperTeam.id)
+ }
 
  return (
-  <Link href={`/sportsbook/${game.id}`} className={styles.match}
-   onClick={() => { matchStore.setHomeTeamId(game.competitions[0].competitors[0].id); matchStore.setAwayTeamId(game.competitions[0].competitors[1].id) }}
-  >
-   <div className={styles.status}>
-    <p>{game.status.type.shortDetail}</p>
-   </div>
-   <div className={styles.teams}>
-    <div className={styles.team}>
-     {game.competitions.map((team) => (
-      <div key={team.id} className={styles.home}>
-       <strong>{team.competitors[0].team.name}</strong>
-       <Image src={team.competitors[0].team.logo} width={25} height={25} alt='logo' />
-      </div>
+  <div className={styles.match}>
+   <Link
+    href={`/sportsbook/${match.id}`}
+    onClick={() => setMatchStoreData()}
+    className={styles.content}
+   >
 
-     ))}
+    <div className={styles.lowerTeam}>
+     <Image src={lowerTeam.logoUrl} alt={lowerTeam.imageAltText} width={20} height={20} />
+     <strong>{lowerTeam.longName}</strong>
+     <span>{lowerTeam.record}</span>
+     <strong className={styles.score}>{lowerTeam.score}</strong>
     </div>
-    <strong>vs</strong>
-    <div className={styles.team}>
-     {game.competitions.map((team) => (
-      <div key={team.id} className={styles.away}>
-       <Image src={team.competitors[1].team.logo} width={25} height={25} alt='logo' />
-       <strong>{team.competitors[1].team.name}</strong>
-      </div>
-     ))}
+    <div className={styles.upperTeam}>
+     <Image src={upperTeam.logoUrl} alt={upperTeam.imageAltText} width={20} height={20} />
+     <strong>{upperTeam.longName}</strong>
+     <span>{upperTeam.record}</span>
+     <strong className={styles.score}>{upperTeam.score}</strong>
     </div>
 
-   </div>
+   </Link>
+  </div>
 
-  </Link>
  );
 }
 

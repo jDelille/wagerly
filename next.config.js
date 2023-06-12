@@ -4,6 +4,7 @@ const nextConfig = {
 		domains: [
 			'a.espncdn.com',
 			's.espncdn.com',
+			'b.fssta.com',
 			'giphy.com',
 			'media0.giphy.com',
 			'media1.giphy.com',
