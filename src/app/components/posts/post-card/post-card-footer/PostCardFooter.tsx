@@ -100,9 +100,7 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
       <div className={styles.icon}>
         <BsShareFill size={15} color='#5E616F' />
       </div>
-      <div className={styles.icon}>
-        <BsThreeDots size={15} color='#5E616F' />
-      </div>
+
     </div>
   );
 };

@@ -7,6 +7,7 @@ import useBookmarkPost from '@/app/hooks/useBookmarkPost';
 import styles from './PostCardMenu.module.scss';
 import useLikePost from '@/app/hooks/useLikePost';
 import { PostContext } from '../PostCard';
+import axios from 'axios';
 
 type Props = {
   setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
@@ -57,6 +58,21 @@ const PostCardMenu: React.FC<Props> = ({
     }
   }, [localLike, handleUnLikePost, setLocalLike, setLocalLikeCount, handleLikePost]);
 
+  const onDelete = useCallback(
+    (id: string) => {
+      axios
+        .delete(`/api/post/${id}`)
+        .then(() => {
+          router.refresh();
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+        .finally(() => { });
+    },
+    [router]
+  );
+
   return (
     <>
       <div
@@ -64,14 +80,16 @@ const PostCardMenu: React.FC<Props> = ({
         onClick={() => setIsMenuOpen(false)}></div>
 
       <div className={styles.postCardMenu}>
-        {post.isPinned ? (
-          <p className={styles.option} onClick={() => handleUnPinPost()}>
-            Unpin post
-          </p>
-        ) : (
-          <p className={styles.option} onClick={() => handlePinPost()}>
-            Pin on profile
-          </p>
+        {currentUser?.id === post.user.id && (
+          post.isPinned ? (
+            <p className={styles.option} onClick={() => handleUnPinPost()}>
+              Unpin post
+            </p>
+          ) : (
+            <p className={styles.option} onClick={() => handlePinPost()}>
+              Pin on profile
+            </p>
+          )
         )}
         <p className={styles.option} onClick={handleExpandPost}>
           Expand this post
@@ -93,11 +111,16 @@ const PostCardMenu: React.FC<Props> = ({
         ) : (
           <p className={styles.option} onClick={toggleLike}>Like</p>
         )}
-        <div className={styles.divider}></div>
-        <p className={styles.option}>Edit</p>
-        <p className={styles.option}>Delete & re-draft</p>
-        <p className={styles.option}>Delete</p>
-      </div>
+        {currentUser?.id === post.user.id && (
+          <>
+            <div className={styles.divider}></div>
+            {/* <p className={styles.option}>Edit</p>
+            <p className={styles.option}>Delete & re-draft</p> */}
+            <p className={styles.option} onClick={() => onDelete(post.id)}>Delete</p>
+          </>
+        )}
+
+      </div >
     </>
   );
 };
