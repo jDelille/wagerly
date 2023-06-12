@@ -1,45 +1,61 @@
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useContext, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import usePinPost from '@/app/hooks/usePinPost';
 import { SafeUser } from '@/app/types/SafeUser';
 import useBookmarkPost from '@/app/hooks/useBookmarkPost';
 
 import styles from './PostCardMenu.module.scss';
+import useLikePost from '@/app/hooks/useLikePost';
+import { PostContext } from '../PostCard';
 
 type Props = {
   setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
-  postId: string;
-  isPinned: boolean;
   currentUser: SafeUser | null;
+  post: any;
 };
 
 const PostCardMenu: React.FC<Props> = ({
   setIsMenuOpen,
-  postId,
-  isPinned,
+  post,
   currentUser,
 }) => {
   const router = useRouter();
-  const { id: userId, bookmarks = [] } = currentUser || {};
-  const isBookmarked = bookmarks.includes(postId);
+  const { id: userId } = currentUser || {};
+
+
+  const { localLike, setLocalLike, setLocalLikeCount, localBookmark, setLocalBookmark } = useContext(PostContext)
+
 
   const { handlePinPost, handleUnPinPost } = usePinPost(
-    postId,
+    post.id,
     userId as string,
     setIsMenuOpen
   );
-  const { handleBookmarkPost, handleUnBookmarkPost } = useBookmarkPost(postId);
+  const { handleBookmarkPost, handleUnBookmarkPost } = useBookmarkPost(post.id);
+
+  const { handleLikePost, handleUnLikePost } = useLikePost(post.id)
 
   const handleExpandPost = useCallback(() => {
-    router.push(`/post/${postId}`);
-  }, [postId, router]);
+    router.push(`/post/${post.id}`);
+  }, [post.id, router]);
 
   const toggleBookmark = useCallback(() => {
-    setBookmark((prevBookmark) => !prevBookmark);
+    setLocalBookmark((prevBookmark: boolean) => !prevBookmark);
     handleBookmarkPost();
-  }, [handleBookmarkPost]);
+  }, [handleBookmarkPost, setLocalBookmark]);
 
-  const [bookmark, setBookmark] = useState(isBookmarked);
+
+  const toggleLike = useCallback(() => {
+    if (localLike) {
+      handleUnLikePost();
+      setLocalLike(false)
+      setLocalLikeCount((prevLikeCount: number) => prevLikeCount - 1);
+    } else {
+      handleLikePost();
+      setLocalLike(true)
+      setLocalLikeCount((prevLikeCount: number) => prevLikeCount + 1);
+    }
+  }, [localLike, handleUnLikePost, setLocalLike, setLocalLikeCount, handleLikePost]);
 
   return (
     <>
@@ -48,7 +64,7 @@ const PostCardMenu: React.FC<Props> = ({
         onClick={() => setIsMenuOpen(false)}></div>
 
       <div className={styles.postCardMenu}>
-        {isPinned ? (
+        {post.isPinned ? (
           <p className={styles.option} onClick={() => handleUnPinPost()}>
             Unpin post
           </p>
@@ -62,7 +78,7 @@ const PostCardMenu: React.FC<Props> = ({
         </p>
         <p className={styles.option}>Copy link to post</p>
         <div className={styles.divider}></div>
-        {bookmark ? (
+        {localBookmark ? (
           <p className={styles.option} onClick={handleUnBookmarkPost}>
             Remove bookmark
           </p>
@@ -72,7 +88,11 @@ const PostCardMenu: React.FC<Props> = ({
           </p>
         )}
 
-        <p className={styles.option}>Like</p>
+        {localLike ? (
+          <p className={styles.option} onClick={toggleLike}>Unlike</p>
+        ) : (
+          <p className={styles.option} onClick={toggleLike}>Like</p>
+        )}
         <div className={styles.divider}></div>
         <p className={styles.option}>Edit</p>
         <p className={styles.option}>Delete & re-draft</p>

@@ -1,34 +1,33 @@
 'use client';
 
 import { User } from '@prisma/client';
-
 import { useMemo, useState } from 'react';
 import Avatar from '@/app/components/user/Avatar/Avatar';
 import { createdAtFormatter } from '@/app/utils/dateUtils';
-import { BsThreeDotsVertical } from 'react-icons/bs'
-
-import styles from './PostCardHeader.module.scss';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 import PostCardMenu from '../post-card-menu/PostCardMenu';
 import { AiFillPushpin } from 'react-icons/ai';
 import { SafeUser } from '@/app/types/SafeUser';
 
+import styles from './PostCardHeader.module.scss';
+
 
 type Props = {
- user: User;
- createdAt: string;
- postId: string
- isPinned: boolean;
+ post: any;
  currentUser: SafeUser | null;
 };
 
-const PostCardHeader: React.FC<Props> = ({ user, createdAt, postId, isPinned, currentUser }) => {
-
- const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+const PostCardHeader: React.FC<Props> = ({
+ post,
+ currentUser,
+}) => {
+ const [isMenuOpen, setIsMenuOpen] = useState(false);
 
  const postCreationDate = useMemo(() => {
-  return createdAtFormatter(createdAt);
- }, [createdAt]);
+  return createdAtFormatter(post.createdAt);
+ }, [post.createdAt]);
+
+ const user: User = post.user
 
  return (
   <div className={styles.postCardHeader}>
@@ -41,11 +40,17 @@ const PostCardHeader: React.FC<Props> = ({ user, createdAt, postId, isPinned, cu
     <span>@{user.username}</span>
    </div>
    <div className={styles.menu}>
-    {isPinned && <AiFillPushpin size={14} />}
+    {post.isPinned && <AiFillPushpin size={14} />}
 
     <p className={styles.createdAt}>{postCreationDate}</p>
     <BsThreeDotsVertical onClick={() => setIsMenuOpen(!isMenuOpen)} />
-    {isMenuOpen && <PostCardMenu setIsMenuOpen={setIsMenuOpen} postId={postId} isPinned={isPinned} currentUser={currentUser} />}
+    {isMenuOpen && (
+     <PostCardMenu
+      setIsMenuOpen={setIsMenuOpen}
+      currentUser={currentUser}
+      post={post}
+     />
+    )}
    </div>
   </div>
  );

@@ -8,14 +8,13 @@ const usePinPost = (
 	setIsMenuOpen: (value: boolean) => void
 ) => {
 	const [isLoading, setIsLoading] = useState(false);
-	// const loginModal = useLoginModal();
 	const router = useRouter();
 
 	const handlePinPost = useCallback(() => {
 		setIsLoading(true);
 
 		// if (!currentUserId) {
-		// 	return loginModal.onOpen();
+		// 	return;
 		// }
 
 		try {
@@ -28,17 +27,14 @@ const usePinPost = (
 				.finally(() => {
 					setIsMenuOpen(false);
 				});
-		} catch (error) {
-			setIsLoading(false);
-			router.refresh();
-		}
+		} catch (error) {}
 	}, [postId, router, setIsMenuOpen]);
 
 	const handleUnPinPost = useCallback(() => {
 		setIsLoading(true);
 
 		// if (!currentUserId) {
-		// 	return loginModal.onOpen();
+		// 	return;
 		// }
 
 		try {
