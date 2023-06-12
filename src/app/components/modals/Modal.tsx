@@ -4,17 +4,18 @@ import { useCallback, useEffect, useState } from 'react';
 
 import styles from './Modal.module.scss';
 import { AiOutlineClose } from 'react-icons/ai';
+import Button from '../button/Button';
 
 type Props = {
  isOpen?: boolean;
  onClose: () => void;
  onSubmit: () => void;
  disabled: boolean;
- body?: React.ReactElement;
-
+ body: React.ReactElement;
+ actionLabel: string;
 }
 
-const Modal: React.FC<Props> = ({ isOpen, onClose, onSubmit, disabled, body }) => {
+const Modal: React.FC<Props> = ({ isOpen, onClose, onSubmit, disabled, body, actionLabel }) => {
 
  const [showModal, setShowModal] = useState(isOpen);
 
@@ -47,6 +48,13 @@ const Modal: React.FC<Props> = ({ isOpen, onClose, onSubmit, disabled, body }) =
      </div>
      <div className={styles.bodyContent}>
       {body}
+     </div>
+     <div className={styles.footer}>
+
+      <Button
+       label={actionLabel}
+       onClick={onSubmit}
+      />
      </div>
     </div>
    </div>

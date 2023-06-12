@@ -127,8 +127,7 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 
  // betslip store stuff
 
- const addToBetStore = (value?: any, team?: string) => {
-  console.log(value)
+ const addToBetStore = (index: number, value?: any, team?: string) => {
 
   if (odds) {
    betSlipModal.onOpen()
@@ -144,10 +143,19 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
   if (team === 'leftTeam') {
    betSlipStore.setSelectedTeamLogo(matchHeader.leftTeam.logo as string)
    betSlipStore.setSelectedTeamName(matchHeader.leftTeam.entityName as string)
-
   } else {
    betSlipStore.setSelectedTeamLogo(matchHeader.rightTeam.logo as string)
    betSlipStore.setSelectedTeamName(matchHeader.rightTeam.entityName as string)
+  }
+
+  console.log(index)
+
+  if (index === 0) {
+   betSlipStore.setType('Spread')
+  } else if (index === 1) {
+   betSlipStore.setType("Moneyline")
+  } else if(index === 2){
+   betSlipStore.setType('Total')
   }
  }
 
@@ -221,7 +229,7 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
         {odds?.odds.rows[0].values?.map((value, i) => (
          <span
           key={i}
-          onClick={() => addToBetStore(value, 'leftTeam')}
+          onClick={() => addToBetStore(i, value, 'leftTeam')}
          >{value.odds}</span>
         ))}
        </div>
@@ -241,7 +249,7 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
         {odds?.odds.rows[1].values?.map((value, i) => (
          <span
           key={i}
-          onClick={() => addToBetStore(value, 'rightTeam')}
+          onClick={() => addToBetStore(i, value, 'rightTeam')}
          >{value.odds}</span>
         ))}
        </div>

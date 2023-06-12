@@ -25,6 +25,20 @@
 			cursor: pointer;
 		}
 	}
+	.footer {
+		display: flex;
+		align-items: center;
+		height: 50px;
+		width: 100%;
+		button {
+			height: 45px;
+			font-size: $fontSizeLg !important;
+			font-weight: 600;
+			&:hover {
+				background-color: lighten($accent, 5%);
+			}
+		}
+	}
 }
 
 .hideModal {

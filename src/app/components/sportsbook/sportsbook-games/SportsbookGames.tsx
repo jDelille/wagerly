@@ -57,8 +57,6 @@ const SportsbookGames = () => {
   fetchData();
  }, [league, sport, apiDate, formattedDate]);
 
- console.log(dates)
-
 
 
  return (

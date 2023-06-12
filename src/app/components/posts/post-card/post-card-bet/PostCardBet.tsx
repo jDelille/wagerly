@@ -1,23 +1,40 @@
 'use client';
 
+import Image from 'next/image';
 import styles from './PostCardBet.module.scss';
 
 type Props = {
  post: any;
 }
 
+
 const PostCardBet: React.FC<Props> = ({ post: bet }) => {
+
+ console.log('hey')
 
  return (
   <div className={styles.betContainer}>
-
    <div className={styles.bet}>
-    <strong>{bet[0].abbreviation} {bet[0].team}</strong>
-    <div className={styles.type}>
-     {bet[0].type} {bet[0].value}
+    <div className={styles.displayName}>
+     <Image src={bet.logo} alt='logo' width={20} height={20} />
+     <strong>{bet.name}</strong>
     </div>
-    <span>{bet[0].name}</span>
-    <p className={styles.odds}>{bet[0].odds}</p>
+    <div className={styles.type}>
+     <span>{bet.type}</span>
+     <strong>{bet.bet}</strong>
+    </div>
+    <div className={styles.matchup}>
+     <span>{bet.matchup}</span>
+    </div>
+    <div className={styles.wager}>
+     <span>Wagered: <strong>${bet.wager}</strong></span>
+     <span>Payout: <strong>${bet.payout}</strong></span>
+    </div>
+
+    <p className={styles.odds}>
+     {bet.odds}
+    </p>
+    <span className={styles.description}>{bet.description}</span>
    </div>
 
    <div className={styles.disclaimer}>

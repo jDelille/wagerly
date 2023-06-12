@@ -10,6 +10,7 @@ class BetSlipStore {
 	selectedOddsDisplay: string = '';
 	oddsDisplay: string = '';
 	payoutMultiplier: number = 0;
+	type: string = '';
 
 	constructor() {
 		makeAutoObservable(this);
@@ -49,6 +50,10 @@ class BetSlipStore {
 
 	setPayoutMultiplier(payoutMultiplier: number) {
 		this.payoutMultiplier = payoutMultiplier;
+	}
+
+	setType(type: string) {
+		this.type = type;
 	}
 }
 

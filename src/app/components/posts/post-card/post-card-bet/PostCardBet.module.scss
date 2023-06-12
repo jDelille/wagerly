@@ -12,6 +12,22 @@
 		gap: 10px;
 		font-size: $fontSizeMd;
 		position: relative;
+		.displayName {
+			display: flex;
+			align-items: center;
+			gap: 5px;
+		}
+		.type {
+			display: flex;
+			gap: 5px;
+		}
+		.wager {
+			display: flex;
+			gap: 10px;
+			strong {
+				color: #20b46a;
+			}
+		}
 		.odds {
 			background-color: darken($lighter, 5%);
 			padding: 8px 20px;
@@ -22,11 +38,14 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			color: $accent;
+			color: #20b46a;
 			position: absolute;
 			right: 0;
 			top: 0;
 			font-size: $fontSizeLg;
+		}
+		.description {
+			font-style: italic;
 		}
 	}
 	.disclaimer {
