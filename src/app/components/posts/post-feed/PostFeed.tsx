@@ -9,6 +9,7 @@ import { observer } from 'mobx-react';
 import { SafeUser } from '@/app/types/SafeUser';
 import tabStore from '@/app/store/tabStore';
 import UserBox from '../../user/user-box/UserBox';
+import News from '../../news/News';
 
 type Props = {
   posts: any;
@@ -57,6 +58,15 @@ const PostFeed: React.FC<Props> = observer(({ posts, isProfilePage, isSearchPage
     );
   };
 
+  const renderNews = () => {
+    return (
+      <div className={styles.newsFeed}>
+        <News />
+      </div>
+    );
+  };
+
+
   let tab = tabStore.tab || "Posts"
 
   const renderTabContent = () => {
@@ -67,8 +77,8 @@ const PostFeed: React.FC<Props> = observer(({ posts, isProfilePage, isSearchPage
         return renderBets();
       case 'People':
         return renderPeople();
-      // case 'news':
-      //  return renderNews();
+      case 'News':
+        return renderNews();
       // case 'media':
       //  return renderMedia();
       default:

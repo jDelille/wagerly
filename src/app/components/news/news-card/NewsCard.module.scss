@@ -1,0 +1,80 @@
+@use '../../../styles/variables' as *;
+
+.newsCard {
+	width: 100%;
+	height: fit-content;
+	border-radius: 4px;
+	overflow: hidden;
+	background-color: $dark;
+	// border: 1px solid $border;
+	padding: 10px;
+	color: lightgray;
+	font-size: 13px;
+	display: flex;
+	position: relative;
+	gap: 5px;
+	cursor: pointer;
+	text-decoration: none;
+	color: $light;
+	&:hover {
+		background-color: lighten($dark, 5%);
+	}
+
+	.newsCardBody {
+		height: fit-content;
+		min-height: 125px;
+		display: flex;
+		gap: 10px;
+		width: 100%;
+		position: relative;
+		.newsCardText {
+			width: 70%;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			padding: 10px 0;
+
+			.headline {
+				color: $light;
+				font-weight: 600;
+				font-size: 16px;
+			}
+			.description {
+				text-overflow: ellipsis;
+				max-height: 50px;
+				overflow: hidden;
+				white-space: wrap;
+			}
+			.byline {
+				display: flex;
+				align-items: center;
+				gap: 3px;
+			}
+		}
+		.newsCardImage {
+			width: 135px;
+			height: 105px;
+			border-radius: 4px;
+			position: absolute;
+			right: 0px;
+			top: 10px;
+
+			img {
+				max-width: 135px;
+				max-height: 105px;
+				min-height: 105px;
+				border-radius: 4px;
+			}
+		}
+	}
+	.newsCardFooter {
+		display: flex;
+		justify-content: space-between;
+		p {
+			font-style: italic;
+		}
+		a {
+			color: lightgray;
+		}
+	}
+}

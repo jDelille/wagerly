@@ -1,0 +1,34 @@
+@use '../../styles/variables' as *;
+
+.news {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	position: relative;
+	width: 100%;
+	color: $light;
+	padding: 10px;
+	background-color: $dark;
+	.newsHeader {
+		display: flex;
+		justify-content: space-between;
+		.newsTitle {
+			font-size: 14px;
+			color: $light;
+			font-weight: 400;
+			span {
+				font-style: italic;
+				font-size: 11px;
+			}
+		}
+		.newsPage {
+			display: flex;
+			gap: 4px;
+			align-items: center;
+			color: $light;
+			svg {
+				cursor: pointer;
+			}
+		}
+	}
+}
