@@ -26,9 +26,14 @@
 			right: 15px;
 			display: flex;
 			gap: 5px;
-			button {
+			button,
+			a {
 				padding: 10px 10px;
 				font-size: $fontSizeMd;
+				background-color: $accent;
+				text-decoration: none;
+				color: $light;
+				border-radius: 4px;
 				&:hover {
 					background-color: lighten($accent, 5%);
 				}

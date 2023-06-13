@@ -1,0 +1,16 @@
+@use '../../../styles/variables' as *;
+
+.header {
+	padding: 2rem 1rem;
+	font-size: 12px;
+	display: flex;
+	justify-content: space-between;
+	button {
+		width: fit-content;
+		font-weight: 600;
+		font-size: $fontSizeMd;
+		&:hover {
+			background-color: lighten($accent, 5%);
+		}
+	}
+}

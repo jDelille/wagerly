@@ -7,6 +7,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 import Button from '../../button/Button';
 
 import styles from './ProfileHeader.module.scss';
+import Link from 'next/link';
 
 
 type Props = {
@@ -29,7 +30,7 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio }) => {
     </div>
     <div className={styles.menu}>
      {currentUserId === user?.id ? (
-      <Button label='Edit Profile' />
+      <Link href={`/edit-profile/${user?.username}`}>Edit Profile</Link>
      ) : (
       <Button label='Follow' />
      )}

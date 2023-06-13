@@ -4,12 +4,12 @@ import styles from './Input.module.scss';
 
 type InputProps = {
  label: string;
- id: string;
+ id?: string;
  placeholder: string;
  value?: string;
  type: string;
  required?: boolean;
- register: UseFormRegister<FieldValues>;
+ register?: UseFormRegister<FieldValues>;
 
 }
 
