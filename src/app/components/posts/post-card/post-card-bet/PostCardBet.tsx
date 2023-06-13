@@ -10,8 +10,6 @@ type Props = {
 
 const PostCardBet: React.FC<Props> = ({ post: bet }) => {
 
- console.log('hey')
-
  return (
   <div className={styles.betContainer}>
    <div className={styles.bet}>

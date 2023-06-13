@@ -156,9 +156,7 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 				matchHeader.rightTeam.entityName as string
 			);
 		}
-
-		console.log(index);
-
+		
 		if (index === 0) {
 			betSlipStore.setType('Spread');
 		} else if (index === 1) {

@@ -22,6 +22,10 @@ const PostPreview: React.FC = observer(() => {
   return null;
  }
 
+ console.log(post.UserBet)
+
+ const body = post?.body || post.UserBet.body
+
 
  return (
   <div className={styles.postPreview}>
@@ -39,13 +43,20 @@ const PostPreview: React.FC = observer(() => {
      <p>{post?.user.name} <span>@{post?.user.username}</span></p>
     </div>
    </div>
-   <p className={styles.body}>{post?.body}</p>
+
+
+   <p className={styles.body}>{body}</p>
+
+   {post.UserBet && (
+    <div className={styles.betPreview}>
+     <strong>{post.UserBet.name} {post.UserBet.bet}</strong>
+    </div>
+   )}
 
    {post?.photo && !post?.photo?.url && (
     <div className={styles.media}>
      <AiOutlineLink />
      <a href={post?.photo} target="_blank">{post?.photo}</a>
-
     </div>
    )}
 

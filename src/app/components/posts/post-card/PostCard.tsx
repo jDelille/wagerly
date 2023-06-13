@@ -25,8 +25,6 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
 
  const [localLike, setLocalLike] = useState(post.likedIds.includes(currentUser?.id as string))
 
- console.log(localLike)
-
  const [localLikeCount, setLocalLikeCount] = useState(
   0 || post.likedIds.length);
 
