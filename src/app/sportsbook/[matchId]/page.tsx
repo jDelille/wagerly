@@ -10,7 +10,7 @@ interface IParams {
 const Match = async ({ params }: { params: IParams }) => {
  return (
   <div className={styles.main}>
-   <FeedHeader label='Sportsbook' isBack={false} />
+   <FeedHeader label='Sportsbook' isBack={false} isSportsbook={true} />
    <MatchDetails matchId={params.matchId as string} />
   </div>
  );

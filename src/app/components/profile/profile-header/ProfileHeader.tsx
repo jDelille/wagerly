@@ -3,6 +3,8 @@ import Avatar from '../../user/Avatar/Avatar';
 import { SafeUser } from '@/app/types/SafeUser';
 import { ProfileScreenString } from '@/app/utils/app-string/ProfileScreenString';
 import { format } from 'date-fns';
+import { BsThreeDotsVertical } from 'react-icons/bs';
+import Button from '../../button/Button';
 
 import styles from './ProfileHeader.module.scss';
 
@@ -25,6 +27,16 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio }) => {
      <strong>{user?.name}</strong>
      <span>@{user?.username}</span>
     </div>
+    <div className={styles.menu}>
+     {currentUserId === user?.id ? (
+      <Button label='Edit Profile' />
+     ) : (
+      <Button label='Follow' />
+     )}
+     <div className={styles.userMenu}>
+      <BsThreeDotsVertical />
+     </div>
+    </div>
    </div>
    <div className={styles.middle}>
     <div className={styles.bio}>
@@ -38,10 +50,7 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio }) => {
        </span>
       </p>
      )}
-     {/* <div className={styles.points}>
-      <CoinIcon />
-      <span>{user?.points || 0}</span>
-     </div> */}
+
      <div className={styles.joined}>
       <p>{ProfileScreenString.joined}</p>
       <span>{joinedDate}</span>

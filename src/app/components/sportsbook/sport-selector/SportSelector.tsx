@@ -9,15 +9,18 @@ type Props = {
 }
 
 const SportSelector: React.FC<Props> = ({ setSport, sport }) => {
+
+
+
  return (
   <div className={styles.selector}>
    <p className={sport === 'baseball' ? styles.selectedSport : styles.sport} onClick={() => { setSport('baseball'); matchStore.setLeague('mlb') }}>
     Baseball
    </p>
-   <p className={sport === 'basketball' ? styles.selectedSport : styles.sport}
+   {/* <p className={sport === 'basketball' ? styles.selectedSport : styles.sport}
     onClick={() => { setSport('basketball'); matchStore.setLeague('nba') }}>
     Basketball
-   </p>
+   </p> */}
    {/* <p className={sport === 'football' ? styles.selectedSport : styles.sport} onClick={() => { setSport('football'); matchStore.setLeague('nfl') }}>
     Football
    </p>

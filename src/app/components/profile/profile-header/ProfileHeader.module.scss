@@ -21,6 +21,31 @@
 				font-size: 16px;
 			}
 		}
+		.menu {
+			position: absolute;
+			right: 15px;
+			display: flex;
+			gap: 5px;
+			button {
+				padding: 10px 10px;
+				font-size: $fontSizeMd;
+				&:hover {
+					background-color: lighten($accent, 5%);
+				}
+			}
+			.userMenu {
+				background-color: lighten($dark, 15%);
+				padding: 10px;
+				border-radius: 4px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				&:hover {
+					background-color: lighten($dark, 25%);
+				}
+			}
+		}
 	}
 	.bio,
 	.noBioMessage {

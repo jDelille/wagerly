@@ -20,7 +20,9 @@ const SportsbookGames = () => {
  const [matches, setMatches] = useState<Match[]>([]);
  const [isLoading, setIsLoading] = useState(false);
  const [dates, setDates] = useState<Date[]>()
- const [apiDate, setApiDate] = useState("");
+
+ const todaysDate = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+ const [apiDate, setApiDate] = useState(todaysDate);
 
  function getFormattedDate(): string {
   const today = new Date();
@@ -57,6 +59,22 @@ const SportsbookGames = () => {
   fetchData();
  }, [league, sport, apiDate, formattedDate]);
 
+ const formatDate = (dateStr: string) => {
+  const year = dateStr.substring(0, 4);
+  const month = dateStr.substring(4, 6);
+  const day = dateStr.substring(6, 8);
+
+  const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+
+  const formattedDate = date.toLocaleDateString("en-US", {
+   month: "long",
+   day: "numeric"
+  });
+
+  return formattedDate;
+ };
+
+
 
 
  return (
@@ -74,7 +92,7 @@ const SportsbookGames = () => {
       key={date.id}
       onClick={() => setApiDate(date.id)}
       className={apiDate === date.id ? styles.activeDate : ""}
-     >{date.id}</span>
+     >{formatDate(date.id)}</span>
     ))}
    </div>
    <div className={`${styles.feed} ${isLoading ? styles.loading : styles.loaded}`}>
