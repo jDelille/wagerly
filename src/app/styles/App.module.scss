@@ -1,13 +1,16 @@
 @use './variables' as *;
+@use './breakpoints' as *;
 
 .app {
 	background-color: $darker;
 	width: 100%;
 	min-height: 100vh;
 	position: relative;
-
 	.main {
 		max-width: 600px;
 		display: block;
+		@include breakpoint(xs) {
+			max-width: calc(100vw - 17px);
+		}
 	}
 }

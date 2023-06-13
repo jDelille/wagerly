@@ -21,7 +21,7 @@
 		}
 	}
 
-	&:nth-last-of-type(odd) {
+	&:nth-last-child(1) {
 		&::after {
 			display: none;
 		}

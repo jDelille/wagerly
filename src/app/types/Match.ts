@@ -29,6 +29,7 @@ export type MatchHeader = {
 	statusLine: string;
 	venueLocation: string;
 	venueName: string;
+	eventTime: string;
 	leftTeam: {
 		imageAltText: string;
 		logoUrl: string;

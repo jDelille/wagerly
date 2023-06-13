@@ -1,4 +1,5 @@
 @use '../../styles/variables' as *;
+@use '../../styles/breakpoints' as *;
 
 .feedHeader {
 	font-weight: 500;
@@ -8,6 +9,9 @@
 	border-bottom: 1px solid $border;
 	padding-top: 20px;
 	background-color: $darker;
+	@include breakpoint(xs) {
+		padding-top: 0;
+	}
 	.header {
 		background-color: lighten($dark, 7%);
 		height: 45px;

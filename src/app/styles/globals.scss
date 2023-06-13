@@ -1,4 +1,5 @@
 @use './variables' as *;
+@use './breakpoints' as *;
 
 * {
 	margin: 0;
@@ -15,6 +16,9 @@ body {
 	margin: 0 auto;
 	display: flex;
 	position: relative;
+	@include breakpoint(xs) {
+		max-width: calc(100vw - 17px);
+	}
 	.left-sidebar,
 	.right-sidebar {
 		width: 287px;
@@ -24,6 +28,9 @@ body {
 		top: 10px;
 		height: calc(100vh - 10px);
 		z-index: 9999;
+		@include breakpoint(xs) {
+			display: none;
+		}
 		.disclaimer {
 			color: lightgray;
 			font-size: 11px;

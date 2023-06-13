@@ -43,7 +43,7 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 					setWinnerBreakdown(odds.sectionList[0].modules[5]?.model);
 					setTotalBreakdown(
 						odds.sectionList[0].modules[7]?.model ||
-							odds.sectionList[0].modules[4]?.model
+						odds.sectionList[0].modules[4]?.model
 					);
 					setIsLoading(false);
 				}, delay);
@@ -54,8 +54,13 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 			}
 		}
 
+
 		fetchData();
 	}, [league, matchId]);
+
+	console.log(header)
+
+	const formattedDate = new Date(header?.eventTime as string).toLocaleString("en-US", { month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "numeric" });
 
 	const matchHeader = {
 		leftTeam: {
@@ -156,7 +161,7 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 				matchHeader.rightTeam.entityName as string
 			);
 		}
-		
+
 		if (index === 0) {
 			betSlipStore.setType('Spread');
 		} else if (index === 1) {
@@ -171,56 +176,50 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 	) : (
 		<div className={styles.matchup}>
 			<div className={styles.header}>
-				<div className={styles.leftTeam}>
-					<div className={styles.displayName}>
+				<div className={styles.matchup}>
+					<strong>{matchHeader.leftTeam.longName} vs {matchHeader.rightTeam.longName}</strong>
+					<div className={styles.logos}>
 						<Image
 							src={matchHeader.leftTeam.logo as string}
 							alt={matchHeader.leftTeam.imageAltText as string}
-							width={40}
-							height={40}
+							width={50}
+							height={50}
 						/>
-						<strong>{matchHeader.leftTeam.longName}</strong>
-					</div>
-				</div>
-
-				<div className={styles.status}>
-					<span>{header?.statusLine}</span>
-					<div className={styles.location}>
-						<Image
-							src={header?.sportLogoUrl as string}
-							alt='sport logo url'
-							width={20}
-							height={20}
-						/>
-						<div className={styles.venue}>
-							<span>{header?.venueName}</span>
-							<span>{header?.venueLocation}</span>
-						</div>
-					</div>
-				</div>
-
-				<div className={styles.rightTeam}>
-					<div className={styles.displayName}>
 						<Image
 							src={matchHeader.rightTeam.logo as string}
 							alt={matchHeader.rightTeam.imageAltText as string}
-							width={40}
-							height={40}
+							width={50}
+							height={50}
 						/>
-						<strong>{matchHeader.rightTeam.longName}</strong>
+					</div>
+				</div>
+				<div className={styles.date}>
+					<span>{formattedDate}</span>
+				</div>
+
+				<div className={styles.matchInfo}>
+					<Image
+						src={header?.sportLogoUrl as string}
+						alt='sport logo url'
+						width={30}
+						height={30}
+					/>
+					<div className={styles.venue}>
+						<span>{header?.venueName} {header?.venueLocation}</span>
 					</div>
 				</div>
 			</div>
 
 			{odds ? (
 				<div className={styles.odds}>
-					<strong>{odds?.title}</strong>
+					<strong className={styles.title}>{odds?.title}</strong>
 					<div className={styles.columnHeaders}>
 						{odds?.odds.columnHeaders.map((label) => (
 							<span key={label}>{label}</span>
 						))}
 					</div>
 					<div className={styles.rows}>
+
 						<div className={styles.row}>
 							<div className={styles.displayName}>
 								<Image
@@ -229,7 +228,8 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 									width={20}
 									height={20}
 								/>
-								<strong>{odds?.odds.rows[0].fullText}</strong>
+								<strong className={styles.name}>{odds?.odds.rows[0].fullText}</strong>
+								<strong className={styles.abbreviation}>{header?.leftTeam.name}</strong>
 							</div>
 							{odds?.odds.rows[0].values?.map((value, i) => {
 								if (i <= 2) {
@@ -252,7 +252,8 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 									width={20}
 									height={20}
 								/>
-								<strong>{odds?.odds.rows[1].fullText}</strong>
+								<strong className={styles.name}>{odds?.odds.rows[1].fullText}</strong>
+								<strong className={styles.abbreviation}>{header?.rightTeam.name}</strong>
 							</div>
 
 							{odds?.odds.rows[1].values?.map((value, i) => {

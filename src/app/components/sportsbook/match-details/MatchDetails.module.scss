@@ -1,4 +1,5 @@
 @use '../../../styles/variables' as *;
+@use '../../../styles/breakpoints' as *;
 
 .loading {
 	background: rgba(255, 255, 0, 0.1);
@@ -13,8 +14,10 @@
 
 .matchup {
 	.header {
+		padding: 1rem;
 		display: flex;
-		padding: 1rem 0;
+		flex-direction: column;
+		gap: 10px;
 		.status {
 			width: 200px;
 			display: flex;
@@ -22,11 +25,13 @@
 			align-items: center;
 			font-size: $fontSizeSm;
 			height: 100px;
+			display: none;
 			.location {
 				display: flex;
 				margin-top: auto;
 				gap: 10px;
 				align-items: center;
+				display: none;
 				.venue {
 					display: flex;
 					flex-direction: column;
@@ -34,17 +39,30 @@
 				}
 			}
 		}
-		.leftTeam,
-		.rightTeam {
-			flex: 1;
-			.displayName {
+		.matchup {
+			font-size: 22px;
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			strong {
+				width: 150px;
+			}
+			.logos {
 				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 10px;
-				strong {
-					font-size: $fontSizeMd;
-				}
+				gap: 5px;
+			}
+		}
+		.date {
+			font-size: $fontSizeSm;
+		}
+		.matchInfo {
+			display: flex;
+			width: 100%;
+			gap: 10px;
+			align-items: center;
+			.venue {
+				max-width: 150px;
+				font-size: 10px;
 			}
 		}
 	}
@@ -54,6 +72,13 @@
 		flex-direction: column;
 		gap: 10px;
 		margin-bottom: 2rem;
+		border-top: 1px solid $border;
+		border-bottom: 1px solid $border;
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+		.title {
+			font-size: 22px;
+		}
 		.columnHeaders {
 			display: flex;
 			height: 30px;
@@ -70,12 +95,23 @@
 		.rows {
 			display: flex;
 			flex-direction: column;
-			gap: 10px;
+			gap: 20px;
 			.displayName {
 				flex-grow: 1;
 				display: flex;
 				align-items: center;
 				gap: 10px;
+				.name {
+					@include breakpoint(xs) {
+						display: none;
+					}
+				}
+				.abbreviation {
+					display: none;
+					@include breakpoint(xs) {
+						display: block;
+					}
+				}
 			}
 			.row {
 				display: flex;
@@ -91,6 +127,11 @@
 					padding: 7px;
 					font-size: $fontSizeMd;
 					font-weight: 600;
+					transition: all 200ms ease-in-out;
+					cursor: pointer;
+					&:hover {
+						background-color: lighten($dark, 5%);
+					}
 				}
 			}
 		}
@@ -112,6 +153,7 @@
 		flex-direction: column;
 		gap: 10px;
 		margin-bottom: 2rem;
+		display: none;
 		strong {
 		}
 		.description {
