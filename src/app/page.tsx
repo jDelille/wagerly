@@ -23,7 +23,11 @@ export default async function Home() {
   return (
     <main className={styles.app}>
       <div className={styles.main}>
-        <FeedHeader label='Explore' isBack={false} />
+        <FeedHeader
+          label='Explore'
+          isBack={false}
+          currentUsername={currentUser?.username}
+          currentUserPhoto={currentUser?.photo || '/images/placeholder.png'} />
         <DynamicPostFeed posts={posts} isProfilePage={false} isMainPage={true} currentUser={currentUser} users={users} />
       </div>
     </main>

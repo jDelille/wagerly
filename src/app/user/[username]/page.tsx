@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import ProfileHeaderSkeleton from "@/app/components/skeleton/profile/ProfileHeaderSkeleton";
 
 import styles from './Page.module.scss';
+import PostSkeleton from "@/app/components/skeleton/post-skeleton/PostSkeleton";
 interface IParams {
  username?: string;
 }
@@ -21,11 +22,23 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
   </>
  })
 
+ const DynamicPostFeed = dynamic(() => import('../../components/posts/post-feed/PostFeed'), {
+  loading: () => <>
+   <PostSkeleton />
+   <PostSkeleton />
+   <PostSkeleton />
+  </>
+ })
+
  return (
   <div className={styles.main}>
-   <FeedHeader label='Back' isBack />
+   <FeedHeader
+    label='Back'
+    isBack
+    currentUsername={currentUser?.username}
+    currentUserPhoto={currentUser?.photo || '/images/placeholder.png'} />
    <DynamicProfileHeader user={user} currentUserId={currentUser?.id} bio={user?.bio as string} />
-   <PostFeed isProfilePage posts={posts} currentUser={currentUser} />
+   <DynamicPostFeed isProfilePage posts={posts} currentUser={currentUser} />
   </div>
  );
 }

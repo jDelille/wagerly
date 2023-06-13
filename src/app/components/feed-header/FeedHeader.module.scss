@@ -15,11 +15,45 @@
 	.header {
 		background-color: lighten($dark, 7%);
 		height: 45px;
+		@include breakpoint(xs) {
+			height: 55px;
+		}
 		display: flex;
 		align-items: center;
-		padding-left: 15px;
+		padding: 0 15px;
 		gap: 5px;
 		background-color: $dark;
+		.mobile {
+			display: none;
+			@include breakpoint(xs) {
+				display: flex;
+				margin-left: auto;
+				gap: 10px;
+				align-items: center;
+				border: 1px solid $border;
+				padding: 4px 8px;
+				border-radius: 22px;
+				background-color: lighten($dark, 5%);
+				cursor: pointer;
+
+				img {
+					max-width: 20px;
+					max-height: 20px;
+					border-radius: 50% !important;
+					outline: 1px solid $light;
+				}
+			}
+			button {
+				width: fit-content;
+				font-size: $fontSizeLg;
+
+				&:hover {
+					background-color: lighten($accent, 5%);
+				}
+			}
+			svg {
+			}
+		}
 
 		.back,
 		.label {

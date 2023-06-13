@@ -1,0 +1,38 @@
+@use '../../styles/variables' as *;
+@use '../../styles/breakpoints' as *;
+
+.mobileNavbar {
+	display: none;
+	@include breakpoint(xs) {
+		display: flex;
+		width: 140px;
+		background-color: #d9e1e8;
+		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+		color: $dark;
+		height: fit-content;
+		border-radius: 4px;
+		position: absolute;
+		right: 1rem;
+		top: 50px;
+		overflow: hidden;
+		padding: 5px 0;
+	}
+	.links {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		a,
+		p {
+			text-decoration: none;
+			color: $dark;
+			font-size: $fontSizeMd;
+			padding: 10px;
+			cursor: pointer;
+			&:hover {
+				background-color: $accent;
+				color: $light;
+				cursor: pointer;
+			}
+		}
+	}
+}

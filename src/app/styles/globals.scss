@@ -1,14 +1,26 @@
 @use './variables' as *;
 @use './breakpoints' as *;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
 }
 
 body {
 	background-color: $darker;
+	&::-webkit-scrollbar {
+		width: 7px;
+	}
+	&::-webkit-scrollbar-track {
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: darkgrey;
+		outline: 1px solid slategrey;
+	}
 }
 
 .layout {
@@ -17,7 +29,7 @@ body {
 	display: flex;
 	position: relative;
 	@include breakpoint(xs) {
-		max-width: calc(100vw - 17px);
+		max-width: 100vw;
 	}
 	.left-sidebar,
 	.right-sidebar {
