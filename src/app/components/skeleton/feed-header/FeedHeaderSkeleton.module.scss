@@ -1,0 +1,13 @@
+@use '../../../styles/variables' as *;
+
+.feedHeader {
+	font-weight: 500;
+	position: sticky;
+	top: 0px;
+	z-index: 2;
+	border-bottom: 1px solid $border;
+	padding-top: 20px;
+	background-color: $dark;
+	height: 45px;
+	margin-top: 12px;
+}

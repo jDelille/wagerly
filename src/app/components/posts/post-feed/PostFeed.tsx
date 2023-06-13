@@ -36,7 +36,7 @@ const PostFeed: React.FC<Props> = observer(({ posts, isProfilePage, isSearchPage
 
   const renderBets = () => {
     return posts
-      .filter((post: any) => post?.Bet || post?.Parlay)
+      .filter((post: any) => post?.Bet || post?.Parlay || post?.UserBet)
       .map((post: Post) => (
         <PostCard
           post={post}
@@ -90,7 +90,7 @@ const PostFeed: React.FC<Props> = observer(({ posts, isProfilePage, isSearchPage
 
       {storeSearch && (
         posts.map((post: any) => {
-          if (post.body?.includes(storeSearch) || post?.Bet?.thoughts.includes(storeSearch) || post?.Parlay?.bets[0].thoughts.includes(storeSearch)) {
+          if (post.body?.includes(storeSearch) || post?.Bet?.thoughts.includes(storeSearch) || post?.UserBet?.body.includes(storeSearch) || post?.Parlay?.bets[0].thoughts.includes(storeSearch)) {
             return (
               <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
             )
