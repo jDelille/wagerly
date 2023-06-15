@@ -11,6 +11,7 @@ import useLikePost from '@/app/hooks/useLikePost';
 import { PostContext } from '../PostCard';
 
 import styles from './PostCardFooter.module.scss';
+import Link from 'next/link';
 
 type Props = {
   currentUser: SafeUser | null;
@@ -53,10 +54,14 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
 
   return (
     <div className={styles.postCardFooter}>
-      <div className={styles.icon} onClick={() => openPostPreview(post)}>
+      <div className={styles.replyIcon} onClick={() => openPostPreview(post)}>
         <FaReply size={15} color='#5E616F' />
         <span>{post.comments.length || 0}</span>
       </div>
+      <Link href={'/create-post'} className={styles.mobileIcon} onClick={() => openPostPreview(post)} >
+        <FaReply size={15} color='#5E616F' />
+        <span>{post.comments.length || 0}</span>
+      </Link>
       {
         localLike ? (
           <div className={styles.icon} onClick={toggleLike}>
@@ -78,30 +83,32 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
           </div>
         )
       }
-      {localBookmark ? (
-        <div className={styles.icon} onClick={handleUnBookmarkPost}>
-          <BsFillBookmarkFill
-            size={15}
-            color='#5E616F'
-            className={styles.bookmarked}
-          />
-        </div>
-      ) : (
-        <div className={styles.icon} onClick={toggleBookmark}>
-          <BsFillBookmarkFill
-            size={15}
-            color='#5E616F'
-            className={''}
-          />
-        </div>
-      )}
+      {
+        localBookmark ? (
+          <div className={styles.icon} onClick={handleUnBookmarkPost}>
+            <BsFillBookmarkFill
+              size={15}
+              color='#5E616F'
+              className={styles.bookmarked}
+            />
+          </div>
+        ) : (
+          <div className={styles.icon} onClick={toggleBookmark}>
+            <BsFillBookmarkFill
+              size={15}
+              color='#5E616F'
+              className={''}
+            />
+          </div>
+        )
+      }
 
 
       <div className={styles.icon}>
         <BsShareFill size={15} color='#5E616F' />
       </div>
 
-    </div>
+    </div >
   );
 };
 

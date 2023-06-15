@@ -75,6 +75,7 @@ const CreatePost = observer(() => {
     axios
       .post('/api/post', data)
       .then(() => {
+        router.push('/')
         router.refresh();
         reset();
       })

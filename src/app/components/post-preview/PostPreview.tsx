@@ -22,8 +22,6 @@ const PostPreview: React.FC = observer(() => {
   return null;
  }
 
- console.log(post.UserBet)
-
  const body = post?.body || post.UserBet.body
 
 

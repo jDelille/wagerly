@@ -10,7 +10,6 @@
 	position: sticky;
 	top: 45px;
 	display: none;
-	background-color: lighten($dark, 5%);
 	@include breakpoint(sm) {
 		display: flex;
 	}

@@ -32,9 +32,9 @@ const PostCardComment: React.FC<Props> = ({ comment, postUsername, post, postId,
    <div className={styles.body}>
     <p><span>@{postUsername}</span>{comment.body}</p>
    </div>
-   <div className={styles.footer}>
+   {/* <div className={styles.footer}>
     <PostCardFooter postId={postId} post={post} currentUser={currentUser} />
-   </div>
+   </div> */}
 
   </div>
  );

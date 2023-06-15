@@ -8,10 +8,9 @@ import { getMatch, getOdds } from '@/app/api/sportsbookData';
 import useBetSlipModal from '@/app/hooks/useBetSlipModal';
 import betSlipStore from '@/app/store/betSlipStore';
 import ChanceToWin from './chance-to-win/ChanceToWin';
+import BreakdownRow from './breakdown/Breakdown';
 
 import styles from './MatchDetails.module.scss';
-import BreakdownRow from './breakdown/Breakdown';
-import { spread } from 'axios';
 
 type Props = {
 	matchId: string;
@@ -124,7 +123,7 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 	const addToBetStore = (index: number, value?: any, team?: string) => {
 		if (odds) {
 			betSlipModal.onOpen();
-			betSlipStore.setDate(odds.eventTime);
+			betSlipStore.setDate(formattedDate);
 			betSlipStore.setMatchup(odds.betSection.name);
 			betSlipStore.setSelectedOdds(value.odds);
 			betSlipStore.setSelectedOddsDisplay(value.betSlip.description);
@@ -153,8 +152,6 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 			betSlipStore.setType('Total');
 		}
 	};
-
-	console.log(spreadBreakdown?.title)
 
 	return isLoading || !odds ? (
 		<div className={styles.loading}>Loading...</div>

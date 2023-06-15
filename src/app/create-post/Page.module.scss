@@ -1,0 +1,28 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.main {
+	@include page();
+	.content {
+		padding: 1rem;
+		.userHeader {
+			display: flex;
+			padding: 2rem 0;
+			gap: 10px;
+			.displayName {
+				display: flex;
+				flex-direction: column;
+				gap: 3px;
+				strong {
+					font-weight: 500;
+					font-size: $fontSizeLg;
+				}
+				span {
+					font-weight: 300;
+					color: $lightText;
+					font-size: $fontSizeMd;
+				}
+			}
+		}
+	}
+}

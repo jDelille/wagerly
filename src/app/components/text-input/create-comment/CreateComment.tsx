@@ -74,6 +74,7 @@ const CreateComment = () => {
     axios
       .post(`/api/comment/${postId}`, data)
       .then(() => {
+        router.push('/')
         router.refresh();
         reset();
       })

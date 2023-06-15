@@ -1,4 +1,5 @@
 @use '../../../../styles/variables' as *;
+@use '../../../../styles/breakpoints' as *;
 
 .postCardFooter {
 	height: fit-content;
@@ -6,7 +7,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
-	.icon {
+	.icon,
+	.mobileIcon,
+	.replyIcon {
 		display: flex;
 		align-items: center;
 		gap: 5px;
@@ -27,6 +30,26 @@
 		.liked {
 			fill: #20b46a;
 			color: #20b46a;
+		}
+	}
+
+	.replyIcon {
+		@include breakpoint(sm) {
+			display: none;
+		}
+		@include breakpoint(xs) {
+			display: none;
+		}
+	}
+
+	.mobileIcon {
+		display: none;
+		text-decoration: none;
+		@include breakpoint(sm) {
+			display: flex;
+		}
+		@include breakpoint(xs) {
+			display: flex;
 		}
 	}
 }

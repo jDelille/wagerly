@@ -11,6 +11,9 @@
 	padding-top: 0;
 	color: $light;
 	padding-bottom: 2rem;
+	@include breakpoint(sm) {
+		min-width: calc(100% - 320px);
+	}
 	@include breakpoint(xs) {
 		max-width: 100vw;
 	}
