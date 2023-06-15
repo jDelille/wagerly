@@ -3,19 +3,22 @@
 
 .mobileNavbar {
 	display: none;
+	width: 140px;
+	background-color: #d9e1e8;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	color: $dark;
+	height: fit-content;
+	border-radius: 4px;
+	position: absolute;
+	right: 1rem;
+	top: 50px;
+	overflow: hidden;
+	padding: 5px 0;
+	@include breakpoint(sm) {
+		display: flex;
+	}
 	@include breakpoint(xs) {
 		display: flex;
-		width: 140px;
-		background-color: #d9e1e8;
-		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-		color: $dark;
-		height: fit-content;
-		border-radius: 4px;
-		position: absolute;
-		right: 1rem;
-		top: 50px;
-		overflow: hidden;
-		padding: 5px 0;
 	}
 	.links {
 		display: flex;

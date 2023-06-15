@@ -9,6 +9,9 @@
 	.main {
 		max-width: 600px;
 		display: block;
+		@include breakpoint(sm) {
+			min-width: 100%;
+		}
 		@include breakpoint(xs) {
 			max-width: 100vw;
 		}

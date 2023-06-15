@@ -3,12 +3,15 @@
 import { useEffect, useState } from 'react';
 import matchStore from '@/app/store/matchStore';
 import Image from 'next/image';
-import { MatchHeader, MatchOdds, Breakdown } from '@/app/types/Match';
+import { MatchHeader, MatchOdds, Breakdown, Chance } from '@/app/types/Match';
 import { getMatch, getOdds } from '@/app/api/sportsbookData';
-
-import styles from './MatchDetails.module.scss';
 import useBetSlipModal from '@/app/hooks/useBetSlipModal';
 import betSlipStore from '@/app/store/betSlipStore';
+import ChanceToWin from './chance-to-win/ChanceToWin';
+
+import styles from './MatchDetails.module.scss';
+import BreakdownRow from './breakdown/Breakdown';
+import { spread } from 'axios';
 
 type Props = {
 	matchId: string;
@@ -22,6 +25,8 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 	const [spreadBreakdown, setSpreadBreakdown] = useState<Breakdown>();
 	const [totalBreakdown, setTotalBreakdown] = useState<Breakdown>();
 	const [winnerBreakdown, setWinnerBreakdown] = useState<Breakdown>();
+	const [chance, setChance] = useState<Chance>()
+
 
 	const league = matchStore.league;
 
@@ -39,6 +44,7 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 					if (odds) {
 						setOdds(odds.sectionList[0].modules[0].model);
 					}
+					setChance(odds.sectionList[0].modules[1].model)
 					setSpreadBreakdown(odds.sectionList[0].modules[3].model);
 					setWinnerBreakdown(odds.sectionList[0].modules[5]?.model);
 					setTotalBreakdown(
@@ -57,8 +63,6 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 
 		fetchData();
 	}, [league, matchId]);
-
-	console.log(header)
 
 	const formattedDate = new Date(header?.eventTime as string).toLocaleString("en-US", { month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "numeric" });
 
@@ -112,31 +116,10 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 		},
 	};
 
-	const leftSpreadWidth =
-		breakdown.leftTeam.spreadPercent &&
-		`${(breakdown.leftTeam.spreadPercent * 100).toFixed(0)}%`;
+	const colorValue1 = chance && chance.lines[0].color;
+	const colorValue2 = chance && chance.lines[0].color2;
 
-	const leftTotalWidth =
-		breakdown.leftTeam.totalPercent &&
-		`${(breakdown.leftTeam.totalPercent * 100).toFixed(0)}%`;
-
-	const leftWinnerWidth =
-		breakdown.leftTeam.winnerPercent &&
-		`${(breakdown.leftTeam.winnerPercent * 100).toFixed(0)}%`;
-
-	const rightSpreadWidth =
-		breakdown.rightTeam.spreadPercent &&
-		`${(breakdown.rightTeam.spreadPercent * 100).toFixed(0)}%`;
-
-	const rightTotalWidth =
-		breakdown.rightTeam.totalPercent &&
-		`${(breakdown.rightTeam.totalPercent * 100).toFixed(0)}%`;
-
-	const rightWinnerWidth =
-		breakdown.rightTeam.winnerPercent &&
-		`${(breakdown.rightTeam.winnerPercent * 100).toFixed(0)}%`;
-
-	// betslip store stuff
+	// betslip store 
 
 	const addToBetStore = (index: number, value?: any, team?: string) => {
 		if (odds) {
@@ -171,6 +154,8 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 		}
 	};
 
+	console.log(spreadBreakdown?.title)
+
 	return isLoading || !odds ? (
 		<div className={styles.loading}>Loading...</div>
 	) : (
@@ -182,14 +167,14 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 						<Image
 							src={matchHeader.leftTeam.logo as string}
 							alt={matchHeader.leftTeam.imageAltText as string}
-							width={50}
-							height={50}
+							width={40}
+							height={40}
 						/>
 						<Image
 							src={matchHeader.rightTeam.logo as string}
 							alt={matchHeader.rightTeam.imageAltText as string}
-							width={50}
-							height={50}
+							width={40}
+							height={40}
 						/>
 					</div>
 				</div>
@@ -277,88 +262,51 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 				</strong>
 			)}
 
-			{spreadBreakdown && (
-				<div className={styles.breakdown}>
-					<strong>{breakdown.spreadBreakdownTitle}</strong>
-					{breakdown.spreadBreakdownDescription && (
-						<div className={styles.description}>
-							{breakdown.spreadBreakdownDescription}
-						</div>
-					)}
+			<ChanceToWin chance={chance as Chance} />
 
-					<div className={styles.chart}>
-						<div className={styles.leftTeamBreakdown}>
-							<strong>{breakdown.leftTeam.name}</strong>
-							<span>{breakdown.leftTeam.spreadDisplayValue}</span>
-						</div>
-						<div className={styles.bar}>
-							<div
-								className={styles.leftPercent}
-								style={{ width: leftSpreadWidth }}></div>
-							<div
-								className={styles.rightPercent}
-								style={{ width: rightSpreadWidth }}></div>
-						</div>
-						<div className={styles.rightTeamBreakdown}>
-							<strong>{breakdown.rightTeam.name}</strong>
-							<span>{breakdown.rightTeam.spreadDisplayValue}</span>
-						</div>
-					</div>
-				</div>
+			{spreadBreakdown?.title && (
+				<BreakdownRow
+					title={breakdown.spreadBreakdownTitle as string}
+					description={breakdown.spreadBreakdownDescription as string}
+					leftTeamName={breakdown.leftTeam.name as string}
+					leftDisplayValue={breakdown.leftTeam.spreadDisplayValue as string}
+					leftPercent={breakdown.leftTeam.spreadPercent as number}
+					rightTeamName={breakdown.rightTeam.name as string}
+					rightDisplayValue={breakdown.rightTeam.spreadDisplayValue as string}
+					rightPercent={breakdown.rightTeam.spreadPercent as number}
+					colorValue1={colorValue1 as string}
+					colorValue2={colorValue2 as string}
+				/>
 			)}
 
-			{totalBreakdown && (
-				<div className={styles.breakdown}>
-					<strong>{breakdown.totalBreakdownTitle}</strong>
-					<div className={styles.description}>
-						{breakdown.totalBreakdownDescription}
-					</div>
-					<div className={styles.chart}>
-						<div className={styles.leftTeamBreakdown}>
-							<strong>{breakdown.leftTeam.name}</strong>
-							<span>{breakdown.leftTeam.totalDisplayValue}</span>
-						</div>
-						<div className={styles.bar}>
-							<div
-								className={styles.leftPercent}
-								style={{ width: leftTotalWidth }}></div>
-							<div
-								className={styles.rightPercent}
-								style={{ width: rightTotalWidth }}></div>
-						</div>
-						<div className={styles.rightTeamBreakdown}>
-							<strong>{breakdown.rightTeam.name}</strong>
-							<span>{breakdown.rightTeam.totalDisplayValue}</span>
-						</div>
-					</div>
-				</div>
+			{totalBreakdown?.title && (
+				<BreakdownRow
+					title={breakdown.totalBreakdownTitle as string}
+					description={breakdown.totalBreakdownDescription as string}
+					leftTeamName={breakdown.leftTeam.name as string}
+					leftDisplayValue={breakdown.leftTeam.totalDisplayValue as string}
+					leftPercent={breakdown.leftTeam.totalPercent as number}
+					rightTeamName={breakdown.rightTeam.name as string}
+					rightDisplayValue={breakdown.rightTeam.totalDisplayValue as string}
+					rightPercent={breakdown.rightTeam.totalPercent as number}
+					colorValue1={colorValue1 as string}
+					colorValue2={colorValue2 as string}
+				/>
 			)}
 
-			{winnerBreakdown && (
-				<div className={styles.breakdown}>
-					<strong>{breakdown.winnerBreakdownTitle}</strong>
-					<div className={styles.description}>
-						{breakdown.winnerBreakdownDescription}
-					</div>
-					<div className={styles.chart}>
-						<div className={styles.leftTeamBreakdown}>
-							<strong>{breakdown.leftTeam.name}</strong>
-							<span>{breakdown.leftTeam.winnerDisplayValue}</span>
-						</div>
-						<div className={styles.bar}>
-							<div
-								className={styles.leftPercent}
-								style={{ width: leftWinnerWidth }}></div>
-							<div
-								className={styles.rightPercent}
-								style={{ width: rightWinnerWidth }}></div>
-						</div>
-						<div className={styles.rightTeamBreakdown}>
-							<strong>{breakdown.rightTeam.name}</strong>
-							<span>{breakdown.rightTeam.winnerDisplayValue}</span>
-						</div>
-					</div>
-				</div>
+			{winnerBreakdown?.title && (
+				<BreakdownRow
+					title={breakdown.winnerBreakdownTitle as string}
+					description={breakdown.winnerBreakdownDescription as string}
+					leftTeamName={breakdown.leftTeam.name as string}
+					leftDisplayValue={breakdown.leftTeam.winnerDisplayValue as string}
+					leftPercent={breakdown.leftTeam.winnerPercent as number}
+					rightTeamName={breakdown.rightTeam.name as string}
+					rightDisplayValue={breakdown.rightTeam.winnerDisplayValue as string}
+					rightPercent={breakdown.rightTeam.winnerPercent as number}
+					colorValue1={colorValue1 as string}
+					colorValue2={colorValue2 as string}
+				/>
 			)}
 		</div>
 	);

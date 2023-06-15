@@ -49,7 +49,7 @@
 			}
 			.logos {
 				display: flex;
-				gap: 5px;
+				gap: 10px;
 			}
 		}
 		.date {
@@ -146,54 +146,5 @@
 		padding: 10px;
 		border-radius: 4px;
 		margin-top: 1rem;
-	}
-	.breakdown {
-		padding: 15px;
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
-		margin-bottom: 2rem;
-		display: none;
-		strong {
-		}
-		.description {
-			font-size: $fontSizeSm;
-			background: rgba(144, 166, 223, 0.1);
-			border: 1px solid rgba(144, 166, 223, 0.5);
-			color: #90a6df;
-			padding: 10px;
-			border-radius: 4px;
-			text-align: center;
-			margin: 1rem 0;
-		}
-		.chart {
-			display: flex;
-			gap: 10px;
-			align-items: center;
-			.bar {
-				flex: 1;
-				display: flex;
-				border-radius: 22px;
-				overflow: hidden;
-				height: 20px;
-				.leftPercent {
-					background-color: $accent;
-					height: 100%;
-				}
-				.rightPercent {
-					background-color: darken($accent, 10%);
-					height: 100%;
-				}
-			}
-			.leftTeamBreakdown,
-			.rightTeamBreakdown {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				span {
-					font-size: $fontSizeSm;
-				}
-			}
-		}
 	}
 }

@@ -1,0 +1,40 @@
+@use '../../../../styles/variables' as *;
+
+.chanceToWin {
+	padding: 0 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	.title {
+		font-size: 22px;
+	}
+	.description {
+		font-size: $fontSizeMd;
+	}
+	.chance {
+		padding: 10px;
+		width: 100%;
+		background: rgba(144, 166, 223, 0.1);
+		border: 1px solid rgba(144, 166, 223, 0.5);
+		border-radius: 4px;
+		display: flex;
+		justify-content: space-evenly;
+		margin: 1rem 0;
+
+		.team {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 3px;
+			color: $light;
+
+			.winner {
+				color: #20b46a;
+			}
+			span {
+				font-size: $fontSizeSm;
+				font-weight: bold;
+			}
+		}
+	}
+}

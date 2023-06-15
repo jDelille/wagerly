@@ -40,6 +40,7 @@ const FeedHeader: React.FC<Props> = ({ label, isBack, isSportsbook, currentUserP
 
     <div className={styles.mobile} onClick={() => setOpenMenu(!openMenu)}>
      <Avatar photo={currentUserPhoto as string} />
+     <strong>{currentUsername}</strong>
      <FaBars size={18} color='white' />
 
 

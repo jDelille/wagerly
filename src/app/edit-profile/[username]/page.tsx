@@ -3,6 +3,7 @@ import FeedHeader from "@/app/components/feed-header/FeedHeader";
 import EditProfileHeader from "@/app/components/profile/edit-profile-header/EditProfileHeader";
 
 import styles from './Page.module.scss';
+import EditProfileBody from "@/app/components/profile/edit-profile-body/EditProfileBody";
 
 interface IParams {
  username: string;
@@ -20,7 +21,8 @@ const EditProfile = async ({ params }: { params: IParams }) => {
     currentUserPhoto={currentUser?.photo || '/images/placeholder.png'} />
 
    <EditProfileHeader />
-  
+
+   <EditProfileBody currentUser={currentUser} />
 
   </div>
  );

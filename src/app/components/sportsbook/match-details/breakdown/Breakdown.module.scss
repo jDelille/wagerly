@@ -1,0 +1,45 @@
+@use '../../../../styles/variables' as *;
+
+.breakdown {
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 2rem;
+	.description {
+		font-size: $fontSizeMd;
+		border-radius: 4px;
+
+		margin: 1rem 0;
+	}
+	.chart {
+		display: flex;
+		gap: 10px;
+		align-items: center;
+
+		.bar {
+			flex: 1;
+			display: flex;
+			border-radius: 12px;
+			overflow: hidden;
+			height: 15px;
+			.leftPercent {
+				background-color: $accent;
+				height: 100%;
+			}
+			.rightPercent {
+				background-color: darken($accent, 10%);
+				height: 100%;
+			}
+		}
+		.leftTeamBreakdown,
+		.rightTeamBreakdown {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			span {
+				font-size: $fontSizeSm;
+			}
+		}
+	}
+}

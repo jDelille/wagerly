@@ -87,6 +87,25 @@ export type MatchOdds = {
 	};
 };
 
+export type Chance = {
+	title: string;
+	description: string;
+	lines: [
+		{
+			name: string;
+			name2: string;
+			color: string;
+			alternateColor: string;
+			alternateColor2: string;
+			color2: string;
+			stat1Value: string;
+			stat1Subtext: string;
+			stat2Value: string;
+			stat2Subtext: string;
+		}
+	];
+};
+
 export type Breakdown = {
 	description: string;
 	title: string;

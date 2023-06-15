@@ -11,6 +11,7 @@
 
 body {
 	background-color: $darker;
+	overflow-x: hidden;
 	&::-webkit-scrollbar {
 		width: 7px;
 	}
@@ -28,6 +29,9 @@ body {
 	margin: 0 auto;
 	display: flex;
 	position: relative;
+	@include breakpoint(sm) {
+		max-width: 100vw;
+	}
 	@include breakpoint(xs) {
 		max-width: 100vw;
 	}
@@ -40,6 +44,11 @@ body {
 		top: 10px;
 		height: calc(100vh - 10px);
 		z-index: 9999;
+		transition: all 200ms ease-in-out;
+		@include breakpoint(sm) {
+			top: 0;
+			display: none;
+		}
 		@include breakpoint(xs) {
 			display: none;
 		}
@@ -58,6 +67,12 @@ body {
 					color: lightgray;
 				}
 			}
+		}
+	}
+
+	.right-sidebar {
+		@include breakpoint(sm) {
+			display: none;
 		}
 	}
 }

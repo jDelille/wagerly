@@ -8,6 +8,7 @@ import Nav from './components/nav/Nav';
 import './styles/globals.scss';
 import { Inter } from 'next/font/google'
 import BetSlip from './components/modals/bet-slip/BetSlip';
+import NavigationPanel from './components/navigation-panel/NavigationPanel';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -52,6 +53,7 @@ export default async function RootLayout({
           <div className='right-sidebar'>
             <Nav currentUsername={currentUser?.username} />
           </div>
+          <NavigationPanel currentUsername={currentUser?.username} />
         </div>
       </body>
     </html>

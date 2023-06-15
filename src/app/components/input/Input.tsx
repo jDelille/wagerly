@@ -4,13 +4,12 @@ import styles from './Input.module.scss';
 
 type InputProps = {
  label: string;
- id?: string;
+ id: string;
  placeholder: string;
- value?: string;
+ value: string;
  type: string;
  required?: boolean;
- register?: UseFormRegister<FieldValues>;
-
+ register: UseFormRegister<FieldValues>;
 }
 
 const Input: React.FC<InputProps> = ({ id, label, placeholder, value, type, required, register }) => {
