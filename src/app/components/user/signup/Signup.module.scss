@@ -1,4 +1,5 @@
 @use '../../../styles/variables' as *;
+@use '../../../styles/breakpoints' as *;
 
 .page {
 	height: 100vh;
@@ -7,6 +8,10 @@
 	justify-content: center;
 	width: 600px;
 	margin: 0 auto;
+	@include breakpoint(xs) {
+		width: 100vw;
+		height: 100vh;
+	}
 	.authContainer {
 		background-color: $dark;
 		max-width: 400px;
@@ -16,6 +21,11 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-evenly;
+		@include breakpoint(xs) {
+			width: 100vw;
+			height: 100vh;
+			justify-content: center;
+		}
 		.header {
 			display: flex;
 			flex-direction: column;

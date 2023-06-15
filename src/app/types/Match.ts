@@ -2,6 +2,7 @@ export type Match = {
 	id: string;
 	league: 'MLB';
 	statusLine: string;
+	eventTime: string;
 	lowerTeam: {
 		id: string;
 		imageAltText: string;

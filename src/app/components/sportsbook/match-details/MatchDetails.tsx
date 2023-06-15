@@ -153,6 +153,8 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 		}
 	};
 
+	console.log(matchHeader)
+
 	return isLoading || !odds ? (
 		<div className={styles.loading}>Loading...</div>
 	) : (

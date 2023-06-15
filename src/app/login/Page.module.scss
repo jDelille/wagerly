@@ -1,5 +1,6 @@
 @use '../styles/mixins' as *;
 @use '../styles/variables' as *;
+@use '../styles/breakpoints' as *;
 
 .page {
 	min-width: 100vw;
@@ -12,4 +13,7 @@
 	justify-content: center;
 	background-color: $darker;
 	z-index: 999999;
+	@include breakpoint(xs) {
+		width: 100%;
+	}
 }
