@@ -12,8 +12,6 @@ const ChanceToWin: React.FC<Props> = ({ chance, }) => {
 
  const projectedLeftWinner = chance.lines[0].stat1Value > chance.lines[0].stat2Value;
 
- console.log(projectedLeftWinner)
-
  return (
   <div className={styles.chanceToWin}>
    <strong className={styles.title}>{chance.title}</strong>
