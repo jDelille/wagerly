@@ -16,7 +16,6 @@ const Signup = () => {
 
   const router = useRouter();
 
-  const [name, setName] = useState('');
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,6 +38,9 @@ const Signup = () => {
 
   const email = watch('email')
   const password = watch("password")
+  const name = watch('name')
+  const username = watch("username")
+
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -88,7 +90,7 @@ const Signup = () => {
             id='name'
             register={register}
             placeholder="John Smith"
-
+            value={name}
             required
           />
           <Input
@@ -98,6 +100,8 @@ const Signup = () => {
             register={register}
             placeholder="@john"
             required
+            value={username}
+
           />
           <Input
             type="text"
@@ -106,6 +110,7 @@ const Signup = () => {
             register={register}
             placeholder="something@email.com"
             required
+            value={email}
           />
           <Input
             type="password"
@@ -114,6 +119,7 @@ const Signup = () => {
             register={register}
             placeholder="********"
             required
+            value={password}
           />
           <Button label='Signup' />
           <div className={styles.footer}>

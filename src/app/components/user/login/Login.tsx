@@ -1,8 +1,7 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link'
-import axios from 'axios';
 import { signIn } from 'next-auth/react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
@@ -16,8 +15,7 @@ const Login = () => {
 
  const router = useRouter();
 
- const [email, setEmail] = useState('');
- const [password, setPassword] = useState('');
+
  const [error, setError] = useState("");
  const [isLoading, setIsLoading] = useState(false);
 
@@ -25,6 +23,7 @@ const Login = () => {
   register,
   handleSubmit,
   formState: { errors },
+  watch,
   reset
  } = useForm<FieldValues>({
   defaultValues: {
@@ -32,6 +31,9 @@ const Login = () => {
    password: '',
   },
  });
+
+ const email = watch('email')
+ const password = watch("password")
 
  const onSubmit: SubmitHandler<FieldValues> = (data) => {
   setIsLoading(true);
