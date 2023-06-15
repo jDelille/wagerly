@@ -1,0 +1,9 @@
+.notLoggedInMessage {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding-bottom: 1rem;
+	strong {
+		font-size: 22px;
+	}
+}

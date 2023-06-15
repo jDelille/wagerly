@@ -12,6 +12,7 @@ import { PostContext } from '../PostCard';
 
 import styles from './PostCardFooter.module.scss';
 import Link from 'next/link';
+import useNotLoggedInModal from '@/app/hooks/useNotLoggedInModal';
 
 type Props = {
   currentUser: SafeUser | null;
@@ -21,6 +22,7 @@ type Props = {
 
 const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
   const router = useRouter();
+  const notLoggedInModal = useNotLoggedInModal();
 
   const { localLike, setLocalLike, setLocalLikeCount, localLikeCount, setLocalBookmark, localBookmark } = useContext(PostContext) ?? {}
 
@@ -30,6 +32,10 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
 
 
   const toggleLike = useCallback(() => {
+    if (!currentUser) {
+      notLoggedInModal.onOpen();
+      return;
+    }
     if (localLike) {
       handleUnLikePost();
       setLocalLike(false)
@@ -39,12 +45,16 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
       setLocalLike(true)
       setLocalLikeCount((prevLikeCount: number) => prevLikeCount + 1);
     }
-  }, [localLike, handleUnLikePost, setLocalLike, setLocalLikeCount, handleLikePost]);
+  }, [currentUser, localLike, notLoggedInModal, handleUnLikePost, setLocalLike, setLocalLikeCount, handleLikePost]);
 
   const toggleBookmark = useCallback(() => {
+    if (!currentUser) {
+      notLoggedInModal.onOpen();
+      return;
+    }
     setLocalBookmark((prevBookmark: boolean) => !prevBookmark);
     handleBookmarkPost();
-  }, [handleBookmarkPost, setLocalBookmark]);
+  }, [currentUser, setLocalBookmark, handleBookmarkPost, notLoggedInModal]);
 
   const openPostPreview = (post: Post) => {
     postPreviewStore.clearPost();
@@ -54,7 +64,7 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
 
   return (
     <div className={styles.postCardFooter}>
-      <div className={styles.replyIcon} onClick={() => openPostPreview(post)}>
+      <div className={styles.replyIcon} onClick={() => { currentUser ? openPostPreview(post) : notLoggedInModal.onOpen() }}>
         <FaReply size={15} color='#5E616F' />
         <span>{post.comments.length || 0}</span>
       </div>

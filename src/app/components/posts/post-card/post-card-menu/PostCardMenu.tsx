@@ -8,6 +8,7 @@ import styles from './PostCardMenu.module.scss';
 import useLikePost from '@/app/hooks/useLikePost';
 import { PostContext } from '../PostCard';
 import axios from 'axios';
+import useNotLoggedInModal from '@/app/hooks/useNotLoggedInModal';
 
 type Props = {
   setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
@@ -21,11 +22,11 @@ const PostCardMenu: React.FC<Props> = ({
   currentUser,
 }) => {
   const router = useRouter();
+  const notLoggedInModal = useNotLoggedInModal();
+
   const { id: userId } = currentUser || {};
 
-
   const { localLike, setLocalLike, setLocalLikeCount, localBookmark, setLocalBookmark } = useContext(PostContext)
-
 
   const { handlePinPost, handleUnPinPost } = usePinPost(
     post.id,
@@ -41,12 +42,20 @@ const PostCardMenu: React.FC<Props> = ({
   }, [post.id, router]);
 
   const toggleBookmark = useCallback(() => {
+    if (!currentUser) {
+      notLoggedInModal.onOpen();
+      return;
+    }
     setLocalBookmark((prevBookmark: boolean) => !prevBookmark);
     handleBookmarkPost();
-  }, [handleBookmarkPost, setLocalBookmark]);
+  }, [currentUser, setLocalBookmark, handleBookmarkPost, notLoggedInModal]);
 
 
   const toggleLike = useCallback(() => {
+    if (!currentUser) {
+      notLoggedInModal.onOpen();
+      return;
+    }
     if (localLike) {
       handleUnLikePost();
       setLocalLike(false)
@@ -56,7 +65,7 @@ const PostCardMenu: React.FC<Props> = ({
       setLocalLike(true)
       setLocalLikeCount((prevLikeCount: number) => prevLikeCount + 1);
     }
-  }, [localLike, handleUnLikePost, setLocalLike, setLocalLikeCount, handleLikePost]);
+  }, [currentUser, localLike, notLoggedInModal, handleUnLikePost, setLocalLike, setLocalLikeCount, handleLikePost]);
 
   const onDelete = useCallback(
     (id: string) => {
