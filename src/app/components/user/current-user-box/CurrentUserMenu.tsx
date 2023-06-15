@@ -38,7 +38,7 @@ const CurrentUserMenu: React.FC<Props> = ({ setIsMenuOpen, currentUser }) => {
 
     <p className={styles.option}
      onClick={() => {
-      router.push(`bookmarks`);
+      router.push(`bookmarks/${currentUser?.username}`);
       closeMenu();
      }}>Bookmarks</p>
     <p className={styles.option}

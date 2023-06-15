@@ -1,18 +1,21 @@
 
 import dynamic from 'next/dynamic';
-import getBookmarks from '../actions/getBookmarks';
-import getCurrentUser from '../actions/getCurrentUser';
-import FeedHeader from '../components/feed-header/FeedHeader';
-import PostSkeleton from '../components/skeleton/post-skeleton/PostSkeleton';
+import getBookmarks from '../../actions/getBookmarks';
+import getCurrentUser from '../../actions/getCurrentUser';
+import FeedHeader from '../../components/feed-header/FeedHeader';
+import PostSkeleton from '../../components/skeleton/post-skeleton/PostSkeleton';
 
 import styles from './Page.module.scss';
 
+interface IParams {
+ username?: string;
+}
 
-const Bookmarks = async () => {
+const Bookmarks = async ({ params }: { params: IParams }) => {
 
- const [posts, currentUser] = await Promise.all([getBookmarks(), getCurrentUser()])
+ const [posts, currentUser] = await Promise.all([getBookmarks(params), getCurrentUser()])
 
- const DynamicPostFeed = dynamic(() => import('../components/posts/post-feed/PostFeed'), {
+ const DynamicPostFeed = dynamic(() => import('../../components/posts/post-feed/PostFeed'), {
   loading: () => <>
    <PostSkeleton />
    <PostSkeleton />

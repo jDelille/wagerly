@@ -1,21 +1,25 @@
 import prisma from '@/app/libs/prismadb';
 import getCurrentUser from './getCurrentUser';
 
-export default async function getBookmarks() {
+interface IParams {
+	username?: string;
+}
+
+export default async function getBookmarks(params: IParams) {
 	try {
-		const currentUser = await getCurrentUser();
+		const { username } = params;
 
-		// const user = await prisma.user.findUnique({
-		// 	where: {
-		// 		username: username,
-		// 	},
-		// });
+		const user = await prisma.user.findUnique({
+			where: {
+				username: username,
+			},
+		});
 
-		if (!currentUser) {
+		if (!user) {
 			throw new Error('User not found');
 		}
 
-		const bookmarkedPostIds = currentUser.bookmarks.map((bookmark) => bookmark);
+		const bookmarkedPostIds = user.bookmarks.map((bookmark) => bookmark);
 
 		const posts = await prisma.post.findMany({
 			where: {
