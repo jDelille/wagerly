@@ -13,8 +13,7 @@
 		height: 100vh;
 	}
 	.authContainer {
-		background-color: $dark;
-		max-width: 400px;
+		max-width: 500px;
 		padding: 2rem;
 		color: $light;
 		border-radius: 4px;
@@ -32,10 +31,10 @@
 			gap: 1rem;
 			margin-bottom: 20px;
 			h1 {
-				font-size: 22px;
+				font-size: 26px;
 			}
 			p {
-				font-size: $fontSizeSm;
+				font-size: 16px;
 				span {
 					color: lightgray;
 					font-weight: 500;
@@ -70,11 +69,11 @@
 				justify-content: center;
 				padding: 10px 0;
 				text-decoration: none;
-				font-size: $fontSizeSm;
+				font-size: 14px;
 				color: #9baec8;
 				a {
 					text-decoration: none;
-					font-size: $fontSizeSm;
+					font-size: 14px;
 					color: #9baec8;
 					&:hover {
 						text-decoration: underline;

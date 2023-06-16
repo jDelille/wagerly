@@ -20,7 +20,6 @@ const EditProfile = async ({ params }: { params: IParams }) => {
     currentUsername={currentUser?.username}
     currentUserPhoto={currentUser?.photo || '/images/placeholder.png'} />
 
-   <EditProfileHeader />
 
    <EditProfileBody currentUser={currentUser} />
 

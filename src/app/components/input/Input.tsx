@@ -10,9 +10,13 @@ type InputProps = {
  type: string;
  required?: boolean;
  register: UseFormRegister<FieldValues>;
+ tabIndex: number;
+ onChange?: (value: any) => void;
+
 }
 
-const Input: React.FC<InputProps> = ({ id, label, placeholder, value, type, required, register }) => {
+const Input: React.FC<InputProps> = ({ id, label, placeholder, value, type, required, register, tabIndex,
+ onChange }) => {
  return (
   <div className={styles.input}>
    <label htmlFor={id}>{label}</label>
@@ -21,7 +25,10 @@ const Input: React.FC<InputProps> = ({ id, label, placeholder, value, type, requ
     id={id}
     placeholder={placeholder}
     required={required}
+    tabIndex={tabIndex}
     {...register(id, { required })}
+    onChange={onChange}
+
    />
   </div>
  );

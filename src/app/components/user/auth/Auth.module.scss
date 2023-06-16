@@ -19,7 +19,7 @@
 			font-weight: 600;
 			font-size: $fontSizeMd;
 			&:nth-of-type(2) {
-				background-color: $darker;
+				background: transparent;
 				outline: 1px solid $accent;
 				color: $accent;
 				&:hover {

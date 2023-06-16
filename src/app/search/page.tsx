@@ -19,8 +19,6 @@ const Search = async ({ params }: { params: IParams }) => {
 
  const [currentUser, posts, users] = await Promise.all([getCurrentUser(), getPosts(), getUsers()]);
 
-
-
  return (
   <div className={styles.main}>
    <FeedHeader label='Search' isBack={false} />

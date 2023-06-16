@@ -34,4 +34,34 @@
 			}
 		}
 	}
+	.avatar {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		position: relative;
+
+		label {
+			display: flex;
+			justify-content: flex-start;
+			font-size: 14px;
+		}
+		.img {
+			position: relative;
+
+			img {
+				border-radius: 4px;
+				width: 75px;
+				height: 75px;
+				// filter: brightness(75%);
+				cursor: pointer;
+			}
+			svg {
+				position: absolute;
+				top: 18px;
+				left: 21px;
+				z-index: 999;
+				cursor: pointer;
+			}
+		}
+	}
 }

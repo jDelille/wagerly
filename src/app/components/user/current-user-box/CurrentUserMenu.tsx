@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
 import { useRouter } from 'next/navigation';
-import { signOut } from "next-auth/react";
+import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types/SafeUser';
+import Link from 'next/link';
 
 import styles from './CurrentUserBox.module.scss';
 
@@ -24,49 +25,55 @@ const CurrentUserMenu: React.FC<Props> = ({ setIsMenuOpen, currentUser }) => {
     onClick={() => setIsMenuOpen(false)}></div>
 
    <div className={styles.currentUserMenu}>
-    <p
+    <Link
+     href={`user/${currentUser?.username}`}
      className={styles.option}
-     onClick={() => {
-      router.push(`user/${currentUser?.username}`);
-      closeMenu();
-     }}>
+     onClick={closeMenu}>
      Go To Profile
+    </Link>
+
+    <Link
+     href={`/edit-profile/${currentUser?.username}`}
+     className={styles.option}
+     onClick={closeMenu}>
+     Edit Profile
+    </Link>
+
+    <div className={styles.divider}></div>
+
+    <Link
+     href={`/bookmarks/${currentUser?.username}`}
+     className={styles.option}
+     onClick={closeMenu}>
+     Bookmarks
+    </Link>
+    <Link href={`/likes`} className={styles.option} onClick={closeMenu}>
+     Likes
+    </Link>
+
+    <div className={styles.divider}></div>
+
+    <Link
+     href={`/muted-users`}
+     className={styles.option}
+     onClick={closeMenu}>
+     Muted Users
+    </Link>
+    <Link
+     href={`/blocked-users`}
+     className={styles.option}
+     onClick={closeMenu}>
+     Blocked Users
+    </Link>
+    <p className={styles.option} onClick={closeMenu}>
+     Muted Words
     </p>
-    <p className={styles.option}>Edit Profile</p>
 
     <div className={styles.divider}></div>
 
-    <p className={styles.option}
-     onClick={() => {
-      router.push(`bookmarks/${currentUser?.username}`);
-      closeMenu();
-     }}>Bookmarks</p>
-    <p className={styles.option}
-     onClick={() => {
-      router.push(`likes`);
-      closeMenu();
-     }}
-    >Likes</p>
-
-    <div className={styles.divider}></div>
-
-    <p className={styles.option}
-     onClick={() => {
-      router.push(`muted-users`);
-      closeMenu();
-     }}
-    >Muted Users</p>
-    <p className={styles.option}
-     onClick={() => {
-      router.push(`blocked-users`);
-      closeMenu();
-     }}
-    >Blocked Users</p>
-    <p className={styles.option}>Muted Words</p>
-
-    <div className={styles.divider}></div>
-
-    <p className={styles.option} onClick={() => signOut()}>Logout</p>
+    <p className={styles.option} onClick={() => signOut()}>
+     Logout
+    </p>
    </div>
   </>
  );

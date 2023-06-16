@@ -92,6 +92,8 @@ const Signup = () => {
             placeholder="John Smith"
             value={name}
             required
+            tabIndex={0}
+
           />
           <Input
             type="text"
@@ -101,6 +103,8 @@ const Signup = () => {
             placeholder="@john"
             required
             value={username}
+            tabIndex={0}
+
 
           />
           <Input
@@ -111,6 +115,8 @@ const Signup = () => {
             placeholder="something@email.com"
             required
             value={email}
+            tabIndex={0}
+
           />
           <Input
             type="password"
@@ -120,8 +126,10 @@ const Signup = () => {
             placeholder="********"
             required
             value={password}
+            tabIndex={0}
+
           />
-          <Button label='Signup' />
+          <Button label='Signup' isButtonDisabled={!email || !name || !username || !password} tabIndex={0} />
           <div className={styles.footer}>
             <p>Already have an account?  <Link href='/login'>Log in</Link></p>
 

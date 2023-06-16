@@ -13,10 +13,21 @@
 	color: $light;
 	position: relative;
 	border-radius: 5px;
+	font-size: 14px;
+	font-weight: 500;
 	cursor: pointer;
-	&:disabled {
-		background-color: lighten($lighter, 1%) !important;
-		cursor: default !important;
+	&:hover {
+		background-color: lighten($accent, 5%);
+	}
+	// &:disabled {
+	// 	background-color: lighten($lighter, 1%) !important;
+	// 	cursor: default !important;
+	// 	&:hover {
+	// 		background-color: red;
+	// 	}
+	// }
+	&:focus {
+		outline: 2px solid $accent !important;
 	}
 	.buttonIcon {
 		position: absolute;

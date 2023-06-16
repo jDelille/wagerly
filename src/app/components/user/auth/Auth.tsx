@@ -37,11 +37,13 @@ const Auth: React.FC<Props> = ({ currentUser }) => {
      label='Create account'
      onClick={() => router.push('/signup')}
      ariaLabel='Create an account'
+     tabIndex={0}
     />
     <Button
      label='Login'
      onClick={() => router.push('/login')}
      ariaLabel='Login'
+     tabIndex={0}
     />
    </div>
   </div>

@@ -1,10 +1,10 @@
 'use client';
+
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-
 import Input from '../../input/Input';
 import Button from '../../button/Button';
 
@@ -14,7 +14,6 @@ import styles from './Login.module.scss';
 const Login = () => {
 
  const router = useRouter();
-
 
  const [error, setError] = useState("");
  const [isLoading, setIsLoading] = useState(false);
@@ -73,6 +72,7 @@ const Login = () => {
       placeholder='something@email.com'
       register={register}
       value={email}
+      tabIndex={1}
      />
      <Input
       id='password'
@@ -81,9 +81,11 @@ const Login = () => {
       placeholder='••••••••'
       value={password}
       register={register}
+      tabIndex={2}
+
      />
-     <Button label='Log in' />
-     <div className={styles.footer}>
+     <Button label='Log in' isButtonDisabled={!email || !password} tabIndex={3} />
+     <div className={styles.footer} >
       <Link href='/signup'>Create an account</Link>
      </div>
     </form>

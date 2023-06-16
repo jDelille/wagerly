@@ -9,6 +9,7 @@ import PostFeed from '../posts/post-feed/PostFeed';
 import styles from './SearchFeed.module.scss';
 import tabStore from '@/app/store/tabStore';
 import { SafeUser } from '@/app/types/SafeUser';
+import PostCard from '../posts/post-card/PostCard';
 
 
 type Props = {
@@ -27,7 +28,9 @@ const SearchFeed: React.FC<Props> = observer(({ users, posts, currentUser }) => 
    {tabStore.tab === 'All' && (
     <>
      <UserFeed users={users} />
-     <PostFeed posts={posts} isProfilePage={false} isSearchPage={true} hideHeader={true} currentUser={currentUser} />
+     {posts.map((post: any) => (
+      <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
+     ))}
     </>
    )}
 
@@ -36,7 +39,9 @@ const SearchFeed: React.FC<Props> = observer(({ users, posts, currentUser }) => 
    )}
 
    {tabStore.tab === 'Posts' && (
-    <PostFeed posts={posts} isProfilePage={false} isSearchPage={true} hideHeader={true} currentUser={currentUser} />
+    posts.map((post: any) => (
+     <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
+    ))
    )}
 
   </>

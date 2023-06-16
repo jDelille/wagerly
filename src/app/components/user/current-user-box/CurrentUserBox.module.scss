@@ -50,8 +50,13 @@
 	right: 15px;
 	font-size: $fontSizeSm;
 	z-index: 99;
+	display: flex;
+	flex-direction: column;
 	.option {
 		padding: 5px 15px;
+		min-width: 130px;
+		text-decoration: none;
+		color: $darker;
 		&:hover {
 			background-color: $accent;
 			color: $light;
