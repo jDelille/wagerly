@@ -31,34 +31,69 @@
 		text-decoration: none;
 		color: $light;
 		display: flex;
-		flex-direction: column;
+
 		gap: 10px;
-		height: 134px;
+		height: 120px;
 		justify-content: center;
 		transition: all 200ms ease-in-out;
 		&:hover {
 			background-color: lighten($dark, 5%);
 		}
-		.lowerTeam,
-		.upperTeam {
+		.leftSide {
+			flex: 1;
 			display: flex;
-			align-items: center;
-			gap: 10px;
-
-			strong {
-				font-weight: 500;
-			}
-			span {
-				font-size: $fontSizeXs;
-				position: relative;
-				top: -5px;
-				left: -5px;
+			flex-direction: column;
+			.lowerTeam,
+			.upperTeam {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				flex: 1;
+				strong {
+					font-weight: 500;
+					font-size: $fontSizeMd;
+				}
+				span {
+					font-size: $fontSizeXs;
+					position: relative;
+					top: -4px;
+					left: -5px;
+				}
 			}
 			.score {
-				margin-left: auto;
+				width: 65px;
+			}
+			.statusLine {
+				font-size: $fontSizeXs;
+				padding-top: 10px;
+				display: flex;
+				gap: 10px;
 			}
 		}
-		.status {
+		.rightSide {
+			width: 55px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-evenly;
+			strong {
+				height: 50px;
+				display: flex;
+				align-items: center;
+			}
+			.time {
+				font-size: $fontSizeXs;
+				padding-top: 10px;
+			}
+			.info {
+				font-size: $fontSizeSm;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-end;
+				.station {
+					font-size: $fontSizeXs;
+				}
+			}
 		}
 	}
 }

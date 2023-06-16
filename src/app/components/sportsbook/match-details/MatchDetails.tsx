@@ -2,13 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import matchStore from '@/app/store/matchStore';
-import Image from 'next/image';
 import { MatchHeader, MatchOdds, Breakdown, Chance } from '@/app/types/Match';
 import { getMatch, getOdds } from '@/app/api/sportsbookData';
-import useBetSlipModal from '@/app/hooks/useBetSlipModal';
-import betSlipStore from '@/app/store/betSlipStore';
 import ChanceToWin from './chance-to-win/ChanceToWin';
 import BreakdownRow from './breakdown/Breakdown';
+import Odds from './odds/Odds';
+import Header from './match-header/MatchHeader';
 
 import styles from './MatchDetails.module.scss';
 
@@ -26,10 +25,7 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 	const [winnerBreakdown, setWinnerBreakdown] = useState<Breakdown>();
 	const [chance, setChance] = useState<Chance>()
 
-
 	const league = matchStore.league;
-
-	const betSlipModal = useBetSlipModal();
 
 	useEffect(() => {
 		async function fetchData() {
@@ -118,142 +114,27 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 	const colorValue1 = chance && chance.lines[0].color;
 	const colorValue2 = chance && chance.lines[0].color2;
 
-	// betslip store 
-
-	const addToBetStore = (index: number, value?: any, team?: string) => {
-		if (odds) {
-			betSlipModal.onOpen();
-			betSlipStore.setDate(formattedDate);
-			betSlipStore.setMatchup(odds.betSection.name);
-			betSlipStore.setSelectedOdds(value.odds);
-			betSlipStore.setSelectedOddsDisplay(value.betSlip.description);
-			betSlipStore.setSelectedBet(value.odds);
-			betSlipStore.setOddsDisplay(value.betSlip.oddsDisplay);
-			betSlipStore.setPayoutMultiplier(value.betSlip.payoutMultiplier);
-		}
-
-		if (team === 'leftTeam') {
-			betSlipStore.setSelectedTeamLogo(matchHeader.leftTeam.logo as string);
-			betSlipStore.setSelectedTeamName(
-				matchHeader.leftTeam.entityName as string
-			);
-		} else {
-			betSlipStore.setSelectedTeamLogo(matchHeader.rightTeam.logo as string);
-			betSlipStore.setSelectedTeamName(
-				matchHeader.rightTeam.entityName as string
-			);
-		}
-
-		if (index === 0) {
-			betSlipStore.setType('Spread');
-		} else if (index === 1) {
-			betSlipStore.setType('Moneyline');
-		} else if (index === 2) {
-			betSlipStore.setType('Total');
-		}
-	};
-
-	console.log(matchHeader)
 
 	return isLoading || !odds ? (
 		<div className={styles.loading}>Loading...</div>
 	) : (
 		<div className={styles.matchup}>
-			<div className={styles.header}>
-				<div className={styles.matchup}>
-					<strong>{matchHeader.leftTeam.longName} vs {matchHeader.rightTeam.longName}</strong>
-					<div className={styles.logos}>
-						<Image
-							src={matchHeader.leftTeam.logo as string}
-							alt={matchHeader.leftTeam.imageAltText as string}
-							width={40}
-							height={40}
-						/>
-						<Image
-							src={matchHeader.rightTeam.logo as string}
-							alt={matchHeader.rightTeam.imageAltText as string}
-							width={40}
-							height={40}
-						/>
-					</div>
-				</div>
-				<div className={styles.date}>
-					<span>{formattedDate}</span>
-				</div>
+			<Header
+				matchHeader={matchHeader}
+				formattedDate={formattedDate}
+				header={header as MatchHeader}
+			/>
 
-				<div className={styles.matchInfo}>
-					<Image
-						src={header?.sportLogoUrl as string}
-						alt='sport logo url'
-						width={30}
-						height={30}
-					/>
-					<div className={styles.venue}>
-						<span>{header?.venueName} {header?.venueLocation}</span>
-					</div>
-				</div>
-			</div>
+			{/* <FeedToggle /> */}
 
 			{odds ? (
-				<div className={styles.odds}>
-					<strong className={styles.title}>{odds?.title}</strong>
-					<div className={styles.columnHeaders}>
-						{odds?.odds.columnHeaders.map((label) => (
-							<span key={label}>{label}</span>
-						))}
-					</div>
-					<div className={styles.rows}>
-
-						<div className={styles.row}>
-							<div className={styles.displayName}>
-								<Image
-									src={odds?.odds.rows[0].imageUrl as string}
-									alt={odds?.odds.rows[0].imageAltText as string}
-									width={20}
-									height={20}
-								/>
-								<strong className={styles.name}>{odds?.odds.rows[0].fullText}</strong>
-								<strong className={styles.abbreviation}>{header?.leftTeam.name}</strong>
-							</div>
-							{odds?.odds.rows[0].values?.map((value, i) => {
-								if (i <= 2) {
-									return (
-										<span
-											key={i}
-											onClick={() => addToBetStore(i, value, 'leftTeam')}>
-											{value.odds}
-										</span>
-									);
-								}
-							})}
-						</div>
-
-						<div className={styles.row}>
-							<div className={styles.displayName}>
-								<Image
-									src={odds?.odds.rows[1].imageUrl as string}
-									alt={odds?.odds.rows[1].imageAltText as string}
-									width={20}
-									height={20}
-								/>
-								<strong className={styles.name}>{odds?.odds.rows[1].fullText}</strong>
-								<strong className={styles.abbreviation}>{header?.rightTeam.name}</strong>
-							</div>
-
-							{odds?.odds.rows[1].values?.map((value, i) => {
-								if (i <= 2) {
-									return (
-										<span
-											key={i}
-											onClick={() => addToBetStore(i, value, 'rightTeam')}>
-											{value.odds}
-										</span>
-									);
-								}
-							})}
-						</div>
-					</div>
-				</div>
+				<Odds
+					odds={odds}
+					leftName={header?.leftTeam.name as string}
+					rightName={header?.rightTeam.name as string}
+					formattedDate={formattedDate}
+					matchHeader={matchHeader}
+				/>
 			) : (
 				<strong className={styles.noOddsMessage}>
 					{' '}

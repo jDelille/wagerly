@@ -74,7 +74,6 @@ const SportsbookGames = () => {
   return formattedDate;
  };
 
-
  return (
   <div>
    <SportSelector
@@ -94,13 +93,40 @@ const SportsbookGames = () => {
     ))}
    </div>
    <div className={`${styles.feed} ${isLoading ? styles.loading : styles.loaded}`}>
-    {matches.map((match, i) => (
-     <MatchCard
-      key={match.id}
-      match={match}
-      sport={sport}
-     />
-    ))}
+    {matches
+     .sort((a, b) => {
+      // Check if matches have finished
+      const aFinished = a.statusLine === "FINAL";
+      const bFinished = b.statusLine === "FINAL";
+
+      if (aFinished && !bFinished) {
+       return 1; // Move a to the end
+      }
+      if (!aFinished && bFinished) {
+       return -1; // Move b to the end
+      }
+
+      // Check if matches are in progress
+      const aInProgress = a.eventStatus === 1; // Assuming 1 represents "in progress" status
+      const bInProgress = b.eventStatus === 1;
+
+      if (aInProgress && !bInProgress) {
+       return -1; // Move a to the top
+      }
+      if (!aInProgress && bInProgress) {
+       return 1; // Move b to the top
+      }
+
+      // Sort scheduled matches by time
+      return new Date(a.eventTime).getTime() - new Date(b.eventTime).getTime();
+     })
+     .map((match, i) => (
+      <MatchCard
+       key={match.id}
+       match={match}
+       sport={sport}
+      />
+     ))}
    </div>
 
   </div>

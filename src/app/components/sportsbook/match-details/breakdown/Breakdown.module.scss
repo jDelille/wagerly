@@ -22,7 +22,8 @@
 			display: flex;
 			border-radius: 12px;
 			overflow: hidden;
-			height: 15px;
+			height: 10px;
+			border: 1px solid $border;
 			.leftPercent {
 				background-color: $accent;
 				height: 100%;

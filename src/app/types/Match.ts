@@ -3,6 +3,11 @@ export type Match = {
 	league: 'MLB';
 	statusLine: string;
 	eventTime: string;
+	eventStatus: number;
+	liveStartTime: string;
+	tvStation: string;
+	oddsLine: string;
+	overUnderLine: string;
 	lowerTeam: {
 		id: string;
 		imageAltText: string;
@@ -58,6 +63,7 @@ export type MatchHeader = {
 export type MatchOdds = {
 	title: string;
 	eventTime: string;
+	eventStatus: number;
 	betSection: {
 		name: string;
 	};

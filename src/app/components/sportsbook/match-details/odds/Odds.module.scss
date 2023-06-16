@@ -1,0 +1,75 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/breakpoints' as *;
+
+.odds {
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	border-top: 1px solid $border;
+	border-bottom: 1px solid $border;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	.title {
+		font-size: 22px;
+	}
+	.columnHeaders {
+		display: flex;
+		height: 30px;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 1rem;
+		font-size: $fontSizeXs;
+		span {
+			width: 74px;
+			display: flex;
+			justify-content: center;
+		}
+	}
+	.rows {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		.displayName {
+			flex-grow: 1;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			.name {
+				@include breakpoint(xs) {
+					display: none;
+				}
+			}
+			.abbreviation {
+				display: none;
+				@include breakpoint(xs) {
+					display: block;
+				}
+			}
+		}
+		.row {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 1rem;
+			.canBet,
+			.cantBet {
+				width: 74px;
+				border: 1px solid $border;
+				display: flex;
+				justify-content: center;
+				border-radius: 22px;
+				padding: 7px;
+				font-size: $fontSizeMd;
+				font-weight: 600;
+				transition: all 200ms ease-in-out;
+			}
+			.canBet {
+				cursor: pointer;
+				&:hover {
+					background-color: lighten($dark, 5%);
+				}
+			}
+		}
+	}
+}
