@@ -74,6 +74,8 @@ model User {
   points              Float?         @default(0)
   affiliated          Boolean?       @default(false)
   bookmarks           String[]       @db.ObjectId
+  draftKingsLink      String?
+  betSpertsLink       String?
 }
 
 model Poll {

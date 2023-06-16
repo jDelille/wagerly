@@ -64,4 +64,15 @@
 			}
 		}
 	}
+	.externalLinks {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		font-size: 14px;
+		width: 100%;
+		gap: 20px;
+		.linksLogo {
+			margin-bottom: 10px;
+		}
+	}
 }

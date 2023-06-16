@@ -8,6 +8,7 @@ import Button from '../../button/Button';
 
 import styles from './ProfileHeader.module.scss';
 import Link from 'next/link';
+import Image from 'next/image';
 
 
 type Props = {
@@ -19,6 +20,9 @@ type Props = {
 const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio }) => {
 
  let joinedDate = format(new Date(user?.createdAt as string), 'MMMM dd, yyyy');
+
+ const hasDraftkings = user?.draftKingsLink
+ const hasBetSperts = user?.betSpertsLink
 
  return (
   <div className={styles.profileHeader}>
@@ -52,9 +56,43 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio }) => {
       </p>
      )}
 
-     <div className={styles.joined}>
-      <p>{ProfileScreenString.joined}</p>
-      <span>{joinedDate}</span>
+     <div className={styles.links}>
+      <div className={styles.link}>
+       <p>{ProfileScreenString.joined}</p>
+       <span>{joinedDate}</span>
+      </div>
+
+      {hasDraftkings && (
+       <div className={styles.link}>
+        <div className={styles.logo}>
+         <Image
+          src='/images/draftkings.png'
+          alt='draftkings logo'
+          width={15}
+          height={15}
+         />
+         <p>Draftkings</p>
+        </div>
+        <a target='_blank' href={user?.draftKingsLink as string}>{user?.draftKingsLink}</a>
+       </div>
+      )}
+
+      {hasBetSperts && (
+       <div className={styles.link}>
+        <div className={styles.logo}>
+         <Image
+          src='/images/betsperts.jpg'
+          alt='draftkings logo'
+          width={15}
+          height={15}
+         />
+         <p>Betsperts</p>
+
+        </div>
+        <a target='_blank' href={user?.betSpertsLink as string}>{user?.betSpertsLink}</a>
+       </div>
+      )}
+
      </div>
     </div>
    </div>

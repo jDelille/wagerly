@@ -61,23 +61,50 @@
 		flex-direction: column;
 		width: 100%;
 		gap: 1rem;
-		.joined {
+		.links {
 			display: flex;
 			flex-direction: column;
 			gap: 2px;
 			background-color: lighten($dark, 10%);
-			padding: 10px;
 			border-radius: 4px;
 			width: 100%;
-			p {
+			.link {
 				text-transform: uppercase;
 				color: lighten($dark, 50%);
 				font-weight: 500;
 				font-size: 13px;
-			}
-			span {
-				color: lighten($dark, 75%);
-				font-size: 12px;
+				border-top: 1px solid $border;
+				padding: 10px;
+				display: flex;
+				flex-direction: column;
+				gap: 5px;
+				&:nth-of-type(1) {
+					border-top: none;
+				}
+				.logo {
+					display: flex;
+					align-items: center;
+					gap: 5px;
+				}
+				span,
+				a {
+					color: lighten($dark, 75%);
+					font-size: 12px;
+					text-transform: none;
+					text-decoration: none;
+				}
+				a {
+					color: $accent;
+					display: inline-block;
+					max-width: 250px; /* Adjust this value as per your requirement */
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					&:hover {
+						cursor: pointer;
+						text-decoration: underline;
+					}
+				}
 			}
 		}
 	}

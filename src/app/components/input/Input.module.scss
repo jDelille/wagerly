@@ -6,6 +6,11 @@
 	width: 100%;
 	gap: 10px;
 
+	.labelLogo {
+		display: flex;
+		gap: 10px;
+	}
+
 	label {
 		display: flex;
 		justify-content: flex-start;

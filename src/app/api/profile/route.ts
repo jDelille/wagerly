@@ -4,7 +4,7 @@ import getCurrentUser from '@/app/actions/getCurrentUser';
 
 export async function POST(request: Request) {
 	const body = await request.json();
-	const { name, username, bio, photo } = body;
+	const { name, username, bio, photo, draftKings, betSperts } = body;
 	const currentUser = await getCurrentUser();
 
 	if (!currentUser) {
@@ -27,6 +27,14 @@ export async function POST(request: Request) {
 
 	if (photo) {
 		data.photo = photo;
+	}
+
+	if (draftKings) {
+		data.draftKingsLink = draftKings;
+	}
+
+	if (betSperts) {
+		data.betSpertsLink = betSperts;
 	}
 
 	try {
