@@ -22,8 +22,9 @@ const CurrentUserBox: React.FC<Props> = ({ currentUser }) => {
 				username={currentUser?.username}
 			/>
 			<div className={styles.displayName}>
-				<strong>{currentUser?.name}</strong>
-				<span>{currentUser?.username}</span>
+				<strong>@{currentUser?.username}</strong>
+
+				<span>Edit Profile</span>
 			</div>
 			<BsThreeDotsVertical
 				onClick={() => setIsMenuOpen(!isMenuOpen)}

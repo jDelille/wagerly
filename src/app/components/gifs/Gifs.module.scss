@@ -14,7 +14,7 @@
 
 	z-index: 99999;
 	overflow-x: hidden;
-	background-color: $light;
+	background-color: $charade;
 	border-radius: 6px;
 	outline: 1px solid lightgray;
 	width: 500px;
@@ -26,15 +26,15 @@
 	.search {
 		position: sticky;
 		top: 0;
-		background-color: $light;
+		background-color: $charade;
 		z-index: 99999999;
 		padding: 10px 1rem;
 		width: 100%;
 
 		input {
-			background-color: $light !important;
+			background-color: $charade !important;
 			border: 1px solid #dadada;
-			color: $darker;
+			color: $mystic;
 		}
 	}
 }

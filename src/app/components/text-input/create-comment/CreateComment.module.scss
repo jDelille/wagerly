@@ -1,7 +1,7 @@
 @use '../../../styles/variables' as *;
 
 .createComment {
-	background-color: $light;
+	background-color: $charade;
 	width: 100%;
 	min-height: 175px;
 	height: auto;
@@ -25,7 +25,7 @@
 		outline: none;
 		max-height: 300px;
 		&::placeholder {
-			color: $accent;
+			color: $chetwodeBlue;
 		}
 	}
 	.createPostButtons {
@@ -45,8 +45,8 @@
 					&::after {
 						position: absolute;
 						content: 'Post a photo';
-						background-color: $dark;
-						color: $light;
+						background-color: $white;
+						color: $charade;
 						padding: 3px 5px;
 						border-radius: 2px;
 						font-size: $fontSizeXs;
@@ -60,8 +60,8 @@
 					&::after {
 						position: absolute;
 						content: 'Post a gif';
-						background-color: $dark;
-						color: $light;
+						background-color: $white;
+						color: $charade;
 						padding: 3px 5px;
 						border-radius: 2px;
 						font-size: $fontSizeXs;
@@ -75,8 +75,8 @@
 					&::after {
 						position: absolute;
 						content: 'Post a poll';
-						background-color: $dark;
-						color: $light;
+						background-color: $white;
+						color: $charade;
 						padding: 3px 5px;
 						border-radius: 2px;
 						font-size: $fontSizeXs;
@@ -93,7 +93,7 @@
 			margin-left: auto;
 			font-weight: 500;
 			font-size: 14px;
-			color: $darker;
+			color: $mystic;
 			.lengthError {
 				color: red;
 			}
@@ -102,7 +102,7 @@
 }
 
 .outline {
-	outline: 2px solid $accent;
+	outline: 2px solid $chetwodeBlue;
 	transition: outline 200ms ease-in-out;
 }
 
@@ -115,7 +115,7 @@
 		padding: 0;
 		padding: 10px 10px;
 		&:hover {
-			background-color: lighten($accent, 5%);
+			background-color: lighten($chetwodeBlue, 5%);
 		}
 	}
 }

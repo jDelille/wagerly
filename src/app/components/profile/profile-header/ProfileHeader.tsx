@@ -3,7 +3,7 @@ import Avatar from '../../user/Avatar/Avatar';
 import { SafeUser } from '@/app/types/SafeUser';
 import { ProfileScreenString } from '@/app/utils/app-string/ProfileScreenString';
 import { format } from 'date-fns';
-import { BsThreeDotsVertical } from 'react-icons/bs';
+import { BiDotsVertical } from 'react-icons/bi';
 import Button from '../../button/Button';
 
 import styles from './ProfileHeader.module.scss';
@@ -39,7 +39,7 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio }) => {
       <Button label='Follow' />
      )}
      <div className={styles.userMenu}>
-      <BsThreeDotsVertical />
+      <BiDotsVertical size={22} />
      </div>
     </div>
    </div>

@@ -49,9 +49,6 @@ const MatchCard: React.FC<Props> = ({ match, sport }) => {
  const hasEnded = match.eventStatus === 3;
 
 
- // if game has not been started yet:
- // put odds at button of match card.
-
  console.log(match)
 
 
@@ -82,6 +79,7 @@ const MatchCard: React.FC<Props> = ({ match, sport }) => {
       <strong>{upperTeam.longName}</strong>
       <span>{upperTeam.record}</span>
      </div>
+
      {(hasEnded || inProgress) && (
       <span className={styles.statusLine}>{match.statusLine}</span>
      )}

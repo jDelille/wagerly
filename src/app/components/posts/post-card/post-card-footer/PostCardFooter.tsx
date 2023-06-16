@@ -82,7 +82,7 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
         onClick={() => {
           currentUser ? openPostPreview(post) : notLoggedInModal.onOpen();
         }}>
-        <FaReply size={15} color='#5E616F' />
+        <FaReply size={15} color='#606984' />
         <span>{post.comments.length || 0}</span>
       </div>
       {currentUser ? (
@@ -91,23 +91,23 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
           className={styles.mobileIcon}
           onClick={() => openPostPreview(post)}
         >
-          <FaReply size={15} color="#5E616F" />
+          <FaReply size={15} color="#606984" />
           <span>{post.comments.length || 0}</span>
         </Link>
       ) : (
         <div className={styles.mobileIcon} onClick={() => notLoggedInModal.onOpen()}>
-          <FaReply size={15} color="#5E616F" />
+          <FaReply size={15} color="#606984" />
           <span>{post.comments.length || 0}</span>
         </div>
       )}
       {localLike ? (
         <div className={styles.icon} onClick={toggleLike}>
-          <AiTwotoneLike size={15} color='#5E616F' className={styles.liked} />
+          <AiTwotoneLike size={15} color='#606984' className={styles.liked} />
           <span>{localLikeCount || 0}</span>
         </div>
       ) : (
         <div className={styles.icon} onClick={toggleLike}>
-          <AiTwotoneLike size={15} color='#5E616F' className={''} />
+          <AiTwotoneLike size={15} color='#606984' className={''} />
           <span>{localLikeCount || 0}</span>
         </div>
       )}
@@ -115,18 +115,18 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
         <div className={styles.icon} onClick={handleUnBookmarkPost}>
           <BsFillBookmarkFill
             size={15}
-            color='#5E616F'
+            color='#606984'
             className={styles.bookmarked}
           />
         </div>
       ) : (
         <div className={styles.icon} onClick={toggleBookmark}>
-          <BsFillBookmarkFill size={15} color='#5E616F' className={''} />
+          <BsFillBookmarkFill size={15} color='#606984' className={''} />
         </div>
       )}
 
       <div className={styles.icon}>
-        <BsShareFill size={15} color='#5E616F' />
+        <BsShareFill size={15} color='#606984' />
       </div>
     </div>
   );

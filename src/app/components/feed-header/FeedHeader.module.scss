@@ -6,11 +6,11 @@
 	position: sticky;
 	top: 0px;
 	z-index: 2;
-	border-bottom: 1px solid $border;
 	padding-top: 20px;
-	background-color: $darker;
 	transition: all 100ms ease-in-out;
+	background-color: $mystic;
 	@include breakpoint(sm) {
+		background-color: $darkerMystic;
 		padding-top: 0;
 		width: 100vw;
 	}
@@ -18,8 +18,11 @@
 		padding-top: 0;
 	}
 	.header {
-		background-color: lighten($dark, 7%);
+		background-color: lighten($white, 7%);
 		height: 45px;
+		border: 1px solid $heather;
+		border-top-right-radius: 4px;
+		border-top-left-radius: 4px;
 
 		@include breakpoint(xs) {
 			height: 55px;
@@ -28,23 +31,23 @@
 		align-items: center;
 		padding: 0 15px;
 		gap: 5px;
-		background-color: $dark;
+		background-color: $white;
 		.mobile {
 			display: none;
 			margin-left: auto;
 
 			align-items: center;
-			border: 1px solid $border;
+			border: 1px solid $heather;
 			padding: 4px 8px;
 			border-radius: 22px;
-			background-color: lighten($dark, 5%);
+			background-color: lighten($white, 5%);
 			cursor: pointer;
 			gap: 5px;
 			img {
 				max-width: 20px;
 				max-height: 20px;
 				border-radius: 50% !important;
-				border: 1px solid $light;
+				border: 1px solid $charade;
 			}
 			@include breakpoint(xs) {
 				display: flex;
@@ -53,7 +56,7 @@
 				display: flex;
 			}
 			strong {
-				color: $light;
+				color: $charade;
 				font-weight: 500;
 				font-size: $fontSizeSm;
 				@include breakpoint(xs) {
@@ -65,7 +68,7 @@
 				font-size: $fontSizeLg;
 
 				&:hover {
-					background-color: lighten($accent, 5%);
+					background-color: lighten($chetwodeBlue, 5%);
 				}
 			}
 			svg {
@@ -76,12 +79,12 @@
 		.back,
 		.label {
 			cursor: pointer;
-			color: $light;
+			color: $charade;
 			text-decoration: none;
 			font-weight: 500;
 		}
 		.back {
-			color: $accent;
+			color: $chetwodeBlue;
 			&:hover {
 				text-decoration: underline;
 			}

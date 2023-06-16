@@ -11,7 +11,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: $darker;
+	background-color: $mystic;
 	z-index: 999999;
 	@include breakpoint(xs) {
 		width: 100%;

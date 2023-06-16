@@ -1,7 +1,7 @@
 @use '../../../../../styles/variables' as *;
 
 .postCardComment {
-	border-bottom: 1px solid $lighter;
+	border-bottom: 1px solid $alabaster;
 	padding: 0 1rem;
 	display: flex;
 	flex-direction: column;
@@ -16,7 +16,7 @@
 			align-items: center;
 			.line {
 				width: 1px;
-				background-color: $lighter;
+				background-color: $alabaster;
 				height: 15px;
 			}
 		}
@@ -41,7 +41,7 @@
 			display: flex;
 			gap: 5px;
 			span {
-				color: $accent;
+				color: $chetwodeBlue;
 				cursor: pointer;
 				&:hover {
 					text-decoration: underline;

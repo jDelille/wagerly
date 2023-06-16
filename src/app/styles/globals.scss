@@ -10,7 +10,7 @@
 }
 
 body {
-	background-color: $darker;
+	background-color: $mystic;
 	overflow-x: hidden;
 	&::-webkit-scrollbar {
 		width: 7px;
@@ -53,7 +53,7 @@ body {
 			display: none;
 		}
 		.disclaimer {
-			color: lightgray;
+			color: $charade;
 			font-size: 11px;
 			position: absolute;
 			padding: 0 5px;
@@ -62,9 +62,10 @@ body {
 			flex-direction: column;
 			gap: 1rem;
 			left: 0;
+			width: 98%;
 			p {
 				a {
-					color: lightgray;
+					color: $charade;
 				}
 			}
 		}

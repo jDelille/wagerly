@@ -20,11 +20,11 @@
 			font-size: $fontSizeMd;
 			&:nth-of-type(2) {
 				background: transparent;
-				outline: 1px solid $accent;
-				color: $accent;
+				outline: 1px solid $chetwodeBlue;
+				color: $chetwodeBlue;
 				&:hover {
-					background-color: $accent;
-					color: $light;
+					background-color: $chetwodeBlue;
+					color: $charade;
 				}
 			}
 		}

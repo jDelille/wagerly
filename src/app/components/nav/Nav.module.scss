@@ -14,7 +14,7 @@
 		display: flex;
 		align-items: center;
 		font-size: 22px;
-		color: $light;
+		color: $charade;
 	}
 	.links {
 		display: flex;
@@ -29,11 +29,11 @@
 				font-size: 16px;
 			}
 			a {
-				color: lightgray;
+				color: $charade;
 				text-decoration: none;
 				&:hover {
 					text-decoration: underline;
-					color: $light;
+					color: $charade;
 				}
 			}
 		}

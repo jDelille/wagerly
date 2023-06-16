@@ -2,8 +2,8 @@
 
 .betContainer {
 	padding: 10px 1rem;
-	background-color: $lighter;
-	border: 1px solid $border;
+	background-color: $alabaster;
+	border: 1px solid $heather;
 	width: 100%;
 	border-radius: 4px;
 	.bet {
@@ -29,7 +29,8 @@
 			}
 		}
 		.odds {
-			background-color: darken($lighter, 5%);
+			background-color: lighten($white, 15%);
+			border: 1px solid $heather;
 			padding: 8px 20px;
 			border-radius: 4px;
 			font-weight: 600;
@@ -55,6 +56,6 @@
 		align-items: center;
 		justify-content: center;
 		padding-top: 25px;
-		color: lighten($dark, 55%);
+		color: $lightText;
 	}
 }

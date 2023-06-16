@@ -5,7 +5,7 @@
 	height: fit-content;
 	display: flex;
 	gap: 10px;
-	color: $light;
+	color: $charade;
 	padding-top: 10px;
 	margin: 10px 0;
 	margin-bottom: 20px;
@@ -15,11 +15,11 @@
 		flex-direction: column;
 		gap: 3px;
 		strong {
-			font-weight: 500;
-			font-size: $fontSizeLg;
+			font-weight: 600;
+			font-size: $fontSizeMd;
 		}
 		span {
-			font-weight: 300;
+			font-weight: 500;
 			color: $lightText;
 			font-size: $fontSizeMd;
 		}
@@ -39,9 +39,8 @@
 	top: 0;
 }
 .currentUserMenu {
-	background-color: #d9e1e8;
+	background-color: $alabaster;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-	color: $dark;
 	height: fit-content;
 	padding: 5px 0;
 	width: 130px;
@@ -52,14 +51,15 @@
 	z-index: 99;
 	display: flex;
 	flex-direction: column;
+	border: 1px solid $heather;
 	.option {
 		padding: 5px 15px;
 		min-width: 130px;
 		text-decoration: none;
-		color: $darker;
+		color: $charade;
 		&:hover {
-			background-color: $accent;
-			color: $light;
+			background-color: $chetwodeBlue;
+			color: $white;
 			cursor: pointer;
 		}
 	}

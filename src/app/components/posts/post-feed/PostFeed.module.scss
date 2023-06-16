@@ -1,9 +1,11 @@
 @use '../../../styles/_variables.scss' as *;
 
 .postFeed {
-	background-color: $dark;
-	color: $light;
+	background-color: $white;
+	color: $charade;
 	height: 100%;
 	min-height: 100vh;
 	display: block;
+	border: 1px solid $heather;
+	border-top: none;
 }

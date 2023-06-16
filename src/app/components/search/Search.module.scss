@@ -2,12 +2,14 @@
 @use '../../styles/breakpoints' as *;
 
 .inputContainer {
-	background-color: $dark;
+	background-color: $darkMystic;
 	height: 45px;
 	width: 100%;
 	margin-top: 10px;
 	position: relative;
 	transition: all 200ms ease-in-out;
+	border: 1px solid $heather;
+	border-radius: 4px;
 	@include breakpoint(sm) {
 		margin-top: 0;
 	}
@@ -18,9 +20,9 @@
 		outline: none;
 		border: none;
 		padding: 10px;
-		color: lightgray;
+		color: $charade;
 		&::placeholder {
-			color: lightgray;
+			color: $lightText;
 		}
 		&:focus {
 			&::placeholder {
@@ -37,8 +39,6 @@
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
-		&:hover {
-			fill: $light;
-		}
+		fill: $lightText;
 	}
 }

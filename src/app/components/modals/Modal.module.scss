@@ -13,8 +13,8 @@
 	min-width: 500px;
 	padding: 1rem;
 	border-radius: 4px;
-	background-color: $light;
-	color: $dark;
+	background-color: $charade;
+	color: $white;
 	transition: 300ms ease-in-out;
 	opacity: 1;
 	height: fit-content;
@@ -40,7 +40,7 @@
 			font-size: $fontSizeLg !important;
 			font-weight: 600;
 			&:hover {
-				background-color: lighten($accent, 5%);
+				background-color: lighten($chetwodeBlue, 5%);
 			}
 		}
 	}

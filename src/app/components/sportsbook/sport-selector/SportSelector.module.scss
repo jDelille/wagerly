@@ -15,12 +15,12 @@
 		cursor: pointer;
 		color: lightgray;
 		&:hover {
-			color: $light;
+			color: $charade;
 		}
 	}
 	.selectedSport {
-		color: $light;
-		// border: 1px solid $light;
+		color: $charade;
+		// border: 1px solid $charade;
 		font-weight: 600;
 		text-decoration: underline;
 		text-decoration-thickness: 4px;

@@ -1,13 +1,16 @@
-$light: #ffffff;
-$lighter: #36393e;
-$dark: #282b30;
-$darker: #1e2124;
-$accent: #7289da;
-$border: #4c4c55;
-$test: #707174;
 $fontSizeXs: 10px;
 $fontSizeSm: 12px;
 $fontSizeMd: 13px;
 $fontSizeLg: 15px;
 
-$lightText: lighten($lighter, 50%);
+$charade: #282c37;
+$alabaster: #f7f7f7;
+$white: #ffffff;
+$mystic: #eff3f5;
+$chetwodeBlue: #7289da;
+$heather: #c0cdd9;
+$darkMystic: #e6ebf0;
+$darkerMystic: #d9e1e8;
+$comet: #606984;
+
+$lightText: lighten($charade, 5%);

@@ -8,10 +8,10 @@
 	top: 0;
 }
 .postCardMenu {
-	background-color: #d9e1e8;
+	background-color: $alabaster;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-
-	color: $dark;
+	border: 1px solid $heather;
+	color: $charade;
 	height: fit-content;
 	padding: 5px 0;
 	width: 140px;
@@ -24,8 +24,8 @@
 	.option {
 		padding: 5px 15px;
 		&:hover {
-			background-color: $accent;
-			color: $light;
+			background-color: $chetwodeBlue;
+			color: $white;
 			cursor: pointer;
 		}
 	}

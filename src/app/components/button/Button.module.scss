@@ -9,25 +9,25 @@
 	gap: 5px;
 	width: 100%;
 	justify-content: center;
-	background-color: $accent;
-	color: $light;
+	background-color: $chetwodeBlue;
+	color: $charade;
 	position: relative;
 	border-radius: 5px;
 	font-size: 14px;
 	font-weight: 500;
 	cursor: pointer;
+	color: $white;
+
 	&:hover {
-		background-color: lighten($accent, 5%);
+		background-color: lighten($chetwodeBlue, 5%);
 	}
-	// &:disabled {
-	// 	background-color: lighten($lighter, 1%) !important;
-	// 	cursor: default !important;
-	// 	&:hover {
-	// 		background-color: red;
-	// 	}
-	// }
+	&:disabled {
+		background-color: lighten($white, 1%) !important;
+		color: $charade;
+		cursor: default !important;
+	}
 	&:focus {
-		outline: 2px solid $accent !important;
+		outline: 2px solid $chetwodeBlue !important;
 	}
 	.buttonIcon {
 		position: absolute;

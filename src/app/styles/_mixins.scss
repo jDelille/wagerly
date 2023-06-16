@@ -3,13 +3,13 @@
 
 @mixin page {
 	flex-grow: 1;
-	background-color: $dark;
+	background-color: $white;
 	max-width: 600px;
 	position: relative;
 	min-height: 100vh;
 	height: fit-content;
 	padding-top: 0;
-	color: $light;
+	color: $charade;
 	padding-bottom: 2rem;
 	@include breakpoint(sm) {
 		min-width: calc(100% - 320px);
@@ -28,7 +28,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: $darker;
+	background-color: $mystic;
 	z-index: 999999;
 	background-color: rgba(3, 3, 3, 0.3);
 }

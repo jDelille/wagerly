@@ -28,7 +28,7 @@ const PostPreview: React.FC = observer(() => {
  return (
   <div className={styles.postPreview}>
    <div onClick={closePostPreview} className={styles.close}>
-    <IoCloseSharp size={20} color='white' />
+    <IoCloseSharp size={20} color='#282c37' />
    </div>
    <div className={styles.postUser}>
     <Image

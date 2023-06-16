@@ -5,7 +5,10 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	margin-bottom: 2rem;
+
+	border: 1px solid $heather;
+	border-top: none;
+	border-bottom: none;
 	.description {
 		font-size: $fontSizeMd;
 		border-radius: 4px;
@@ -23,13 +26,13 @@
 			border-radius: 12px;
 			overflow: hidden;
 			height: 10px;
-			border: 1px solid $border;
+			border: 1px solid $heather;
 			.leftPercent {
-				background-color: $accent;
+				background-color: $chetwodeBlue;
 				height: 100%;
 			}
 			.rightPercent {
-				background-color: darken($accent, 10%);
+				background-color: darken($chetwodeBlue, 10%);
 				height: 100%;
 			}
 		}

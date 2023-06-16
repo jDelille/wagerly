@@ -6,7 +6,7 @@
 	width: 140px;
 	background-color: #d9e1e8;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-	color: $dark;
+	color: $white;
 	height: fit-content;
 	border-radius: 4px;
 	position: absolute;
@@ -27,13 +27,13 @@
 		a,
 		p {
 			text-decoration: none;
-			color: $dark;
+			color: $white;
 			font-size: $fontSizeMd;
 			padding: 10px;
 			cursor: pointer;
 			&:hover {
-				background-color: $accent;
-				color: $light;
+				background-color: $chetwodeBlue;
+				color: $charade;
 				cursor: pointer;
 			}
 		}

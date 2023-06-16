@@ -6,8 +6,8 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	border-top: 1px solid $border;
-	border-bottom: 1px solid $border;
+	border: 1px solid $heather;
+	border-top: none;
 	padding-top: 2rem;
 	padding-bottom: 2rem;
 	.title {
@@ -55,7 +55,7 @@
 			.canBet,
 			.cantBet {
 				width: 74px;
-				border: 1px solid $border;
+				border: 1px solid $heather;
 				display: flex;
 				justify-content: center;
 				border-radius: 22px;
@@ -67,7 +67,7 @@
 			.canBet {
 				cursor: pointer;
 				&:hover {
-					background-color: lighten($dark, 5%);
+					background-color: lighten($white, 5%);
 				}
 			}
 		}

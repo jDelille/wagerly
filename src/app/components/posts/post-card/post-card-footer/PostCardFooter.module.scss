@@ -16,16 +16,16 @@
 		padding: 5px;
 		border-radius: 4px;
 		&:hover {
-			background-color: lighten($dark, 5%);
+			background-color: lighten($white, 5%);
 			cursor: pointer;
 		}
 		span {
 			font-size: $fontSizeSm;
-			color: lightgray;
+			color: $comet;
 		}
 		.bookmarked {
-			fill: $accent;
-			color: $accent;
+			fill: $chetwodeBlue;
+			color: $chetwodeBlue;
 		}
 		.liked {
 			fill: #20b46a;

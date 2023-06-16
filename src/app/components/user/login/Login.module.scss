@@ -16,10 +16,10 @@
 		height: 100vh;
 	}
 	.authContainer {
-		background-color: $darker;
+		background-color: $mystic;
 		max-width: 500px;
 		padding: 2rem;
-		color: $light;
+		color: $charade;
 		border-radius: 4px;
 		display: flex;
 		flex-direction: column;
@@ -82,7 +82,7 @@
 						text-decoration: underline;
 					}
 					&:focus {
-						color: $accent;
+						color: $chetwodeBlue;
 						text-decoration: underline;
 					}
 				}

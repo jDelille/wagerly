@@ -2,17 +2,19 @@
 
 .postCardHeader {
 	display: flex;
-	gap: 15px;
+	gap: 10px;
 	.displayName {
 		display: flex;
 		flex-direction: column;
-		gap: 3px;
+		gap: 2px;
+		position: relative;
+		top: -2px;
 		strong {
-			font-weight: 500;
+			font-weight: 600;
 			font-size: $fontSizeLg;
 		}
 		span {
-			font-weight: 300;
+			font-weight: 600;
 			color: $lightText;
 			font-size: $fontSizeMd;
 		}
@@ -26,7 +28,7 @@
 		position: relative;
 		.createdAt {
 			color: $lightText;
-			font-weight: 300;
+			font-weight: 500;
 			font-size: $fontSizeMd;
 		}
 		svg {

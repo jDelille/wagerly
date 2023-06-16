@@ -6,15 +6,15 @@
 	gap: 10px;
 	position: relative;
 	width: 100%;
-	color: $light;
+	color: $charade;
 	padding: 10px;
-	background-color: $dark;
+	background-color: $white;
 	.newsHeader {
 		display: flex;
 		justify-content: space-between;
 		.newsTitle {
 			font-size: 14px;
-			color: $light;
+			color: $charade;
 			font-weight: 400;
 			span {
 				font-style: italic;
@@ -25,7 +25,7 @@
 			display: flex;
 			gap: 4px;
 			align-items: center;
-			color: $light;
+			color: $charade;
 			svg {
 				cursor: pointer;
 			}

@@ -8,9 +8,9 @@
 	gap: 1rem;
 	flex-direction: column;
 	position: relative;
-	border-bottom: 1px solid $border;
+	border-bottom: 1px solid $heather;
 	&:hover {
-		background-color: lighten($dark, 15%);
+		background-color: lighten($white, 15%);
 		cursor: pointer;
 	}
 	.addUser {
@@ -44,6 +44,6 @@
 	.bio {
 		// padding-left: 55px;
 		font-size: 13px;
-		color: $light;
+		color: $charade;
 	}
 }

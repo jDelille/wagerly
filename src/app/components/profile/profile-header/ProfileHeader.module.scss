@@ -1,8 +1,10 @@
 @use '../../../styles/variables' as *;
 
 .profileHeader {
-	background-color: lighten($dark, 5%);
+	background-color: lighten($white, 5%);
 	padding: 1rem;
+	border: 1px solid $heather;
+	border-top: none;
 	.top {
 		display: flex;
 		gap: 10px;
@@ -30,24 +32,27 @@
 			a {
 				padding: 10px 10px;
 				font-size: $fontSizeMd;
-				background-color: $accent;
+				background-color: $chetwodeBlue;
 				text-decoration: none;
-				color: $light;
+				color: $white;
 				border-radius: 4px;
+				font-weight: 600;
 				&:hover {
-					background-color: lighten($accent, 5%);
+					background-color: lighten($chetwodeBlue, 5%);
 				}
 			}
 			.userMenu {
-				background-color: lighten($dark, 15%);
-				padding: 10px;
+				background-color: lighten($white, 15%);
+				padding: 7px;
 				border-radius: 4px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
+				border: 1px solid $heather;
 				cursor: pointer;
+				transition: 200ms ease-in-out;
 				&:hover {
-					background-color: lighten($dark, 25%);
+					background-color: darken($white, 5%);
 				}
 			}
 		}
@@ -56,24 +61,27 @@
 	.noBioMessage {
 		padding: 1rem 0;
 		font-size: 13px;
-		color: $light;
+		color: $charade;
 		display: flex;
 		flex-direction: column;
 		width: 100%;
 		gap: 1rem;
+		font-weight: 600;
+
 		.links {
 			display: flex;
 			flex-direction: column;
 			gap: 2px;
-			background-color: lighten($dark, 10%);
+			background-color: $darkMystic;
 			border-radius: 4px;
 			width: 100%;
+			color: $charade;
 			.link {
 				text-transform: uppercase;
-				color: lighten($dark, 50%);
-				font-weight: 500;
+				color: $charade;
+				font-weight: 600;
 				font-size: 13px;
-				border-top: 1px solid $border;
+				border-top: 1px solid $heather;
 				padding: 10px;
 				display: flex;
 				flex-direction: column;
@@ -88,13 +96,13 @@
 				}
 				span,
 				a {
-					color: lighten($dark, 75%);
+					color: $charade;
 					font-size: 12px;
 					text-transform: none;
 					text-decoration: none;
 				}
 				a {
-					color: $accent;
+					color: $chetwodeBlue;
 					display: inline-block;
 					max-width: 250px; /* Adjust this value as per your requirement */
 					overflow: hidden;
@@ -112,7 +120,7 @@
 		font-style: italic;
 		display: flex;
 		span {
-			color: $accent;
+			color: $chetwodeBlue;
 			font-style: normal;
 			cursor: pointer;
 			width: fit-content;
@@ -127,13 +135,13 @@
 		align-items: center;
 		font-size: 13px;
 		padding-top: 10px;
+		font-weight: 600;
+
 		p {
-			font-weight: 600;
-			color: $light;
+			color: $charade;
 		}
 		span {
-			color: #bec8db;
-			font-weight: 400;
+			color: $charade;
 		}
 	}
 }

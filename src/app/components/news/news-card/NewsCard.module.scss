@@ -5,8 +5,8 @@
 	height: fit-content;
 	border-radius: 4px;
 	overflow: hidden;
-	background-color: $dark;
-	// border: 1px solid $border;
+	background-color: $white;
+	// border: 1px solid $heather;
 	padding: 10px;
 	color: lightgray;
 	font-size: 13px;
@@ -15,9 +15,9 @@
 	gap: 5px;
 	cursor: pointer;
 	text-decoration: none;
-	color: $light;
+	color: $charade;
 	&:hover {
-		background-color: lighten($dark, 5%);
+		background-color: lighten($white, 5%);
 	}
 
 	.newsCardBody {
@@ -35,7 +35,7 @@
 			padding: 10px 0;
 
 			.headline {
-				color: $light;
+				color: $charade;
 				font-weight: 600;
 				font-size: 16px;
 			}
