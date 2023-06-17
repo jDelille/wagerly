@@ -10,6 +10,7 @@ import { Inter } from 'next/font/google'
 import BetSlip from './components/modals/bet-slip/BetSlip';
 import NavigationPanel from './components/navigation-panel/NavigationPanel';
 import NotLoggedInModal from './components/modals/not-logged-in/NotLoggedInModal';
+import MobileTopNav from './components/mobile-navbar/mobile-top-nav/MobileTopNav';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,6 +36,7 @@ export default async function RootLayout({
         <div className='layout'>
           <BetSlip />
           <NotLoggedInModal />
+          <MobileTopNav />
           <div className='left-sidebar'>
             {!currentUser ? (
               <Auth currentUser={currentUser} />

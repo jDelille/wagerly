@@ -1,8 +1,8 @@
 @use '../../../../styles/variables' as *;
+@use '../../../../styles/breakpoints' as *;
 
 .postFeedHeader {
 	background-color: $darkMystic;
-
 	border-bottom: 1px solid $heather;
 	width: 100%;
 	height: 50px;
@@ -10,6 +10,12 @@
 	align-items: center;
 	justify-content: space-evenly;
 	font-size: $fontSizeMd;
+	@include breakpoint(sm) {
+		top: 50px;
+	}
+	@include breakpoint(xs) {
+		top: 0px;
+	}
 	.tab,
 	.activeTab {
 		font-weight: 600;

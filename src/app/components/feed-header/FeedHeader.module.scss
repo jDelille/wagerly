@@ -12,10 +12,12 @@
 	@include breakpoint(sm) {
 		background-color: $darkerMystic;
 		padding-top: 0;
-		width: 100vw;
+		width: 100%;
+		top: 50px;
 	}
 	@include breakpoint(xs) {
 		padding-top: 0;
+		top: 0;
 	}
 	.header {
 		background-color: lighten($white, 7%);
@@ -23,7 +25,10 @@
 		border: 1px solid $heather;
 		border-top-right-radius: 4px;
 		border-top-left-radius: 4px;
-
+		@include breakpoint(sm) {
+			border-top: 0;
+			border-radius: 0;
+		}
 		@include breakpoint(xs) {
 			height: 55px;
 		}
@@ -35,7 +40,6 @@
 		.mobile {
 			display: none;
 			margin-left: auto;
-
 			align-items: center;
 			border: 1px solid $heather;
 			padding: 4px 8px;
@@ -53,7 +57,7 @@
 				display: flex;
 			}
 			@include breakpoint(sm) {
-				display: flex;
+				display: none;
 			}
 			strong {
 				color: $charade;
