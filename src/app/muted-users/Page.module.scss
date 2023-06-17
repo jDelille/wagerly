@@ -3,6 +3,7 @@
 
 .main {
 	@include page();
+	padding-bottom: 0;
 	.noMutesMessage {
 		display: flex;
 		align-items: center;
@@ -10,6 +11,8 @@
 		font-size: $fontSizeLg;
 		padding: 20px;
 		text-align: center;
-		height: calc(100vh - 2rem);
+		height: calc(100vh - 4rem - 1px);
+		border: 1px solid $heather;
+		border-top: 0;
 	}
 }

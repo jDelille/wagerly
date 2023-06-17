@@ -42,15 +42,13 @@
 			}
 		}
 	}
-	.body {
-	}
 	.media {
 		max-height: 200px;
 		width: 100%;
 		display: flex;
 		align-items: center;
 		padding: 5px;
-		border: 1px solid darken(#9baec8, 5%);
+		border: 1px solid $heather;
 		border-radius: 4px;
 		gap: 5px;
 		font-size: $fontSizeSm;
@@ -64,7 +62,7 @@
 			text-overflow: ellipsis;
 			cursor: pointer;
 			text-decoration: none;
-			color: $white;
+			color: $chetwodeBlue;
 			&:hover {
 				text-decoration: underline;
 			}

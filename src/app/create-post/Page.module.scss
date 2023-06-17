@@ -3,8 +3,12 @@
 
 .main {
 	@include page();
+	padding-bottom: 0;
 	.content {
 		padding: 1rem;
+		border: 1px solid $heather;
+		border-top: 0;
+		height: calc(100vh - 4rem - 1px);
 		.userHeader {
 			display: flex;
 			padding: 2rem 0;

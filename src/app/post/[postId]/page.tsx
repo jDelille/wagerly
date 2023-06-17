@@ -20,8 +20,11 @@ const PostPage = async ({ params }: { params: IParams }) => {
   <div className={styles.main}>
    <div className={styles.feed}>
     <FeedHeader label="Back" isBack={true} />
-    <PostCard post={post} isExpanded={true} currentUser={currentUser} />
-    <PostCardComments post={post} currentUser={currentUser} />
+    <div className={styles.content}>
+     <PostCard post={post} isExpanded={true} currentUser={currentUser} />
+     <PostCardComments post={post} currentUser={currentUser} />
+    </div>
+
    </div>
 
   </div>

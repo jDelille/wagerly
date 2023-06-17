@@ -3,5 +3,11 @@
 
 .main {
 	@include page();
-
+	padding-bottom: 0;
+	.content {
+		border: 1px solid $heather;
+		border-top: 0;
+		border-bottom: 0;
+		height: calc(100vh - 4rem - 1px);
+	}
 }

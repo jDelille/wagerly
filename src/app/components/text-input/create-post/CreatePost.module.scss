@@ -1,7 +1,7 @@
 @use '../../../styles/variables' as *;
 
 .createPost {
-	background-color: $charade;
+	background-color: $white;
 	width: 100%;
 	min-height: 175px;
 	height: auto;
@@ -67,6 +67,7 @@
 						border-radius: 2px;
 						font-size: $fontSizeXs;
 						bottom: 36px;
+						border: 1px solid $heather;
 					}
 				}
 			}
@@ -82,6 +83,7 @@
 						border-radius: 2px;
 						font-size: $fontSizeXs;
 						bottom: 36px;
+						border: 1px solid $heather;
 					}
 				}
 			}
@@ -97,12 +99,13 @@
 						border-radius: 2px;
 						font-size: $fontSizeXs;
 						bottom: 36px;
+						border: 1px solid $heather;
 					}
 				}
 			}
 			cursor: pointer;
 			&:hover {
-				background-color: darken(#ebebeb, 5%);
+				background-color: darken($darkMystic, 5%);
 			}
 		}
 		.textCount {
@@ -123,6 +126,7 @@
 		position: unset !important;
 		margin-left: auto;
 		width: fit-content;
+		border: 1px solid $heather;
 		&:hover {
 			background-color: lighten($chetwodeBlue, 5%);
 		}

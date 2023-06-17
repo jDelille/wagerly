@@ -1,7 +1,7 @@
 @use '../../../styles/variables' as *;
 
 .createComment {
-	background-color: $charade;
+	background-color: $white;
 	width: 100%;
 	min-height: 175px;
 	height: auto;
@@ -12,8 +12,8 @@
 	flex-direction: column;
 	max-height: 500px;
 	outline: none;
-
 	transition: outline 200ms ease-in-out;
+	border: 1px solid $heather;
 
 	.textarea {
 		padding: 10px;
@@ -30,11 +30,12 @@
 	}
 	.createPostButtons {
 		height: 45px;
-		background-color: #ebebeb;
+		background-color: $darkMystic;
 		display: flex;
 		align-items: center;
 		gap: 5px;
 		padding: 0 10px;
+		color: $charade;
 		.icon {
 			display: flex;
 			gap: 5px;
@@ -93,7 +94,7 @@
 			margin-left: auto;
 			font-weight: 500;
 			font-size: 14px;
-			color: $mystic;
+			color: $charade;
 			.lengthError {
 				color: red;
 			}
@@ -114,6 +115,7 @@
 		width: fit-content;
 		padding: 0;
 		padding: 10px 10px;
+		border: 1px solid $heather;
 		&:hover {
 			background-color: lighten($chetwodeBlue, 5%);
 		}

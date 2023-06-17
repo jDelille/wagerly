@@ -1,11 +1,16 @@
 @use '../../../styles/variables' as *;
 @use '../../../styles/breakpoints' as *;
 
+.sportsBookGames {
+	border: 1px solid $heather;
+	border-top: 0;
+	border-bottom: 0;
+}
+
 .header {
 	text-transform: uppercase;
 	padding: 1rem;
 	font-size: 20px;
-	// border: 1px solid $heather;
 }
 
 .dates {

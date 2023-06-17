@@ -37,7 +37,7 @@
 		justify-content: center;
 		transition: all 200ms ease-in-out;
 		&:hover {
-			background-color: lighten($white, 5%);
+			background-color: darken($white, 3%);
 		}
 		.leftSide {
 			flex: 1;

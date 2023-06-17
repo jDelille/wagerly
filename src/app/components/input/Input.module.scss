@@ -18,14 +18,14 @@
 	}
 	input {
 		height: 45px;
-		background-color: #131419;
+		background-color: darken($white, 5%);
 		border: none;
 		padding: 10px;
 		font-size: 14px;
 		color: #9ab9c4;
 		border-radius: 4px;
 		&::placeholder {
-			color: lightgray;
+			color: $charade;
 		}
 		&:focus {
 			outline: 2px solid $chetwodeBlue;
