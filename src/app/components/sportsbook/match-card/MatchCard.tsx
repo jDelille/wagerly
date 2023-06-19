@@ -48,10 +48,6 @@ const MatchCard: React.FC<Props> = ({ match, sport }) => {
  const isScheduled = match.eventStatus === 2;
  const hasEnded = match.eventStatus === 3;
 
-
- console.log(match)
-
-
  return (
   <div className={styles.match}>
    <Link

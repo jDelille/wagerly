@@ -1,17 +1,18 @@
+import { INFINITE_SCROLL_PAGINATION_RESULTS } from '@/config';
 import prisma from '../libs/prismadb';
 
 export default async function getPosts() {
 	try {
 		const posts = await prisma.post.findMany({
-			orderBy: {
-				createdAt: 'desc',
-			},
 			where: {
 				NOT: {
 					groupId: {
 						not: null,
 					},
 				},
+			},
+			orderBy: {
+				createdAt: 'desc',
 			},
 			include: {
 				Bet: true,
@@ -25,6 +26,7 @@ export default async function getPosts() {
 					},
 				},
 			},
+			take: INFINITE_SCROLL_PAGINATION_RESULTS,
 		});
 
 		const formattedPosts = posts.map((post) => ({

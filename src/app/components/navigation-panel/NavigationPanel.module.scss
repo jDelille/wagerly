@@ -2,13 +2,13 @@
 @use '../../styles/breakpoints' as *;
 
 .navigationPanel {
-	height: calc(100vh - 45px);
+	height: 100%;
 	max-width: 320px;
 	width: 320px;
+	min-width: 284px;
 	background-color: $darkerMystic;
-	outline: 1px solid $heather;
 	position: sticky;
-	top: 45px;
+	top: 0px;
 	display: none;
 	@include breakpoint(sm) {
 		display: flex;

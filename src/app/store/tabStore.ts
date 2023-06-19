@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 
 class TabStore {
-	tab: string = '';
+	tab: string = 'Posts';
 
 	constructor() {
 		makeAutoObservable(this);

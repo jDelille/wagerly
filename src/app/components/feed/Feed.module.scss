@@ -1,5 +1,5 @@
-@use '../../../styles/_variables.scss' as *;
-@use '../../../styles/_breakpoints.scss' as *;
+@use '@/app/styles/_variables.scss' as *;
+@use '@/app/styles/_breakpoints.scss' as *;
 
 .postFeed,
 .mainPostFeed {
@@ -10,7 +10,7 @@
 	display: block;
 	border: 1px solid $heather;
 	border-top: none;
-
+	padding-bottom: 2rem;
 	@include breakpoint(xs) {
 		min-height: 100vh;
 		top: 0px;
@@ -22,6 +22,12 @@
 	@include breakpoint(sm) {
 		min-height: calc(100vh - 50px);
 		top: 50px;
+		position: relative;
+	}
+
+	@include breakpoint(xs) {
+		min-height: 100vh;
+		top: 0px;
 		position: relative;
 	}
 }

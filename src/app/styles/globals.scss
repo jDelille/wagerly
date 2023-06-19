@@ -7,11 +7,15 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Open Sans', sans-serif;
+	list-style-type: none;
 }
 
 body {
 	background-color: $mystic;
 	overflow-x: hidden;
+	@include breakpoint(sm) {
+		background-color: $darkerMystic;
+	}
 	&::-webkit-scrollbar {
 		width: 7px;
 	}

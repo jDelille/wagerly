@@ -1,5 +1,16 @@
 @use '../../styles/mixins' as *;
+@use '../../styles/breakpoints' as *;
 
 .main {
 	@include page();
+	padding-bottom: 0;
+	.content {
+		@include breakpoint(sm) {
+			position: relative;
+			top: 100px;
+		}
+		@include breakpoint(xs) {
+			top: -100px;
+		}
+	}
 }

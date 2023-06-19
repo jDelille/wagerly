@@ -4,12 +4,10 @@ import { observer } from 'mobx-react';
 import { User, Post } from '@prisma/client';
 import PostFeedHeader from '../posts/post-feed/post-feed-header/PostFeedHeader';
 import UserFeed from '../user/user-feed/UserFeed';
-import PostFeed from '../posts/post-feed/PostFeed';
-
-import styles from './SearchFeed.module.scss';
 import tabStore from '@/app/store/tabStore';
 import { SafeUser } from '@/app/types/SafeUser';
 import PostCard from '../posts/post-card/PostCard';
+import { ExtendedPost } from '@/app/types/ExtendedPost';
 
 
 type Props = {
@@ -28,7 +26,7 @@ const SearchFeed: React.FC<Props> = observer(({ users, posts, currentUser }) => 
    {tabStore.tab === 'All' && (
     <>
      <UserFeed users={users} />
-     {posts.map((post: any) => (
+     {posts.map((post: Post) => (
       <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
      ))}
     </>
@@ -39,7 +37,7 @@ const SearchFeed: React.FC<Props> = observer(({ users, posts, currentUser }) => 
    )}
 
    {tabStore.tab === 'Posts' && (
-    posts.map((post: any) => (
+    posts.map((post: Post) => (
      <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
     ))
    )}

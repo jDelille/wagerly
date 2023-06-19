@@ -57,8 +57,6 @@ const Odds: React.FC<Props> = ({ odds, leftName, rightName, formattedDate, match
   }
  };
 
- console.log(odds)
-
 
  return (
   <div className={styles.odds}>
