@@ -20,7 +20,7 @@ import axios from 'axios';
 
 
 type Props = {
-  initialPosts: any;
+  posts: any;
   isProfilePage: boolean;
   isSearchPage?: boolean;
   hideHeader?: boolean;
@@ -29,94 +29,31 @@ type Props = {
   users?: User[] | null
 }
 
-const PostFeed: React.FC<Props> = observer(({ initialPosts, isProfilePage, isSearchPage, hideHeader, isMainPage, currentUser, users }) => {
+const PostFeed: React.FC<Props> = observer(({ posts, isProfilePage, isSearchPage, hideHeader, isMainPage, currentUser, users }) => {
 
-  const lastPostRef = useRef<HTMLElement>(null)
-  let tab = tabStore.tab || "Posts"
-
-  const { ref, entry } = useIntersection({
-    root: lastPostRef.current,
-    threshold: 1
-  })
-
-  const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    ['infinite-query'],
-    async ({ pageParam = 1 }) => {
-      const query = `/api/posts?limit=${INFINITE_SCROLL_PAGINATION_RESULTS}&page=${pageParam}`
-
-      const { data } = await axios.get(query)
-      return data as any;
-    }, {
-    getNextPageParam: (_, pages) => {
-      return pages.length + 1;
-    },
-    initialData: {
-      pages: [initialPosts], pageParams: [1]
-    }
-  }
-  )
-
-  useEffect(() => {
-    if (entry?.isIntersecting) {
-      fetchNextPage();
-    }
-  }, [entry, fetchNextPage])
-
-  const posts = data?.pages.flatMap((page) => page) ?? initialPosts
-
-
+  const tab = tabStore.tab
 
   const renderPostCards = () => {
     return posts
       .map((post: any, index: number) => {
-        if (index === posts.length - 1) {
-          return (
-            <li key={index} ref={ref}>
-              <PostCard
-                post={post}
-                key={post?.id}
-                currentUser={currentUser}
-                isExpanded={false}
-              />
-            </li>
-          )
-        } else {
-          return (
-            <PostCard
-              post={post}
-              key={post.id}
-              currentUser={currentUser}
-              isExpanded={false}
-            />
-          )
-        }
+        <PostCard
+          post={post}
+          key={post?.id}
+          currentUser={currentUser}
+          isExpanded={false}
+        />
       });
   };
 
   const renderBets = () => {
     return posts
       .map((post: any, index: number) => {
-        if (index === posts.length - 1) {
-          return (
-            <li key={index} ref={ref}>
-              <PostCard
-                post={post}
-                key={post?.id}
-                currentUser={currentUser}
-                isExpanded={false}
-              />
-            </li>
-          )
-        } else {
-          return (
-            <PostCard
-              post={post}
-              key={post.id}
-              currentUser={currentUser}
-              isExpanded={false}
-            />
-          )
-        }
+        <PostCard
+          post={post}
+          key={post?.id}
+          currentUser={currentUser}
+          isExpanded={false}
+        />
       });
   };
 
