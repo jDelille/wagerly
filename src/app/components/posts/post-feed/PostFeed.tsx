@@ -68,7 +68,7 @@ const PostFeed: React.FC<Props> = observer(({ initialPosts, isProfilePage, isSea
 
   const renderPostCards = () => {
     return posts
-      .map((post: Post, index: number) => {
+      .map((post: any, index: number) => {
         if (index === posts.length - 1) {
           return (
             <li key={index} ref={ref}>
@@ -95,7 +95,7 @@ const PostFeed: React.FC<Props> = observer(({ initialPosts, isProfilePage, isSea
 
   const renderBets = () => {
     return posts
-      .map((post: Post, index: number) => {
+      .map((post: any, index: number) => {
         if (index === posts.length - 1) {
           return (
             <li key={index} ref={ref}>

@@ -26,7 +26,7 @@ const SearchFeed: React.FC<Props> = observer(({ users, posts, currentUser }) => 
    {tabStore.tab === 'All' && (
     <>
      <UserFeed users={users} />
-     {posts.map((post: Post) => (
+     {posts.map((post: any) => (
       <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
      ))}
     </>
@@ -37,7 +37,7 @@ const SearchFeed: React.FC<Props> = observer(({ users, posts, currentUser }) => 
    )}
 
    {tabStore.tab === 'Posts' && (
-    posts.map((post: Post) => (
+    posts.map((post: any) => (
      <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
     ))
    )}

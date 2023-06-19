@@ -55,7 +55,7 @@ const BetFeed: React.FC<Props> = ({ initialBets, currentUser }) => {
 
  return (
   <ul>
-   {posts.map((post: Post, index: number) => {
+   {posts.map((post: any, index: number) => {
     if (index === posts.length - 1) {
      return (
       <li key={post.id} ref={ref}>
