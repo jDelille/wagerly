@@ -33,9 +33,9 @@ const PostFeed: React.FC<Props> = ({
   ['infinite-query'],
   async ({ pageParam = 1 }) => {
    const query = `/api/posts?limit=${INFINITE_SCROLL_PAGINATION_RESULTS}&page=${pageParam}`;
-
    const { data } = await axios.get(query);
    return data as any;
+
   },
   {
    getNextPageParam: (_, pages) => {

@@ -3,14 +3,14 @@
 
 .main {
 	@include page();
-	padding-bottom: 0;
+	padding-bottom: 2rem;
 	.content {
 		@include breakpoint(sm) {
 			position: relative;
-			top: 100px;
+			top: 0;
 		}
 		@include breakpoint(xs) {
-			top: -100px;
+			top: 0;
 		}
 	}
 }

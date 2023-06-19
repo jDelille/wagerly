@@ -3,15 +3,14 @@
 
 .navigationPanel {
 	height: 100%;
-	max-width: 320px;
-	width: 320px;
-	min-width: 284px;
+	width: 284px;
 	background-color: $darkerMystic;
 	position: sticky;
 	top: 0px;
 	display: none;
 	@include breakpoint(sm) {
 		display: flex;
+		background-color: red;
 	}
 	@include breakpoint(xs) {
 		display: none;

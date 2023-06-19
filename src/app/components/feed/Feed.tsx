@@ -29,7 +29,6 @@ const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage,
 
  const activeTab = tabStore.tab
 
-
  return (
   <div className={isMainPage ? styles.mainPostFeed : styles.postFeed}>
    {!hideHeader && (
@@ -37,7 +36,7 @@ const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage,
    )}
 
    {activeTab === 'Posts' && (
-    <PostFeed initialPosts={initialPosts} currentUser={currentUser} />
+    <PostFeed initialPosts={initialPosts} currentUser={currentUser} isProfilePage={false} />
    )}
 
    {activeTab === 'Bets' && (

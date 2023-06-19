@@ -1,7 +1,11 @@
 @use '../../../styles/variables' as *;
+@use '../../../styles/breakpoints' as *;
 
 .profileHeader {
 	background-color: $white;
 	width: 600px;
 	height: 218px;
+	@include breakpoint(sm) {
+		width: 673px;
+	}
 }

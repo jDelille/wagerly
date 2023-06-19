@@ -9,6 +9,7 @@ import Feed from "@/app/components/feed/Feed";
 import PostSkeleton from "@/app/components/skeleton/post-skeleton/PostSkeleton";
 
 import styles from './Page.module.scss';
+import PostCard from "@/app/components/posts/post-card/PostCard";
 
 interface IParams {
  username?: string;
@@ -49,6 +50,10 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
      currentUser={currentUser}
      username={params.username}
     /> */}
+
+    {posts.map((post) => (
+     <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
+    ))}
    </div>
   </div>
  );

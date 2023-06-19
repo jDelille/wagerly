@@ -1,8 +1,16 @@
+'use client'
+
 import styles from './FeedHeaderSkeleton.module.scss';
 
-const FeedHeaderSkeleton = () => {
+type Props = {
+ value?: string;
+}
+
+const FeedHeaderSkeleton: React.FC<Props> = ({ value = 'Explore' }) => {
  return (
-  <div className={styles.feedHeader}></div>
+  <div className={styles.feedHeader}>
+   <strong>{value}</strong>
+  </div>
  );
 }
 

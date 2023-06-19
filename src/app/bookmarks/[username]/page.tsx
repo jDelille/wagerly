@@ -6,6 +6,7 @@ import FeedHeader from '../../components/feed-header/FeedHeader';
 import PostSkeleton from '../../components/skeleton/post-skeleton/PostSkeleton';
 
 import styles from './Page.module.scss';
+import PostCard from '@/app/components/posts/post-card/PostCard';
 
 interface IParams {
  username?: string;
@@ -37,7 +38,9 @@ const Bookmarks = async ({ params }: { params: IParams }) => {
      You dont have any bookmarked posts yet. When you bookmark one, it will show up here.
     </div>
    ) : (
-    <DynamicPostFeed posts={posts} isProfilePage={false} currentUser={currentUser} hideHeader={true} />
+    posts.map((post) => (
+     <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
+    ))
    )}
   </div>
  );

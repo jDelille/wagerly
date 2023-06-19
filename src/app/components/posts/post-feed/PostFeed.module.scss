@@ -21,7 +21,7 @@
 .mainPostFeed {
 	@include breakpoint(sm) {
 		min-height: calc(100vh - 50px);
-		top: 50px;
+		top: 0px;
 		position: relative;
 	}
 }

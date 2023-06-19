@@ -35,6 +35,7 @@ body {
 	position: relative;
 	@include breakpoint(sm) {
 		max-width: 100vw;
+		background-color: pink;
 	}
 	@include breakpoint(xs) {
 		max-width: 100vw;

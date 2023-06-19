@@ -1,7 +1,11 @@
 @use '../../../styles/variables' as *;
+@use '../../../styles/breakpoints' as *;
 
 .postSkeleton {
 	height: 300px;
-	width: 600px;
+	width: 100%;
 	background-color: $white;
+	@include breakpoint(sm) {
+		width: 673px;
+	}
 }

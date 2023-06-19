@@ -11,7 +11,7 @@
 	justify-content: space-evenly;
 	font-size: $fontSizeMd;
 	@include breakpoint(sm) {
-		top: 50px;
+		top: 0px;
 	}
 	@include breakpoint(xs) {
 		top: 0px;
