@@ -1,10 +1,15 @@
 @use '../../styles/mixins' as *;
 @use '../../styles/breakpoints' as *;
+@use '../../styles/variables' as *;
 
 .main {
 	@include page();
-	padding-bottom: 2rem;
+	padding-bottom: 0;
+
 	.content {
+		border: 1px solid $heather;
+		min-height: calc(100vh - 4rem - 1px);
+		border-top: 0;
 		@include breakpoint(sm) {
 			position: relative;
 			top: 0;

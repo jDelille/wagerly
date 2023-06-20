@@ -3,6 +3,8 @@
 
 .main {
 	@include page();
+	padding-bottom: 0;
+
 	.noBookmarksMessage {
 		display: flex;
 		align-items: center;
@@ -11,5 +13,11 @@
 		padding: 20px;
 		text-align: center;
 		height: calc(100vh - 2rem);
+	}
+
+	.content {
+		border: 1px solid $heather;
+		border-top: 0;
+		min-height: calc(100vh - 4rem - 1px);
 	}
 }
