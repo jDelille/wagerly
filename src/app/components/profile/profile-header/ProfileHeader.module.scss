@@ -17,12 +17,18 @@
 		.displayName {
 			display: flex;
 			flex-direction: column;
-			gap: 5px;
+			gap: 0px;
 			strong {
 				font-size: 28px;
+				@include breakpoint(xs) {
+					font-size: 20px;
+				}
 			}
 			span {
 				font-size: 16px;
+				@include breakpoint(xs) {
+					font-size: 14px;
+				}
 			}
 		}
 		.menu {
@@ -31,7 +37,7 @@
 			display: flex;
 			gap: 5px;
 			button,
-			a {
+			.editProfileButton {
 				padding: 10px 10px;
 				font-size: $fontSizeMd;
 				background-color: $chetwodeBlue;

@@ -1,28 +1,45 @@
-import { User } from '@prisma/client';
+'use client'
+import { useState } from 'react';
 import Avatar from '../../user/Avatar/Avatar';
 import { SafeUser } from '@/app/types/SafeUser';
 import { ProfileScreenString } from '@/app/utils/app-string/ProfileScreenString';
 import { format } from 'date-fns';
 import { BiDotsVertical } from 'react-icons/bi';
 import Button from '../../button/Button';
-
-import styles from './ProfileHeader.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import styles from './ProfileHeader.module.scss';
+import ProfileMenu from './profile-menu/ProfileMenu';
+import { User } from '@prisma/client';
+import useFollow from '@/app/hooks/useFollow';
 
 type Props = {
- user: SafeUser | null;
+ user: User
  currentUserId?: string;
  bio: string;
+ followerCount: number;
+ followingIds: string[];
 }
 
-const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio }) => {
+const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCount, followingIds }) => {
 
- let joinedDate = format(new Date(user?.createdAt as string), 'MMMM dd, yyyy');
+ const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+
+ let joinedDate = format(new Date(user?.createdAt), 'MMMM dd, yyyy');
 
  const hasDraftkings = user?.draftKingsLink
  const hasBetSperts = user?.betSpertsLink
+
+ const { handleFollow, handleUnfollow, isLoading } = useFollow(
+  user?.id as string,
+  user?.username as string,
+  currentUserId as string
+
+ );
+
+ const isFollowing = followingIds.includes(user?.id as string)
 
  return (
   <div className={styles.profileHeader}>
@@ -34,13 +51,20 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio }) => {
     </div>
     <div className={styles.menu}>
      {currentUserId === user?.id ? (
-      <Link href={`/edit-profile/${user?.username}`}>Edit Profile</Link>
+      <Link href={`/edit-profile/${user?.username}`} className={styles.editProfileButton}>Edit Profile</Link>
      ) : (
-      <Button label='Follow' />
+      <Button label={isFollowing ? 'Unfollow' : 'Follow'} onClick={isFollowing ? handleUnfollow : handleFollow} />
      )}
-     <div className={styles.userMenu}>
+     <div className={styles.userMenu} onClick={() => setIsMenuOpen(!isMenuOpen)}>
       <BiDotsVertical size={22} />
      </div>
+     {isMenuOpen && (
+      <ProfileMenu
+       setIsMenuOpen={setIsMenuOpen}
+       currentUserId={currentUserId as string}
+       user={user}
+      />
+     )}
     </div>
    </div>
    <div className={styles.middle}>
@@ -98,7 +122,7 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio }) => {
    </div>
    <div className={styles.userInfo}>
     <p>
-     {0} <span>{ProfileScreenString.followers}</span>
+     {followerCount} <span>{ProfileScreenString.followers}</span>
     </p>
     <p>
      {user?.followingIds.length || 0}{' '}

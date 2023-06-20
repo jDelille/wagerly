@@ -1,0 +1,42 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/breakpoints' as *;
+
+.overlay {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	left: 0;
+	top: 0;
+}
+.profileMenu {
+	background-color: $alabaster;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	height: fit-content;
+	padding: 5px 0;
+	width: 150px;
+	border-radius: 4px;
+	position: absolute;
+	right: 0%;
+	top: 50px;
+	font-size: $fontSizeSm;
+	z-index: 99;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid $heather;
+	.option {
+		padding: 5px 15px;
+		min-width: 130px;
+		text-decoration: none;
+		color: $charade;
+		&:hover {
+			background-color: $chetwodeBlue;
+			color: $white;
+			cursor: pointer;
+		}
+	}
+	.divider {
+		background-color: lightgray;
+		height: 1px;
+		margin: 5px 0;
+	}
+}

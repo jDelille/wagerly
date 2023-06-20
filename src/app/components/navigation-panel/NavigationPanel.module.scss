@@ -15,7 +15,7 @@
 	}
 	@include breakpoint(xs) {
 		display: flex;
-		min-width: 54px;
+		max-width: 54px;
 		height: 100vh;
 		padding: 0;
 		padding-right: 7px;
@@ -51,6 +51,7 @@
 			align-items: center;
 			height: 48px;
 			text-decoration: none;
+			color: $charade;
 
 			svg {
 				font-size: 14px;

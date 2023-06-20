@@ -1,13 +1,12 @@
 'use client';
 
-import Link from 'next/link';
 import { NavLinks } from '@/app/constants/@Links';
 import styles from './NavigationPanel.module.scss';
 import NavLink from './NavLink';
 
 type Props = {
   currentUsername?: string;
-  
+
 };
 
 const NavigationPanel: React.FC<Props> = ({ currentUsername }) => {
