@@ -10,6 +10,7 @@
 	padding-top: 20px;
 	background-color: $mystic;
 	height: 45px;
+
 	@include breakpoint(sm) {
 		margin-top: 0;
 	}

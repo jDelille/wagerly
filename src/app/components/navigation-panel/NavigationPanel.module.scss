@@ -10,23 +10,50 @@
 	display: none;
 	@include breakpoint(sm) {
 		display: flex;
-		background-color: red;
+		height: 100vh;
+		flex-direction: column;
 	}
 	@include breakpoint(xs) {
-		display: none;
+		display: flex;
+		min-width: 54px;
+		height: 100vh;
+		padding: 0;
+		padding-right: 7px;
+	}
+	.logo {
+		height: 45px;
+		display: flex;
+		align-items: center;
+		font-size: 22px;
+		color: $charade;
+		border-bottom: 1px solid $heather;
+		padding: 0 15px;
+		@include breakpoint(xs) {
+			display: none;
+		}
 	}
 	.links {
 		display: flex;
 		flex-direction: column;
-		padding: 10px 1rem;
+		border-bottom: 1px solid $heather;
+		padding: 1rem 15px;
+		width: 100%;
+		height: fit-content;
+		@include breakpoint(xs) {
+			padding-top: 55px;
+			align-items: center;
+			border-top: 1px solid $heather;
+		}
 		.link {
-			padding: 10px 0;
+			padding: 15px 0;
 			display: flex;
 			gap: 10px;
 			align-items: center;
+			height: 48px;
+			text-decoration: none;
 
 			svg {
-				font-size: 16px;
+				font-size: 14px;
 			}
 			a {
 				color: $charade;
@@ -34,6 +61,11 @@
 				&:hover {
 					text-decoration: underline;
 					color: $charade;
+				}
+			}
+			.value {
+				@include breakpoint(xs) {
+					display: none;
 				}
 			}
 		}

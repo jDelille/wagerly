@@ -3,7 +3,7 @@ import PostSkeleton from "../../components/skeleton/post-skeleton/PostSkeleton";
 
 const Loading = () => (
  <div>
-  <FeedHeaderSkeleton />
+  <FeedHeaderSkeleton value="Bookmarks" />
   <PostSkeleton />
   <PostSkeleton />
   <PostSkeleton />

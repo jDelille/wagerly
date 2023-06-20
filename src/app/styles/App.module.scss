@@ -11,7 +11,7 @@
 		min-width: calc(100% - 284px);
 	}
 	@include breakpoint(xs) {
-		min-width: 100vw;
+		min-width: calc(100vw - 54px - 7px);
 	}
 	.main {
 		max-width: 600px;
@@ -20,7 +20,7 @@
 			min-width: 100%;
 		}
 		@include breakpoint(xs) {
-			max-width: 100vw;
+			width: calc(100vw - 54px - 7px);
 		}
 	}
 }

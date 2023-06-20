@@ -38,10 +38,9 @@ const Bookmarks = async ({ params }: { params: IParams }) => {
      You dont have any bookmarked posts yet. When you bookmark one, it will show up here.
     </div>
    ) : (
-    <div className={styles.content}> {posts.map((post) => (
-     <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
-    ))}</div>
-
+    <div className={styles.content}>
+     <DynamicPostFeed posts={posts} currentUser={currentUser} isProfilePage={false} />
+    </div>
    )}
   </div>
  );
