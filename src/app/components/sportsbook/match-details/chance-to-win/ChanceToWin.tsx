@@ -18,12 +18,12 @@ const ChanceToWin: React.FC<Props> = ({ chance, }) => {
    <p className={styles.description}>{chance.description}</p>
    <div className={styles.chance}>
     <div className={styles.team} >
-     <strong className={projectedLeftWinner ? styles.winner : ''}>{chance.lines[0].stat1Value}</strong>
-     <span className={projectedLeftWinner ? styles.winner : ''}>{chance.lines[0].stat1Subtext}</span>
+     <strong className={!projectedLeftWinner ? styles.winner : ''}>{chance.lines[0].stat1Value}</strong>
+     <span className={!projectedLeftWinner ? styles.winner : ''}>{chance.lines[0].stat1Subtext}</span>
     </div>
     <div className={styles.team} >
-     <strong className={!projectedLeftWinner ? styles.winner : ''}>{chance.lines[0].stat2Value}</strong>
-     <span className={!projectedLeftWinner ? styles.winner : ''}>{chance.lines[0].stat2Subtext}</span>
+     <strong className={projectedLeftWinner ? styles.winner : ''}>{chance.lines[0].stat2Value}</strong>
+     <span className={projectedLeftWinner ? styles.winner : ''}>{chance.lines[0].stat2Subtext}</span>
     </div>
    </div>
   </div>

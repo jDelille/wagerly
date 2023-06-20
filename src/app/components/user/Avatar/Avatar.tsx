@@ -20,7 +20,7 @@ const Avatar: React.FC<Props> = ({ photo, username }) => {
  };
 
  return (
-  <Image src={photo} width={40} height={40} alt="user-avatar" onClick={onClick} style={{ cursor: 'pointer', borderRadius: '4px' }} />
+  <Image src={photo} width={40} height={40} alt="user-avatar" onClick={onClick} style={{ cursor: 'pointer', borderRadius: '4px', objectFit: 'cover' }} />
  );
 }
 

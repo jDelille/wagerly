@@ -5,6 +5,8 @@
 	background-color: $white;
 	width: 600px;
 	height: 218px;
+	border: 1px solid $heather;
+	border-bottom: 0;
 	@include breakpoint(sm) {
 		width: 673px;
 	}

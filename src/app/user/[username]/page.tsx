@@ -10,6 +10,7 @@ import PostSkeleton from "@/app/components/skeleton/post-skeleton/PostSkeleton";
 
 import styles from './Page.module.scss';
 import PostCard from "@/app/components/posts/post-card/PostCard";
+import FeedHeaderSkeleton from "@/app/components/skeleton/feed-header/FeedHeaderSkeleton";
 
 interface IParams {
  username?: string;
@@ -40,18 +41,10 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
     isBack
     currentUsername={currentUser?.username}
     currentUserPhoto={currentUser?.photo || '/images/placeholder.png'} />
+
    <div className={styles.content}>
     <DynamicProfileHeader user={user} currentUserId={currentUser?.id} bio={user?.bio as string} />
-    {/* <Feed
-     isProfilePage
-     initialPosts={posts}
-     currentUser={currentUser}
-     username={params.username}
-    /> */}
-
-    {posts.map((post) => (
-     <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
-    ))}
+    <DynamicPostFeed posts={posts} isProfilePage currentUser={currentUser} />
    </div>
   </div>
  );

@@ -5,7 +5,7 @@ import ProfileHeaderSkeleton from "@/app/components/skeleton/profile/ProfileHead
 
 const Loading = () => (
  <div>
-  <FeedHeaderSkeleton />
+  <FeedHeaderSkeleton value="Back" isBack />
   <ProfileHeaderSkeleton />
   <PostSkeleton />
   <PostSkeleton />

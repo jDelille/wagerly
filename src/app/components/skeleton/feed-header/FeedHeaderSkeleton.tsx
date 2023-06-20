@@ -4,12 +4,15 @@ import styles from './FeedHeaderSkeleton.module.scss';
 
 type Props = {
  value?: string;
+ isBack?: boolean;
 }
 
-const FeedHeaderSkeleton: React.FC<Props> = ({ value = 'Explore' }) => {
+const FeedHeaderSkeleton: React.FC<Props> = ({ value, isBack }) => {
  return (
   <div className={styles.feedHeader}>
-   <strong>{value}</strong>
+   <div className={styles.header}>
+    {isBack ? <strong className={styles.back}>{value}</strong> : <strong className={styles.label}>{value}</strong>}
+   </div>
   </div>
  );
 }
