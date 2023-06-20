@@ -33,8 +33,6 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
   </>
  })
 
- console.log(params)
-
  return (
   <div className={styles.main}>
    <FeedHeader
