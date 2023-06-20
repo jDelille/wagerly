@@ -11,6 +11,7 @@ import UserBox from "../user/user-box/UserBox";
 import News from "../news/News";
 
 import styles from './Feed.module.scss';
+import { Suspense } from "react";
 
 
 type Props = {
@@ -19,28 +20,29 @@ type Props = {
  isMainPage?: boolean;
  posts: any;
  currentUser: SafeUser | null;
- bets?: any;
+ initialBets?: any;
  users?: User[]
  username?: string;
 }
 
 
-const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage, posts, currentUser, bets, users, username }) => {
+const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage, posts, currentUser, initialBets, users, username }) => {
 
  const activeTab = tabStore.tab
+
 
  return (
   <div className={isMainPage ? styles.mainPostFeed : styles.postFeed}>
    {!hideHeader && (
     <PostFeedHeader isProfilePage={isProfilePage} isMainPage={isMainPage} />
    )}
-
    {activeTab === 'Posts' && (
     <PostFeed posts={posts} currentUser={currentUser} />
+
    )}
 
    {activeTab === 'Bets' && (
-    <BetFeed bets={bets} currentUser={currentUser} />
+    <BetFeed initialBets={initialBets} currentUser={currentUser} />
    )}
 
    {activeTab === 'People' && (

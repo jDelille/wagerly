@@ -26,14 +26,16 @@ const PostFeed: React.FC<Props> = ({
 
  return (
   <ul>
-   {posts.map((post: any, index: number) => {
-    <li key={post.id}>
-     <PostCard
-      post={post}
-      currentUser={currentUser}
-      isExpanded={false}
-     />
-    </li>
+   {posts.map((post: Post, index: number) => {
+    return (
+     <li key={post.id}>
+      <PostCard
+       post={post}
+       currentUser={currentUser}
+       isExpanded={false}
+      />
+     </li>
+    )
    })}
   </ul>
  );

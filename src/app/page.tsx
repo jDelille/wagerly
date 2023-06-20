@@ -46,7 +46,7 @@ export default async function Home() {
         <Feed
           isMainPage
           posts={posts}
-          bets={bets}
+          initialBets={bets}
           currentUser={currentUser}
           users={users}
         />

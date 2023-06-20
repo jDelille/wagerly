@@ -26,7 +26,6 @@ export default async function getPosts() {
 					},
 				},
 			},
-			take: INFINITE_SCROLL_PAGINATION_RESULTS,
 		});
 
 		const formattedPosts = posts.map((post) => ({
