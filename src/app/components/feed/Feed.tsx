@@ -5,7 +5,6 @@ import PostFeedHeader from "../posts/post-feed/post-feed-header/PostFeedHeader";
 import PostFeed from "./post-feed/PostFeed";
 import tabStore from "@/app/store/tabStore";
 import { observer } from "mobx-react";
-import BetFeed from "./bet-feed/BetFeed";
 import { User } from "@prisma/client";
 import UserBox from "../user/user-box/UserBox";
 import News from "../news/News";
@@ -20,13 +19,12 @@ type Props = {
  isMainPage?: boolean;
  posts: any;
  currentUser: SafeUser | null;
- bets?: any;
  users?: User[]
  username?: string;
 }
 
 
-const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage, posts, currentUser, bets, users, username }) => {
+const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage, posts, currentUser, users, username }) => {
 
  const activeTab = tabStore.tab
 
@@ -41,9 +39,6 @@ const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage,
 
    )}
 
-   {activeTab === 'Bets' && (
-    <BetFeed bets={bets} currentUser={currentUser} />
-   )}
 
    {activeTab === 'People' && (
     <div className={styles.peopleFeed}>

@@ -8,12 +8,11 @@ import PostSkeleton from './components/skeleton/post-skeleton/PostSkeleton';
 import styles from './styles/App.module.scss';
 import PostFeed from './components/feed/post-feed/PostFeed';
 import Feed from './components/feed/Feed';
-import getBets from './actions/getBets';
 
 
 export default async function Home() {
 
-  const [posts, currentUser, users, bets] = await Promise.all([getPosts(), getCurrentUser(), getUsers(), getBets()])
+  const [posts, currentUser, users] = await Promise.all([getPosts(), getCurrentUser(), getUsers()])
 
   const DynamicPostFeed = dynamic(() => import('./components/posts/post-feed/PostFeed'), {
     loading: () => <>
@@ -46,7 +45,7 @@ export default async function Home() {
         <Feed
           isMainPage
           posts={posts}
-          bets={bets}
+
           currentUser={currentUser}
           users={users}
         />
