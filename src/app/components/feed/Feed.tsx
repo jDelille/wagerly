@@ -20,13 +20,13 @@ type Props = {
  isMainPage?: boolean;
  posts: any;
  currentUser: SafeUser | null;
- initialBets?: any;
+ bets?: any;
  users?: User[]
  username?: string;
 }
 
 
-const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage, posts, currentUser, initialBets, users, username }) => {
+const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage, posts, currentUser, bets, users, username }) => {
 
  const activeTab = tabStore.tab
 
@@ -42,7 +42,7 @@ const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage,
    )}
 
    {activeTab === 'Bets' && (
-    <BetFeed initialBets={initialBets} currentUser={currentUser} />
+    <BetFeed bets={bets} currentUser={currentUser} />
    )}
 
    {activeTab === 'People' && (
