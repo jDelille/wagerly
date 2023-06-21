@@ -29,6 +29,7 @@ const CurrentUserBox: React.FC<Props> = ({ currentUser }) => {
 			<BsThreeDotsVertical
 				onClick={() => setIsMenuOpen(!isMenuOpen)}
 				className={styles.menuButton}
+				size={20}
 			/>
 			{isMenuOpen && (
 				<CurrentUserMenu

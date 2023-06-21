@@ -9,6 +9,7 @@ import { SafeUser } from '@/app/types/SafeUser';
 import PostCard from '../posts/post-card/PostCard';
 import { ExtendedPost } from '@/app/types/ExtendedPost';
 
+import styles from './SearchFeed.module.scss';
 
 type Props = {
  users: User[]
@@ -24,12 +25,12 @@ const SearchFeed: React.FC<Props> = observer(({ users, posts, currentUser }) => 
   <>
    <PostFeedHeader isProfilePage={false} isSearchPage />
    {tabStore.tab === 'All' && (
-    <>
+    <div className={styles.content}>
      <UserFeed users={users} />
      {posts.map((post: any) => (
       <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
      ))}
-    </>
+    </div>
    )}
 
    {tabStore.tab === 'Profiles' && (

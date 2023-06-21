@@ -58,7 +58,9 @@ const Search: React.FC = observer(() => {
  useEffect(() => {
   const storedSearches = localStorage.getItem('recentSearches');
   if (storedSearches) {
-   setRecentSearches(JSON.parse(storedSearches));
+   const parsedSearches = JSON.parse(storedSearches);
+   const recentSearches = parsedSearches.slice(-4);
+   setRecentSearches(recentSearches);
   }
  }, []);
 

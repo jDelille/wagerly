@@ -26,6 +26,13 @@
 	.menuButton {
 		margin-left: auto;
 		cursor: pointer;
+		padding: 2px;
+		display: flex;
+		align-items: center;
+		border-radius: 3px;
+		&:hover {
+			background-color: lighten(white, 10%);
+		}
 	}
 }
 
