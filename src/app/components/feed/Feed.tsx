@@ -11,6 +11,7 @@ import News from "../news/News";
 
 import styles from './Feed.module.scss';
 import { Suspense } from "react";
+import BetFeed from "./bet-feed/BetFeed";
 
 
 type Props = {
@@ -36,7 +37,10 @@ const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage,
    )}
    {activeTab === 'Posts' && (
     <PostFeed posts={posts} currentUser={currentUser} />
+   )}
 
+   {activeTab === 'Bets' && (
+    <BetFeed posts={posts} currentUser={currentUser} />
    )}
 
 

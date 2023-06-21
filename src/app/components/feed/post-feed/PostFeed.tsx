@@ -17,7 +17,7 @@ const PostFeed: React.FC<Props> = ({
  return (
   <ul>
    {posts.map((post: Post, index: number) => (
-    <li key={index} >
+    <li key={index}>
      <PostCard
       post={post}
       key={post?.id}
