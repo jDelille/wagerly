@@ -60,9 +60,11 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
       <Link href={`/edit-profile/${user?.username}`} className={styles.editProfileButton}>Edit Profile</Link>
      )}
 
-     {currentUserId !== user?.id && isBlocked ? (
+     {currentUserId !== user?.id && isBlocked && (
       <Button label='Unblock' onClick={handleUnblockUser} />
-     ) : (
+     )}
+
+     {currentUserId !== user?.id && !isBlocked && (
       <Button label={isFollowing ? 'Unfollow' : 'Follow'} onClick={isFollowing ? handleUnfollow : handleFollow} />
      )}
 

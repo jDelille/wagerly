@@ -131,17 +131,20 @@ const PostCardMenu: React.FC<Props> = ({
         <div className={styles.divider}></div>
 
         {/* <p className={styles.option} onClick={() => onDelete(post.id)}>Mute @{post.user.username}</p> */}
+        {post.userId !== currentUser?.id && (
+          <>
+            <p className={styles.option}
+              onClick={handleBlockUser}
+            >
+              Block @{post.user.username}
+            </p>
+          </>
+        )}
 
-        <p className={styles.option}
-          onClick={handleBlockUser}
-        >
-          Block @{post.user.username}
-        </p>
 
         {/* <p className={styles.option} onClick={() => onDelete(post.id)}>Report @{post.user.username}</p> */}
-        {currentUser?.id === post.user.id && (
+        {currentUser?.id === post.userId && (
           <>
-            <div className={styles.divider}></div>
             {/* <p className={styles.option}>Edit</p>
             <p className={styles.option}>Delete & re-draft</p> */}
             <p className={styles.option} onClick={() => onDelete(post.id)}>Delete</p>
