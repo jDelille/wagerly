@@ -57,7 +57,6 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
     currentUsername={currentUser?.username}
     currentUserPhoto={currentUser?.photo || '/images/placeholder.png'}
    />
-
    <div className={styles.content}>
     <DynamicProfileHeader
      user={user as any}

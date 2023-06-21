@@ -5,6 +5,7 @@ import styles from './PostCardComments.module.scss';
 import Avatar from '@/app/components/user/Avatar/Avatar';
 import PostCardFooter from '../../post-card-footer/PostCardFooter';
 import { SafeUser } from '@/app/types/SafeUser';
+import Link from 'next/link';
 
 type Props = {
  comment: Comment;
@@ -30,10 +31,10 @@ const PostCardComment: React.FC<Props> = ({ comment, postUsername, post, postId,
     </div>
    </div>
    <div className={styles.body}>
-    <p><span>@{postUsername}</span>{comment.body}</p>
+    <p><Link href={`/user/${postUsername}`}>@ <span>{postUsername}</span></Link> {comment.body}</p>
    </div>
    {/* <div className={styles.footer}>
-    <PostCardFooter postId={postId} post={post} currentUser={currentUser} />
+    <PostCardFooter post={post} currentUser={currentUser} />
    </div> */}
 
   </div>

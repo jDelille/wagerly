@@ -14,11 +14,7 @@
 		flex-direction: column;
 	}
 	@include breakpoint(xs) {
-		display: flex;
-		max-width: 54px;
-		height: 100vh;
-		padding: 0;
-		padding-right: 7px;
+		display: none;
 	}
 	.logo {
 		height: 45px;

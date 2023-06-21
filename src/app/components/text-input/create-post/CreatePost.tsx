@@ -215,9 +215,9 @@ const CreatePost = observer(() => {
           </div>
           <div className={styles.textCount}>
             {error ? (
-              <p className={styles.lengthError}>{postBodyLength} / 500</p>
+              <p className={styles.lengthError}>{500 - postBodyLength}</p>
             ) : (
-              <p>{postBodyLength} / 500</p>
+              <p>{500 - postBodyLength}</p>
             )}
           </div>
         </div>

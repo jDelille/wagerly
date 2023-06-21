@@ -152,7 +152,7 @@ const Search: React.FC = observer(() => {
     )}
    </form>
 
-   {storeSearch.length > 1 ? (
+   {inputRef.current && inputRef.current.value.length > 0 ? (
     <AiFillCloseCircle color='lightgray' size={20} onClick={goToHome} className={styles.searchIcon} />
    ) : (
     <AiOutlineSearch color='lightgray' size={20} onClick={handleOnSubmit} className={styles.searchIcon} />

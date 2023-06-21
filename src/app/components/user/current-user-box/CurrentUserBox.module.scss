@@ -7,7 +7,6 @@
 	gap: 10px;
 	color: $charade;
 	padding: 25px 15px;
-	margin: 10px 0;
 	position: relative;
 	.displayName {
 		display: flex;
@@ -25,6 +24,8 @@
 	}
 	.menuButton {
 		margin-left: auto;
+		position: relative;
+		left: 2px;
 		cursor: pointer;
 		padding: 2px;
 		display: flex;

@@ -7,10 +7,11 @@
 }
 .gifs {
 	width: fit-content;
-	min-height: 500px;
+	min-height: 600px;
 	position: absolute;
 	z-index: 9999;
 	top: 100px;
+	padding: 2rem 0;
 	&::-webkit-scrollbar {
 		width: 7px;
 	}
@@ -46,5 +47,9 @@
 			border: 1px solid #dadada;
 			color: $mystic;
 		}
+	}
+
+	.gifGrid {
+		height: 450px;
 	}
 }

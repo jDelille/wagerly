@@ -53,7 +53,7 @@ const CurrentUserMenu: React.FC<Props> = ({ setIsMenuOpen, currentUser }) => {
 
     <div className={styles.divider}></div>
 
-    <Link
+    {/* <Link
      href={`/muted-users`}
      className={styles.option}
      onClick={closeMenu}>
@@ -67,9 +67,9 @@ const CurrentUserMenu: React.FC<Props> = ({ setIsMenuOpen, currentUser }) => {
     </Link>
     <p className={styles.option} onClick={closeMenu}>
      Muted Words
-    </p>
+    </p> */}
 
-    <div className={styles.divider}></div>
+    {/* <div className={styles.divider}></div> */}
 
     <p className={styles.option} onClick={() => signOut()}>
      Logout

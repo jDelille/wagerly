@@ -1,7 +1,7 @@
 @use '../../../../../styles/variables' as *;
 
 .postCardComment {
-	border-bottom: 1px solid $alabaster;
+	border-bottom: 1px solid $heather;
 	padding: 0 1rem;
 	display: flex;
 	flex-direction: column;
@@ -16,7 +16,7 @@
 			align-items: center;
 			.line {
 				width: 1px;
-				background-color: $alabaster;
+				background-color: $heather;
 				height: 15px;
 			}
 		}
@@ -30,21 +30,28 @@
 				font-size: $fontSizeLg;
 			}
 			span {
-				font-weight: 300;
+				font-weight: 500;
 				color: $lightText;
 				font-size: $fontSizeMd;
 			}
 		}
 	}
 	.body {
+		margin-left: 55px;
+		font-size: $fontSizeLg;
+		font-weight: 500;
+		padding-bottom: 15px;
 		p {
-			display: flex;
-			gap: 5px;
-			span {
+			a {
 				color: $chetwodeBlue;
 				cursor: pointer;
-				&:hover {
-					text-decoration: underline;
+				text-decoration: none;
+				span {
+					position: relative;
+					left: -4px;
+					&:hover {
+						text-decoration: underline;
+					}
 				}
 			}
 		}

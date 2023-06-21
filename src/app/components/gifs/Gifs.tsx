@@ -37,6 +37,7 @@ const Gifs: React.FC<GifsProps> = ({ onChange, setCustomValue, register, errors,
       width={width}
       columns={3}
       gutter={2}
+      className={styles.gifGrid}
      />
      <ResizeObserver
       onResize={({ width }) => {
