@@ -21,7 +21,6 @@ type Props = {
   currentUser: SafeUser | null;
   users?: User[] | null;
   username?: string;
-  blockedUsers?: string[];
 };
 
 const PostFeed: React.FC<Props> = observer(
