@@ -10,6 +10,8 @@ import PostCard from '../posts/post-card/PostCard';
 import { ExtendedPost } from '@/app/types/ExtendedPost';
 
 import styles from './SearchFeed.module.scss';
+import { useEffect, useState } from 'react';
+import searchStore from '@/app/store/searchStore';
 
 type Props = {
  users: User[]
@@ -21,16 +23,27 @@ const SearchFeed: React.FC<Props> = observer(({ users, posts, currentUser }) => 
 
  const activeTab = tabStore.tab
 
+ const [searchedPosts, setSearchedPosts] = useState([])
+
+ const storeSearch = searchStore.search
+
+ useEffect(() => {
+  const filteredPosts = posts.filter((post: any) => post?.body?.toLowerCase().includes(storeSearch.toLowerCase()) || post?.UserBet?.body.toLowerCase().includes(storeSearch.toLowerCase()))
+
+  setSearchedPosts(filteredPosts)
+ }, [posts, storeSearch])
+
+
  return (
-  <>
+  <div className={styles.content}>
    <PostFeedHeader isProfilePage={false} isSearchPage />
    {tabStore.tab === 'All' && (
-    <div className={styles.content}>
+    <>
      <UserFeed users={users} />
-     {posts.map((post: any) => (
+     {searchedPosts && searchedPosts.map((post: any) => (
       <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
      ))}
-    </div>
+    </>
    )}
 
    {tabStore.tab === 'Profiles' && (
@@ -38,12 +51,12 @@ const SearchFeed: React.FC<Props> = observer(({ users, posts, currentUser }) => 
    )}
 
    {tabStore.tab === 'Posts' && (
-    posts.map((post: any) => (
+    searchedPosts && searchedPosts.map((post: any) => (
      <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
     ))
    )}
 
-  </>
+  </div>
  );
 })
 

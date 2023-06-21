@@ -23,7 +23,7 @@ const UserFeed: React.FC<Props> = observer(({ users }) => {
 
   useEffect(() => {
     const filteredUsers = users.filter((user) =>
-      user.name.includes(storeSearch) || user.username.includes(storeSearch)
+      user.name.toLowerCase().includes(storeSearch.toLowerCase()) || user.username.toLowerCase().includes(storeSearch.toLowerCase())
     );
     setSearchedUsers(filteredUsers);
   }, [users, storeSearch]);
