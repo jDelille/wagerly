@@ -2,13 +2,13 @@
 @use '../../styles/breakpoints' as *;
 
 .inputContainer {
-	background-color: $darkMystic;
+	background-color: #d9e1e8;
 	height: 45px;
 	width: 100%;
 	margin-top: 10px;
 	position: relative;
 	transition: all 200ms ease-in-out;
-	border: 1px solid $heather;
+	outline: 1px solid $heather;
 	border-radius: 4px;
 	@include breakpoint(sm) {
 		margin-top: 0;
@@ -21,6 +21,7 @@
 		border: none;
 		padding: 10px;
 		color: $charade;
+		font-size: 14px;
 		&::placeholder {
 			color: $lightText;
 		}
@@ -30,7 +31,7 @@
 			}
 		}
 	}
-	svg {
+	.searchIcon {
 		position: absolute;
 		right: 10px;
 		top: 0;
@@ -40,5 +41,71 @@
 		justify-content: center;
 		cursor: pointer;
 		fill: $lightText;
+	}
+
+	.overlay {
+		width: 100vw;
+		height: 100vh;
+		position: fixed;
+		left: 0;
+		top: 0;
+	}
+	.dropdown {
+		background: #dde5ec;
+		border-radius: 0 0 4px 4px;
+		box-sizing: border-box;
+		font-size: 13px;
+		margin-top: -3px;
+		padding: 15px 6px;
+		position: relative;
+		height: 75px;
+		width: 100%;
+		z-index: 99;
+		display: flex;
+		flex-direction: column;
+		height: fit-content;
+		max-height: 155px;
+		gap: 5px;
+		outline: 1px solid $heather;
+		strong {
+			font-weight: 500;
+			text-transform: uppercase;
+			color: $charade;
+		}
+		.recentSearch {
+			color: #444b5d;
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			.closeIcon {
+				cursor: pointer;
+			}
+			span {
+				cursor: pointer;
+				&:hover {
+					color: $charade;
+				}
+			}
+		}
+		ul {
+			list-style-type: none;
+			display: flex;
+			flex-direction: column;
+			li {
+				display: flex;
+				align-items: center;
+				gap: 3px;
+				border-radius: 4px;
+				padding: 10px;
+				&:hover {
+					background-color: $chetwodeBlue;
+					color: $white;
+					cursor: pointer;
+				}
+				span {
+					font-weight: 600;
+				}
+			}
+		}
 	}
 }

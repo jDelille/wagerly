@@ -6,14 +6,13 @@
 	display: flex;
 	gap: 10px;
 	color: $charade;
-	padding-top: 10px;
+	padding: 25px 15px;
 	margin: 10px 0;
-	margin-bottom: 20px;
 	position: relative;
 	.displayName {
 		display: flex;
 		flex-direction: column;
-		gap: 3px;
+		gap: 0px;
 		strong {
 			font-weight: 600;
 			font-size: $fontSizeMd;
@@ -21,12 +20,11 @@
 		span {
 			font-weight: 500;
 			color: $lightText;
-			font-size: $fontSizeMd;
+			font-size: $fontSizeSm;
 		}
 	}
 	.menuButton {
-		position: absolute;
-		right: 0;
+		margin-left: auto;
 		cursor: pointer;
 	}
 }
@@ -46,7 +44,7 @@
 	width: 130px;
 	border-radius: 4px;
 	position: absolute;
-	right: 15px;
+	right: 30px;
 	font-size: $fontSizeSm;
 	z-index: 99;
 	display: flex;

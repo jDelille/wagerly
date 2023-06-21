@@ -2,8 +2,8 @@
 
 .createPost {
 	background-color: $white;
-	width: 100%;
-	min-height: 175px;
+	width: calc(100% - 20px);
+	min-height: 100px;
 	height: auto;
 	border-radius: 4px;
 	position: relative;
@@ -12,10 +12,12 @@
 	flex-direction: column;
 	max-height: 500px;
 	border: 1px solid $heather;
+	margin: 0 auto;
+
 	.textarea {
 		padding: 10px;
 		width: 100%;
-		min-height: 130px;
+		min-height: 100px;
 		height: fit-content;
 		resize: none;
 		border: none;
@@ -122,6 +124,7 @@
 
 .postButton {
 	margin-top: 15px;
+	padding: 0 10px;
 	button {
 		position: unset !important;
 		margin-left: auto;
