@@ -18,11 +18,11 @@
 	}
 	input {
 		height: 45px;
-		background-color: darken($white, 5%);
+		background-color: $white;
 		border: none;
 		padding: 10px;
 		font-size: 14px;
-		color: #9ab9c4;
+		color: $charade;
 		border-radius: 4px;
 		&::placeholder {
 			color: $charade;

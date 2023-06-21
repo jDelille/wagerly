@@ -89,7 +89,7 @@ const Signup = () => {
             label='Name'
             id='name'
             register={register}
-            placeholder="John Smith"
+            placeholder="Enter your name"
             value={name}
             required
             tabIndex={0}
@@ -100,7 +100,7 @@ const Signup = () => {
             label='Username'
             id='username'
             register={register}
-            placeholder="@john"
+            placeholder="Enter your username"
             required
             value={username}
             tabIndex={0}
@@ -112,7 +112,7 @@ const Signup = () => {
             label='Email'
             id='email'
             register={register}
-            placeholder="something@email.com"
+            placeholder="Enter your email"
             required
             value={email}
             tabIndex={0}
@@ -129,7 +129,7 @@ const Signup = () => {
             tabIndex={0}
 
           />
-          <Button label='Signup' isButtonDisabled={!email || !name || !username || !password} tabIndex={0} />
+          <Button label='Signup' isButtonDisabled={!email && !name && !username && !password} tabIndex={0} />
           <div className={styles.footer}>
             <p>Already have an account?  <Link href='/login'>Log in</Link></p>
 

@@ -13,8 +13,9 @@
 	color: $charade;
 	position: relative;
 	border-radius: 5px;
-	font-size: 14px;
+	font-size: $fontSizeLg;
 	font-weight: 500;
+	height: 45px;
 	cursor: pointer;
 	color: $white;
 
