@@ -50,23 +50,6 @@ const ProfileMenu: React.FC<Props> = ({ setIsMenuOpen, user, currentUserId }) =>
 
       <div className={styles.divider}></div>
 
-      <Link
-       href={`/muted-users`}
-       className={styles.option}
-       onClick={closeMenu}>
-       Muted Users
-      </Link>
-      <Link
-       href={`/blocked-users`}
-       className={styles.option}
-       onClick={closeMenu}>
-       Blocked Users
-      </Link>
-      <p className={styles.option} onClick={closeMenu}>
-       Muted Words
-      </p>
-      <div className={styles.divider}></div>
-
       <p className={styles.option} onClick={() => signOut()}>
        Logout
       </p>

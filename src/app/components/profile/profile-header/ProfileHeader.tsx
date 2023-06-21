@@ -57,16 +57,21 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
       <Button label={isFollowing ? 'Unfollow' : 'Follow'} onClick={isFollowing ? handleUnfollow : handleFollow} />
 
      )}
-     <div className={styles.userMenu} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-      <BiDotsVertical size={22} />
-     </div>
-     {isMenuOpen && (
-      <ProfileMenu
-       setIsMenuOpen={setIsMenuOpen}
-       currentUserId={currentUserId as string}
-       user={user}
-      />
+     {currentUserId === user.id && (
+      <>
+       <div className={styles.userMenu} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <BiDotsVertical size={22} />
+       </div>
+       {isMenuOpen && (
+        <ProfileMenu
+         setIsMenuOpen={setIsMenuOpen}
+         currentUserId={currentUserId as string}
+         user={user}
+        />
+       )}
+      </>
      )}
+
     </div>
    </div>
    <div className={styles.middle}>

@@ -11,7 +11,6 @@ import { useRouter } from 'next/navigation';
 
 import styles from './PostFeed.module.scss';
 
-
 type Props = {
   posts: any;
   isProfilePage: boolean;
@@ -24,20 +23,14 @@ type Props = {
 };
 
 const PostFeed: React.FC<Props> = observer(
-  ({
-    posts,
-    isProfilePage,
-    hideHeader,
-    isMainPage,
-    currentUser,
-  }) => {
+  ({ posts, isProfilePage, hideHeader, isMainPage, currentUser }) => {
     const router = useRouter();
 
     let tab = tabStore.tab || 'Posts';
 
     const renderPostCards = () => {
       return posts.map((post: Post, index: number) => (
-        <li key={index} >
+        <li key={index}>
           <PostCard
             post={post}
             key={post?.id}
@@ -45,39 +38,25 @@ const PostFeed: React.FC<Props> = observer(
             isExpanded={false}
           />
         </li>
-      ))
+      ));
     };
 
     const renderBets = () => {
-      return posts.map((post: Post, index: number) => (
-        <li key={index} >
-          <PostCard
-            post={post}
-            key={post?.id}
-            currentUser={currentUser}
-            isExpanded={false}
-          />
-        </li>
-      ))
+      return posts.map((post: Post, index: number) => {
+        if (post.userBetId) {
+          return (
+            <li key={index}>
+              <PostCard
+                post={post}
+                key={post?.id}
+                currentUser={currentUser}
+                isExpanded={false}
+              />
+            </li>
+          );
+        }
+      });
     };
-
-    // const renderPeople = () => {
-    //   return (
-    //     <div className={styles.peopleFeed}>
-    //       {users?.map((user) => (
-    //         <UserBox key={user?.id} user={user} />
-    //       ))}
-    //     </div>
-    //   );
-    // };
-
-    // const renderNews = () => {
-    //   return (
-    //     <div className={styles.newsFeed}>
-    //       <News />
-    //     </div>
-    //   );
-    // };
 
     const renderTabContent = () => {
       switch (tab) {
@@ -85,12 +64,6 @@ const PostFeed: React.FC<Props> = observer(
           return renderPostCards();
         case 'Bets':
           return renderBets();
-        // case 'People':
-        //   return renderPeople();
-        // case 'News':
-        //   return renderNews();
-        // case 'media':
-        //  return renderMedia();
         default:
           return null;
       }
@@ -106,18 +79,7 @@ const PostFeed: React.FC<Props> = observer(
             isMainPage={isMainPage}
           />
         )}
-
         {!storeSearch && renderTabContent()}
-        {/* 
-      {storeSearch && (
-        posts.map((post: any) => {
-          if (post.body?.includes(storeSearch) || post?.Bet?.thoughts.includes(storeSearch) || post?.UserBet?.body.includes(storeSearch) || post?.Parlay?.bets[0].thoughts.includes(storeSearch)) {
-            return (
-              <PostCard key={post.id} post={post} isExpanded={false} currentUser={currentUser} />
-            )
-          }
-        })
-      )} */}
       </div>
     );
   }

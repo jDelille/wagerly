@@ -8,6 +8,7 @@
 	input {
 		height: 45px;
 		font-size: $fontSizeMd;
+		background-color: darken($white, 5%);
 	}
 	.bio {
 		display: flex;

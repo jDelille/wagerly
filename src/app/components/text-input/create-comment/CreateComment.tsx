@@ -177,9 +177,9 @@ const CreateComment = () => {
             <MdGifBox color="#36393e" size={22} />
           </div>
 
-          <div className={styles.icon}>
+          {/* <div className={styles.icon}>
             <MdPoll size={22} color='#36393e' />
-          </div>
+          </div> */}
           <div className={styles.textCount}>
             {error ? (
               <p className={styles.lengthError}>{500 - postBodyLength}</p>

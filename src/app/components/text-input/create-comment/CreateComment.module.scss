@@ -3,8 +3,7 @@
 .createComment {
 	background-color: $white;
 	width: calc(100% - 20px);
-	margin: 0 auto;
-	min-height: 175px;
+	min-height: 100px;
 	height: auto;
 	border-radius: 4px;
 	position: relative;
@@ -12,14 +11,13 @@
 	display: flex;
 	flex-direction: column;
 	max-height: 500px;
-	outline: none;
-	transition: outline 200ms ease-in-out;
 	border: 1px solid $heather;
+	margin: 0 auto;
 
 	.textarea {
 		padding: 10px;
 		width: 100%;
-		min-height: 130px;
+		min-height: 100px;
 		height: fit-content;
 		resize: none;
 		border: none;

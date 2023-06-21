@@ -123,7 +123,7 @@ const EditProfileBody: React.FC<Props> = ({ currentUser }) => {
             placeholder={currentUser?.bio as string}
             id='bio'
             value={bio}
-
+            onChange={(e) => setCustomValue('bio', e.target.value)}
           />
         </div>
 
@@ -133,7 +133,7 @@ const EditProfileBody: React.FC<Props> = ({ currentUser }) => {
             label='Draftkings'
             type='text'
             value={draftKings}
-            placeholder='Draftkings profile'
+            placeholder={currentUser?.draftKingsLink || 'Draftkings Profile Link'}
             id='draftKings'
             register={register}
             tabIndex={0}
@@ -144,7 +144,7 @@ const EditProfileBody: React.FC<Props> = ({ currentUser }) => {
             label='Betsperts'
             type='text'
             value={betSperts}
-            placeholder='Betsperts profile'
+            placeholder={currentUser?.betSpertsLink || 'Betsperts Profile Link'}
             id='betSperts'
             register={register}
             tabIndex={0}
