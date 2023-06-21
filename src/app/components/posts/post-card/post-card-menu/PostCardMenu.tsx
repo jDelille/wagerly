@@ -125,7 +125,6 @@ const PostCardMenu: React.FC<Props> = ({
           <p className={styles.option} onClick={toggleLike}>Like</p>
         )}
 
-        <div className={styles.divider}></div>
 
         {/* <p className={styles.option} onClick={() => onDelete(post.id)}>Mute @{post.user.username}</p> */}
 
@@ -135,6 +134,8 @@ const PostCardMenu: React.FC<Props> = ({
           <>
             {/* <p className={styles.option}>Edit</p>
             <p className={styles.option}>Delete & re-draft</p> */}
+            <div className={styles.divider}></div>
+
             <p className={styles.option} onClick={() => onDelete(post.id)}>Delete</p>
           </>
         )}

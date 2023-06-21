@@ -8,6 +8,7 @@ import NavLink from './NavLink';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 import { RiMoneyDollarBoxFill } from 'react-icons/ri'
 import { AiFillLike } from 'react-icons/ai';
+import { MdSportsBasketball } from 'react-icons/md';
 
 type Props = {
   currentUsername?: string;
@@ -27,7 +28,7 @@ const Nav: React.FC<Props> = ({ currentUsername }) => {
     {
       id: 2,
       label: 'Sportsbook',
-      icon: RiMoneyDollarBoxFill,
+      icon: MdSportsBasketball,
       href: '/sportsbook'
     },
     {
