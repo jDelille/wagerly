@@ -3,7 +3,6 @@
 .peopleBox {
 	width: 100%;
 	padding: 1rem;
-
 	display: flex;
 	gap: 1rem;
 	flex-direction: column;
@@ -13,11 +12,13 @@
 		background-color: lighten($white, 15%);
 		cursor: pointer;
 	}
-	.addUser {
+	.addUser,
+	button {
 		position: absolute;
 		right: 15px;
 		top: 15px;
 		cursor: pointer;
+		width: fit-content;
 	}
 	.top {
 		display: flex;

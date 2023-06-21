@@ -13,6 +13,7 @@ import styles from './ProfileHeader.module.scss';
 import ProfileMenu from './profile-menu/ProfileMenu';
 import { User } from '@prisma/client';
 import useFollow from '@/app/hooks/useFollow';
+import useBlockUser from '@/app/hooks/useBlockUser';
 
 type Props = {
  user: User
@@ -20,9 +21,10 @@ type Props = {
  bio: string;
  followerCount: number;
  followingIds: string[];
+ blockedIds: string[];
 }
 
-const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCount, followingIds }) => {
+const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCount, followingIds, blockedIds }) => {
 
  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -36,10 +38,13 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
   user?.id as string,
   user?.username as string,
   currentUserId as string
-
  );
 
+ const { handleUnblockUser } = useBlockUser(user.id)
+
  const isFollowing = followingIds.includes(user?.id as string)
+
+ const isBlocked = blockedIds.includes(user.id)
 
  return (
   <div className={styles.profileHeader}>
@@ -50,11 +55,17 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
      <span>@{user?.username}</span>
     </div>
     <div className={styles.menu}>
-     {currentUserId === user?.id ? (
+
+     {currentUserId === user?.id && (
       <Link href={`/edit-profile/${user?.username}`} className={styles.editProfileButton}>Edit Profile</Link>
+     )}
+
+     {currentUserId !== user?.id && isBlocked ? (
+      <Button label='Unblock' onClick={handleUnblockUser} />
      ) : (
       <Button label={isFollowing ? 'Unfollow' : 'Follow'} onClick={isFollowing ? handleUnfollow : handleFollow} />
      )}
+
      <div className={styles.userMenu} onClick={() => setIsMenuOpen(!isMenuOpen)}>
       <BiDotsVertical size={22} />
      </div>
@@ -63,6 +74,7 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
        setIsMenuOpen={setIsMenuOpen}
        currentUserId={currentUserId as string}
        user={user}
+       blockedUserIds={blockedIds}
       />
      )}
     </div>

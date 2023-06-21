@@ -13,13 +13,14 @@ import PostSkeleton from '../../skeleton/post-skeleton/PostSkeleton';
 type Props = {
  posts: any;
  currentUser: SafeUser | null;
-
+ blockedUsers: string[];
 
 };
 
 const PostFeed: React.FC<Props> = ({
  posts,
  currentUser,
+ blockedUsers
 
 }) => {
 
@@ -27,15 +28,18 @@ const PostFeed: React.FC<Props> = ({
  return (
   <ul>
    {posts.map((post: Post, index: number) => {
-    return (
-     <li key={post.id}>
-      <PostCard
-       post={post}
-       currentUser={currentUser}
-       isExpanded={false}
-      />
-     </li>
-    )
+    if (!blockedUsers?.includes(post.userId)) {
+     return (
+      <li key={index} >
+       <PostCard
+        post={post}
+        key={post?.id}
+        currentUser={currentUser}
+        isExpanded={false}
+       />
+      </li>
+     )
+    }
    })}
   </ul>
  );

@@ -76,6 +76,9 @@ model User {
   bookmarks           String[]       @db.ObjectId
   draftKingsLink      String?
   betSpertsLink       String?
+  blockedUserIds      String[]
+  mutedUserId         String[]
+  likes               String[]
 }
 
 model Poll {

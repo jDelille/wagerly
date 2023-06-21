@@ -29,13 +29,16 @@ const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage,
  const activeTab = tabStore.tab
 
 
+ const blockedUsers = currentUser?.blockedUserIds
+
+
  return (
   <div className={isMainPage ? styles.mainPostFeed : styles.postFeed}>
    {!hideHeader && (
     <PostFeedHeader isProfilePage={isProfilePage} isMainPage={isMainPage} />
    )}
    {activeTab === 'Posts' && (
-    <PostFeed posts={posts} currentUser={currentUser} />
+    <PostFeed posts={posts} currentUser={currentUser} blockedUsers={blockedUsers as string[]} />
 
    )}
 

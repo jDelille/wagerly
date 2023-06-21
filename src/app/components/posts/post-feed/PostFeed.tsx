@@ -7,17 +7,10 @@ import searchStore from '@/app/store/searchStore';
 import { observer } from 'mobx-react';
 import { SafeUser } from '@/app/types/SafeUser';
 import tabStore from '@/app/store/tabStore';
-import UserBox from '../../user/user-box/UserBox';
-import News from '../../news/News';
-import { ExtendedPost } from '@/app/types/ExtendedPost';
-import { useIntersection } from '@mantine/hooks';
-import { useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 import styles from './PostFeed.module.scss';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { INFINITE_SCROLL_PAGINATION_RESULTS } from '@/config';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
+
 
 type Props = {
   posts: any;
@@ -28,23 +21,20 @@ type Props = {
   currentUser: SafeUser | null;
   users?: User[] | null;
   username?: string;
+  blockedUsers?: string[];
 };
 
 const PostFeed: React.FC<Props> = observer(
   ({
     posts,
     isProfilePage,
-    isSearchPage,
     hideHeader,
     isMainPage,
     currentUser,
-    users,
-    username,
   }) => {
     const router = useRouter();
 
     let tab = tabStore.tab || 'Posts';
-
 
     const renderPostCards = () => {
       return posts.map((post: Post, index: number) => (
