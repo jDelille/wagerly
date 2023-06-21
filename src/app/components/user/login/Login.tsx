@@ -84,7 +84,7 @@ const Login = () => {
       tabIndex={2}
 
      />
-     <Button label='Log in' tabIndex={3} isButtonDisabled={!email && !password} />
+     <Button label='Log in' tabIndex={3} isButtonDisabled={!password} />
      <div className={styles.footer} >
       <Link href='/signup'>Create an account</Link>
      </div>

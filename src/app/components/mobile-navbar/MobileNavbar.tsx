@@ -74,7 +74,6 @@ const MobileNavbar: React.FC<Props> = ({ currentUsername }) => {
     <div className={styles.mobileNavbar}>
       <div className={styles.links}>
 
-
         {!currentUsername && (
           links.map((link) => {
             if (link.label === 'Explore' || link.label === "Log in" || link.label === "Sign up")

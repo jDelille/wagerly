@@ -13,7 +13,7 @@ type Props = {
 const NavLink: React.FC<Props> = ({ value, icon: Icon, href }) => {
  return (
   <Link href={href} className={styles.link}>
-   <Icon size={16} className={styles.icon} color="#3c3f47" />
+   <Icon size={18} className={styles.icon} color="#3c3f47" />
    <span className={styles.value}>{value}</span>
   </Link>
  );

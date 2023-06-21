@@ -32,7 +32,8 @@
 			display: none;
 		}
 	}
-	.links {
+	.links,
+	.authLinks {
 		display: flex;
 		flex-direction: column;
 		border-bottom: 1px solid $heather;
@@ -66,6 +67,18 @@
 			}
 			.value {
 				@include breakpoint(xs) {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.authLinks {
+		border-bottom: 0;
+		.logoutLink {
+			@include breakpoint(xs) {
+				padding-top: 0;
+				span {
 					display: none;
 				}
 			}

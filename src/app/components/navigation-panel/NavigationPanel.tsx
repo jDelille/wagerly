@@ -3,6 +3,9 @@
 import { NavLinks } from '@/app/constants/@Links';
 import styles from './NavigationPanel.module.scss';
 import NavLink from './NavLink';
+import Link from 'next/link';
+import { signOut } from 'next-auth/react';
+import { IoLogOut } from 'react-icons/io5';
 
 type Props = {
   currentUsername?: string;
@@ -28,8 +31,19 @@ const NavigationPanel: React.FC<Props> = ({ currentUsername }) => {
               <NavLink key={link.id} value={link.label} icon={link.icon} href={link.href} />
             </>
           ))}
+
       </div>
-    </div>
+      <div className={styles.authLinks}>
+        {!currentUsername ? (
+          <>
+            <Link href={'/login'} className={styles.link}>Log In</Link>
+            <Link href={'/login'} className={styles.link}>Sign up</Link>
+          </>
+        ) : (
+          <div onClick={() => signOut()} className={styles.logoutLink}><IoLogOut size={20} color="#3c3f47" /><span>Logout</span></div>
+        )}
+      </div>
+    </div >
   );
 };
 
