@@ -65,7 +65,6 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
      bio={user?.bio as string}
      followerCount={followerCount as number}
      followingIds={currentUser?.followingIds as string[]}
-     blockedIds={currentUser?.blockedUserIds as string[]}
     />
     <DynamicPostFeed
      posts={posts}

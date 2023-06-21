@@ -9,7 +9,6 @@ import useLikePost from '@/app/hooks/useLikePost';
 import { PostContext } from '../PostCard';
 import axios from 'axios';
 import useNotLoggedInModal from '@/app/hooks/useNotLoggedInModal';
-import useBlockUser from '@/app/hooks/useBlockUser';
 
 type Props = {
   setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
@@ -50,8 +49,6 @@ const PostCardMenu: React.FC<Props> = ({
     setLocalBookmark((prevBookmark: boolean) => !prevBookmark);
     handleBookmarkPost();
   }, [currentUser, setLocalBookmark, handleBookmarkPost, notLoggedInModal]);
-
-  const { handleBlockUser } = useBlockUser(post.user.id)
 
 
   const toggleLike = useCallback(() => {
@@ -131,7 +128,7 @@ const PostCardMenu: React.FC<Props> = ({
         <div className={styles.divider}></div>
 
         {/* <p className={styles.option} onClick={() => onDelete(post.id)}>Mute @{post.user.username}</p> */}
-        {post.userId !== currentUser?.id && (
+        {/* {post.userId !== currentUser?.id && (
           <>
             <p className={styles.option}
               onClick={handleBlockUser}
@@ -139,7 +136,7 @@ const PostCardMenu: React.FC<Props> = ({
               Block @{post.user.username}
             </p>
           </>
-        )}
+        )} */}
 
 
         {/* <p className={styles.option} onClick={() => onDelete(post.id)}>Report @{post.user.username}</p> */}

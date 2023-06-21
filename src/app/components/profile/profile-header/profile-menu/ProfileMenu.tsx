@@ -6,26 +6,19 @@ import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
 
 import styles from './ProfileMenu.module.scss';
-import useBlockUser from '@/app/hooks/useBlockUser';
 
 
 type Props = {
  setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
  user: User
  currentUserId?: string
- blockedUserIds?: string[]
 }
 
-const ProfileMenu: React.FC<Props> = ({ setIsMenuOpen, user, currentUserId, blockedUserIds }) => {
+const ProfileMenu: React.FC<Props> = ({ setIsMenuOpen, user, currentUserId }) => {
 
  const closeMenu = () => {
   setIsMenuOpen(false);
  };
-
- const { handleBlockUser, handleUnblockUser } = useBlockUser(user.id)
-
- const isBlocked = blockedUserIds?.includes(user.id)
-
 
  return (
   <>
@@ -80,23 +73,18 @@ const ProfileMenu: React.FC<Props> = ({ setIsMenuOpen, user, currentUserId, bloc
      </>
     ) : (
      <>
-      <Link
+      {/* <Link
        href={`/edit-profile/${user?.username}`}
        className={styles.option}
        onClick={closeMenu}>
        Mute @{user.username}
       </Link>
-      <a
-       className={styles.option}
-       onClick={!isBlocked ? handleBlockUser : handleUnblockUser}>
-       {isBlocked ? `Unblock @${user.username}` : `Block @${user.username}`}
-      </a>
       <Link
        href={`/edit-profile/${user?.username}`}
        className={styles.option}
        onClick={closeMenu}>
        Report @{user.username}
-      </Link>
+      </Link> */}
      </>
     )}
 

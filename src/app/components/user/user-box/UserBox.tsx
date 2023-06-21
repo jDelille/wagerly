@@ -6,33 +6,19 @@ import Avatar from "../Avatar/Avatar";
 import { useRouter } from "next/navigation";
 
 import styles from './UserBox.module.scss';
-import Button from "../../button/Button";
-import useBlockUser from "@/app/hooks/useBlockUser";
 
 type Props = {
  user: User
- isBlocked?: boolean;
 }
 
-const UserBox: React.FC<Props> = ({ user, isBlocked }) => {
+const UserBox: React.FC<Props> = ({ user }) => {
 
  const router = useRouter();
 
- const { handleUnblockUser } = useBlockUser(user.id)
-
- const unBlock = (e: any) => {
-  e.stopPropagation();
-  handleUnblockUser()
- }
-
  return (
   <div className={styles.peopleBox} onClick={() => router.push(`user/${user?.username}`)}>
-   {!isBlocked ? (
-    <FaUserPlus className={styles.addUser} size="20" color="#20b46a" />
-   ) : (
-    <Button label="Unblock" onClick={unBlock} />
-   )
-   }
+   <FaUserPlus className={styles.addUser} size="20" color="#20b46a" />
+
    <div className={styles.top}>
     <Avatar photo={user.photo as string || '/images/placeholder.png'} username={user.username} />
     <div className={styles.displayName}>
