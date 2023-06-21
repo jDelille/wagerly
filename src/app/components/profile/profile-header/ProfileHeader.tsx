@@ -18,7 +18,7 @@ type Props = {
  currentUserId?: string;
  bio: string;
  followerCount: number;
- followingIds: string[];
+ followingIds?: string[];
 }
 
 const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCount, followingIds }) => {
@@ -37,7 +37,7 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
   currentUserId as string
  );
 
- const isFollowing = followingIds.includes(user?.id as string)
+ const isFollowing = followingIds?.includes(user?.id as string)
 
  return (
   <div className={styles.profileHeader}>

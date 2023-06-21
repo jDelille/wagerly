@@ -76,6 +76,13 @@
 	.authLinks {
 		border-bottom: 0;
 		.logoutLink {
+			padding: 15px 0;
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			height: 48px;
+			text-decoration: none;
+			color: $charade;
 			@include breakpoint(xs) {
 				padding-top: 0;
 				span {

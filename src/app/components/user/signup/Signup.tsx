@@ -129,7 +129,7 @@ const Signup = () => {
             tabIndex={0}
 
           />
-          <Button label='Signup' isButtonDisabled={!email && !name && !username && !password} tabIndex={0} />
+          <Button label='Signup' tabIndex={0} />
           <div className={styles.footer}>
             <p>Already have an account?  <Link href='/login'>Log in</Link></p>
 
