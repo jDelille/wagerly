@@ -3,7 +3,7 @@
 
 .gamebarWrapper {
 	position: relative;
-	width: 600px;
+
 	height: 105px;
 	.gamebar {
 		width: 600px;
@@ -19,9 +19,9 @@
 			left: unset;
 			transform: unset;
 			border-bottom: 1px solid $heather;
-			max-width: 100vw;
-			min-width: 100vw;
+			width: 100%;
 			overflow-x: hidden;
+			border-right: 1px solid $heather;
 		}
 		@include breakpoint(xs) {
 			background-color: $white;

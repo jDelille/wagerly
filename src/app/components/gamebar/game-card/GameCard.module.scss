@@ -38,6 +38,11 @@
 		font-size: 10px;
 		font-weight: 600;
 		color: gray;
+		.preStatus {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
 	}
 	&::after {
 		position: absolute;
@@ -49,17 +54,38 @@
 		top: 15px;
 		bottom: 15px;
 	}
-	.upper,
-	.lower {
+
+	.content {
 		display: flex;
-		align-items: center;
-		gap: 10px;
-		strong {
-			font-size: 16px;
-			font-weight: 600;
+		width: 100%;
+		.displayName {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			.upper,
+			.lower {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
 		}
-		.score {
-			margin-left: auto;
+		.info {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			strong {
+				font-size: 16px;
+				font-weight: 600;
+			}
+			span {
+				font-size: 10px;
+				font-weight: 500;
+				color: gray;
+			}
+			.score {
+				margin-left: auto;
+			}
 		}
 	}
 }

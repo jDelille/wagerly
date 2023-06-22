@@ -6,7 +6,8 @@ import { FaBars } from 'react-icons/fa';
 import Avatar from '../../user/Avatar/Avatar';
 import { useState } from 'react';
 import MobileNavbar from '../../mobile-navbar/MobileNavbar';
-
+import { HiAdjustmentsHorizontal } from 'react-icons/hi2'
+import GamebarControls from './gamebar-controls/GamebarControls';
 
 type Props = {
  label: string;
@@ -14,14 +15,16 @@ type Props = {
  isSportsbook?: boolean;
  currentUserPhoto?: string;
  currentUsername?: string;
+ hasControls?: boolean;
 
 }
 
-const FeedHeader: React.FC<Props> = ({ label, isBack, isSportsbook, currentUserPhoto, currentUsername }) => {
+const FeedHeader: React.FC<Props> = ({ label, isBack, isSportsbook, currentUserPhoto, currentUsername, hasControls }) => {
 
  const router = useRouter();
 
  const [openMenu, setOpenMenu] = useState(false)
+ const [openControls, setOpenControls] = useState(false)
 
  const onBack = () => {
   if (isSportsbook) {
@@ -41,13 +44,20 @@ const FeedHeader: React.FC<Props> = ({ label, isBack, isSportsbook, currentUserP
     <div className={styles.mobile} onClick={() => setOpenMenu(!openMenu)}>
      <Avatar photo={currentUserPhoto as string || '/images/placeholder.png'} />
      <strong>{currentUsername}</strong>
-     <FaBars size={18} color='white' />
-
-
+     <FaBars size={18} color='#222222' />
     </div>
     {openMenu && (
      <MobileNavbar currentUsername={currentUsername} />
     )}
+
+    {/* {hasControls && (
+     <div className={styles.controls} onClick={() => setOpenControls(!openControls)}>
+      <HiAdjustmentsHorizontal size={24} />
+      {openControls && (
+       <GamebarControls />
+      )}
+     </div>
+    )} */}
    </div>
 
   </div>

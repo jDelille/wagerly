@@ -4,9 +4,9 @@
 .mobileNavbar {
 	display: none;
 	width: 140px;
-	background-color: #d9e1e8;
+	background-color: $white;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-	color: $white;
+	color: $charade;
 	height: fit-content;
 	border-radius: 4px;
 	position: absolute;
@@ -14,8 +14,9 @@
 	top: 50px;
 	overflow: hidden;
 	padding: 5px 0;
+	border: 1px solid $heather;
 	@include breakpoint(sm) {
-		display: flex;
+		display: none;
 	}
 	@include breakpoint(xs) {
 		display: flex;
@@ -27,13 +28,13 @@
 		a,
 		p {
 			text-decoration: none;
-			color: $white;
+			color: $charade;
 			font-size: $fontSizeMd;
 			padding: 10px;
 			cursor: pointer;
 			&:hover {
 				background-color: $chetwodeBlue;
-				color: $charade;
+				color: $white;
 				cursor: pointer;
 			}
 		}

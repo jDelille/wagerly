@@ -1,0 +1,32 @@
+@use '../../../../styles/variables' as *;
+
+.gamebarControls {
+	background-color: $alabaster;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	border: 1px solid $heather;
+	color: $charade;
+	height: fit-content;
+	padding: 5px 0;
+	width: 140px;
+	border-radius: 4px;
+	position: absolute;
+	right: 30px;
+	top: 3px;
+	font-size: $fontSizeSm;
+	z-index: 99;
+	display: flex;
+	flex-direction: column;
+	.option {
+		padding: 5px 15px;
+		&:hover {
+			background-color: $chetwodeBlue;
+			color: $white;
+			cursor: pointer;
+		}
+	}
+	.divider {
+		background-color: lightgray;
+		height: 1px;
+		margin: 5px 0;
+	}
+}

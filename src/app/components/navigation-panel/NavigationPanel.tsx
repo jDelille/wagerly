@@ -6,10 +6,10 @@ import NavLink from './NavLink';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 import { IoLogOut } from 'react-icons/io5';
+import { FaUserCircle } from 'react-icons/fa';
 
 type Props = {
   currentUsername?: string;
-
 };
 
 const NavigationPanel: React.FC<Props> = ({ currentUsername }) => {
@@ -31,6 +31,7 @@ const NavigationPanel: React.FC<Props> = ({ currentUsername }) => {
               <NavLink key={link.id} value={link.label} icon={link.icon} href={link.href} />
             </>
           ))}
+
 
       </div>
       <div className={styles.authLinks}>

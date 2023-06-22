@@ -37,32 +37,19 @@ const MobileNavbar: React.FC<Props> = ({ currentUsername }) => {
     },
     {
       id: 4,
-      label: 'Notifications',
-      icon: FaBell,
-      href: '/'
-
-    },
-    {
-      id: 5,
       label: 'Bookmarks',
       icon: BsFillBookmarkFill,
       href: '/bookmarks'
 
     },
     {
-      id: 6,
-      label: 'Likes',
-      icon: AiFillLike,
-      href: '/likes'
-    },
-    {
-      id: 7,
+      id: 5,
       label: 'Log in',
       icon: AiFillLike,
       href: '/login'
     },
     {
-      id: 8,
+      id: 6,
       label: 'Sign up',
       icon: AiFillLike,
       href: '/signup'

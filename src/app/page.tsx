@@ -33,6 +33,7 @@ export default async function Home() {
           isBack={false}
           currentUsername={currentUser?.username}
           currentUserPhoto={currentUser?.photo || '/images/placeholder.png'}
+          hasControls
         />
         <Gamebar />
         {/* <DynamicPostFeed
