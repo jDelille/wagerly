@@ -6,8 +6,8 @@ import axios from 'axios';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { signIn } from 'next-auth/react'
 
-import Input from '../../input/Input';
-import Button from '../../button/Button';
+import Input from '../../../ui/input/Input';
+import Button from '../../../ui/button/Button';
 
 import styles from './Signup.module.scss';
 

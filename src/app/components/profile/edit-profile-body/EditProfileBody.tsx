@@ -4,7 +4,7 @@ import { SafeUser } from '@/app/types/SafeUser';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 import styles from './EditProfileBody.module.scss';
-import Input from '../../input/Input';
+import Input from '../../../ui/input/Input';
 import ImageUpload from '../../image-upload/ImageUpload';
 import { useState } from 'react';
 import axios from 'axios';

@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '../../button/Button';
+import Button from '../../../ui/button/Button';
 import { useRouter } from 'next/navigation';
 
 import styles from './Auth.module.scss';

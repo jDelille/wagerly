@@ -9,7 +9,7 @@ import styles from './BetSlip.module.scss';
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import Button from "../../button/Button";
+import Button from "../../../ui/button/Button";
 
 const BetSlip = () => {
 

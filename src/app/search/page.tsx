@@ -2,7 +2,7 @@ import getCurrentUser from '../actions/getCurrentUser';
 import getPosts from '../actions/getPosts';
 import getUserByUsername from '../actions/getUserByUsername';
 import getUsers from '../actions/getUsers';
-import FeedHeader from '../components/feed-header/FeedHeader';
+import FeedHeader from '../components/feed/feed-header/FeedHeader';
 import PostFeed from '../components/posts/post-feed/PostFeed';
 import PostFeedHeader from '../components/posts/post-feed/post-feed-header/PostFeedHeader';
 import SearchFeed from '../components/search-feed/SearchFeed';

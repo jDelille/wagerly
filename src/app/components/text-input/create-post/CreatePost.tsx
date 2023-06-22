@@ -6,7 +6,7 @@ import { MdGifBox, MdPoll } from 'react-icons/md'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import ImageUpload from '../../image-upload/ImageUpload';
 import Image from 'next/image'
-import Button from '../../button/Button';
+import Button from '../../../ui/button/Button';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'
 

@@ -3,7 +3,7 @@ import getUserByUsername from "@/app/actions/getUserByUsername";
 import PostCard from "@/app/components/posts/post-card/PostCard";
 
 import styles from './Page.module.scss';
-import FeedHeader from "@/app/components/feed-header/FeedHeader";
+import FeedHeader from "@/app/components/feed/feed-header/FeedHeader";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import PostCardComments from "@/app/components/posts/post-card/post-card-comments/PostCardComments";
 

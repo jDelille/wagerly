@@ -1,6 +1,6 @@
 import getCurrentUser from "../actions/getCurrentUser";
 import getPosts from "../actions/getPosts";
-import FeedHeader from "../components/feed-header/FeedHeader";
+import FeedHeader from "../components/feed/feed-header/FeedHeader";
 import PostPreview from "../components/post-preview/PostPreview";
 import CreatePost from "../components/text-input/create-post/CreatePost";
 import Avatar from "../components/user/Avatar/Avatar";

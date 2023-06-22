@@ -3,9 +3,9 @@ import { useRouter } from 'next/navigation'
 import styles from './FeedHeader.module.scss';
 import tabStore from '@/app/store/tabStore';
 import { FaBars } from 'react-icons/fa';
-import Avatar from '../user/Avatar/Avatar';
+import Avatar from '../../user/Avatar/Avatar';
 import { useState } from 'react';
-import MobileNavbar from '../mobile-navbar/MobileNavbar';
+import MobileNavbar from '../../mobile-navbar/MobileNavbar';
 
 
 type Props = {

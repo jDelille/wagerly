@@ -7,7 +7,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import styles from './CreateComment.module.scss';
 import axios from 'axios';
 import postPreviewStore from '@/app/store/postPreviewStore';
-import Button from '../../button/Button';
+import Button from '../../../ui/button/Button';
 import ImageUpload from '../../image-upload/ImageUpload';
 import { MdGifBox, MdPoll } from 'react-icons/md';
 

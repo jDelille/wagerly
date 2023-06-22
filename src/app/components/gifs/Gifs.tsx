@@ -5,7 +5,7 @@ import { useState } from "react";
 import { GiphyFetch } from "@giphy/js-fetch-api";
 import styles from './Gifs.module.scss';
 import ResizeObserver from "react-resize-observer";
-import Input from "../input/Input";
+import Input from "../../ui/input/Input";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 // import SimpleBar from 'simplebar-react';
 // import 'simplebar-react/dist/simplebar.min.css';

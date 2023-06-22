@@ -4,7 +4,7 @@ import Avatar from '../../user/Avatar/Avatar';
 import { ProfileScreenString } from '@/app/utils/app-string/ProfileScreenString';
 import { format } from 'date-fns';
 import { BiDotsVertical } from 'react-icons/bi';
-import Button from '../../button/Button';
+import Button from '../../../ui/button/Button';
 import Link from 'next/link';
 import Image from 'next/image';
 

@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import FeedHeader from '../components/feed-header/FeedHeader';
+import FeedHeader from '../components/feed/feed-header/FeedHeader';
 import PostSkeleton from '../components/skeleton/post-skeleton/PostSkeleton';
 
 import styles from './Page.module.scss';

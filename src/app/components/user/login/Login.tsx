@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import Input from '../../input/Input';
-import Button from '../../button/Button';
+import Input from '../../../ui/input/Input';
+import Button from '../../../ui/button/Button';
 
 import styles from './Login.module.scss';
 

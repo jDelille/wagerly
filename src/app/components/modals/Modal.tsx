@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import styles from './Modal.module.scss';
 import { AiOutlineClose } from 'react-icons/ai';
-import Button from '../button/Button';
+import Button from '../../ui/button/Button';
 
 type Props = {
  isOpen?: boolean;

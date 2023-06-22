@@ -1,5 +1,5 @@
 import getUserByUsername from '@/app/actions/getUserByUsername';
-import FeedHeader from '@/app/components/feed-header/FeedHeader';
+import FeedHeader from '@/app/components/feed/feed-header/FeedHeader';
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import PostFeed from '@/app/components/posts/post-feed/PostFeed';
 import getPostsByUsername from '@/app/actions/getPostsByUsername';
