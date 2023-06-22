@@ -45,8 +45,6 @@ const Gamebar: React.FC = () => {
   fetchData();
  }, []);
 
- console.log(matches)
-
  return (
   <div className={styles.gamebarWrapper}>
    <div className={styles.gamebar} ref={gameScrollerRef} >

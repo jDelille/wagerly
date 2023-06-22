@@ -28,8 +28,6 @@ const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 
 	const league = matchStore.league;
 
-	console.log(league.length)
-
 	useEffect(() => {
 		async function fetchData() {
 			try {

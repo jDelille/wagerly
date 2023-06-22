@@ -74,8 +74,6 @@ const SportsbookGames = () => {
     return formattedDate;
   };
 
-  console.log(dates)
-
   return (
     <div className={styles.sportsBookGames}>
       <SportSelector
