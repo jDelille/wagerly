@@ -13,9 +13,10 @@ type Props = {
  disabled: boolean;
  body: React.ReactElement;
  actionLabel: string;
+ disableButton?: boolean;
 }
 
-const Modal: React.FC<Props> = ({ isOpen, onClose, onSubmit, disabled, body, actionLabel }) => {
+const Modal: React.FC<Props> = ({ isOpen, onClose, onSubmit, disabled, body, actionLabel, disableButton }) => {
 
  const [showModal, setShowModal] = useState(isOpen);
 
@@ -54,6 +55,7 @@ const Modal: React.FC<Props> = ({ isOpen, onClose, onSubmit, disabled, body, act
       <Button
        label={actionLabel}
        onClick={onSubmit}
+       isButtonDisabled={disableButton}
       />
      </div>
     </div>

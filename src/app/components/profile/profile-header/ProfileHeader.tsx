@@ -12,6 +12,7 @@ import styles from './ProfileHeader.module.scss';
 import ProfileMenu from './profile-menu/ProfileMenu';
 import { User } from '@prisma/client';
 import useFollow from '@/app/hooks/useFollow';
+import useNotLoggedInModal from '@/app/hooks/useNotLoggedInModal';
 
 type Props = {
  user: User
@@ -24,6 +25,8 @@ type Props = {
 const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCount, followingIds }) => {
 
  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+ const notLoggedInModal = useNotLoggedInModal();
 
 
  let joinedDate = format(new Date(user?.createdAt), 'MMMM dd, yyyy');
@@ -52,10 +55,12 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
       <Link href={`/edit-profile/${user?.username}`} className={styles.editProfileButton}>Edit Profile</Link>
      )}
 
-     {currentUserId !== user?.id && (
+     {!currentUserId && (
+      <Button label={'Follow'} onClick={notLoggedInModal.onOpen} />
+     )}
 
+     {currentUserId && currentUserId !== user?.id && (
       <Button label={isFollowing ? 'Unfollow' : 'Follow'} onClick={isFollowing ? handleUnfollow : handleFollow} />
-
      )}
      {currentUserId === user.id && (
       <>

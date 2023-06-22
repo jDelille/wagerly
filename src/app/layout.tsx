@@ -31,7 +31,7 @@ export default async function RootLayout({
 
       <body>
         <div className='layout'>
-          <BetSlip />
+          <BetSlip currentUser={currentUser} />
           <NotLoggedInModal />
           {/* <MobileTopNav /> */}
           <div className='left-sidebar'>

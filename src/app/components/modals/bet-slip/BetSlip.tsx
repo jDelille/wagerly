@@ -10,8 +10,13 @@ import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Button from "../../../ui/button/Button";
+import { SafeUser } from "@/app/types/SafeUser";
 
-const BetSlip = () => {
+type Props = {
+  currentUser: SafeUser | null
+}
+
+const BetSlip: React.FC<Props> = ({ currentUser }) => {
 
   const router = useRouter();
 
@@ -122,7 +127,8 @@ const BetSlip = () => {
       onSubmit={onSubmit}
       disabled={isLoading}
       body={bodyContent}
-      actionLabel="Place bet"
+      actionLabel={currentUser ? "Place bet" : "You must sign in to place a bet."}
+      disableButton={!currentUser}
     />
   );
 }

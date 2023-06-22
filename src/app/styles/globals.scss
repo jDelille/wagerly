@@ -49,6 +49,7 @@ body {
 		max-width: 285px;
 		padding: 0 10px;
 		position: sticky;
+		color: $charade;
 		top: $gamebarHeight;
 		height: calc(100vh - 10px - $gamebarHeight);
 		z-index: 9999;
