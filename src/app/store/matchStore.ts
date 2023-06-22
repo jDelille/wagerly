@@ -15,7 +15,11 @@ class MatchStore {
 	}
 
 	setLeague(league: string) {
-		this.league = league;
+		if (league === 'mls') {
+			return (this.league = 'soccer');
+		} else {
+			return (this.league = league);
+		}
 	}
 
 	setHomeTeamId(id: string) {

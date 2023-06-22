@@ -8,6 +8,7 @@ import PostSkeleton from './components/skeleton/post-skeleton/PostSkeleton';
 import styles from './styles/App.module.scss';
 import PostFeed from './components/feed/post-feed/PostFeed';
 import Feed from './components/feed/Feed';
+import Gamebar from './components/gamebar/Gamebar';
 
 
 export default async function Home() {
@@ -24,13 +25,16 @@ export default async function Home() {
 
   return (
     <main className={styles.app}>
+
       <div className={styles.main}>
+
         <FeedHeader
           label='Explore'
           isBack={false}
           currentUsername={currentUser?.username}
           currentUserPhoto={currentUser?.photo || '/images/placeholder.png'}
         />
+        <Gamebar />
         {/* <DynamicPostFeed
           initialPosts={posts}
           isProfilePage={false}

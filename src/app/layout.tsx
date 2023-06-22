@@ -11,6 +11,7 @@ import NotLoggedInModal from './components/modals/not-logged-in/NotLoggedInModal
 import MobileTopNav from './components/mobile-navbar/mobile-top-nav/MobileTopNav';
 
 import './styles/globals.scss';
+import Gamebar from './components/gamebar/Gamebar';
 
 export const metadata = {
   title: 'Wagerly',

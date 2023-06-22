@@ -1,0 +1,65 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/breakpoints' as *;
+
+.gameCard {
+	min-width: 145px;
+	@include breakpoint(xs) {
+		min-width: 140px;
+		max-width: 140px;
+	}
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	justify-content: space-evenly;
+	border-top: 0;
+	border-bottom: 0;
+	border-left: 0;
+	position: relative;
+	transition: all 200ms ease-in-out;
+	text-decoration: none;
+	color: $charade;
+	padding: 15px 15px;
+
+	&:nth-of-type(1) {
+		padding: 15px 5px;
+		padding-right: 15px;
+	}
+
+	&:hover {
+		background-color: darken($white, 2%);
+		cursor: pointer;
+		@include breakpoint(xs) {
+			background-color: transparent;
+		}
+	}
+	.league,
+	.status {
+		font-size: 10px;
+		font-weight: 600;
+		color: gray;
+	}
+	&::after {
+		position: absolute;
+		content: '';
+		display: block;
+		background: $heather;
+		width: 1px;
+		right: 0;
+		top: 15px;
+		bottom: 15px;
+	}
+	.upper,
+	.lower {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		strong {
+			font-size: 16px;
+			font-weight: 600;
+		}
+		.score {
+			margin-left: auto;
+		}
+	}
+}

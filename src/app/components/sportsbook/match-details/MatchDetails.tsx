@@ -10,12 +10,13 @@ import Odds from './odds/Odds';
 import Header from './match-header/MatchHeader';
 
 import styles from './MatchDetails.module.scss';
+import { observer } from 'mobx-react';
 
 type Props = {
 	matchId: string;
 };
 
-const MatchDetails: React.FC<Props> = ({ matchId }) => {
+const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [header, setHeader] = useState<MatchHeader>();
@@ -27,14 +28,16 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 
 	const league = matchStore.league;
 
+	console.log(league.length)
+
 	useEffect(() => {
 		async function fetchData() {
 			try {
 				setIsLoading(true);
 				const delay = 0;
 				setTimeout(async () => {
-					const header = await getMatch(matchId, league);
-					const odds = await getOdds(matchId, league);
+					const header = await getMatch(matchId, league, league.length);
+					const odds = await getOdds(matchId, league, league.length);
 					setHeader(header.header);
 					if (odds) {
 						setOdds(odds.sectionList[0].modules[0].model);
@@ -190,6 +193,6 @@ const MatchDetails: React.FC<Props> = ({ matchId }) => {
 			)}
 		</div>
 	);
-};
+});
 
 export default MatchDetails;

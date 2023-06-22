@@ -6,8 +6,8 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	border: 1px solid $heather;
-	border-top: none;
+	// border: 1px solid $heather;
+	// border-top: none;
 	padding-top: 2rem;
 	padding-bottom: 2rem;
 	.title {
@@ -24,6 +24,8 @@
 			width: 74px;
 			display: flex;
 			justify-content: center;
+			align-items: center;
+			text-align: center;
 		}
 	}
 	.rows {

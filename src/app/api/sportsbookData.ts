@@ -1,7 +1,16 @@
 export async function getGames(league: string, date: string) {
 	try {
+		const isSoccer = league === 'soccer';
+		// const res = await fetch(
+		// 	`https://api.foxsports.com/bifrost/v1/${league}/scoreboard/segment/${
+		// 		isSoccer ? 'c0d' : ''
+		// 	}${date}?${
+		// 		isSoccer ? `groupId=0&` : ''
+		// 	}apikey=jE7yBJVRNAwdDesMgTzTXUUSx1It41Fq`
+		// );
+
 		const res = await fetch(
-			`https://api.foxsports.com/bifrost/v1/${league}/scoreboard/segment/${date}?apikey=jE7yBJVRNAwdDesMgTzTXUUSx1It41Fq`
+			`https://api.foxsports.com/bifrost/v1/mlb/scoreboard/segment/${date}?apikey=jE7yBJVRNAwdDesMgTzTXUUSx1It41Fq`
 		);
 
 		if (!res.ok) {
@@ -16,8 +25,12 @@ export async function getGames(league: string, date: string) {
 	}
 }
 
-export async function getMatch(matchId: string, league: string) {
-	const id = matchId.substring(3);
+export async function getMatch(
+	matchId: string,
+	league: string,
+	substringNum: number
+) {
+	const id = matchId.substring(substringNum);
 
 	try {
 		const res = await fetch(
@@ -36,8 +49,13 @@ export async function getMatch(matchId: string, league: string) {
 	}
 }
 
-export async function getOdds(matchId: string, league: string, sport?: string) {
-	const id = matchId.substring(3);
+export async function getOdds(
+	matchId: string,
+	league: string,
+	substringNum: number,
+	sport?: string
+) {
+	const id = matchId.substring(substringNum);
 
 	try {
 		const res = await fetch(

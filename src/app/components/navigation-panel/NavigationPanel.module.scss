@@ -4,13 +4,13 @@
 .navigationPanel {
 	height: 100%;
 	width: 284px;
-	background-color: $darkerMystic;
+	background-color: $mystic;
 	position: sticky;
-	top: 0px;
+	top: $gamebarHeight;
 	display: none;
 	@include breakpoint(sm) {
 		display: flex;
-		height: 100vh;
+		height: calc(100vh - $gamebarHeight);
 		flex-direction: column;
 	}
 	@include breakpoint(xs) {

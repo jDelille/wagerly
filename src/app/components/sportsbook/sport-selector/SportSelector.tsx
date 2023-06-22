@@ -10,13 +10,14 @@ type Props = {
 
 const SportSelector: React.FC<Props> = ({ setSport, sport }) => {
 
-
-
  return (
   <div className={styles.selector}>
    <p className={sport === 'baseball' ? styles.selectedSport : styles.sport} onClick={() => { setSport('baseball'); matchStore.setLeague('mlb') }}>
     Baseball
    </p>
+   {/* <p className={sport === 'soccer' ? styles.selectedSport : styles.sport} onClick={() => { setSport('soccer'); matchStore.setLeague('mls') }}>
+    Soccer
+   </p> */}
    {/* <p className={sport === 'basketball' ? styles.selectedSport : styles.sport}
     onClick={() => { setSport('basketball'); matchStore.setLeague('nba') }}>
     Basketball
@@ -27,9 +28,7 @@ const SportSelector: React.FC<Props> = ({ setSport, sport }) => {
    <p className={sport === 'hockey' ? styles.selectedSport : styles.sport} onClick={() => { setSport('hockey'); matchStore.setLeague('nhl') }}>
     Hockey
    </p>
-   <p className={sport === 'soccer' ? styles.selectedSportHideOnMobile : styles.sportHideOnMobile} onClick={() => { setSport('soccer'); matchStore.setLeague('usa.1') }}>
-    Soccer
-   </p> */}
+    */}
   </div>
  );
 }

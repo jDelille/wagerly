@@ -33,11 +33,13 @@ body {
 	margin: 0 auto;
 	display: flex;
 	position: relative;
+	top: $gamebarHeight;
 	@include breakpoint(sm) {
 		max-width: 100vw;
 	}
 	@include breakpoint(xs) {
 		max-width: 100vw;
+		top: unset;
 	}
 	.left-sidebar,
 	.right-sidebar {
@@ -46,8 +48,8 @@ body {
 		max-width: 285px;
 		padding: 0 10px;
 		position: sticky;
-		top: 10px;
-		height: calc(100vh - 10px);
+		top: $gamebarHeight;
+		height: calc(100vh - 10px - $gamebarHeight);
 		z-index: 9999;
 		transition: all 200ms ease-in-out;
 		@include breakpoint(sm) {

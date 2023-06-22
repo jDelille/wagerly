@@ -44,7 +44,7 @@ const SportsbookGames = () => {
         setIsLoading(true);
         const delay = 0;
         setTimeout(async () => {
-          const matches = await getGames(league || 'mlb', apiDate || formattedDate);
+          const matches = await getGames(league, apiDate || formattedDate);
           setDates(matches.quickNav)
           setMatches(matches.sectionList[0].events);
           setIsLoading(false);
@@ -73,6 +73,8 @@ const SportsbookGames = () => {
 
     return formattedDate;
   };
+
+  console.log(dates)
 
   return (
     <div className={styles.sportsBookGames}>

@@ -13,7 +13,9 @@
 		font-size: $fontSizeLg;
 		text-transform: uppercase;
 		cursor: pointer;
-		color: lightgray;
+		color: lighten($charade, 15%);
+		font-weight: 600;
+
 		&:hover {
 			color: $charade;
 		}
