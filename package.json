@@ -43,6 +43,7 @@
     "react-hook-form": "^7.44.3",
     "react-icons": "^4.9.0",
     "react-resize-observer": "^1.1.1",
+    "react-spinners": "^0.13.8",
     "sass": "^1.63.1",
     "simplebar-react": "^3.2.4",
     "typescript": "5.1.3",

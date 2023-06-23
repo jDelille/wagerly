@@ -17,10 +17,9 @@ const Bookmarks = async ({ params }: { params: IParams }) => {
  const [posts, currentUser] = await Promise.all([getBookmarks(params), getCurrentUser()])
 
  const DynamicPostFeed = dynamic(() => import('../../components/posts/post-feed/PostFeed'), {
+  ssr: false,
   loading: () => <>
-   <PostSkeleton />
-   <PostSkeleton />
-   <PostSkeleton />
+   <p>Loading...</p>
   </>
  })
 

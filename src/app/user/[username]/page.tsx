@@ -1,17 +1,13 @@
 import getUserByUsername from '@/app/actions/getUserByUsername';
 import FeedHeader from '@/app/components/feed/feed-header/FeedHeader';
 import getCurrentUser from '@/app/actions/getCurrentUser';
-import PostFeed from '@/app/components/posts/post-feed/PostFeed';
 import getPostsByUsername from '@/app/actions/getPostsByUsername';
 import dynamic from 'next/dynamic';
 import ProfileHeaderSkeleton from '@/app/components/skeleton/profile/ProfileHeaderSkeleton';
-import Feed from '@/app/components/feed/Feed';
 import PostSkeleton from '@/app/components/skeleton/post-skeleton/PostSkeleton';
+import getFollowersCount from '@/app/actions/getFollowersCount';
 
 import styles from './Page.module.scss';
-import PostCard from '@/app/components/posts/post-card/PostCard';
-import FeedHeaderSkeleton from '@/app/components/skeleton/feed-header/FeedHeaderSkeleton';
-import getFollowersCount from '@/app/actions/getFollowersCount';
 
 interface IParams {
  username?: string;
@@ -28,9 +24,10 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
  const DynamicProfileHeader = dynamic(
   () => import('../../components/profile/profile-header/ProfileHeader'),
   {
+   ssr: false,
    loading: () => (
     <>
-     <ProfileHeaderSkeleton />
+     <p>Loading...</p>
     </>
    ),
   }
@@ -39,11 +36,10 @@ const ProfilePage = async ({ params }: { params: IParams }) => {
  const DynamicPostFeed = dynamic(
   () => import('../../components/posts/post-feed/PostFeed'),
   {
+   ssr: false,
    loading: () => (
     <>
-     <PostSkeleton />
-     <PostSkeleton />
-     <PostSkeleton />
+     <p>Loading...</p>
     </>
    ),
   }

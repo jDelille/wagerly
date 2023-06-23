@@ -8,7 +8,11 @@ type Props = {
 
 }
 
-const ChanceToWin: React.FC<Props> = ({ chance, }) => {
+const ChanceToWin: React.FC<Props> = ({ chance }) => {
+
+ if (!chance) {
+  return null;
+ }
 
  const projectedLeftWinner = chance.lines[0].stat1Value > chance.lines[0].stat2Value;
 

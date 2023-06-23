@@ -1,15 +1,15 @@
-import ProfileHeaderSkeleton from "@/app/components/skeleton/profile/ProfileHeaderSkeleton";
-import FeedHeaderSkeleton from "../../components/skeleton/feed-header/FeedHeaderSkeleton";
-import PostSkeleton from "../../components/skeleton/post-skeleton/PostSkeleton";
+
+import Loader from "@/app/components/loader/Loader";
+import styles from './Page.module.scss';
+import FeedHeaderSkeleton from "@/app/components/skeleton/feed-header/FeedHeaderSkeleton";
+
 
 const Loading = () => (
- <div>
-  <FeedHeaderSkeleton value="Bookmarks" />
-  <ProfileHeaderSkeleton />
-  <PostSkeleton />
-  <PostSkeleton />
-  <PostSkeleton />
-  <PostSkeleton />
+ <div className={styles.main}>
+  <FeedHeaderSkeleton value="Back" isBack />
+  <div className={styles.loading}>
+   <Loader />
+  </div>
  </div>
 )
 

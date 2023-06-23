@@ -12,18 +12,29 @@
 	border-radius: 4px;
 }
 
+.loaderWrapper {
+	height: calc(100vh - 4rem - 34px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .matchup {
 	width: 100%;
 
 	.noOddsMessage {
-		background: rgba(223, 64, 90, 0.1);
-		border: 1px solid rgba(223, 64, 90, 0.5);
-		color: #df405a;
+		// background: rgba(223, 64, 90, 0.1);
+		// border: 1px solid rgba(223, 64, 90, 0.5);
+		// color: #df405a;
 		width: 100%;
 		display: flex;
 		justify-content: center;
 		padding: 10px;
+		font-weight: 400;
+		font-size: 14px;
+		padding-top: 4rem;
 		border-radius: 4px;
 		margin-top: 1rem;
+		height: calc(100vh - 273px);
 	}
 }

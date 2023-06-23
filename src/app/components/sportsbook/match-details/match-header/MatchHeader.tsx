@@ -12,8 +12,6 @@ type Props = {
 
 const Header: React.FC<Props> = ({ matchHeader, formattedDate, header }) => {
 
-
-
  return (
   <div className={styles.header}>
    <div className={styles.matchup}>

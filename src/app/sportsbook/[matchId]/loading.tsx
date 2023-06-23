@@ -1,16 +1,15 @@
 
+import Loader from "@/app/components/loader/Loader";
+import styles from './Page.module.scss';
 import FeedHeaderSkeleton from "@/app/components/skeleton/feed-header/FeedHeaderSkeleton";
-import PostSkeleton from "@/app/components/skeleton/post-skeleton/PostSkeleton";
-import ProfileHeaderSkeleton from "@/app/components/skeleton/profile/ProfileHeaderSkeleton";
+
 
 const Loading = () => (
- <div>
-  <FeedHeaderSkeleton value="Sportsbook" />
-  <ProfileHeaderSkeleton />
-  <PostSkeleton />
-  <PostSkeleton />
-  <PostSkeleton />
-  <PostSkeleton />
+ <div className={styles.main}>
+  <FeedHeaderSkeleton value="Back" isBack />
+  <div className={styles.loading}>
+   <Loader />
+  </div>
  </div>
 )
 

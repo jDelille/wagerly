@@ -9,6 +9,7 @@
 	padding-top: 20px;
 	transition: all 100ms ease-in-out;
 	background-color: $mystic;
+	z-index: 999;
 
 	@include breakpoint(sm) {
 		background-color: $darkerMystic;

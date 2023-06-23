@@ -11,10 +11,12 @@ import Header from './match-header/MatchHeader';
 
 import styles from './MatchDetails.module.scss';
 import { observer } from 'mobx-react';
+import Loader from '../../loader/Loader';
 
 type Props = {
 	matchId: string;
 };
+
 
 const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +27,7 @@ const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 	const [totalBreakdown, setTotalBreakdown] = useState<Breakdown>();
 	const [winnerBreakdown, setWinnerBreakdown] = useState<Breakdown>();
 	const [chance, setChance] = useState<Chance>()
+	const [error, setError] = useState('')
 
 	const league = matchStore.league;
 
@@ -37,16 +40,23 @@ const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 					const header = await getMatch(matchId, league, league.length);
 					const odds = await getOdds(matchId, league, league.length);
 					setHeader(header.header);
+
 					if (odds) {
-						setOdds(odds.sectionList[0].modules[0].model);
+						setOdds(odds.sectionList[0]?.modules[0].model);
 					}
-					setChance(odds.sectionList[0].modules[1].model)
-					setSpreadBreakdown(odds.sectionList[0].modules[3].model);
-					setWinnerBreakdown(odds.sectionList[0].modules[5]?.model);
-					setTotalBreakdown(
-						odds.sectionList[0].modules[7]?.model ||
-						odds.sectionList[0].modules[4]?.model
-					);
+
+					if (odds.sectionList.length === 0) {
+						setChance(odds.sectionList[0]?.modules[1].model)
+						setSpreadBreakdown(odds.sectionList[0]?.modules[3].model);
+						setWinnerBreakdown(odds.sectionList[0]?.modules[5]?.model);
+						setTotalBreakdown(
+							odds.sectionList[0]?.modules[7]?.model ||
+							odds.sectionList[0]?.modules[4]?.model
+						);
+					} else {
+						setError('- Odds not yet available -')
+					}
+
 					setIsLoading(false);
 				}, delay);
 			} catch (error) {
@@ -116,8 +126,11 @@ const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 	const colorValue2 = chance && chance.lines[0].color2;
 
 
-	return isLoading || !odds ? (
-		<div className={styles.loading}>Loading...</div>
+	return isLoading || !matchHeader.leftTeam.name ? (
+		<div className={styles.loaderWrapper}>
+			<Loader />
+		</div>
+
 	) : (
 		<div className={styles.matchup}>
 			<Header
@@ -129,13 +142,17 @@ const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 			{/* <FeedToggle /> */}
 
 			{odds ? (
-				<Odds
-					odds={odds}
-					leftName={header?.leftTeam.name as string}
-					rightName={header?.rightTeam.name as string}
-					formattedDate={formattedDate}
-					matchHeader={matchHeader}
-				/>
+				<>
+					<Odds
+						odds={odds}
+						leftName={header?.leftTeam.name as string}
+						rightName={header?.rightTeam.name as string}
+						formattedDate={formattedDate}
+						matchHeader={matchHeader}
+					/>
+					<ChanceToWin chance={chance as Chance} />
+				</>
+
 			) : (
 				<strong className={styles.noOddsMessage}>
 					{' '}
@@ -143,7 +160,6 @@ const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 				</strong>
 			)}
 
-			<ChanceToWin chance={chance as Chance} />
 
 			{spreadBreakdown?.title && (
 				<BreakdownRow
