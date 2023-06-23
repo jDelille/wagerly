@@ -49,9 +49,13 @@ const Gamebar: React.FC = () => {
   <div className={styles.gamebarWrapper}>
    <div className={styles.gamebar} ref={gameScrollerRef} >
     <div className={styles.content} >
-     {matches.map((match) => (
-      <GameCard key={match.id} match={match} />
-     ))}
+     {matches.map((match) => {
+      if (match.upperTeam) {
+       return (
+        <GameCard key={match.id} match={match} />
+       )
+      }
+     })}
     </div>
 
    </div>
