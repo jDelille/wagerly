@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import PostSkeleton from '@/app/components/skeleton/post-skeleton/PostSkeleton';
 
 import styles from './Page.module.scss';
+import getCurrentUser from '@/app/actions/getCurrentUser';
 
 interface IParams {
  matchId?: string;
@@ -18,12 +19,17 @@ const DynamicMatchDetails = dynamic(() => import('../../components/sportsbook/ma
 })
 
 const Match = async ({ params }: { params: IParams }) => {
+
+ const currentUser = await getCurrentUser()
+
  return (
   <div className={styles.main}>
    <FeedHeader
     label='Sportsbook'
     isBack={false}
     isSportsbook={true}
+    currentUserPhoto={currentUser?.photo as string}
+    currentUsername={currentUser?.username as string}
 
    />
    <div className={styles.content}>

@@ -45,11 +45,17 @@
 			.score {
 				margin-left: auto;
 				padding-right: 55px;
+				@include breakpoint(xs) {
+					display: none;
+				}
 			}
 			.abbreviation {
 				display: none;
 				@include breakpoint(xs) {
 					display: block;
+					span {
+						padding-left: 5px;
+					}
 				}
 			}
 		}

@@ -84,7 +84,7 @@ const Odds: React.FC<Props> = ({ odds, leftName, rightName, formattedDate, match
       />
       <strong className={styles.name}>{odds?.odds.rows[0].fullText}</strong>
       <strong className={styles.score}>{matchHeader.leftTeam.score}</strong>
-      <strong className={styles.abbreviation}>{leftName}</strong>
+      <strong className={styles.abbreviation}>{leftName}<span>{matchHeader.leftTeam.score}</span></strong>
      </div>
      {odds?.odds.rows[0].values?.map((value, i) => {
       if (i <= 2) {
@@ -110,7 +110,7 @@ const Odds: React.FC<Props> = ({ odds, leftName, rightName, formattedDate, match
       />
       <strong className={styles.name}>{odds?.odds.rows[1].fullText}</strong>
       <strong className={styles.score}>{matchHeader.rightTeam.score}</strong>
-      <strong className={styles.abbreviation}>{rightName} </strong>
+      <strong className={styles.abbreviation}>{rightName}<span>{matchHeader.rightTeam.score}</span></strong>
      </div>
 
      {odds?.odds.rows[1].values?.map((value, i) => {
