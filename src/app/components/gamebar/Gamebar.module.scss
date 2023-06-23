@@ -26,6 +26,10 @@
 		@include breakpoint(xs) {
 			background-color: $white;
 			position: relative;
+			overflow-x: auto;
+			&::-webkit-scrollbar {
+				display: none;
+			}
 		}
 
 		.content {
