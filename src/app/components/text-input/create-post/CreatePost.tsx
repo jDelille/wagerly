@@ -9,6 +9,7 @@ import Image from 'next/image'
 import Button from '../../../ui/button/Button';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'
+import { HiGif } from 'react-icons/hi2'
 
 import styles from './CreatePost.module.scss';
 import Gifs from '../../gifs/Gifs';
@@ -207,7 +208,7 @@ const CreatePost = observer(() => {
           </div>
 
           <div className={styles.icon} onClick={() => setShowGifs(true)}>
-            <MdGifBox color="#36393e" size={22} />
+            <HiGif color="#36393e" size={20} />
           </div>
 
           {/* <div className={styles.icon}>

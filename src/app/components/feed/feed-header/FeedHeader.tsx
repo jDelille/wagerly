@@ -50,14 +50,14 @@ const FeedHeader: React.FC<Props> = ({ label, isBack, isSportsbook, currentUserP
      <MobileNavbar currentUsername={currentUsername} />
     )}
 
-    {/* {hasControls && (
+    {hasControls && (
      <div className={styles.controls} onClick={() => setOpenControls(!openControls)}>
       <HiAdjustmentsHorizontal size={24} />
       {openControls && (
        <GamebarControls />
       )}
      </div>
-    )} */}
+    )}
    </div>
 
   </div>

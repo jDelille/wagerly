@@ -3,17 +3,19 @@
 import Link from "next/link";
 import { IconType } from "react-icons";
 import styles from './NavigationPanel.module.scss';
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type Props = {
  value: string;
- icon: IconType;
+ icon: IconProp
  href: string;
 }
 
-const NavLink: React.FC<Props> = ({ value, icon: Icon, href }) => {
+const NavLink: React.FC<Props> = ({ value, icon, href }) => {
  return (
   <Link href={href} className={styles.link}>
-   <Icon size={18} className={styles.icon} color="#3c3f47" />
+   <FontAwesomeIcon icon={icon} color="#282c37" className={styles.icon} />
    <span className={styles.value}>{value}</span>
   </Link>
  );

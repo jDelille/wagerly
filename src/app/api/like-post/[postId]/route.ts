@@ -38,8 +38,10 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 		if (post?.userId) {
 			await prisma.notification.create({
 				data: {
-					body: 'Someone liked your post',
+					username: currentUser?.username,
+					body: `liked your post`,
 					userId: post?.userId,
+					postId: postId,
 				},
 			});
 

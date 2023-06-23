@@ -36,21 +36,9 @@ export default async function Home() {
           hasControls
         />
         <Gamebar />
-        {/* <DynamicPostFeed
-          initialPosts={posts}
-          isProfilePage={false}
-          isMainPage={true}
-          currentUser={currentUser}
-          users={users}
-        /> */}
-        {/* <PostFeed
-          initialPosts={posts}
-          currentUser={currentUser}
-        /> */}
         <Feed
           isMainPage
           posts={posts}
-
           currentUser={currentUser}
           users={users}
         />

@@ -7,7 +7,8 @@ import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 import { IoLogOut } from 'react-icons/io5';
 import { FaUserCircle } from 'react-icons/fa';
-
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 type Props = {
   currentUsername?: string;
 };
@@ -23,28 +24,43 @@ const NavigationPanel: React.FC<Props> = ({ currentUsername }) => {
           ? NavLinks.navLinks.map((link) => {
             if (link.label === 'Explore')
               return (
-                <NavLink key={link.id} value={link.label} icon={link.icon} href={link.href} />
+                <NavLink
+                  key={link.id}
+                  value={link.label}
+                  icon={link.icon}
+                  href={link.href}
+                />
               );
           })
           : NavLinks.navLinks.map((link) => (
             <>
-              <NavLink key={link.id} value={link.label} icon={link.icon} href={link.href} />
+              <NavLink
+                key={link.id}
+                value={link.label}
+                icon={link.icon}
+                href={link.href}
+              />
             </>
           ))}
-
-
       </div>
       <div className={styles.authLinks}>
         {!currentUsername ? (
           <>
-            <Link href={'/login'} className={styles.link}>Log In</Link>
-            <Link href={'/login'} className={styles.link}>Sign up</Link>
+            <Link href={'/login'} className={styles.link}>
+              Log In
+            </Link>
+            <Link href={'/login'} className={styles.link}>
+              Sign up
+            </Link>
           </>
         ) : (
-          <div onClick={() => signOut()} className={styles.logoutLink}><IoLogOut size={20} color="#3c3f47" /><span>Logout</span></div>
+          <div onClick={() => signOut()} className={styles.logoutLink}>
+            <FontAwesomeIcon icon={faRightFromBracket} color='#36393e' />
+            <span>Logout</span>
+          </div>
         )}
       </div>
-    </div >
+    </div>
   );
 };
 

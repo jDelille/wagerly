@@ -13,6 +13,10 @@
     "schema": "./src/prisma/schema.prisma"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@giphy/js-fetch-api": "^4.9.3",
     "@giphy/react-components": "^6.9.4",
     "@mantine/hooks": "^6.0.13",
@@ -27,6 +31,7 @@
     "date-fns": "^2.29.3",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
+    "font-awesome": "^4.7.0",
     "mobx": "^6.9.0",
     "mobx-react": "^7.6.0",
     "moment": "^2.29.4",

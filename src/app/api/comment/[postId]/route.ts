@@ -46,7 +46,6 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 
 	let updatedCommentedIds = new Set(post.commentedIds || []);
 	updatedCommentedIds.add(currentUser?.id);
- 
 
 	// start notification
 
@@ -56,6 +55,7 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 				data: {
 					body: `${currentUser.name} commented on your post.`,
 					userId: post?.userId,
+					postId: post?.id,
 				},
 			});
 

@@ -23,20 +23,32 @@
 		flex-direction: column;
 		border-bottom: 1px solid $heather;
 		padding: 1rem 0;
+
 		.link {
 			padding: 15px 0;
 			display: flex;
 			gap: 10px;
 			align-items: center;
 			height: 48px;
+			position: relative;
+
+			.dot {
+				background-color: #ff304f;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				position: absolute;
+				top: 13px;
+			}
 			svg {
 				font-size: 16px;
+				color: lighten($charade, 15%);
 			}
 			a {
-				color: $charade;
 				text-decoration: none;
+				color: $charade;
+
 				&:hover {
-					text-decoration: underline;
 					color: $charade;
 				}
 			}

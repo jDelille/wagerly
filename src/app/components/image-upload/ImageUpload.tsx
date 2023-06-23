@@ -2,8 +2,10 @@ import Image from 'next/image';
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { MdInsertPhoto } from 'react-icons/md';
+import { faCameraRetro } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './ImageUpload.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type ImageUploadProps = {
  onChange: (base64: string) => void;
@@ -76,7 +78,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       />
      ) : (
       <div className={styles.icon}>
-       <MdInsertPhoto size={22} color='#36393e' />
+       <FontAwesomeIcon icon={faCameraRetro} color="#36393e" />
       </div>
      )}
     </div>

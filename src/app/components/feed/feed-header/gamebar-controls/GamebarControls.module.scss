@@ -16,8 +16,8 @@
 	z-index: 99;
 	display: flex;
 	flex-direction: column;
+	padding: 5px 15px;
 	.option {
-		padding: 5px 15px;
 		&:hover {
 			background-color: $chetwodeBlue;
 			color: $white;

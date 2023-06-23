@@ -4,49 +4,47 @@ import { FaBell, FaHashtag, FaUserCircle, FaPenSquare } from 'react-icons/fa';
 import { MdSportsBasketball } from 'react-icons/md';
 import { RiMoneyDollarBoxFill } from 'react-icons/ri';
 
+import {
+	faHashtag,
+	faBaseballBatBall,
+	faPenToSquare,
+	faUser,
+	faBell,
+	faBookmark,
+} from '@fortawesome/free-solid-svg-icons';
+
 export const NavLinks = Object.freeze({
 	navLinks: [
 		{
 			id: 1,
 			label: 'Explore',
-			icon: FaHashtag,
+			icon: faHashtag,
 			href: '/',
 		},
 		{
 			id: 2,
 			label: 'Sportsbook',
-			icon: MdSportsBasketball,
+			icon: faBaseballBatBall,
 			href: '/sportsbook',
 		},
 		{
 			id: 3,
 			label: 'Post',
-			icon: FaPenSquare,
+			icon: faPenToSquare,
 			href: '/create-post',
 		},
 		// {
-		// 	id: 3,
-		// 	label: 'Profile',
-		// 	icon: FaUserCircle,
-		// 	href: (currentUsername: string) => `/user/${currentUsername}`,
+		// 	id: 4,
+		// 	label: 'Notifications',
+		// 	icon: faBell,
+		// 	href: `/notifications/${currentUsername}`,
+		// 	hasNotification: hasNotification,
 		// },
-		{
-			id: 4,
-			label: 'Notifications',
-			icon: FaBell,
-			href: '/',
-		},
-		{
-			id: 5,
-			label: 'Bookmarks',
-			icon: BsFillBookmarkFill,
-			href: '/bookmarks',
-		},
-		{
-			id: 6,
-			label: 'Likes',
-			icon: AiFillLike,
-			href: '/likes',
-		},
+		// {
+		// 	id: 5,
+		// 	label: 'Bookmarks',
+		// 	icon: faBookmark,
+		// 	href: `/bookmarks/${currentUsername}`,
+		// },
 	],
 });

@@ -1,0 +1,55 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.main {
+	@include page();
+	padding-bottom: 0;
+
+	.noNotificationsMessage {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: $fontSizeLg;
+		padding: 20px;
+		text-align: center;
+		height: calc(100vh - 4rem - 2px);
+	}
+
+	.content {
+		border: 1px solid $heather;
+		border-top: 0;
+		min-height: calc(100vh - 4rem - 1px);
+		display: flex;
+		flex-direction: column;
+
+		.notification {
+			padding: 15px;
+			border-bottom: 1px solid $heather;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			p {
+				a {
+					color: $chetwodeBlue;
+				}
+			}
+			.viewPostBtn {
+				border-radius: 5px;
+				font-size: $fontSizeLg;
+				font-weight: 500;
+				height: 45px;
+				text-decoration: none;
+				// padding: 10px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: $white;
+				transition: all 200ms ease-in-out;
+				&:hover {
+					// background-color: lighten($chetwodeBlue, 5%);
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}

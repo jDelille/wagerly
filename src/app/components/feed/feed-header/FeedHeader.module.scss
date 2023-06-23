@@ -92,6 +92,9 @@
 			cursor: pointer;
 			padding: 2px;
 			border-radius: 4px;
+			@include breakpoint(xs) {
+				display: none;
+			}
 			&:hover {
 				background-color: darken($white, 5%);
 			}

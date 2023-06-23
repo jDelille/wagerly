@@ -1,65 +1,52 @@
 'use client';
 
-import { FaHashtag, FaMoneyBill, FaUserCircle, FaBell } from 'react-icons/fa';
+import NavLink from './NavLink';
+import { faHashtag, faBaseballBatBall, faUser, faBell, faBookmark } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Nav.module.scss';
-import Link from 'next/link';
-import NavLink from './NavLink';
-import { BsFillBookmarkFill } from 'react-icons/bs';
-import { RiMoneyDollarBoxFill } from 'react-icons/ri'
-import { AiFillLike } from 'react-icons/ai';
-import { MdSportsBasketball } from 'react-icons/md';
 
 type Props = {
   currentUsername?: string;
+  hasNotification?: boolean;
 }
 
 
 
-const Nav: React.FC<Props> = ({ currentUsername }) => {
+const Nav: React.FC<Props> = ({ currentUsername, hasNotification }) => {
 
   const links = [
     {
       id: 1,
       label: 'Explore',
-      icon: FaHashtag,
+      icon: faHashtag,
       href: '/'
     },
     {
       id: 2,
       label: 'Sportsbook',
-      icon: MdSportsBasketball,
+      icon: faBaseballBatBall,
       href: '/sportsbook'
     },
     {
       id: 3,
       label: 'Profile',
-      icon: FaUserCircle,
+      icon: faUser,
       href: `/user/${currentUsername}`
-
     },
     {
       id: 4,
       label: 'Notifications',
-      icon: FaBell,
-      href: '/'
-
+      icon: faBell,
+      href: `/notifications/${currentUsername}`,
+      hasNotification: hasNotification
     },
     {
       id: 5,
       label: 'Bookmarks',
-      icon: BsFillBookmarkFill,
+      icon: faBookmark,
       href: `/bookmarks/${currentUsername}`
     },
-    {
-      id: 6,
-      label: 'Likes',
-      icon: AiFillLike,
-      href: '/likes'
-
-    },
-
-  ]
+  ];
 
 
   return (
@@ -77,7 +64,7 @@ const Nav: React.FC<Props> = ({ currentUsername }) => {
           })
         ) : (
           links.map((link) => (
-            <NavLink key={link.id} label={link.label} id={link.id} icon={link.icon} href={link.href} />
+            <NavLink key={link.id} label={link.label} id={link.id} icon={link.icon} href={link.href} hasNotification={hasNotification} />
           ))
         )}
 
