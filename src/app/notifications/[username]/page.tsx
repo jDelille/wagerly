@@ -22,7 +22,6 @@ const Notifications = async ({ params }: { params: IParams }) => {
     isBack={false}
     currentUserPhoto={currentUser?.photo || '/images/placeholder.png'}
     currentUsername={currentUser?.username}
-    hasControls
    />
    <div className={styles.content}>
 

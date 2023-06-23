@@ -1,5 +1,12 @@
 @use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
 
 .main {
 	@include page();
+	padding-bottom: 0;
+	.content {
+		border: 1px solid $heather;
+		border-top: 0;
+		padding-bottom: 2rem;
+	}
 }

@@ -42,6 +42,10 @@
 					display: none;
 				}
 			}
+			.score {
+				margin-left: auto;
+				padding-right: 55px;
+			}
 			.abbreviation {
 				display: none;
 				@include breakpoint(xs) {
@@ -66,8 +70,12 @@
 				font-weight: 600;
 				transition: all 200ms ease-in-out;
 			}
+			.cantBet {
+				outline: 1px solid #22eaaa;
+			}
 			.canBet {
 				cursor: pointer;
+
 				&:hover {
 					background-color: lighten($white, 5%);
 				}

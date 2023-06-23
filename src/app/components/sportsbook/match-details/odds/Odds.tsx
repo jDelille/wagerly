@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { MatchHeader, MatchOdds } from '@/app/types/Match';
 
 import styles from './Odds.module.scss';
@@ -21,9 +22,14 @@ const Odds: React.FC<Props> = ({ odds, leftName, rightName, formattedDate, match
 
  const addToBetStore = (index: number, value?: any, team?: string) => {
 
+  console.log(odds)
+
   if (cantBet) {
    return;
   }
+
+
+
 
   if (odds) {
    betSlipModal.onOpen();
@@ -77,13 +83,14 @@ const Odds: React.FC<Props> = ({ odds, leftName, rightName, formattedDate, match
        height={20}
       />
       <strong className={styles.name}>{odds?.odds.rows[0].fullText}</strong>
+      <strong className={styles.score}>{matchHeader.leftTeam.score}</strong>
       <strong className={styles.abbreviation}>{leftName}</strong>
      </div>
      {odds?.odds.rows[0].values?.map((value, i) => {
       if (i <= 2) {
        return (
         <span
-         className={cantBet ? styles.cantBet : styles.canBet}
+         className={value.success ? styles.cantBet : styles.canBet}
          key={i}
          onClick={() => addToBetStore(i, value, 'leftTeam')}>
          {value.odds}
@@ -102,14 +109,15 @@ const Odds: React.FC<Props> = ({ odds, leftName, rightName, formattedDate, match
        height={20}
       />
       <strong className={styles.name}>{odds?.odds.rows[1].fullText}</strong>
-      <strong className={styles.abbreviation}>{rightName}</strong>
+      <strong className={styles.score}>{matchHeader.rightTeam.score}</strong>
+      <strong className={styles.abbreviation}>{rightName} </strong>
      </div>
 
      {odds?.odds.rows[1].values?.map((value, i) => {
       if (i <= 2) {
        return (
         <span
-         className={cantBet ? styles.cantBet : styles.canBet}
+         className={value.success ? styles.cantBet : styles.canBet}
          key={i}
          onClick={() => addToBetStore(i, value, 'rightTeam')}>
          {value.odds}

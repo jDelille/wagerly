@@ -26,7 +26,9 @@ const Match = async ({ params }: { params: IParams }) => {
     isSportsbook={true}
 
    />
-   <DynamicMatchDetails matchId={params.matchId as string} />
+   <div className={styles.content}>
+    <DynamicMatchDetails matchId={params.matchId as string} />
+   </div>
   </div>
  );
 }
