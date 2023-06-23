@@ -1,12 +1,12 @@
 @use '../../../styles/variables' as *;
+@use '../../../styles/breakpoints' as *;
 
 .newsCard {
 	width: 100%;
 	height: fit-content;
-	border-radius: 4px;
 	overflow: hidden;
 	background-color: $white;
-	// border: 1px solid $heather;
+	border-bottom: 1px solid $heather;
 	padding: 10px;
 	color: lightgray;
 	font-size: 13px;
@@ -17,7 +17,7 @@
 	text-decoration: none;
 	color: $charade;
 	&:hover {
-		background-color: lighten($white, 5%);
+		background-color: darken($white, 5%);
 	}
 
 	.newsCardBody {
@@ -33,7 +33,9 @@
 			flex-direction: column;
 			gap: 10px;
 			padding: 10px 0;
-
+			@include breakpoint(xs) {
+				width: 65%;
+			}
 			.headline {
 				color: $charade;
 				font-weight: 600;

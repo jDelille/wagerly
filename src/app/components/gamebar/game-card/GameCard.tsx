@@ -28,21 +28,21 @@ const GameCard: React.FC<Props> = ({ match }) => {
     <div className={styles.displayName}>
      <div className={styles.upper}>
       <Image
-       src={match.upperTeam.logoUrl}
-       alt={match.upperTeam.imageAltText}
+       src={match.upperTeam?.logoUrl}
+       alt={match.upperTeam?.imageAltText}
        width={16}
        height={16}
       />
-      <strong>{match.upperTeam.name}</strong>
+      <strong>{match.upperTeam?.name}</strong>
      </div>
      <div className={styles.lower}>
       <Image
-       src={match.lowerTeam.logoUrl}
-       alt={match.lowerTeam.imageAltText}
+       src={match.lowerTeam?.logoUrl}
+       alt={match.lowerTeam?.imageAltText}
        width={16}
        height={16}
       />
-      <strong>{match.lowerTeam.name}</strong>
+      <strong>{match.lowerTeam?.name}</strong>
 
      </div>
     </div>
