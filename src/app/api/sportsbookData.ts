@@ -72,7 +72,7 @@ export async function getOdds(matchId: string, league: string, sport: string) {
 export async function getTeam(id: string, league: string, sport?: string) {
 	try {
 		const res = await fetch(
-			`http://sports.core.api.espn.com/v2/sports/${sport}/leagues/${league}/teams/${id}?lang=en&region=us`
+			`https://sports.core.api.espn.com/v2/sports/${sport}/leagues/${league}/teams/${id}?lang=en&region=us`
 		);
 
 		if (!res.ok) {

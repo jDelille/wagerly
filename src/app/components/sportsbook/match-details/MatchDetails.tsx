@@ -97,7 +97,6 @@ const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 		<div className={styles.loaderWrapper}>
 			<Loader />
 		</div>
-
 	) : (
 		<div className={styles.matchup}>
 			<Header

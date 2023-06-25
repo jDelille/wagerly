@@ -35,11 +35,6 @@ const Odds: React.FC<Props> = ({
 
  const matchup = `${matchHeader.awayTeam.name} @ ${matchHeader.homeTeam.name}`;
 
-
- console.log(odds)
-
-
-
  const addToBetStore = (value?: any, team?: string) => {
 
   betSlipModal.onOpen();
