@@ -22,12 +22,33 @@ export type Game = {
 
 	competitions: {
 		id: string;
+		geoBroadcasts: [
+			{
+				media: {
+					shortName: string;
+				};
+			}
+		];
 		status: {
 			type: {
 				shortDetail: string;
 				detail: string;
+				state: string;
 			};
 		};
+		odds: [
+			{ details: string },
+			{
+				awayTeamOdds: {
+					winPercentage: number;
+					spreadOdds: number;
+				};
+				homeTeamOdds: {
+					winPercentage: number;
+					spreadOdds: number;
+				};
+			}
+		];
 		competitors: [
 			{
 				id: string;
@@ -40,6 +61,7 @@ export type Game = {
 						summary: string;
 					}
 				];
+
 				team: {
 					abbreviation: string;
 					displayName: string;
@@ -48,7 +70,7 @@ export type Game = {
 					logo: string;
 					color: string;
 					alternateColor: string;
-					id: number;
+					id: string;
 				};
 			},
 			{
@@ -76,7 +98,7 @@ export type Game = {
 					logo: string;
 					color: string;
 					alternateColor: string;
-					id: number;
+					id: string;
 				};
 			}
 		];

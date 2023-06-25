@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { MatchHeader, MatchOdds } from '@/app/types/Match';
+import { MatchHeader, MatchOdds, OddsType } from '@/app/types/Match';
 
 import styles from './Odds.module.scss';
 import Image from 'next/image';
@@ -9,126 +9,198 @@ import useBetSlipModal from '@/app/hooks/useBetSlipModal';
 import betSlipStore from '@/app/store/betSlipStore';
 
 type Props = {
- odds: MatchOdds;
+ odds: OddsType;
  leftName: string;
  rightName: string;
  formattedDate: string;
- matchHeader: any
-}
+ matchHeader: any;
+ matchId: string;
+};
 
-const Odds: React.FC<Props> = ({ odds, leftName, rightName, formattedDate, matchHeader }) => {
+const Odds: React.FC<Props> = ({
+ odds,
+ leftName,
+ rightName,
+ formattedDate,
+ matchHeader,
+ matchId
+}) => {
  const betSlipModal = useBetSlipModal();
- const cantBet = odds.eventStatus === 3
+ // const cantBet = odds.eventStatus === 3
 
- const addToBetStore = (index: number, value?: any, team?: string) => {
+ const homeTeamOdds = odds.homeTeamOdds;
+ const awayTeamOdds = odds.awayTeamOdds;
 
-  console.log(odds)
+ const isHomeFavorite = odds.homeTeamOdds.favorite
 
-  if (cantBet) {
-   return;
-  }
-
+ const matchup = `${matchHeader.awayTeam.name} @ ${matchHeader.homeTeam.name}`;
 
 
+ console.log(odds)
 
-  if (odds) {
-   betSlipModal.onOpen();
-   betSlipStore.setDate(formattedDate);
-   betSlipStore.setMatchup(odds.betSection.name);
-   betSlipStore.setSelectedOdds(value.odds);
-   betSlipStore.setSelectedOddsDisplay(value.betSlip.description);
-   betSlipStore.setSelectedBet(value.odds);
-   betSlipStore.setOddsDisplay(value.betSlip.oddsDisplay);
-   betSlipStore.setPayoutMultiplier(value.betSlip.payoutMultiplier);
-  }
 
-  if (team === 'leftTeam') {
-   betSlipStore.setSelectedTeamLogo(matchHeader.leftTeam.logo as string);
+
+ const addToBetStore = (value?: any, team?: string) => {
+
+  betSlipModal.onOpen();
+  betSlipStore.setDate(formattedDate);
+  betSlipStore.setMatchup(matchup);
+  betSlipStore.setSelectedOdds(value.value.odds);
+  betSlipStore.setSelectedOddsDisplay(matchId);
+  betSlipStore.setSelectedBet(value.value.label);
+  betSlipStore.setOddsDisplay(value.value.odds);
+  betSlipStore.setPayoutMultiplier(1.95);
+  betSlipStore.setType(value.value.type)
+
+
+  if (team === 'home') {
+   betSlipStore.setSelectedTeamLogo(matchHeader.homeTeam.logo as string);
    betSlipStore.setSelectedTeamName(
-    matchHeader.leftTeam.entityName as string
+    matchHeader.homeTeam.name
    );
   } else {
-   betSlipStore.setSelectedTeamLogo(matchHeader.rightTeam.logo as string);
+   betSlipStore.setSelectedTeamLogo(matchHeader.awayTeam.logo as string);
    betSlipStore.setSelectedTeamName(
-    matchHeader.rightTeam.entityName as string
+    matchHeader.awayTeam.name
    );
-  }
-
-  if (index === 0) {
-   betSlipStore.setType('Spread');
-  } else if (index === 1) {
-   betSlipStore.setType('Moneyline');
-  } else if (index === 2) {
-   betSlipStore.setType('Total');
   }
  };
 
-
  return (
   <div className={styles.odds}>
-   <strong className={styles.title}>{odds?.title}</strong>
+   <strong className={styles.title}>Matchup Odds</strong>
    <div className={styles.columnHeaders}>
-    {odds?.odds.columnHeaders.map((label) => (
-     <span key={label}>{label}</span>
-    ))}
+    <span>Spread</span>
+    <span>Total</span>
+    <span>To Win</span>
    </div>
    <div className={styles.rows}>
-
     <div className={styles.row}>
      <div className={styles.displayName}>
       <Image
-       src={odds?.odds.rows[0].imageUrl as string}
-       alt={odds?.odds.rows[0].imageAltText as string}
+       src={matchHeader.homeTeam.logo}
+       alt={'logo'}
        width={20}
        height={20}
       />
-      <strong className={styles.name}>{odds?.odds.rows[0].fullText}</strong>
-      <strong className={styles.score}>{matchHeader.leftTeam.score}</strong>
-      <strong className={styles.abbreviation}>{leftName}<span>{matchHeader.leftTeam.score}</span></strong>
+      <strong className={styles.name}>{matchHeader.homeTeam.name}</strong>
+      <strong className={styles.score}>
+       {matchHeader.homeTeam.score}
+      </strong>
+      <strong className={styles.abbreviation}>
+       {matchHeader.homeTeam.abbreviation}
+       <span>{matchHeader.homeTeam.score}</span>
+      </strong>
      </div>
-     {odds?.odds.rows[0].values?.map((value, i) => {
-      if (i <= 2) {
-       return (
-        <span
-         className={value.success ? styles.cantBet : styles.canBet}
-         key={i}
-         onClick={() => addToBetStore(i, value, 'leftTeam')}>
-         {value.odds}
-        </span>
-       );
-      }
-     })}
+     <span
+      className={styles.canBet}
+      onClick={() =>
+       addToBetStore({
+        value: {
+         odds: '-115',
+         label: String((isHomeFavorite ? '-' : '+') + odds.spread),
+         team: matchHeader.homeTeam.name,
+         type: 'Spread',
+        },
+       },
+        'home'
+       )
+      }>
+      {isHomeFavorite ? '-' : '+'}{odds.spread}
+     </span>
+     <span className={styles.canBet} onClick={() =>
+      addToBetStore({
+       value: {
+        odds: odds.overOdds.toString(),
+        label: `o ${odds.overUnder}`,
+        team: matchHeader.homeTeam.name,
+        type: 'Total',
+       },
+      },
+       'home'
+      )
+     }>
+      o{odds.overUnder}
+     </span>
+     <span className={styles.canBet} onClick={() =>
+      addToBetStore({
+       value: {
+        odds: odds.homeTeamOdds.moneyLine.toString(),
+        label: odds.homeTeamOdds.moneyLine,
+        team: matchHeader.homeTeam.name,
+        type: 'To win',
+       },
+      },
+       'home'
+      )
+     }>
+      {odds.homeTeamOdds.moneyLine}
+     </span>
     </div>
-
     <div className={styles.row}>
      <div className={styles.displayName}>
       <Image
-       src={odds?.odds.rows[1].imageUrl as string}
-       alt={odds?.odds.rows[1].imageAltText as string}
+       src={matchHeader.awayTeam.logo}
+       alt={'logo'}
        width={20}
        height={20}
       />
-      <strong className={styles.name}>{odds?.odds.rows[1].fullText}</strong>
-      <strong className={styles.score}>{matchHeader.rightTeam.score}</strong>
-      <strong className={styles.abbreviation}>{rightName}<span>{matchHeader.rightTeam.score}</span></strong>
+      <strong className={styles.name}>{matchHeader.awayTeam.name}</strong>
+      <strong className={styles.score}>
+       {matchHeader.awayTeam.score}
+      </strong>
+      <strong className={styles.abbreviation}>
+       {matchHeader.awayTeam.abbreviation}
+       <span>{matchHeader.awayTeam.score}</span>
+      </strong>
      </div>
-
-     {odds?.odds.rows[1].values?.map((value, i) => {
-      if (i <= 2) {
-       return (
-        <span
-         className={value.success ? styles.cantBet : styles.canBet}
-         key={i}
-         onClick={() => addToBetStore(i, value, 'rightTeam')}>
-         {value.odds}
-        </span>
-       );
-      }
-     })}
+     <span className={styles.canBet}
+      onClick={() =>
+       addToBetStore({
+        value: {
+         odds: '-115',
+         label: String((isHomeFavorite ? '+' : '-') + odds.spread),
+         team: matchHeader.awayTeam.name,
+         type: 'Spread',
+        },
+       },
+        'away'
+       )
+      }>
+      {isHomeFavorite ? '+' : '-'}{odds.spread}
+     </span>
+     <span className={styles.canBet} onClick={() =>
+      addToBetStore({
+       value: {
+        odds: odds.underOdds.toString(),
+        label: `u ${odds.overUnder}`,
+        team: matchHeader.awayTeam.name,
+        type: 'Total',
+       },
+      },
+       'away'
+      )
+     }>
+      u{odds.overUnder}
+     </span>
+     <span className={styles.canBet} onClick={() =>
+      addToBetStore({
+       value: {
+        odds: odds.awayTeamOdds.moneyLine.toString(),
+        label: odds.awayTeamOdds.moneyLine,
+        team: matchHeader.awayTeam.name,
+        type: 'To win',
+       },
+      },
+       'away'
+      )
+     }>
+      {odds.awayTeamOdds.moneyLine}
+     </span>
     </div>
    </div>
   </div>
  );
-}
+};
 
 export default Odds;

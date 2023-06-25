@@ -11,7 +11,8 @@
 	padding-top: 2rem;
 	padding-bottom: 2rem;
 	.title {
-		font-size: 22px;
+		font-size: 20px;
+		text-transform: uppercase;
 	}
 	.columnHeaders {
 		display: flex;
@@ -26,6 +27,7 @@
 			justify-content: center;
 			align-items: center;
 			text-align: center;
+			text-transform: uppercase;
 		}
 	}
 	.rows {

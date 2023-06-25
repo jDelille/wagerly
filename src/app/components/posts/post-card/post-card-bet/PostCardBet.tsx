@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import styles from './PostCardBet.module.scss';
+import Link from 'next/link';
 
 type Props = {
  post: any;
@@ -32,7 +33,7 @@ const PostCardBet: React.FC<Props> = ({ post: bet }) => {
     <p className={styles.odds}>
      {bet.odds}
     </p>
-    <span className={styles.description}>{bet.description}</span>
+    <Link href={`/sportsbook/${bet.description}`} className={styles.description}>View matchup</Link >
    </div>
 
    <div className={styles.disclaimer}>

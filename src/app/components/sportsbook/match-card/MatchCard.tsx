@@ -3,34 +3,37 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import matchStore from '@/app/store/matchStore';
-import { Match } from '@/app/types/Match';
 
 import styles from './MatchCard.module.scss';
+import { Game } from '@/app/types/Game';
 
 type Props = {
- match: Match;
+ match: Game;
  sport: string;
 };
 
 const MatchCard: React.FC<Props> = ({ match, sport }) => {
  const lowerTeam = {
-  name: match.lowerTeam.name,
-  longName: match.lowerTeam.longName,
-  record: match.lowerTeam.record,
-  score: match.lowerTeam.score,
-  imageAltText: match.lowerTeam.imageAltText,
-  logoUrl: match.lowerTeam.logoUrl,
-  id: match.lowerTeam.id,
+  name: match.competitions[0].competitors[0].team.name,
+  longName: match.competitions[0].competitors[0].team.name,
+  record: match.competitions[0].competitors[0].records[0].summary,
+  score: match.competitions[0].competitors[0].score,
+  imageAltText: 'logo',
+  logoUrl: match.competitions[0].competitors[0].team.logo,
+  id: match.competitions[0].competitors[0].team.id,
+  abbrv: match.competitions[0].competitors[0].team.abbreviation
  };
 
  const upperTeam = {
-  name: match.upperTeam.name,
-  longName: match.upperTeam.longName,
-  record: match.upperTeam.record,
-  score: match.upperTeam.score,
-  imageAltText: match.upperTeam.imageAltText,
-  logoUrl: match.upperTeam.logoUrl,
-  id: match.upperTeam.id,
+  name: match.competitions[0].competitors[1].team.name,
+  longName: match.competitions[0].competitors[1].team.name,
+  record: match.competitions[0].competitors[1].records[0].summary,
+  score: match.competitions[0].competitors[1].score,
+  imageAltText: 'logo',
+  logoUrl: match.competitions[0].competitors[1].team.logo,
+  id: match.competitions[0].competitors[1].team.id,
+  abbrv: match.competitions[0].competitors[1].team.abbreviation
+
  };
 
  const setMatchStoreData = () => {
@@ -42,17 +45,24 @@ const MatchCard: React.FC<Props> = ({ match, sport }) => {
  const league = matchStore.league;
 
 
- const formattedTime = new Date(match.eventTime).toLocaleTimeString([], { hour: "numeric", minute: "numeric" });
+ const formattedTime = new Date(match.date).toLocaleTimeString([], { hour: "numeric", minute: "numeric" });
 
- const inProgress = match.eventStatus === 1;
- const isScheduled = match.eventStatus === 2;
- const hasEnded = match.eventStatus === 3;
+ const inProgress = match.status.type.state === 'in'
+ const isScheduled = match.status.type.state === 'pre'
+ const hasEnded = match.status.type.state === 'post'
+
+ const tvStation = match.competitions[0].geoBroadcasts[0]?.media.shortName
+
+ const statusLine = match.status.type.shortDetail
+
+ const awaySpreadOdds = match.competitions[0].odds?.[1].awayTeamOdds.spreadOdds || null;
+ const homeSpreadOdds = match.competitions[0].odds?.[1].homeTeamOdds.spreadOdds || null;
+
 
  return (
-  <div className={styles.match}>
+  <div className={styles.match} onClick={setMatchStoreData}>
    <Link
     href={`/sportsbook/${match.id}`}
-    onClick={() => setMatchStoreData()}
     className={styles.content}>
     <div className={styles.leftSide}>
      <div className={styles.lowerTeam}>
@@ -77,12 +87,12 @@ const MatchCard: React.FC<Props> = ({ match, sport }) => {
      </div>
 
      {(hasEnded || inProgress) && (
-      <span className={styles.statusLine}>{match.statusLine}</span>
+      <span className={styles.statusLine}>{statusLine}</span>
      )}
      {isScheduled && (
       <div className={styles.statusLine}>
-       <span>{match.oddsLine} </span>
-       <span>{match.overUnderLine}</span>
+       <span>{upperTeam.abbrv} {awaySpreadOdds}</span>
+       <span>{lowerTeam.abbrv} {homeSpreadOdds}</span>
       </div>
      )}
     </div>
@@ -98,13 +108,13 @@ const MatchCard: React.FC<Props> = ({ match, sport }) => {
      )}
 
      {inProgress && (
-      <span className={styles.time}>{match.tvStation}</span>
+      <span className={styles.time}>{tvStation}</span>
      )}
 
      {isScheduled && (
       <div className={styles.info}>
        <span>{formattedTime}</span>
-       <span className={styles.station}>{match.tvStation}</span>
+       <span className={styles.station}>{tvStation || 'MLBN'}</span>
       </div>
      )}
 

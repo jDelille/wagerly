@@ -1,0 +1,35 @@
+.lastFiveGames {
+	padding: 0 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding-top: 2rem;
+	border-top: none;
+	.title {
+		font-size: 20px;
+		text-transform: uppercase;
+	}
+	.games {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		.event {
+			display: flex;
+			gap: 10px;
+			.displayName {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				width: 200px;
+			}
+			.result {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				.winLoss {
+					width: 50px;
+				}
+			}
+		}
+	}
+}

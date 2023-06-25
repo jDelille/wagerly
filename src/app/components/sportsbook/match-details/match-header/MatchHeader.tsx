@@ -6,26 +6,25 @@ import { MatchHeader } from '@/app/types/Match';
 
 type Props = {
  matchHeader: any;
- formattedDate: string;
- header: MatchHeader
+ formattedDate?: string;
 }
 
-const Header: React.FC<Props> = ({ matchHeader, formattedDate, header }) => {
+const Header: React.FC<Props> = ({ matchHeader, formattedDate, }) => {
 
  return (
   <div className={styles.header}>
    <div className={styles.matchup}>
-    <strong>{matchHeader.leftTeam.longName} vs {matchHeader.rightTeam.longName}</strong>
+    <strong>{matchHeader.homeTeam.name} vs {matchHeader.awayTeam.name}</strong>
     <div className={styles.logos}>
      <Image
-      src={matchHeader.leftTeam.logo as string}
-      alt={matchHeader.leftTeam.imageAltText as string}
+      src={matchHeader.homeTeam.logo as string}
+      alt={'logo'}
       width={40}
       height={40}
      />
      <Image
-      src={matchHeader.rightTeam.logo as string}
-      alt={matchHeader.rightTeam.imageAltText as string}
+      src={matchHeader.awayTeam.logo as string}
+      alt={'logo'}
       width={40}
       height={40}
      />
@@ -36,15 +35,10 @@ const Header: React.FC<Props> = ({ matchHeader, formattedDate, header }) => {
    </div>
 
    <div className={styles.matchInfo}>
-    <Image
-     src={header?.sportLogoUrl as string}
-     alt='sport logo url'
-     width={30}
-     height={30}
-    />
     <div className={styles.venue}>
-     <span>{header?.venueName} {header?.venueLocation}</span>
+     <span>{matchHeader?.venue} {matchHeader.city}, {matchHeader.state}</span>
     </div>
+
    </div>
   </div>
  );

@@ -2,16 +2,19 @@
 
 import { useEffect, useState } from 'react';
 import matchStore from '@/app/store/matchStore';
-import { MatchHeader, MatchOdds, Breakdown, Chance } from '@/app/types/Match';
-import { getMatch, getOdds } from '@/app/api/sportsbookData';
-import ChanceToWin from './chance-to-win/ChanceToWin';
-import BreakdownRow from './breakdown/Breakdown';
-import Odds from './odds/Odds';
+import { Chance, OddsType } from '@/app/types/Match';
+import { getMatchInfo, getMatchSummary, getOdds, getTeam } from '@/app/api/sportsbookData';
 import Header from './match-header/MatchHeader';
-
-import styles from './MatchDetails.module.scss';
 import { observer } from 'mobx-react';
 import Loader from '../../loader/Loader';
+import { Team } from '@/app/types/Team';
+import Odds from './odds/Odds';
+
+import styles from './MatchDetails.module.scss';
+import ChanceToWin from './chance-to-win/ChanceToWin';
+import LastFiveGames from './last-five-games/LastFiveGames';
+
+
 
 type Props = {
 	matchId: string;
@@ -21,15 +24,21 @@ type Props = {
 const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 	const [isLoading, setIsLoading] = useState(false);
 
-	const [header, setHeader] = useState<MatchHeader>();
-	const [odds, setOdds] = useState<MatchOdds>();
-	const [spreadBreakdown, setSpreadBreakdown] = useState<Breakdown>();
-	const [totalBreakdown, setTotalBreakdown] = useState<Breakdown>();
-	const [winnerBreakdown, setWinnerBreakdown] = useState<Breakdown>();
-	const [chance, setChance] = useState<Chance>()
+	const [odds, setOdds] = useState<OddsType>();
+	const [chance, setChance] = useState<any>()
 	const [error, setError] = useState('')
+	const [homeTeam, setHomeTeam] = useState<Team>()
+	const [awayTeam, setAwayTeam] = useState<Team>()
+	const [matchInfo, setMatchInfo] = useState<any>()
+	const [matchSummary, setMatchSummary] = useState<any>()
 
 	const league = matchStore.league;
+	const sport = matchStore.sport
+
+	const homeId = matchStore.homeTeamId || (typeof localStorage !== 'undefined' && localStorage.getItem('homeTeamId'));
+
+	const awayId = matchStore.awayTeamId || (typeof localStorage !== 'undefined' && localStorage.getItem('awayTeamId'));
+
 
 	useEffect(() => {
 		async function fetchData() {
@@ -37,25 +46,21 @@ const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 				setIsLoading(true);
 				const delay = 0;
 				setTimeout(async () => {
-					const header = await getMatch(matchId, league, league.length);
-					const odds = await getOdds(matchId, league, league.length);
-					setHeader(header.header);
 
-					if (odds) {
-						setOdds(odds.sectionList[0]?.modules[0].model);
-					}
+					const homeTeam = await getTeam(homeId as string, league, sport);
+					setHomeTeam(homeTeam)
+					const awayTeam = await getTeam(awayId as string, league, sport);
+					setAwayTeam(awayTeam)
 
-					if (odds.sectionList.length === 0) {
-						setChance(odds.sectionList[0]?.modules[1].model)
-						setSpreadBreakdown(odds.sectionList[0]?.modules[3].model);
-						setWinnerBreakdown(odds.sectionList[0]?.modules[5]?.model);
-						setTotalBreakdown(
-							odds.sectionList[0]?.modules[7]?.model ||
-							odds.sectionList[0]?.modules[4]?.model
-						);
-					} else {
-						setError('- Odds not yet available -')
-					}
+					const matchInfo = await getMatchInfo(sport, league, matchId)
+					setMatchInfo(matchInfo)
+
+					const matchSummary = await getMatchSummary(sport, league, matchId);
+					setMatchSummary(matchSummary)
+
+					const odds = await getOdds(matchId, league, sport);
+					setOdds(odds.items[0]);
+					setChance(odds.items[8])
 
 					setIsLoading(false);
 				}, delay);
@@ -68,65 +73,27 @@ const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 
 
 		fetchData();
-	}, [league, matchId]);
+	}, [awayId, homeId, league, matchId, sport]);
 
-	const formattedDate = new Date(header?.eventTime as string).toLocaleString("en-US", { month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "numeric" });
+	const formattedDate = new Date(matchInfo?.date as string).toLocaleString("en-US", { month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "numeric" });
 
 	const matchHeader = {
-		leftTeam: {
-			name: header?.leftTeam.name,
-			longName: header?.leftTeam.longName,
-			logo: header?.leftTeam.logoUrl,
-			imageAltText: header?.leftTeam.imageAltText,
-			score: header?.leftTeam.score,
-			record: header?.leftTeam.record,
-			entityName: header?.leftTeam.entityLink.title,
+		homeTeam: {
+			name: homeTeam?.name,
+			abbreviation: homeTeam?.abbreviation,
+			logo: homeTeam?.logos[0].href
 		},
-		rightTeam: {
-			name: header?.rightTeam.name,
-			longName: header?.rightTeam.longName,
-			logo: header?.rightTeam.logoUrl,
-			imageAltText: header?.rightTeam.imageAltText,
-			score: header?.rightTeam.score,
-			record: header?.rightTeam.record,
-			entityName: header?.rightTeam.entityLink.title,
+		awayTeam: {
+			name: awayTeam?.name,
+			abbreviation: awayTeam?.abbreviation,
+			logo: awayTeam?.logos[0].href
 		},
-	};
+		venue: matchInfo?.competitions[0].venue.fullName,
+		city: matchInfo?.competitions[0].venue.address.city,
+		state: matchInfo?.competitions[0].venue.address.state
+	}
 
-	const breakdown = {
-		spreadBreakdownTitle: spreadBreakdown?.title,
-		spreadBreakdownDescription: spreadBreakdown?.description,
-		totalBreakdownTitle: totalBreakdown?.title,
-		totalBreakdownDescription: totalBreakdown?.description,
-		winnerBreakdownTitle: winnerBreakdown?.title,
-		winnerBreakdownDescription: winnerBreakdown?.description,
-		leftTeam: {
-			name: spreadBreakdown?.items?.[0].leftName,
-			spreadPercent: spreadBreakdown?.items?.[0].leftValue,
-			color: spreadBreakdown?.items?.[0].leftColor,
-			spreadDisplayValue: spreadBreakdown?.items?.[0].leftDisplay,
-			totalPercent: totalBreakdown?.items?.[0].leftValue,
-			totalDisplayValue: totalBreakdown?.items?.[0].leftDisplay,
-			winnerDisplayValue: winnerBreakdown?.items?.[0].leftDisplay,
-			winnerPercent: winnerBreakdown?.items?.[0].leftValue,
-		},
-		rightTeam: {
-			name: spreadBreakdown?.items?.[0].rightName,
-			spreadPercent: spreadBreakdown?.items?.[0].rightValue,
-			color: spreadBreakdown?.items?.[0].rightColor,
-			spreadDisplayValue: spreadBreakdown?.items?.[0].rightDisplay,
-			totalPercent: totalBreakdown?.items?.[0].rightValue,
-			totalDisplayValue: totalBreakdown?.items?.[0].rightDisplay,
-			winnerDisplayValue: winnerBreakdown?.items?.[0].rightDisplay,
-			winnerPercent: winnerBreakdown?.items?.[0].rightValue,
-		},
-	};
-
-	const colorValue1 = chance && chance.lines[0].color;
-	const colorValue2 = chance && chance.lines[0].color2;
-
-
-	return isLoading || !matchHeader.leftTeam.name ? (
+	return isLoading ? (
 		<div className={styles.loaderWrapper}>
 			<Loader />
 		</div>
@@ -136,75 +103,32 @@ const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 			<Header
 				matchHeader={matchHeader}
 				formattedDate={formattedDate}
-				header={header as MatchHeader}
 			/>
 
-			{/* <FeedToggle /> */}
-
-			{odds ? (
+			{odds && (
 				<>
 					<Odds
 						odds={odds}
-						leftName={header?.leftTeam.name as string}
-						rightName={header?.rightTeam.name as string}
+						leftName={matchHeader?.homeTeam.name as string}
+						rightName={matchHeader?.awayTeam.name as string}
 						formattedDate={formattedDate}
 						matchHeader={matchHeader}
+						matchId={matchInfo.id}
 					/>
-					<ChanceToWin chance={chance as Chance} />
 				</>
-
-			) : (
-				<strong className={styles.noOddsMessage}>
-					{' '}
-					- Odds Not Yet Available -
-				</strong>
 			)}
 
+			<ChanceToWin
+				homeName={matchHeader.homeTeam.name as string}
+				awayName={matchHeader.awayTeam.name as string}
+				homeChance={matchSummary?.predictor.homeTeam.gameProjection}
+				awayChance={matchSummary?.predictor.awayTeam.gameProjection}
+			/>
 
-			{spreadBreakdown?.title && (
-				<BreakdownRow
-					title={breakdown.spreadBreakdownTitle as string}
-					description={breakdown.spreadBreakdownDescription as string}
-					leftTeamName={breakdown.leftTeam.name as string}
-					leftDisplayValue={breakdown.leftTeam.spreadDisplayValue as string}
-					leftPercent={breakdown.leftTeam.spreadPercent as number}
-					rightTeamName={breakdown.rightTeam.name as string}
-					rightDisplayValue={breakdown.rightTeam.spreadDisplayValue as string}
-					rightPercent={breakdown.rightTeam.spreadPercent as number}
-					colorValue1={colorValue1 as string}
-					colorValue2={colorValue2 as string}
-				/>
-			)}
+			{/* <LastFiveGames
+				lastFiveGames={matchSummary?.lastFiveGames}
+			/> */}
 
-			{totalBreakdown?.title && (
-				<BreakdownRow
-					title={breakdown.totalBreakdownTitle as string}
-					description={breakdown.totalBreakdownDescription as string}
-					leftTeamName={breakdown.leftTeam.name as string}
-					leftDisplayValue={breakdown.leftTeam.totalDisplayValue as string}
-					leftPercent={breakdown.leftTeam.totalPercent as number}
-					rightTeamName={breakdown.rightTeam.name as string}
-					rightDisplayValue={breakdown.rightTeam.totalDisplayValue as string}
-					rightPercent={breakdown.rightTeam.totalPercent as number}
-					colorValue1={colorValue1 as string}
-					colorValue2={colorValue2 as string}
-				/>
-			)}
-
-			{winnerBreakdown?.title && (
-				<BreakdownRow
-					title={breakdown.winnerBreakdownTitle as string}
-					description={breakdown.winnerBreakdownDescription as string}
-					leftTeamName={breakdown.leftTeam.name as string}
-					leftDisplayValue={breakdown.leftTeam.winnerDisplayValue as string}
-					leftPercent={breakdown.leftTeam.winnerPercent as number}
-					rightTeamName={breakdown.rightTeam.name as string}
-					rightDisplayValue={breakdown.rightTeam.winnerDisplayValue as string}
-					rightPercent={breakdown.rightTeam.winnerPercent as number}
-					colorValue1={colorValue1 as string}
-					colorValue2={colorValue2 as string}
-				/>
-			)}
 		</div>
 	);
 });

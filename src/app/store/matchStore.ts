@@ -24,10 +24,12 @@ class MatchStore {
 
 	setHomeTeamId(id: string) {
 		this.homeTeamId = id;
+		localStorage.setItem('homeTeamId', id);
 	}
 
 	setAwayTeamId(id: string) {
 		this.awayTeamId = id;
+		localStorage.setItem('awayTeamId', id);
 	}
 }
 

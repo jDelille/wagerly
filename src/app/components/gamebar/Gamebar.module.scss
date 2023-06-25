@@ -13,14 +13,16 @@
 		padding: 10px;
 		border: 1px solid $heather;
 		border-top: 0;
-		overflow-x: hidden;
+		overflow-x: auto;
+		&::-webkit-scrollbar {
+			display: none;
+		}
 		@include breakpoint(sm) {
 			background-color: $mystic;
 			left: unset;
 			transform: unset;
 			border-bottom: 1px solid $heather;
 			width: 100%;
-			overflow-x: hidden;
 			border-right: 1px solid $heather;
 		}
 		@include breakpoint(xs) {

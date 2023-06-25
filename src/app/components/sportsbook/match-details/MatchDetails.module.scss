@@ -21,6 +21,7 @@
 
 .matchup {
 	width: 100%;
+	min-height: calc(100vh - 6rem - 2px);
 
 	.noOddsMessage {
 		// background: rgba(223, 64, 90, 0.1);

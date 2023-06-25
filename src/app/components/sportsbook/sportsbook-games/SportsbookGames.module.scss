@@ -5,6 +5,7 @@
 	border: 1px solid $heather;
 	border-top: 0;
 	border-bottom: 0;
+	min-height: calc(100vh - 4rem - 1px);
 }
 
 .header {

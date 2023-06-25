@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react';
 
 import SportSelector from '../sport-selector/SportSelector';
 import MatchCard from '../match-card/MatchCard';
-import { getGames } from '@/app/api/sportsbookData';
+import { getGames, getScores } from '@/app/api/sportsbookData';
 import { Match } from '@/app/types/Match';
 
 import styles from './SportsbookGames.module.scss';
 import matchStore from '@/app/store/matchStore';
+import { Game } from '@/app/types/Game';
 
 type Date = {
   date: string;
@@ -17,7 +18,7 @@ type Date = {
 
 const SportsbookGames = () => {
   const [sport, setSport] = useState('baseball');
-  const [matches, setMatches] = useState<Match[]>([]);
+  const [matches, setMatches] = useState<Game[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [dates, setDates] = useState<Date[]>()
 
@@ -44,9 +45,8 @@ const SportsbookGames = () => {
         setIsLoading(true);
         const delay = 0;
         setTimeout(async () => {
-          const matches = await getGames(league, apiDate || formattedDate);
-          setDates(matches.quickNav)
-          setMatches(matches.sectionList[0].events);
+          const matches = await getScores(sport, league);
+          setMatches(matches.events);
           setIsLoading(false);
         }, delay);
       } catch (error) {
@@ -58,6 +58,7 @@ const SportsbookGames = () => {
 
     fetchData();
   }, [league, sport, apiDate, formattedDate]);
+
 
   const formatDate = (dateStr: string) => {
     const year = dateStr.substring(0, 4);
@@ -74,6 +75,7 @@ const SportsbookGames = () => {
     return formattedDate;
   };
 
+
   return (
     <div className={styles.sportsBookGames}>
       <SportSelector
@@ -84,48 +86,31 @@ const SportsbookGames = () => {
         <strong>{league} Sportsbook</strong>
       </div>
       <div className={styles.dates}>
-        {dates?.map((date) => (
+        {/* {dates?.map((date) => (
           <span
             key={date.id}
             onClick={() => setApiDate(date.id)}
             className={apiDate === date.id ? styles.activeDate : ""}
           >{formatDate(date.id)}</span>
-        ))}
+        ))} */}
       </div>
       <div className={`${styles.feed} ${isLoading ? styles.loading : styles.loaded}`}>
         {matches
+          .slice()
           .sort((a, b) => {
-            // Check if matches have finished
-            const aFinished = a.statusLine === "FINAL";
-            const bFinished = b.statusLine === "FINAL";
-
-            if (aFinished && !bFinished) {
-              return 1; // Move a to the end
+            if (a.status.type.state === b.status.type.state) {
+              // If both matches have the same state, sort based on start time
+              return a.date > b.date ? 1 : -1;
+            } else if (a.status.type.state === "pre" || a.status.type.state === "in") {
+              // Prioritize matches that haven't started or are in progress
+              return -1;
+            } else {
+              // Move completed matches to the end
+              return 1;
             }
-            if (!aFinished && bFinished) {
-              return -1; // Move b to the end
-            }
-
-            // Check if matches are in progress
-            const aInProgress = a.eventStatus === 1; // Assuming 1 represents "in progress" status
-            const bInProgress = b.eventStatus === 1;
-
-            if (aInProgress && !bInProgress) {
-              return -1; // Move a to the top
-            }
-            if (!aInProgress && bInProgress) {
-              return 1; // Move b to the top
-            }
-
-            // Sort scheduled matches by time
-            return new Date(a.eventTime).getTime() - new Date(b.eventTime).getTime();
           })
-          .map((match, i) => (
-            <MatchCard
-              key={match.id}
-              match={match}
-              sport={sport}
-            />
+          .map((match) => (
+            <MatchCard key={match.id} match={match} sport={sport} />
           ))}
       </div>
 
