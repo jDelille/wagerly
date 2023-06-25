@@ -2,14 +2,16 @@
 
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useRef, useState } from 'react';
-import { MdGifBox, MdPoll } from 'react-icons/md'
-import { AiFillCloseCircle } from 'react-icons/ai'
+import { MdGifBox, MdPoll } from 'react-icons/md';
+import { AiFillCloseCircle } from 'react-icons/ai';
 import ImageUpload from '../../image-upload/ImageUpload';
-import Image from 'next/image'
+import Image from 'next/image';
 import Button from '../../../ui/button/Button';
 import axios from 'axios';
-import { useRouter } from 'next/navigation'
-import { HiGif } from 'react-icons/hi2'
+import { useRouter } from 'next/navigation';
+import { HiGif } from 'react-icons/hi2';
+import autosize from '@/app/utils/autosize';
+import useInputLengthValidator from '@/app/utils/inputLengthValidator';
 
 import styles from './CreatePost.module.scss';
 import Gifs from '../../gifs/Gifs';
@@ -17,14 +19,12 @@ import postPreviewStore from '@/app/store/postPreviewStore';
 import CreateComment from '../create-comment/CreateComment';
 import { observer } from 'mobx-react';
 
-
 const CreatePost = observer(() => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const [error, setError] = useState(false)
   const [showGifs, setShowGifs] = useState(false);
   const [photo, setPhoto] = useState('');
-  const [isLoading, setIsLoading] = useState(false)
-  const isOpen = postPreviewStore.isOpen
+  const [isLoading, setIsLoading] = useState(false);
+  const isOpen = postPreviewStore.isOpen;
   const router = useRouter();
 
   const {
@@ -44,7 +44,7 @@ const CreatePost = observer(() => {
 
   const body = watch('postBody');
   const postPhoto = watch('photo');
-  const postBodyLength = body.length || 0
+  const postBodyLength = body.length || 0;
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -70,70 +70,67 @@ const CreatePost = observer(() => {
       betId: '',
       parlayId: '',
       pollId: '',
-      likedIds: [], commentedIds: [], taggedUserIds: [], isPinned: false, tags: []
-    }
+      likedIds: [],
+      commentedIds: [],
+      taggedUserIds: [],
+      isPinned: false,
+      tags: [],
+    };
 
     axios
       .post('/api/post', data)
       .then(() => {
-        router.push('/')
+        router.push('/');
         router.refresh();
         reset();
       })
       .catch((error) => {
-        setError(error.message)
+        console.log(error)
       })
       .finally(() => {
         setIsLoading(false);
-        setPhoto("")
+        setPhoto('');
       });
   };
 
-  const handleTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleTextareaChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const inputValue = event.target.value;
     if (inputValue.length <= 500) {
       setCustomValue('postBody', inputValue);
     } else {
       setCustomValue('postBody', inputValue.slice(0, 500));
     }
-  }
-
-  const autosize = () => {
-    if (textAreaRef.current) {
-      var el = textAreaRef.current;
-      setTimeout(function () {
-        el.style.cssText = 'height:auto; padding:0';
-        el.style.cssText = 'height:' + el.scrollHeight + 'px';
-      }, 0);
-    }
   };
 
   useEffect(() => {
-    if (textAreaRef.current) {
-      const textarea = textAreaRef.current;
-      textarea.addEventListener('keydown', autosize);
+    const textarea = textAreaRef.current;
 
-      return () => {
-        textarea.removeEventListener('keydown', autosize);
-      };
+    const autosizeHandler = () => {
+      autosize(textAreaRef);
+    };
+
+    if (textarea) {
+      textarea.addEventListener('keydown', autosizeHandler);
     }
+
+    return () => {
+      if (textarea) {
+        textarea.removeEventListener('keydown', autosizeHandler);
+      }
+    };
   }, []);
 
-  useEffect(() => {
-    if (postBodyLength > 500) {
-      setError(true)
-    } else {
-      setError(false)
-    }
-  }, [postBodyLength])
+  const error = useInputLengthValidator(postBodyLength, 500);
 
   const clearPhoto = () => {
     setCustomValue('photo', '');
-    setPhoto && setPhoto('')
-  }
+    setPhoto && setPhoto('');
+  };
 
   if (isOpen) {
-    return <CreateComment />
+    return <CreateComment />;
   }
 
   return (
@@ -144,18 +141,14 @@ const CreatePost = observer(() => {
           className={styles.textarea}
           onChange={(event) => {
             event.stopPropagation();
-            handleTextareaChange(event)
+            handleTextareaChange(event);
           }}
           value={body}
           ref={textAreaRef}
-          rows={1}>
-        </textarea>
+          rows={1}></textarea>
         {photo && (
           <div className={styles.imagePreview}>
-
-            <div
-              className={styles.closeImagePreview}
-              onClick={clearPhoto}>
+            <div className={styles.closeImagePreview} onClick={clearPhoto}>
               <AiFillCloseCircle size={30} />
             </div>
 
@@ -167,14 +160,10 @@ const CreatePost = observer(() => {
               style={{ objectFit: 'cover' }}
             />
           </div>
-
         )}
         {postPhoto.url && (
           <div className={styles.imagePreview}>
-
-            <div
-              className={styles.closeImagePreview}
-              onClick={clearPhoto}>
+            <div className={styles.closeImagePreview} onClick={clearPhoto}>
               <AiFillCloseCircle size={30} />
             </div>
 
@@ -208,7 +197,7 @@ const CreatePost = observer(() => {
           </div>
 
           <div className={styles.icon} onClick={() => setShowGifs(true)}>
-            <HiGif color="#36393e" size={20} />
+            <HiGif color='#36393e' size={20} />
           </div>
 
           {/* <div className={styles.icon}>
@@ -222,7 +211,6 @@ const CreatePost = observer(() => {
             )}
           </div>
         </div>
-
       </div>
       <div className={styles.postButton}>
         <Button
@@ -231,11 +219,9 @@ const CreatePost = observer(() => {
           isButtonDisabled={!body || postBodyLength > 500}
           ariaLabel='Publish post'
         />
-
       </div>
     </>
-
   );
-})
+});
 
 export default CreatePost;
