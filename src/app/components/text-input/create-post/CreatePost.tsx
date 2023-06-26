@@ -5,20 +5,25 @@ import ImageUpload from '@/app/components/image-upload/ImageUpload';
 import CreateComment from '@/app/components/text-input/create-comment/CreateComment';
 import postPreviewStore from '@/app/store/postPreviewStore';
 import Button from '@/app/ui/button/Button';
-import autosize from '@/app/utils/autosize';
 import useInputLengthValidator from '@/app/utils/inputLengthValidator';
 import axios from 'axios';
 import { observer } from 'mobx-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { HiGif } from 'react-icons/hi2';
+import TagAndMentionInput from '../tag-and-mention-input/TagAndMentionInput';
 
 import styles from './CreatePost.module.scss';
+import { User } from '@prisma/client';
 
-const CreatePost = observer(() => {
+type Props = {
+  users: User[]
+}
+
+const CreatePost: React.FC<Props> = observer(({ users }) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [showGifs, setShowGifs] = useState(false);
   const [photo, setPhoto] = useState('');
@@ -55,26 +60,7 @@ const CreatePost = observer(() => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-
     data.groupId = null;
-
-    const newPost = {
-      id: '',
-      userId: data.userId,
-      body: body,
-      photo: photo,
-      groupId: null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      betId: '',
-      parlayId: '',
-      pollId: '',
-      likedIds: [],
-      commentedIds: [],
-      taggedUserIds: [],
-      isPinned: false,
-      tags: [],
-    };
 
     axios
       .post('/api/post', data)
@@ -92,34 +78,6 @@ const CreatePost = observer(() => {
       });
   };
 
-  const handleTextareaChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    const inputValue = event.target.value;
-    if (inputValue.length <= 500) {
-      setCustomValue('postBody', inputValue);
-    } else {
-      setCustomValue('postBody', inputValue.slice(0, 500));
-    }
-  };
-
-  useEffect(() => {
-    const textarea = textAreaRef.current;
-
-    const autosizeHandler = () => {
-      autosize(textAreaRef);
-    };
-
-    if (textarea) {
-      textarea.addEventListener('keydown', autosizeHandler);
-    }
-
-    return () => {
-      if (textarea) {
-        textarea.removeEventListener('keydown', autosizeHandler);
-      }
-    };
-  }, []);
 
   const error = useInputLengthValidator(postBodyLength, 500);
 
@@ -135,16 +93,11 @@ const CreatePost = observer(() => {
   return (
     <>
       <div className={styles.createPost}>
-        <textarea
-          placeholder="What's on your mind?"
-          className={styles.textarea}
-          onChange={(event) => {
-            event.stopPropagation();
-            handleTextareaChange(event);
-          }}
-          value={body}
-          ref={textAreaRef}
-          rows={1}></textarea>
+        <TagAndMentionInput
+          setCustomValue={setCustomValue}
+          body={body}
+          users={users}
+        />
         {photo && (
           <div className={styles.imagePreview}>
             <div className={styles.closeImagePreview} onClick={clearPhoto}>

@@ -26,6 +26,31 @@ body {
 	}
 }
 
+.TagAndMentionInput_textarea__PS6bO__highlighter {
+	display: none;
+}
+
+.TagAndMentionInput_textarea__PS6bO__suggestions__item {
+	div {
+		display: flex;
+		align-items: center;
+		div {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: flex-start;
+			strong {
+				font-weight: 400;
+			}
+		}
+	}
+	img {
+		width: 30px;
+		height: 30px;
+		margin-right: 10px;
+	}
+}
+
 .layout {
 	width: 1174px;
 	margin: 0 auto;

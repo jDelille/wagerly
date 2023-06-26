@@ -12,6 +12,7 @@ import Search from './components/search/Search';
 import CreatePost from './components/text-input/create-post/CreatePost';
 import Auth from './components/user/auth/Auth';
 import CurrentUserBox from './components/user/current-user-box/CurrentUserBox';
+import getUsers from './actions/getUsers';
 
 export const metadata = {
   title: 'Wagerly',
@@ -24,8 +25,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
 
-  const currentUser = await getCurrentUser();
-
+  const [currentUser, users] = await Promise.all([getCurrentUser(), getUsers()])
 
   return (
     <html lang="en">
@@ -42,7 +42,9 @@ export default async function RootLayout({
                 <Search />
                 <CurrentUserBox currentUser={currentUser} />
                 <PostPreview />
-                <CreatePost />
+                <CreatePost
+                  users={users}
+                />
               </>
             )}
             <div className='disclaimer'>

@@ -5,12 +5,7 @@ import getPosts from './actions/getPosts';
 import getUsers from './actions/getUsers';
 import FeedHeader from './components/feed/feed-header/FeedHeader';
 import styles from './styles/App.module.scss';
-
-;
-
-
-
-
+import PostSkeleton from './components/skeleton/post-skeleton/PostSkeleton';
 
 export default async function Home() {
 
@@ -19,14 +14,15 @@ export default async function Home() {
   const DynamicFeed = dynamic(() => import('./components/feed/Feed'), {
     ssr: false,
     loading: () => <>
-      <p>Loading...</p>
+      <PostSkeleton />
+      <PostSkeleton />
     </>
   })
 
   const DynamicGamebar = dynamic(() => import('./components/gamebar/Gamebar'), {
     ssr: false,
     loading: () => <>
-      <p>Loading...</p>
+      <PostSkeleton />
     </>
   })
 

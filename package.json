@@ -43,6 +43,7 @@
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.44.3",
     "react-icons": "^4.9.0",
+    "react-mentions": "^4.4.9",
     "react-resize-observer": "^1.1.1",
     "react-spinners": "^0.13.8",
     "sass": "^1.63.1",
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/react-mentions": "^4.1.8",
     "import-sort": "^6.0.0",
     "import-sort-cli": "^6.0.0",
     "import-sort-parser-typescript": "^6.0.0",

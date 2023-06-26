@@ -19,7 +19,9 @@ const NavLink: React.FC<Props> = ({ id, label, icon, href, hasNotification }) =>
    {hasNotification && label === 'Notifications' && (
     <div className={styles.dot}></div>
    )}
-   <FontAwesomeIcon icon={icon} color="#282c37" />
+   <div className={styles.iconWrapper}>
+    <FontAwesomeIcon icon={icon} color="#282c37" />
+   </div>
    <Link href={href} key={id}>{label}</Link>
   </div>
  );

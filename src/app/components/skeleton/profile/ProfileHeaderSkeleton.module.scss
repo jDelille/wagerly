@@ -3,9 +3,8 @@
 
 .profileHeader {
 	background-color: $white;
-	width: 600px;
+	width: 100%;
 	height: 218px;
-	border: 1px solid $heather;
 	border-bottom: 0;
 	@include breakpoint(sm) {
 		width: 673px;

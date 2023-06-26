@@ -10,6 +10,7 @@ import PostCardHeader from './post-card-header/PostCardHeader';
 import PostCardParlay from './post-card-parlay/PostCardParlay';
 import PostCardPoll from './post-card-poll/PostCardPoll';
 import styles from './PostCard.module.scss';
+import Link from 'next/link';
 
 export const PostContext = createContext<any>(null);
 
@@ -42,6 +43,40 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
   setLocalLikeCount
  }
 
+ const extractMentions = (text: string) => {
+  const mentionRegex = /@(\w+)/g;
+  const mentions = [];
+  let match;
+
+  while ((match = mentionRegex.exec(text))) {
+   const username = match[1];
+   mentions.push(username);
+  }
+
+  return mentions;
+ };
+
+ const mentionedUsernames = extractMentions(postBody);
+
+ const renderPostBodyWithLinks = (postBody: string, mentionedUsernames: any) => {
+  const parts = postBody.split(/(@\w+)/g);
+
+  return parts.map((part, index) => {
+   if (mentionedUsernames.includes(part.slice(1))) {
+    return (
+     <Link href={`/user/${part.slice(1)}`} key={index} className={styles.taggedUsername}>
+      {part}
+     </Link>
+    );
+   } else {
+    return <span key={index}>{part}</span>;
+   }
+  });
+ };
+
+ const renderedPostBody = renderPostBodyWithLinks(postBody, mentionedUsernames);
+
+
  return (
   <PostContext.Provider value={postContextValue}>
    <div className={styles.postCard}>
@@ -50,7 +85,7 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
      post={post}
     />
     <div className={styles.postBody}>
-     <p>{postBody}</p>
+     <p>{renderedPostBody}</p>
     </div>
     {post.Parlay && post?.Parlay.bets?.length <= 1 || post.UserBet && (
      <PostCardBet post={post.Parlay?.bets || post.UserBet} />
