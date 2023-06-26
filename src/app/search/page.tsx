@@ -3,6 +3,7 @@ import getPosts from '@/app/actions/getPosts';
 import getUsers from '@/app/actions/getUsers';
 import FeedHeader from '@/app/components/feed/feed-header/FeedHeader';
 import SearchFeed from '@/app/components/search-feed/SearchFeed';
+
 import styles from './Page.module.scss';
 
 interface IParams {

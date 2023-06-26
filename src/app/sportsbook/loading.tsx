@@ -1,6 +1,6 @@
+import Loader from "@/app/components/loader/Loader";
 import FeedHeaderSkeleton from "@/app/components/skeleton/feed-header/FeedHeaderSkeleton";
 
-import Loader from "@/app/components/loader/Loader";
 import styles from './Page.module.scss';
 
 const Loading = () => (
