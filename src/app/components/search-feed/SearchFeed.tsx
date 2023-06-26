@@ -1,16 +1,15 @@
 'use client';
 
+import PostCard from '@/app/components/posts/post-card/PostCard';
+import PostFeedHeader from '@/app/components/posts/post-feed/post-feed-header/PostFeedHeader';
+import UserFeed from '@/app/components/user/user-feed/UserFeed';
 import searchStore from '@/app/store/searchStore';
 import tabStore from '@/app/store/tabStore';
-import { ExtendedPost } from '@/app/types/ExtendedPost';
 import { SafeUser } from '@/app/types/SafeUser';
-import { Post, User } from '@prisma/client';
+import { User } from '@prisma/client';
 import { observer } from 'mobx-react';
 import { useEffect, useState } from 'react';
 
-import PostCard from '../posts/post-card/PostCard';
-import PostFeedHeader from '../posts/post-feed/post-feed-header/PostFeedHeader';
-import UserFeed from '../user/user-feed/UserFeed';
 import styles from './SearchFeed.module.scss';
 
 type Props = {

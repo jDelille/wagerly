@@ -1,6 +1,5 @@
 'use client'
 
-import { MatchHeader } from '@/app/types/Match';
 import Image from 'next/image';
 
 import styles from './MatchHeader.module.scss';

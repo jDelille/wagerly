@@ -1,4 +1,5 @@
-import FeedHeader from '../components/feed/feed-header/FeedHeader';
+import FeedHeader from '@/app/components/feed/feed-header/FeedHeader';
+
 import styles from './Page.module.scss';
 
 const Likes = () => {

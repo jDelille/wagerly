@@ -1,9 +1,9 @@
 'use client';
 
+import Button from '@/app/ui/button/Button';
 import { useCallback, useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 
-import Button from '../../ui/button/Button';
 import styles from './Modal.module.scss';
 
 type Props = {

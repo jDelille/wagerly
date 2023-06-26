@@ -8,9 +8,12 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import Button from "../../../ui/button/Button";
 import Modal from "../Modal";
 import styles from './BetSlip.module.scss';
+
+;
+
+
 
 type Props = {
   currentUser: SafeUser | null

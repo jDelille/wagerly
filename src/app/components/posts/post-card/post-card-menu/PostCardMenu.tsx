@@ -5,7 +5,7 @@ import usePinPost from '@/app/hooks/usePinPost';
 import { SafeUser } from '@/app/types/SafeUser';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { Dispatch, SetStateAction, useCallback, useContext, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useContext, } from 'react';
 
 import { PostContext } from '../PostCard';
 import styles from './PostCardMenu.module.scss';

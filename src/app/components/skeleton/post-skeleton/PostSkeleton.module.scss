@@ -1,5 +1,5 @@
-@use '../../../styles/variables' as *;
-@use '../../../styles/breakpoints' as *;
+@use '@/app/styles/variables' as *;
+@use '@/app/styles/breakpoints' as *;
 
 .postSkeleton {
 	height: 300px;

@@ -1,10 +1,10 @@
 'use client';
 
+import Avatar from "@/app/components/user/Avatar/Avatar";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { FaUserPlus } from "react-icons/fa";
 
-import Avatar from "../Avatar/Avatar";
 import styles from './UserBox.module.scss';
 
 type Props = {

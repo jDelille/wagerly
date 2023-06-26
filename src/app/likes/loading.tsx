@@ -1,6 +1,6 @@
-import FeedHeaderSkeleton from "../components/skeleton/feed-header/FeedHeaderSkeleton";
-import PostSkeleton from "../components/skeleton/post-skeleton/PostSkeleton";
-import ProfileHeaderSkeleton from "../components/skeleton/profile/ProfileHeaderSkeleton";
+import FeedHeaderSkeleton from "@/app/components/skeleton/feed-header/FeedHeaderSkeleton";
+import PostSkeleton from "@/app/components/skeleton/post-skeleton/PostSkeleton";
+import ProfileHeaderSkeleton from "@/app/components/skeleton/profile/ProfileHeaderSkeleton";
 
 const Loading = () => (
  <div>

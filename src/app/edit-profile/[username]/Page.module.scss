@@ -1,5 +1,5 @@
-@use '../../styles/mixins' as *;
-@use '../../styles/variables' as *;
+@use '@/app/styles/mixins' as *;
+@use '@/app/styles/variables' as *;
 
 .main {
 	@include page();

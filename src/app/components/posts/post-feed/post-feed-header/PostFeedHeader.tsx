@@ -2,7 +2,6 @@
 
 import tabStore from '@/app/store/tabStore';
 import { observer } from 'mobx-react';
-import { useState } from 'react';
 
 import styles from './PostFeedHeader.module.scss';
 

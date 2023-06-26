@@ -1,12 +1,10 @@
-@use '../../../../styles/variables' as *;
+@use '@/app/styles/variables' as *;
 
 .header {
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	// border: 1px solid $heather;
-	// border-top: none;
 	.status {
 		width: 200px;
 		display: flex;

@@ -1,14 +1,14 @@
 'use client';
 
+import Button from '@/app/ui/button/Button';
+import Input from '@/app/ui/input/Input';
 import axios from 'axios';
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
-import Button from '../../../ui/button/Button';
-import Input from '../../../ui/input/Input';
 import styles from './Signup.module.scss';
 
 const Signup = () => {

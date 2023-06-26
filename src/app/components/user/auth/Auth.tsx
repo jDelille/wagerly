@@ -1,10 +1,10 @@
 'use client'
 
 import { SafeUser } from '@/app/types/SafeUser';
+import Button from '@/app/ui/button/Button';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import Button from '../../../ui/button/Button';
 import styles from './Auth.module.scss';
 
 type Props = {

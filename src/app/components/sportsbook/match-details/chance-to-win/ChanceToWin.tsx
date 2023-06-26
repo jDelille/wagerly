@@ -3,7 +3,6 @@
 import styles from './ChanceToWin.module.scss';
 
 type Props = {
-
  homeName: string;
  awayName: string;
  homeChance: string;

@@ -1,7 +1,6 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import FeedHeader from "@/app/components/feed/feed-header/FeedHeader";
 import EditProfileBody from "@/app/components/profile/edit-profile-body/EditProfileBody";
-import EditProfileHeader from "@/app/components/profile/edit-profile-header/EditProfileHeader";
 
 import styles from './Page.module.scss';
 

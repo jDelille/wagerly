@@ -1,14 +1,14 @@
 'use client';
 
+import ImageUpload from '@/app/components/image-upload/ImageUpload';
+import EditProfileHeader from '@/app/components/profile/edit-profile-header/EditProfileHeader';
 import { SafeUser } from '@/app/types/SafeUser';
+import Input from '@/app/ui/input/Input';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
-import Input from '../../../ui/input/Input';
-import ImageUpload from '../../image-upload/ImageUpload';
-import EditProfileHeader from '../edit-profile-header/EditProfileHeader';
 import styles from './EditProfileBody.module.scss';
 
 type Props = {

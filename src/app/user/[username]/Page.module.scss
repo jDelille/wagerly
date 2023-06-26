@@ -1,6 +1,6 @@
-@use '../../styles/mixins' as *;
-@use '../../styles/breakpoints' as *;
-@use '../../styles/variables' as *;
+@use '@/app/styles/mixins' as *;
+@use '@/app/styles/breakpoints' as *;
+@use '@/app/styles/variables' as *;
 
 .main {
 	@include page();

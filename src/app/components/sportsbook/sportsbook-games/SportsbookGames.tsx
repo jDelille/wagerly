@@ -1,9 +1,8 @@
 'use client';
 
-import { getGames, getScores } from '@/app/api/sportsbookData';
+import { getScores } from '@/app/api/sportsbookData';
 import matchStore from '@/app/store/matchStore';
 import { Game } from '@/app/types/Game';
-import { Match } from '@/app/types/Match';
 import { useEffect, useState } from 'react';
 
 import MatchCard from '../match-card/MatchCard';

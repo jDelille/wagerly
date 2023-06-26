@@ -11,8 +11,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { BiDotsVertical } from 'react-icons/bi';
-import ProfileMenu from './profile-menu/ProfileMenu';
 
+import ProfileMenu from './profile-menu/ProfileMenu';
 import styles from './ProfileHeader.module.scss';
 
 type Props = {

@@ -1,6 +1,5 @@
-import { INFINITE_SCROLL_PAGINATION_RESULTS } from '@/config';
-
 import prisma from '@/app/libs/prismadb';
+import { INFINITE_SCROLL_PAGINATION_RESULTS } from '@/config';
 
 export default async function getPosts() {
 	try {

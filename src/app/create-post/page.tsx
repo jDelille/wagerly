@@ -1,9 +1,9 @@
-import getCurrentUser from "../actions/getCurrentUser";
-import getPosts from "../actions/getPosts";
-import FeedHeader from "../components/feed/feed-header/FeedHeader";
-import PostPreview from "../components/post-preview/PostPreview";
-import CreatePost from "../components/text-input/create-post/CreatePost";
-import Avatar from "../components/user/Avatar/Avatar";
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import FeedHeader from "@/app/components/feed/feed-header/FeedHeader";
+import PostPreview from "@/app/components/post-preview/PostPreview";
+import CreatePost from "@/app/components/text-input/create-post/CreatePost";
+import Avatar from "@/app/components/user/Avatar/Avatar";
+
 import styles from './Page.module.scss';
 
 const CreatePostPage = async () => {

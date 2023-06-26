@@ -1,13 +1,13 @@
 'use client';
 
 import { getMatchInfo, getMatchSummary, getOdds, getTeam } from '@/app/api/sportsbookData';
+import Loader from '@/app/components/loader/Loader';
 import matchStore from '@/app/store/matchStore';
-import { Chance, OddsType } from '@/app/types/Match';
+import { OddsType } from '@/app/types/Match';
 import { Team } from '@/app/types/Team';
 import { observer } from 'mobx-react';
 import { useEffect, useState } from 'react';
 
-import Loader from '../../loader/Loader';
 import ChanceToWin from './chance-to-win/ChanceToWin';
 import LastFiveGames from './last-five-games/LastFiveGames';
 import Header from './match-header/MatchHeader';

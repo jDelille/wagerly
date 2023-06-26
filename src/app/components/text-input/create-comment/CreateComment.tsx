@@ -1,14 +1,14 @@
 'use client';
 
+import ImageUpload from '@/app/components/image-upload/ImageUpload';
 import postPreviewStore from '@/app/store/postPreviewStore';
+import Button from '@/app/ui/button/Button';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { MdGifBox, MdPoll } from 'react-icons/md';
+import { MdGifBox, } from 'react-icons/md';
 
-import Button from '../../../ui/button/Button';
-import ImageUpload from '../../image-upload/ImageUpload';
 import styles from './CreateComment.module.scss';
 
 const CreateComment = () => {

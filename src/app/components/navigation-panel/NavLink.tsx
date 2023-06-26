@@ -3,7 +3,6 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { IconType } from "react-icons";
 
 import styles from './NavigationPanel.module.scss';
 

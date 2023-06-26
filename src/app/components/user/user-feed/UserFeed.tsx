@@ -1,12 +1,12 @@
 'use client';
 
+import Avatar from '@/app/components/user/Avatar/Avatar';
 import searchStore from '@/app/store/searchStore';
 import { User } from '@prisma/client';
 import { observer } from 'mobx-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import Avatar from '../Avatar/Avatar';
 import styles from './UserFeed.module.scss';
 
 type Props = {

@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+@use '@/app/styles/variables' as *;
+@use '@/app/styles/mixins' as *;
 
 .overlay {
 	@include overlay();
