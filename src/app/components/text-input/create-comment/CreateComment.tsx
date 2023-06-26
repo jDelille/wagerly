@@ -8,10 +8,15 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { MdGifBox, } from 'react-icons/md';
-
+import TagAndMentionInput from '../tag-and-mention-input/TagAndMentionInput';
 import styles from './CreateComment.module.scss';
+import { User } from '@prisma/client';
 
-const CreateComment = () => {
+type Props = {
+  users: User[]
+}
+
+const CreateComment: React.FC<Props> = ({ users }) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(false)
@@ -57,20 +62,6 @@ const CreateComment = () => {
 
     data.groupId = null;
 
-    // const newPost = {
-    //  id: '',
-    //  userId: data.userId,
-    //  body: body,
-    //  photo: photo,
-    //  groupId: null,
-    //  createdAt: new Date(),
-    //  updatedAt: new Date(),
-    //  betId: '',
-    //  parlayId: '',
-    //  pollId: '',
-    //  likedIds: [], commentedIds: [], taggedUserIds: [], isPinned: false, tags: []
-    // }
-
     axios
       .post(`/api/comment/${postId}`, data)
       .then(() => {
@@ -87,35 +78,6 @@ const CreateComment = () => {
       });
   };
 
-  const handleTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const inputValue = event.target.value;
-    if (inputValue.length <= 500) {
-      setCustomValue('postBody', inputValue);
-    } else {
-      setCustomValue('postBody', inputValue.slice(0, 500));
-    }
-  }
-
-  const autosize = () => {
-    if (textAreaRef.current) {
-      var el = textAreaRef.current;
-      setTimeout(function () {
-        el.style.cssText = 'height:auto; padding:0';
-        el.style.cssText = 'height:' + el.scrollHeight + 'px';
-      }, 0);
-    }
-  };
-
-  useEffect(() => {
-    if (textAreaRef.current) {
-      const textarea = textAreaRef.current;
-      textarea.addEventListener('keydown', autosize);
-
-      return () => {
-        textarea.removeEventListener('keydown', autosize);
-      };
-    }
-  }, []);
 
   useEffect(() => {
     if (postBodyLength > 500) {
@@ -132,7 +94,6 @@ const CreateComment = () => {
 
   useEffect(() => {
     const containerElement = containerRef.current;
-
 
     if (postPreviewStore.post) {
       setShowOutline(true)
@@ -151,17 +112,12 @@ const CreateComment = () => {
         className={`${styles.createComment} ${showOutline ? styles.outline : ''}`}
         ref={containerRef}
       >
-        <textarea
+        <TagAndMentionInput
           placeholder={`@${postUsername}`}
-          className={styles.textarea}
-          onChange={(event) => {
-            event.stopPropagation();
-            handleTextareaChange(event)
-          }}
-          value={body}
-          ref={textAreaRef}
-          rows={1}>
-        </textarea>
+          setCustomValue={setCustomValue}
+          body={body}
+          users={users}
+        />
         <div className={styles.createPostButtons}>
           <div className={styles.icon}>
             <ImageUpload

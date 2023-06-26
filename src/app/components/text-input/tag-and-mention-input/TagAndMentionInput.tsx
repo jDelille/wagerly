@@ -22,10 +22,11 @@ type Props = {
  setCustomValue: SetCustomValue
  body: string;
  users: User[]
+ placeholder: string;
 
 }
 
-const TextAndMentionInput: React.FC<Props> = ({ setCustomValue, body, users }) => {
+const TagAndMentionInput: React.FC<Props> = ({ setCustomValue, body, users, placeholder }) => {
 
  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -91,12 +92,12 @@ const TextAndMentionInput: React.FC<Props> = ({ setCustomValue, body, users }) =
   const mentionText = `@${display}`;
   const newText = body.replace(/@(\w+)?$/, mentionText);
   body = newText
-
  }
+
  return (
   <MentionsInput
    value={body}
-   placeholder="What's on your mind?"
+   placeholder={placeholder}
    onChange={(event, newValue, newPlainTextValue, mentions) => {
     handleOnChange(event, newValue, newPlainTextValue, mentions);
    }}
@@ -130,4 +131,4 @@ const TextAndMentionInput: React.FC<Props> = ({ setCustomValue, body, users }) =
  );
 }
 
-export default TextAndMentionInput;
+export default TagAndMentionInput;

@@ -18,6 +18,44 @@ type Props = {
 
 
 const PostCardComment: React.FC<Props> = ({ comment, postUsername, post, postId, currentUser }) => {
+
+ const commentBody = comment.body
+
+ const extractMentions = (text: string) => {
+  const mentionRegex = /@(\w+)/g;
+  const mentions = [];
+  let match;
+
+  while ((match = mentionRegex.exec(text))) {
+   const username = match[1];
+   mentions.push(username);
+  }
+
+  return mentions;
+ };
+
+ const mentionedUsernames = extractMentions(commentBody);
+
+ const renderPostBodyWithLinks = (postBody: string, mentionedUsernames: any) => {
+  const parts = postBody.split(/(@\w+)/g);
+
+  return parts.map((part, index) => {
+   if (mentionedUsernames.includes(part.slice(1))) {
+    return (
+     <Link href={`/user/${part.slice(1)}`} key={index} className={styles.taggedUsername}>
+      {part}
+     </Link>
+    );
+   } else {
+    return <span key={index}>{part}</span>;
+   }
+  });
+ };
+
+
+ const renderedCommentBody = renderPostBodyWithLinks(commentBody, mentionedUsernames);
+
+
  return (
   <div className={styles.postCardComment}>
    <div className={styles.header}>
@@ -32,7 +70,7 @@ const PostCardComment: React.FC<Props> = ({ comment, postUsername, post, postId,
     </div>
    </div>
    <div className={styles.body}>
-    <p><Link href={`/user/${postUsername}`}>@ <span>{postUsername}</span></Link> {comment.body}</p>
+    <p><Link href={`/user/${postUsername}`}>@<span>{postUsername}</span></Link> {renderedCommentBody}</p>
    </div>
    {/* <div className={styles.footer}>
     <PostCardFooter post={post} currentUser={currentUser} />

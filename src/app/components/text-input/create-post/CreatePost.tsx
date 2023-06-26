@@ -87,13 +87,14 @@ const CreatePost: React.FC<Props> = observer(({ users }) => {
   };
 
   if (isOpen) {
-    return <CreateComment />;
+    return <CreateComment users={users} />;
   }
 
   return (
     <>
       <div className={styles.createPost}>
         <TagAndMentionInput
+          placeholder="What's on your mind?"
           setCustomValue={setCustomValue}
           body={body}
           users={users}
