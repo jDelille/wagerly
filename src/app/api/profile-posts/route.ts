@@ -1,5 +1,6 @@
-import prisma from '../../libs/prismadb';
 import { z } from 'zod';
+
+import prisma from '../../libs/prismadb';
 
 export async function GET(req: Request) {
 	const url = new URL(req.url);

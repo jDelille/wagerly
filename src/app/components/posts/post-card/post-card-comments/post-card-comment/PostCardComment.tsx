@@ -1,11 +1,12 @@
 'use client';
 
-import { Comment } from '@prisma/client';
-import styles from './PostCardComments.module.scss';
 import Avatar from '@/app/components/user/Avatar/Avatar';
-import PostCardFooter from '../../post-card-footer/PostCardFooter';
 import { SafeUser } from '@/app/types/SafeUser';
+import { Comment } from '@prisma/client';
 import Link from 'next/link';
+
+import PostCardFooter from '../../post-card-footer/PostCardFooter';
+import styles from './PostCardComments.module.scss';
 
 type Props = {
  comment: Comment;

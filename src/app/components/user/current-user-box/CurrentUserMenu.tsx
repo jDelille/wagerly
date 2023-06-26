@@ -1,8 +1,8 @@
-import { Dispatch, SetStateAction } from 'react';
-import { useRouter } from 'next/navigation';
-import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types/SafeUser';
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { Dispatch, SetStateAction } from 'react';
 
 import styles from './CurrentUserBox.module.scss';
 

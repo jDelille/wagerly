@@ -2,12 +2,11 @@
 
 import postPreviewStore from '@/app/store/postPreviewStore';
 import { observer } from 'mobx-react';
+import Image from 'next/image';
+import { AiOutlineLink } from 'react-icons/ai';
+import { IoCloseSharp } from 'react-icons/io5';
 
 import styles from './PostPreview.module.scss';
-import Image from 'next/image';
-import { IoCloseSharp } from 'react-icons/io5';
-import { AiOutlineLink } from 'react-icons/ai';
-
 
 const PostPreview: React.FC = observer(() => {
 

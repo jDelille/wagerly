@@ -1,9 +1,10 @@
 'use client';
 
-import { Comment } from '@prisma/client';
-import styles from './PostCardComments.module.scss';
-import PostCardComment from './post-card-comment/PostCardComment';
 import { SafeUser } from '@/app/types/SafeUser';
+import { Comment } from '@prisma/client';
+
+import PostCardComment from './post-card-comment/PostCardComment';
+import styles from './PostCardComments.module.scss';
 
 type Props = {
  post: any;

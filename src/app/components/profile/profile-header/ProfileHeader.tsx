@@ -1,18 +1,19 @@
 'use client'
-import { useState } from 'react';
-import Avatar from '../../user/Avatar/Avatar';
-import { ProfileScreenString } from '@/app/utils/app-string/ProfileScreenString';
-import { format } from 'date-fns';
-import { BiDotsVertical } from 'react-icons/bi';
-import Button from '../../../ui/button/Button';
-import Link from 'next/link';
-import Image from 'next/image';
 
-import styles from './ProfileHeader.module.scss';
-import ProfileMenu from './profile-menu/ProfileMenu';
-import { User } from '@prisma/client';
+import Avatar from '@/app/components/user/Avatar/Avatar';
 import useFollow from '@/app/hooks/useFollow';
 import useNotLoggedInModal from '@/app/hooks/useNotLoggedInModal';
+import Button from '@/app/ui/button/Button';
+import { ProfileScreenString } from '@/app/utils/app-string/ProfileScreenString';
+import { User } from '@prisma/client';
+import { format } from 'date-fns';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import { BiDotsVertical } from 'react-icons/bi';
+import ProfileMenu from './profile-menu/ProfileMenu';
+
+import styles from './ProfileHeader.module.scss';
 
 type Props = {
  user: User

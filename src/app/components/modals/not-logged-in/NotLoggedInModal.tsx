@@ -1,12 +1,11 @@
 'use client';
 
 import useNotLoggedInModal from "@/app/hooks/useNotLoggedInModal";
-import Modal from "../Modal";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import Modal from "../Modal";
 import styles from './NotLoggedInModal.module.scss';
-import { useRouter } from "next/navigation";
-
 
 const NotLoggedInModal = () => {
 

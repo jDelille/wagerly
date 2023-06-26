@@ -1,14 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import { getTopGames } from '@/app/api/sportsbookData';
-import GameCard from './game-card/GameCard';
-
-
-import styles from './Gamebar.module.scss';
-import { FaChevronRight } from 'react-icons/fa';
 import matchStore from '@/app/store/matchStore';
 import { Game } from '@/app/types/Game';
+import { useEffect, useRef, useState } from 'react';
+import { FaChevronRight } from 'react-icons/fa';
+
+import GameCard from './game-card/GameCard';
+import styles from './Gamebar.module.scss';
 
 const Gamebar: React.FC = () => {
 

@@ -1,15 +1,14 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link'
 import { signIn } from 'next-auth/react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import Input from '../../../ui/input/Input';
+
 import Button from '../../../ui/button/Button';
-
+import Input from '../../../ui/input/Input';
 import styles from './Login.module.scss';
-
 
 const Login = () => {
 

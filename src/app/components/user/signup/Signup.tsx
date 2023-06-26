@@ -1,16 +1,15 @@
 'use client';
-import { useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link'
+
 import axios from 'axios';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { signIn } from 'next-auth/react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation';
+import { useRef, useState } from 'react';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
-import Input from '../../../ui/input/Input';
 import Button from '../../../ui/button/Button';
-
+import Input from '../../../ui/input/Input';
 import styles from './Signup.module.scss';
-
 
 const Signup = () => {
 

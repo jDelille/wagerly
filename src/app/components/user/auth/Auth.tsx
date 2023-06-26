@@ -1,11 +1,11 @@
 'use client'
 
-import Button from '../../../ui/button/Button';
-import { useRouter } from 'next/navigation';
-
-import styles from './Auth.module.scss';
-import { useEffect, useState } from 'react';
 import { SafeUser } from '@/app/types/SafeUser';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+import Button from '../../../ui/button/Button';
+import styles from './Auth.module.scss';
 
 type Props = {
  currentUser: SafeUser | null;

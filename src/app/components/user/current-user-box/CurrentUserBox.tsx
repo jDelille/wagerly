@@ -1,10 +1,10 @@
 'use client';
 
 import { SafeUser } from '@/app/types/SafeUser';
-import { BsThreeDotsVertical } from 'react-icons/bs';
-import Avatar from '../Avatar/Avatar';
 import { useState } from 'react';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 
+import Avatar from '../Avatar/Avatar';
 import styles from './CurrentUserBox.module.scss';
 import CurrentUserMenu from './CurrentUserMenu';
 

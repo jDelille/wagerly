@@ -1,10 +1,9 @@
-
+import getCurrentUser from '@/app/actions/getCurrentUser';
 import FeedHeader from '@/app/components/feed/feed-header/FeedHeader';
-import dynamic from 'next/dynamic';
 import PostSkeleton from '@/app/components/skeleton/post-skeleton/PostSkeleton';
+import dynamic from 'next/dynamic';
 
 import styles from './Page.module.scss';
-import getCurrentUser from '@/app/actions/getCurrentUser';
 
 interface IParams {
  matchId?: string;

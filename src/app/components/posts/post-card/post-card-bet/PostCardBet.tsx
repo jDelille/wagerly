@@ -1,8 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import styles from './PostCardBet.module.scss';
 import Link from 'next/link';
+
+import styles from './PostCardBet.module.scss';
 
 type Props = {
  post: any;

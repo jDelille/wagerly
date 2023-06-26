@@ -1,10 +1,11 @@
 'use client';
 
-import styles from './GameCard.module.scss';
-import Image from 'next/image';
-import Link from 'next/link';
 import matchStore from '@/app/store/matchStore';
 import { Game } from '@/app/types/Game';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import styles from './GameCard.module.scss';
 
 type Props = {
 	match: Game;

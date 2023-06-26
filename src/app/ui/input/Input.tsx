@@ -1,7 +1,7 @@
+import Image from 'next/image';
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
 
 import styles from './Input.module.scss';
-import Image from 'next/image';
 
 type InputProps = {
  label: string;

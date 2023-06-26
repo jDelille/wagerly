@@ -1,10 +1,10 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-
-import styles from './Modal.module.scss';
 import { AiOutlineClose } from 'react-icons/ai';
+
 import Button from '../../ui/button/Button';
+import styles from './Modal.module.scss';
 
 type Props = {
  isOpen?: boolean;

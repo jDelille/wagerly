@@ -1,9 +1,9 @@
 'use client';
 
-import NavLink from './NavLink';
-import { faHashtag, faBaseballBatBall, faUser, faBell, faBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faBaseballBatBall, faBell, faBookmark, faHashtag, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Nav.module.scss';
+import NavLink from './NavLink';
 
 type Props = {
   currentUsername?: string;

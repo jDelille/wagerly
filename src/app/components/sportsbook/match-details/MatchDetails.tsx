@@ -1,20 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { getMatchInfo, getMatchSummary, getOdds, getTeam } from '@/app/api/sportsbookData';
 import matchStore from '@/app/store/matchStore';
 import { Chance, OddsType } from '@/app/types/Match';
-import { getMatchInfo, getMatchSummary, getOdds, getTeam } from '@/app/api/sportsbookData';
-import Header from './match-header/MatchHeader';
-import { observer } from 'mobx-react';
-import Loader from '../../loader/Loader';
 import { Team } from '@/app/types/Team';
-import Odds from './odds/Odds';
+import { observer } from 'mobx-react';
+import { useEffect, useState } from 'react';
 
-import styles from './MatchDetails.module.scss';
+import Loader from '../../loader/Loader';
 import ChanceToWin from './chance-to-win/ChanceToWin';
 import LastFiveGames from './last-five-games/LastFiveGames';
-
-
+import Header from './match-header/MatchHeader';
+import styles from './MatchDetails.module.scss';
+import Odds from './odds/Odds';
 
 type Props = {
 	matchId: string;

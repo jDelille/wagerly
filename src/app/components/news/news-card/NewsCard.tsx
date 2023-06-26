@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import styles from './NewsCard.module.scss';
 import { BsPencilSquare } from 'react-icons/bs';
+
+import styles from './NewsCard.module.scss';
 
 type NewsCardProps = {
  news: any

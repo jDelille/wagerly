@@ -1,16 +1,16 @@
 'use client';
 
 import useBetSlipModal from "@/app/hooks/useBetSlipModal";
-import Modal from "../Modal";
-import { useState } from "react";
 import betSlipStore from "@/app/store/betSlipStore";
-
-import styles from './BetSlip.module.scss';
-import Image from "next/image";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import Button from "../../../ui/button/Button";
 import { SafeUser } from "@/app/types/SafeUser";
+import axios from "axios";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+import Button from "../../../ui/button/Button";
+import Modal from "../Modal";
+import styles from './BetSlip.module.scss';
 
 type Props = {
   currentUser: SafeUser | null

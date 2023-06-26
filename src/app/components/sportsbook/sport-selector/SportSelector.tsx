@@ -1,6 +1,7 @@
 'use client';
 
 import matchStore from '@/app/store/matchStore';
+
 import styles from './SportSelector.module.scss';
 
 type Props = {

@@ -1,8 +1,8 @@
 'use client';
 
-import Button from "../../../ui/button/Button";
 import { BaseSyntheticEvent } from "react";
 
+import Button from "../../../ui/button/Button";
 import styles from './EditProfileHeader.module.scss';
 
 type Props = {

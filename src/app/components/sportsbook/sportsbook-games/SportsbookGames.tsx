@@ -1,15 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
-import SportSelector from '../sport-selector/SportSelector';
-import MatchCard from '../match-card/MatchCard';
 import { getGames, getScores } from '@/app/api/sportsbookData';
-import { Match } from '@/app/types/Match';
-
-import styles from './SportsbookGames.module.scss';
 import matchStore from '@/app/store/matchStore';
 import { Game } from '@/app/types/Game';
+import { Match } from '@/app/types/Match';
+import { useEffect, useState } from 'react';
+
+import MatchCard from '../match-card/MatchCard';
+import SportSelector from '../sport-selector/SportSelector';
+import styles from './SportsbookGames.module.scss';
 
 type Date = {
   date: string;

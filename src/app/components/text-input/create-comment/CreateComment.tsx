@@ -1,15 +1,15 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation'
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-
-import styles from './CreateComment.module.scss';
-import axios from 'axios';
 import postPreviewStore from '@/app/store/postPreviewStore';
+import axios from 'axios';
+import { useRouter } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { MdGifBox, MdPoll } from 'react-icons/md';
+
 import Button from '../../../ui/button/Button';
 import ImageUpload from '../../image-upload/ImageUpload';
-import { MdGifBox, MdPoll } from 'react-icons/md';
+import styles from './CreateComment.module.scss';
 
 const CreateComment = () => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);

@@ -1,15 +1,15 @@
 'use client';
 
 import { SafeUser } from '@/app/types/SafeUser';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-
-import styles from './EditProfileBody.module.scss';
-import Input from '../../../ui/input/Input';
-import ImageUpload from '../../image-upload/ImageUpload';
-import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+
+import Input from '../../../ui/input/Input';
+import ImageUpload from '../../image-upload/ImageUpload';
 import EditProfileHeader from '../edit-profile-header/EditProfileHeader';
+import styles from './EditProfileBody.module.scss';
 
 type Props = {
   currentUser: SafeUser | null;

@@ -1,14 +1,16 @@
 'use client';
 
 import { NavLinks } from '@/app/constants/@Links';
-import styles from './NavigationPanel.module.scss';
-import NavLink from './NavLink';
-import Link from 'next/link';
-import { signOut } from 'next-auth/react';
-import { IoLogOut } from 'react-icons/io5';
-import { FaUserCircle } from 'react-icons/fa';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { signOut } from 'next-auth/react';
+import Link from 'next/link';
+import { FaUserCircle } from 'react-icons/fa';
+import { IoLogOut } from 'react-icons/io5';
+
+import styles from './NavigationPanel.module.scss';
+import NavLink from './NavLink';
+
 type Props = {
   currentUsername?: string;
 };

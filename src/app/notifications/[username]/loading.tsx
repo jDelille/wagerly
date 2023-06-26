@@ -1,4 +1,5 @@
 import ProfileHeaderSkeleton from "@/app/components/skeleton/profile/ProfileHeaderSkeleton";
+
 import FeedHeaderSkeleton from "../../components/skeleton/feed-header/FeedHeaderSkeleton";
 import PostSkeleton from "../../components/skeleton/post-skeleton/PostSkeleton";
 

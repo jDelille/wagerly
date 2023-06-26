@@ -1,12 +1,12 @@
 'use client';
 
-import { useCallback, useState } from "react";
-import { useRouter } from 'next/navigation';
-
-import styles from './PostCardPoll.module.scss';
+import CheckIcon from "@/app/icons/CheckIcon";
 import axios from "axios";
 import moment from "moment";
-import CheckIcon from "@/app/icons/CheckIcon";
+import { useRouter } from 'next/navigation';
+import { useCallback, useState } from "react";
+
+import styles from './PostCardPoll.module.scss';
 
 type Props = {
  post: any;

@@ -1,11 +1,11 @@
+import { faCameraRetro } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { MdInsertPhoto } from 'react-icons/md';
-import { faCameraRetro } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './ImageUpload.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type ImageUploadProps = {
  onChange: (base64: string) => void;

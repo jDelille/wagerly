@@ -1,6 +1,5 @@
 'use client'
 
-
 import styles from './Breakdown.module.scss';
 
 type Props = {

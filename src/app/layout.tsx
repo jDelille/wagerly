@@ -1,17 +1,17 @@
+import './styles/globals.scss';
+
 import getCurrentUser from './actions/getCurrentUser';
+import Gamebar from './components/gamebar/Gamebar';
+import MobileTopNav from './components/mobile-navbar/mobile-top-nav/MobileTopNav';
+import BetSlip from './components/modals/bet-slip/BetSlip';
+import NotLoggedInModal from './components/modals/not-logged-in/NotLoggedInModal';
+import Nav from './components/nav/Nav';
+import NavigationPanel from './components/navigation-panel/NavigationPanel';
 import PostPreview from './components/post-preview/PostPreview';
 import Search from './components/search/Search';
 import CreatePost from './components/text-input/create-post/CreatePost';
 import Auth from './components/user/auth/Auth';
 import CurrentUserBox from './components/user/current-user-box/CurrentUserBox';
-import Nav from './components/nav/Nav';
-import BetSlip from './components/modals/bet-slip/BetSlip';
-import NavigationPanel from './components/navigation-panel/NavigationPanel';
-import NotLoggedInModal from './components/modals/not-logged-in/NotLoggedInModal';
-import MobileTopNav from './components/mobile-navbar/mobile-top-nav/MobileTopNav';
-
-import './styles/globals.scss';
-import Gamebar from './components/gamebar/Gamebar';
 
 export const metadata = {
   title: 'Wagerly',

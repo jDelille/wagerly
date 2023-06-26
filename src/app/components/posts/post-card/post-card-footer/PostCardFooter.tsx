@@ -1,18 +1,18 @@
-import { FaReply } from 'react-icons/fa';
-import { AiTwotoneLike } from 'react-icons/ai';
-import { useRouter } from 'next/navigation';
-import { BsFillBookmarkFill, BsShareFill, BsThreeDots } from 'react-icons/bs';
-import { useCallback, useContext, useState } from 'react';
-import { SafeUser } from '@/app/types/SafeUser';
-import { Post } from '@prisma/client';
-import postPreviewStore from '@/app/store/postPreviewStore';
 import useBookmarkPost from '@/app/hooks/useBookmarkPost';
 import useLikePost from '@/app/hooks/useLikePost';
-import { PostContext } from '../PostCard';
-
-import styles from './PostCardFooter.module.scss';
-import Link from 'next/link';
 import useNotLoggedInModal from '@/app/hooks/useNotLoggedInModal';
+import postPreviewStore from '@/app/store/postPreviewStore';
+import { SafeUser } from '@/app/types/SafeUser';
+import { Post } from '@prisma/client';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useCallback, useContext, useState } from 'react';
+import { AiTwotoneLike } from 'react-icons/ai';
+import { BsFillBookmarkFill, BsShareFill, BsThreeDots } from 'react-icons/bs';
+import { FaReply } from 'react-icons/fa';
+
+import { PostContext } from '../PostCard';
+import styles from './PostCardFooter.module.scss';
 
 type Props = {
   currentUser: SafeUser | null;

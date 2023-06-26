@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic';
+
+import getCurrentUser from '../actions/getCurrentUser';
 import FeedHeader from '../components/feed/feed-header/FeedHeader';
 import PostSkeleton from '../components/skeleton/post-skeleton/PostSkeleton';
-
 import styles from './Page.module.scss';
-import getCurrentUser from '../actions/getCurrentUser';
 
 const DynamicSportsbookGames = dynamic(
  () => import('../components/sportsbook/sportsbook-games/SportsbookGames'),

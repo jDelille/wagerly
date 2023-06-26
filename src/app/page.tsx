@@ -1,11 +1,14 @@
 import dynamic from 'next/dynamic';
+
 import getCurrentUser from './actions/getCurrentUser';
 import getPosts from './actions/getPosts';
 import getUsers from './actions/getUsers';
 import FeedHeader from './components/feed/feed-header/FeedHeader';
+import styles from './styles/App.module.scss';
+
 ;
 
-import styles from './styles/App.module.scss';
+
 
 
 

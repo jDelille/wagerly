@@ -1,14 +1,14 @@
 'use client';
+
+import searchStore from '@/app/store/searchStore';
+import tabStore from '@/app/store/tabStore';
+import { SafeUser } from '@/app/types/SafeUser';
 import { Post, User } from '@prisma/client';
+import { observer } from 'mobx-react';
+import { useRouter } from 'next/navigation';
 
 import PostCard from '../post-card/PostCard';
 import PostFeedHeader from './post-feed-header/PostFeedHeader';
-import searchStore from '@/app/store/searchStore';
-import { observer } from 'mobx-react';
-import { SafeUser } from '@/app/types/SafeUser';
-import tabStore from '@/app/store/tabStore';
-import { useRouter } from 'next/navigation';
-
 import styles from './PostFeed.module.scss';
 
 type Props = {

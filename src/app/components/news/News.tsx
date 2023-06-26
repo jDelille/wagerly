@@ -1,9 +1,9 @@
 'use client';
-import { useState, useEffect } from 'react';
 
-import styles from './News.module.scss';
+import { useEffect, useState } from 'react';
+
 import NewsCard from './news-card/NewsCard';
-
+import styles from './News.module.scss';
 
 const News = () => {
  const [newsData, setNewsData] = useState<any[]>([]);

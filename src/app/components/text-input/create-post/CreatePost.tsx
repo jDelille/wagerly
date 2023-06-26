@@ -1,23 +1,22 @@
 'use client';
 
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { useEffect, useRef, useState } from 'react';
-import { MdGifBox, MdPoll } from 'react-icons/md';
-import { AiFillCloseCircle } from 'react-icons/ai';
-import ImageUpload from '../../image-upload/ImageUpload';
-import Image from 'next/image';
-import Button from '../../../ui/button/Button';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { HiGif } from 'react-icons/hi2';
+import Gifs from '@/app/components/gifs/Gifs';
+import ImageUpload from '@/app/components/image-upload/ImageUpload';
+import CreateComment from '@/app/components/text-input/create-comment/CreateComment';
+import postPreviewStore from '@/app/store/postPreviewStore';
+import Button from '@/app/ui/button/Button';
 import autosize from '@/app/utils/autosize';
 import useInputLengthValidator from '@/app/utils/inputLengthValidator';
+import axios from 'axios';
+import { observer } from 'mobx-react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { AiFillCloseCircle } from 'react-icons/ai';
+import { HiGif } from 'react-icons/hi2';
 
 import styles from './CreatePost.module.scss';
-import Gifs from '../../gifs/Gifs';
-import postPreviewStore from '@/app/store/postPreviewStore';
-import CreateComment from '../create-comment/CreateComment';
-import { observer } from 'mobx-react';
 
 const CreatePost = observer(() => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);

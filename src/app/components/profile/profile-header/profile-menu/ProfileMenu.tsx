@@ -1,12 +1,11 @@
 'use client';
 
-import Link from 'next/link';
-import { Dispatch, SetStateAction } from 'react';
 import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
+import Link from 'next/link';
+import { Dispatch, SetStateAction } from 'react';
 
 import styles from './ProfileMenu.module.scss';
-
 
 type Props = {
  setIsMenuOpen: Dispatch<SetStateAction<boolean>>;

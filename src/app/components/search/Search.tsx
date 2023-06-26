@@ -1,13 +1,13 @@
 'use client';
 
-import { AiOutlineSearch, AiFillCloseCircle } from 'react-icons/ai'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState, useRef } from 'react';
 import searchStore from '@/app/store/searchStore';
+import tabStore from '@/app/store/tabStore';
 import { observer } from 'mobx-react';
+import { useRouter } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react';
+import { AiFillCloseCircle, AiOutlineSearch } from 'react-icons/ai'
 
 import styles from './Search.module.scss';
-import tabStore from '@/app/store/tabStore';
 
 const Search: React.FC = observer(() => {
 

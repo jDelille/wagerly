@@ -1,6 +1,6 @@
-import { useCallback, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { useCallback, useState } from 'react';
 
 const useBookmarkPost = (postId: string) => {
 	const [isLoading, setIsLoading] = useState(false);

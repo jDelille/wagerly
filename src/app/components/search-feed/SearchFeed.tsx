@@ -1,17 +1,17 @@
 'use client';
 
+import searchStore from '@/app/store/searchStore';
+import tabStore from '@/app/store/tabStore';
+import { ExtendedPost } from '@/app/types/ExtendedPost';
+import { SafeUser } from '@/app/types/SafeUser';
+import { Post, User } from '@prisma/client';
 import { observer } from 'mobx-react';
-import { User, Post } from '@prisma/client';
+import { useEffect, useState } from 'react';
+
+import PostCard from '../posts/post-card/PostCard';
 import PostFeedHeader from '../posts/post-feed/post-feed-header/PostFeedHeader';
 import UserFeed from '../user/user-feed/UserFeed';
-import tabStore from '@/app/store/tabStore';
-import { SafeUser } from '@/app/types/SafeUser';
-import PostCard from '../posts/post-card/PostCard';
-import { ExtendedPost } from '@/app/types/ExtendedPost';
-
 import styles from './SearchFeed.module.scss';
-import { useEffect, useState } from 'react';
-import searchStore from '@/app/store/searchStore';
 
 type Props = {
  users: User[]

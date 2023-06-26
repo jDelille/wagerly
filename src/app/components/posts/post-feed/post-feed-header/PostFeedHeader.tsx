@@ -1,11 +1,10 @@
 'use client';
 
-import { useState } from 'react';
 import tabStore from '@/app/store/tabStore';
 import { observer } from 'mobx-react';
+import { useState } from 'react';
 
 import styles from './PostFeedHeader.module.scss';
-
 
 const mainTabs = ['Posts', 'Bets', 'People', 'News'];
 const profileTabs = ['Posts', 'Bets']

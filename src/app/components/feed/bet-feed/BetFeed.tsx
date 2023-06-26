@@ -1,8 +1,8 @@
 'use client';
 
-import { Post } from '@prisma/client';
-import { SafeUser } from '@/app/types/SafeUser';
 import PostCard from '@/app/components/posts/post-card/PostCard';
+import { SafeUser } from '@/app/types/SafeUser';
+import { Post } from '@prisma/client';
 
 type Props = {
  posts: any;

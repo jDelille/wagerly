@@ -1,15 +1,14 @@
 'use client';
 
+import { SafeUser } from '@/app/types/SafeUser';
+import Image from 'next/image';
+import { createContext, useState } from 'react';
+
 import PostCardBet from './post-card-bet/PostCardBet';
+import PostCardFooter from './post-card-footer/PostCardFooter';
 import PostCardHeader from './post-card-header/PostCardHeader';
 import PostCardParlay from './post-card-parlay/PostCardParlay';
 import PostCardPoll from './post-card-poll/PostCardPoll';
-import PostCardFooter from './post-card-footer/PostCardFooter';
-import { SafeUser } from '@/app/types/SafeUser';
-import { useState, createContext } from 'react';
-import Image from 'next/image';
-
-
 import styles from './PostCard.module.scss';
 
 export const PostContext = createContext<any>(null);

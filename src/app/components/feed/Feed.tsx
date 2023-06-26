@@ -1,18 +1,17 @@
 'use client'
 
-import { SafeUser } from "@/app/types/SafeUser";
-import PostFeedHeader from "../posts/post-feed/post-feed-header/PostFeedHeader";
-import PostFeed from "./post-feed/PostFeed";
 import tabStore from "@/app/store/tabStore";
-import { observer } from "mobx-react";
+import { SafeUser } from "@/app/types/SafeUser";
 import { User } from "@prisma/client";
-import UserBox from "../user/user-box/UserBox";
-import News from "../news/News";
-
-import styles from './Feed.module.scss';
+import { observer } from "mobx-react";
 import { Suspense } from "react";
-import BetFeed from "./bet-feed/BetFeed";
 
+import News from "../news/News";
+import PostFeedHeader from "../posts/post-feed/post-feed-header/PostFeedHeader";
+import UserBox from "../user/user-box/UserBox";
+import BetFeed from "./bet-feed/BetFeed";
+import styles from './Feed.module.scss';
+import PostFeed from "./post-feed/PostFeed";
 
 type Props = {
  hideHeader?: boolean;

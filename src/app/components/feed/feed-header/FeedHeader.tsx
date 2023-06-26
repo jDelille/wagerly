@@ -1,12 +1,14 @@
 'use client';
-import { useRouter } from 'next/navigation'
-import styles from './FeedHeader.module.scss';
+
 import tabStore from '@/app/store/tabStore';
-import { FaBars } from 'react-icons/fa';
-import Avatar from '../../user/Avatar/Avatar';
+import { useRouter } from 'next/navigation'
 import { useState } from 'react';
-import MobileNavbar from '../../mobile-navbar/MobileNavbar';
+import { FaBars } from 'react-icons/fa';
 import { HiAdjustmentsHorizontal } from 'react-icons/hi2'
+
+import MobileNavbar from '../../mobile-navbar/MobileNavbar';
+import Avatar from '../../user/Avatar/Avatar';
+import styles from './FeedHeader.module.scss';
 import GamebarControls from './gamebar-controls/GamebarControls';
 
 type Props = {

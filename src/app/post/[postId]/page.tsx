@@ -1,12 +1,12 @@
+import getCurrentUser from "@/app/actions/getCurrentUser";
 import getPostById from "@/app/actions/getPostById";
 import getUserByUsername from "@/app/actions/getUserByUsername";
+import FeedHeader from "@/app/components/feed/feed-header/FeedHeader";
+import PostCardComments from "@/app/components/posts/post-card/post-card-comments/PostCardComments";
 import PostCard from "@/app/components/posts/post-card/PostCard";
+import dynamic from "next/dynamic";
 
 import styles from './Page.module.scss';
-import FeedHeader from "@/app/components/feed/feed-header/FeedHeader";
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import PostCardComments from "@/app/components/posts/post-card/post-card-comments/PostCardComments";
-import dynamic from "next/dynamic";
 
 interface IParams {
  postId?: string;

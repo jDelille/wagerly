@@ -1,12 +1,12 @@
 'use client';
 
-import { useMemo } from 'react';
-import { MatchHeader, MatchOdds, OddsType } from '@/app/types/Match';
-
-import styles from './Odds.module.scss';
-import Image from 'next/image';
 import useBetSlipModal from '@/app/hooks/useBetSlipModal';
 import betSlipStore from '@/app/store/betSlipStore';
+import { MatchHeader, MatchOdds, OddsType } from '@/app/types/Match';
+import Image from 'next/image';
+import { useMemo } from 'react';
+
+import styles from './Odds.module.scss';
 
 type Props = {
  odds: OddsType;

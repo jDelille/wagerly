@@ -1,16 +1,15 @@
 'use client';
 
+import Avatar from '@/app/components/user/Avatar/Avatar';
+import { SafeUser } from '@/app/types/SafeUser';
+import { createdAtFormatter } from '@/app/utils/dateUtils';
 import { User } from '@prisma/client';
 import { useMemo, useState } from 'react';
-import Avatar from '@/app/components/user/Avatar/Avatar';
-import { createdAtFormatter } from '@/app/utils/dateUtils';
-import { BsThreeDotsVertical } from 'react-icons/bs';
-import PostCardMenu from '../post-card-menu/PostCardMenu';
 import { AiFillPushpin } from 'react-icons/ai';
-import { SafeUser } from '@/app/types/SafeUser';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 
+import PostCardMenu from '../post-card-menu/PostCardMenu';
 import styles from './PostCardHeader.module.scss';
-
 
 type Props = {
  post: any;

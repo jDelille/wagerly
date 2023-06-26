@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react';
 import { Bet } from '@prisma/client';
+import { useState } from 'react';
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 
 import styles from './PostCardParlay.module.scss';

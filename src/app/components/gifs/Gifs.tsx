@@ -1,12 +1,14 @@
 'use client'
 
+import { GiphyFetch } from "@giphy/js-fetch-api";
 import { Grid } from "@giphy/react-components";
 import { useState } from "react";
-import { GiphyFetch } from "@giphy/js-fetch-api";
-import styles from './Gifs.module.scss';
-import ResizeObserver from "react-resize-observer";
-import Input from "../../ui/input/Input";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import ResizeObserver from "react-resize-observer";
+
+import Input from "../../ui/input/Input";
+import styles from './Gifs.module.scss';
+
 // import SimpleBar from 'simplebar-react';
 // import 'simplebar-react/dist/simplebar.min.css';
 

@@ -1,13 +1,14 @@
 'use client';
-import { FaHashtag, FaUserCircle, FaBell } from 'react-icons/fa';
-import { BsFillBookmarkFill } from 'react-icons/bs';
-import { RiMoneyDollarBoxFill } from 'react-icons/ri'
-import { AiFillLike } from 'react-icons/ai';
 
-import styles from './MobileNavbar.module.scss';
-import NavLink from '../nav/NavLink';
-import Link from 'next/link';
 import { signOut } from 'next-auth/react';
+import Link from 'next/link';
+import { AiFillLike } from 'react-icons/ai';
+import { BsFillBookmarkFill } from 'react-icons/bs';
+import { FaBell, FaHashtag, FaUserCircle } from 'react-icons/fa';
+import { RiMoneyDollarBoxFill } from 'react-icons/ri'
+
+import NavLink from '../nav/NavLink';
+import styles from './MobileNavbar.module.scss';
 
 type Props = {
   currentUsername?: string;

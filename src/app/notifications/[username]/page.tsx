@@ -1,9 +1,9 @@
+import getCurrentUser from "@/app/actions/getCurrentUser";
 import getNotifications from "@/app/actions/getNotifications";
+import FeedHeader from "@/app/components/feed/feed-header/FeedHeader";
+import Link from "next/link";
 
 import styles from './Page.module.scss';
-import FeedHeader from "@/app/components/feed/feed-header/FeedHeader";
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import Link from "next/link";
 
 interface IParams {
  username: string;

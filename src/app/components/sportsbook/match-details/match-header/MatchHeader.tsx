@@ -1,8 +1,9 @@
 'use client'
 
-import Image from 'next/image';
-import styles from './MatchHeader.module.scss';
 import { MatchHeader } from '@/app/types/Match';
+import Image from 'next/image';
+
+import styles from './MatchHeader.module.scss';
 
 type Props = {
  matchHeader: any;

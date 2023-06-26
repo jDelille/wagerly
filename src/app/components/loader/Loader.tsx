@@ -1,9 +1,7 @@
 'use client';
 
 import { CSSProperties } from 'react';
-
 import ClipLoader from "react-spinners/ClipLoader";
-
 
 const Loader = () => {
  return (

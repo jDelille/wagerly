@@ -1,17 +1,16 @@
-import { AiFillLike } from 'react-icons/ai';
-import { BsFillBookmarkFill } from 'react-icons/bs';
-import { FaBell, FaHashtag, FaUserCircle, FaPenSquare } from 'react-icons/fa';
-import { MdSportsBasketball } from 'react-icons/md';
-import { RiMoneyDollarBoxFill } from 'react-icons/ri';
-
 import {
-	faHashtag,
 	faBaseballBatBall,
-	faPenToSquare,
-	faUser,
 	faBell,
 	faBookmark,
+	faHashtag,
+	faPenToSquare,
+	faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import { AiFillLike } from 'react-icons/ai';
+import { BsFillBookmarkFill } from 'react-icons/bs';
+import { FaBell, FaHashtag, FaPenSquare, FaUserCircle } from 'react-icons/fa';
+import { MdSportsBasketball } from 'react-icons/md';
+import { RiMoneyDollarBoxFill } from 'react-icons/ri';
 
 export const NavLinks = Object.freeze({
 	navLinks: [
