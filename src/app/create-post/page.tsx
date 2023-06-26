@@ -5,10 +5,11 @@ import CreatePost from "@/app/components/text-input/create-post/CreatePost";
 import Avatar from "@/app/components/user/Avatar/Avatar";
 
 import styles from './Page.module.scss';
+import getUsers from "../actions/getUsers";
 
 const CreatePostPage = async () => {
 
- const [currentUser] = await Promise.all([getCurrentUser()])
+ const [currentUser, users] = await Promise.all([getCurrentUser(), getUsers()])
 
  return (
   <div className={styles.main}>
@@ -26,7 +27,7 @@ const CreatePostPage = async () => {
      </div>
     </div>
     <PostPreview />
-    <CreatePost />
+    <CreatePost users={users} />
    </div>
   </div>
  );
