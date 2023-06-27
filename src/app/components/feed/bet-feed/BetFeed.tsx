@@ -7,7 +7,6 @@ import { Post } from '@prisma/client';
 type Props = {
  posts: any;
  currentUser: SafeUser | null;
-
 };
 
 const BetFeed: React.FC<Props> = ({

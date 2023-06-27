@@ -34,7 +34,7 @@ const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage,
     <PostFeedHeader isProfilePage={isProfilePage} isMainPage={isMainPage} />
    )}
    {activeTab === 'Posts' && (
-    <PostFeed posts={posts} currentUser={currentUser} />
+    <PostFeed initialPosts={posts} currentUser={currentUser} />
    )}
 
    {activeTab === 'Bets' && (
