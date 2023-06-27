@@ -8,34 +8,19 @@ import { useEffect, useState } from 'react';
 import MatchCard from '../match-card/MatchCard';
 import SportSelector from '../sport-selector/SportSelector';
 import styles from './SportsbookGames.module.scss';
+import { observer } from 'mobx-react';
 
 type Date = {
   date: string;
   id: string;
 }
 
-const SportsbookGames = () => {
-  const [sport, setSport] = useState('baseball');
+const SportsbookGames = observer(() => {
   const [matches, setMatches] = useState<Game[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [dates, setDates] = useState<Date[]>()
-
-  const todaysDate = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-  const [apiDate, setApiDate] = useState(todaysDate);
-
-  function getFormattedDate(): string {
-    const today = new Date();
-
-    const year = today.getFullYear().toString();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0');
-    const day = today.getDate().toString().padStart(2, '0');
-
-    return `${year}${month}${day}`;
-  }
-
-  const formattedDate = getFormattedDate();
 
   const league = matchStore.league
+  const sport = matchStore.sport
 
   useEffect(() => {
     async function fetchData() {
@@ -55,29 +40,11 @@ const SportsbookGames = () => {
     }
 
     fetchData();
-  }, [league, sport, apiDate, formattedDate]);
-
-
-  const formatDate = (dateStr: string) => {
-    const year = dateStr.substring(0, 4);
-    const month = dateStr.substring(4, 6);
-    const day = dateStr.substring(6, 8);
-
-    const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-
-    const formattedDate = date.toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric"
-    });
-
-    return formattedDate;
-  };
-
+  }, [league, sport]);
 
   return (
     <div className={styles.sportsBookGames}>
       <SportSelector
-        setSport={setSport}
         sport={sport}
       />
       <div className={styles.header}>
@@ -114,6 +81,6 @@ const SportsbookGames = () => {
 
     </div>
   );
-};
+});
 
 export default SportsbookGames;

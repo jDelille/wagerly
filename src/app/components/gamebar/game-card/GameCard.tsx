@@ -19,12 +19,16 @@ const GameCard: React.FC<Props> = ({ match }) => {
 		minute: 'numeric',
 	});
 
+	const league = matchStore.league
+
+	const isNFL = league === 'nfl'
+
 	const tvStation = match.competitions[0].geoBroadcasts[0]?.media.shortName;
 
 	const lowerTeam = {
 		name: match.competitions[0].competitors[0].team.name,
 		longName: match.competitions[0].competitors[0].team.name,
-		record: match.competitions[0].competitors[0].records[0].summary,
+		record: match.competitions[0].competitors[0].records?.[0].summary,
 		score: match.competitions[0].competitors[0].score,
 		imageAltText: 'logo',
 		logoUrl: match.competitions[0].competitors[0].team.logo,
@@ -35,13 +39,15 @@ const GameCard: React.FC<Props> = ({ match }) => {
 	const upperTeam = {
 		name: match.competitions[0].competitors[1].team.name,
 		longName: match.competitions[0].competitors[1].team.name,
-		record: match.competitions[0].competitors[1].records[0].summary,
+		record: match.competitions[0].competitors[1].records?.[0].summary,
 		score: match.competitions[0].competitors[1].score,
 		imageAltText: 'logo',
 		logoUrl: match.competitions[0].competitors[1].team.logo,
 		id: match.competitions[0].competitors[1].team.id,
 		abbrv: match.competitions[0].competitors[1].team.abbreviation,
 	};
+
+	const nflPreviewOdds = isNFL ? match.competitions[0].odds[0].details : null
 
 	const inProgress = match.status.type.state === 'in';
 	const isScheduled = match.status.type.state === 'pre';
@@ -50,9 +56,9 @@ const GameCard: React.FC<Props> = ({ match }) => {
 	const statusLine = match.status.type.shortDetail;
 
 	const awaySpreadOdds =
-		match.competitions[0].odds?.[1].awayTeamOdds.spreadOdds || null;
+		match.competitions[0].odds?.[1]?.awayTeamOdds.spreadOdds || null;
 	const homeSpreadOdds =
-		match.competitions[0].odds?.[1].homeTeamOdds.spreadOdds || null;
+		match.competitions[0].odds?.[1]?.homeTeamOdds.spreadOdds || null;
 
 	const setMatchStoreData = () => {
 		matchStore.setHomeTeamId(lowerTeam.id);
@@ -65,7 +71,7 @@ const GameCard: React.FC<Props> = ({ match }) => {
 			onClick={setMatchStoreData}
 			className={styles.gameCard}>
 			<div className={styles.league}>
-				<span>MLB</span>
+				<span>{league.toUpperCase()}</span>
 			</div>
 			<div className={styles.content}>
 				<div className={styles.displayName}>
@@ -104,7 +110,7 @@ const GameCard: React.FC<Props> = ({ match }) => {
 			</div>
 
 			<div className={styles.status}>
-				{isScheduled ? (
+				{isScheduled && !isNFL ? (
 					<>
 						<div className={styles.preStatus}>
 							<span>

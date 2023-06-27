@@ -16,6 +16,9 @@ const GamebarControls: React.FC = () => {
     onClick={() => handleChooseSport('baseball', 'mlb')}>
     MLB
    </span>
+   <span className={styles.option}
+    onClick={() => handleChooseSport('football', 'nfl')}>
+    NFL</span>
    {/* <span className={styles.option}
     onClick={() => handleChooseSport('soccer', 'usa.1')}>
     MLS</span>

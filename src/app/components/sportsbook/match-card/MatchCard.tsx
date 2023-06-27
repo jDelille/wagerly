@@ -6,17 +6,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import styles from './MatchCard.module.scss';
+import { observer } from 'mobx-react';
 
 type Props = {
  match: Game;
  sport: string;
 };
 
-const MatchCard: React.FC<Props> = ({ match, sport }) => {
+const MatchCard: React.FC<Props> = observer(({ match, sport }) => {
  const lowerTeam = {
   name: match.competitions[0].competitors[0].team.name,
   longName: match.competitions[0].competitors[0].team.name,
-  record: match.competitions[0].competitors[0].records[0].summary,
+  record: match.competitions[0].competitors[0].records?.[0].summary,
   score: match.competitions[0].competitors[0].score,
   imageAltText: 'logo',
   logoUrl: match.competitions[0].competitors[0].team.logo,
@@ -27,13 +28,12 @@ const MatchCard: React.FC<Props> = ({ match, sport }) => {
  const upperTeam = {
   name: match.competitions[0].competitors[1].team.name,
   longName: match.competitions[0].competitors[1].team.name,
-  record: match.competitions[0].competitors[1].records[0].summary,
+  record: match.competitions[0].competitors[1].records?.[0].summary,
   score: match.competitions[0].competitors[1].score,
   imageAltText: 'logo',
   logoUrl: match.competitions[0].competitors[1].team.logo,
   id: match.competitions[0].competitors[1].team.id,
   abbrv: match.competitions[0].competitors[1].team.abbreviation
-
  };
 
  const setMatchStoreData = () => {
@@ -43,6 +43,8 @@ const MatchCard: React.FC<Props> = ({ match, sport }) => {
 
 
  const league = matchStore.league;
+
+ const isNFL = league === 'nfl'
 
 
  const formattedTime = new Date(match.date).toLocaleTimeString([], { hour: "numeric", minute: "numeric" });
@@ -55,8 +57,8 @@ const MatchCard: React.FC<Props> = ({ match, sport }) => {
 
  const statusLine = match.status.type.shortDetail
 
- const awaySpreadOdds = match.competitions[0].odds?.[1].awayTeamOdds.spreadOdds || null;
- const homeSpreadOdds = match.competitions[0].odds?.[1].homeTeamOdds.spreadOdds || null;
+ const awaySpreadOdds = match.competitions[0].odds?.[1]?.awayTeamOdds.spreadOdds || null;
+ const homeSpreadOdds = match.competitions[0].odds?.[1]?.homeTeamOdds.spreadOdds || null;
 
 
  return (
@@ -89,11 +91,13 @@ const MatchCard: React.FC<Props> = ({ match, sport }) => {
      {(hasEnded || inProgress) && (
       <span className={styles.statusLine}>{statusLine}</span>
      )}
-     {isScheduled && (
+     {isScheduled && !isNFL ? (
       <div className={styles.statusLine}>
        <span>{upperTeam.abbrv} {awaySpreadOdds}</span>
        <span>{lowerTeam.abbrv} {homeSpreadOdds}</span>
       </div>
+     ) : (
+      <span className={styles.statusLine}>{statusLine}</span>
      )}
     </div>
 
@@ -122,7 +126,7 @@ const MatchCard: React.FC<Props> = ({ match, sport }) => {
    </Link >
   </div >
  );
-};
+});
 
 export default MatchCard;
 

@@ -8,8 +8,9 @@ import { FaChevronRight } from 'react-icons/fa';
 
 import GameCard from './game-card/GameCard';
 import styles from './Gamebar.module.scss';
+import { observer } from 'mobx-react';
 
-const Gamebar: React.FC = () => {
+const Gamebar: React.FC = observer(() => {
 
  const [matches, setMatches] = useState<Game[]>([]);
  const [isLoading, setIsLoading] = useState(false);
@@ -46,7 +47,9 @@ const Gamebar: React.FC = () => {
   }
 
   fetchData();
- }, []);
+ }, [league, sport]);
+
+ console.log(matches)
 
  return (
   <div className={styles.gamebarWrapper}>
@@ -66,6 +69,6 @@ const Gamebar: React.FC = () => {
   </div>
 
  );
-}
+})
 
 export default Gamebar;
