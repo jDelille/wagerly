@@ -3,14 +3,15 @@
 import ImageUpload from '@/app/components/image-upload/ImageUpload';
 import postPreviewStore from '@/app/store/postPreviewStore';
 import Button from '@/app/ui/button/Button';
+import { User } from '@prisma/client';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { MdGifBox, } from 'react-icons/md';
+
 import TagAndMentionInput from '../tag-and-mention-input/TagAndMentionInput';
 import styles from './CreateComment.module.scss';
-import { User } from '@prisma/client';
 
 type Props = {
   users: User[]

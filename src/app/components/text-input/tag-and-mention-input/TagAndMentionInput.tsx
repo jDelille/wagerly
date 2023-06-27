@@ -1,12 +1,13 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react';
 import autosize from '@/app/utils/autosize';
-import { MentionsInput, Mention, SuggestionDataItem, OnChangeHandlerFunc, MentionItem } from 'react-mentions'
+import { User } from '@prisma/client';
+import { useEffect, useRef, useState } from 'react';
+import { Mention, MentionItem, MentionsInput, OnChangeHandlerFunc, SuggestionDataItem } from 'react-mentions'
+
+import Avatar from '../../user/Avatar/Avatar';
 import mentionsInputStyle from './mentionsInputStyle';
 import styles from './TagAndMentionInput.module.scss';
-import { User } from '@prisma/client';
-import Avatar from '../../user/Avatar/Avatar';
 
 type SetCustomValue = (id: string, value: any) => void;
 

@@ -1,18 +1,18 @@
 'use client';
 
 import { SafeUser } from '@/app/types/SafeUser';
+import extractMentions from '@/app/utils/extractMentions';
+import axios from 'axios';
 import Image from 'next/image';
-import { createContext, useEffect, useState, useCallback } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { createContext, useCallback, useEffect, useState } from 'react';
+
 import PostCardBet from './post-card-bet/PostCardBet';
 import PostCardFooter from './post-card-footer/PostCardFooter';
 import PostCardHeader from './post-card-header/PostCardHeader';
 import PostCardPoll from './post-card-poll/PostCardPoll';
 import styles from './PostCard.module.scss';
-import Link from 'next/link';
-import extractMentions from '@/app/utils/extractMentions';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-
 
 export const PostContext = createContext<any>(null);
 

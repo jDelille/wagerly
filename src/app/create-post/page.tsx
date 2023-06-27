@@ -4,8 +4,8 @@ import PostPreview from "@/app/components/post-preview/PostPreview";
 import CreatePost from "@/app/components/text-input/create-post/CreatePost";
 import Avatar from "@/app/components/user/Avatar/Avatar";
 
-import styles from './Page.module.scss';
 import getUsers from "../actions/getUsers";
+import styles from './Page.module.scss';
 
 const CreatePostPage = async () => {
 

@@ -2,11 +2,11 @@
 
 import matchStore from '@/app/store/matchStore';
 import { Game } from '@/app/types/Game';
+import { observer } from 'mobx-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import styles from './MatchCard.module.scss';
-import { observer } from 'mobx-react';
 
 type Props = {
  match: Game;

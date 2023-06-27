@@ -1,11 +1,11 @@
-import prisma from '@/app/libs/prismadb';
+import getCurrentUser from '@/app/actions/getCurrentUser';
 import {
 	checkAwayScore,
 	checkHomeScore,
 	checkStatus,
 } from '@/app/api/sportsbookData';
+import prisma from '@/app/libs/prismadb';
 import { NextResponse } from 'next/server';
-import getCurrentUser from '@/app/actions/getCurrentUser';
 
 interface IParams {
 	betId: string;

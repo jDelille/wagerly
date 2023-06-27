@@ -4,8 +4,8 @@ import getCurrentUser from './actions/getCurrentUser';
 import getPosts from './actions/getPosts';
 import getUsers from './actions/getUsers';
 import FeedHeader from './components/feed/feed-header/FeedHeader';
-import styles from './styles/App.module.scss';
 import PostSkeleton from './components/skeleton/post-skeleton/PostSkeleton';
+import styles from './styles/App.module.scss';
 
 export default async function Home() {
 

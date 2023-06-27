@@ -1,6 +1,7 @@
 'use client';
 
 import matchStore from '@/app/store/matchStore';
+
 import styles from './GamebarControls.module.scss';
 
 const GamebarControls: React.FC = () => {

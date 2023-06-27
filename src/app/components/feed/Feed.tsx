@@ -4,7 +4,6 @@ import tabStore from "@/app/store/tabStore";
 import { SafeUser } from "@/app/types/SafeUser";
 import { User } from "@prisma/client";
 import { observer } from "mobx-react";
-import { Suspense } from "react";
 
 import News from "../news/News";
 import PostFeedHeader from "../posts/post-feed/post-feed-header/PostFeedHeader";

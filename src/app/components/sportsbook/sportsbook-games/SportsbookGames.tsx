@@ -3,12 +3,12 @@
 import { getScores } from '@/app/api/sportsbookData';
 import matchStore from '@/app/store/matchStore';
 import { Game } from '@/app/types/Game';
+import { observer } from 'mobx-react';
 import { useEffect, useState } from 'react';
 
 import MatchCard from '../match-card/MatchCard';
 import SportSelector from '../sport-selector/SportSelector';
 import styles from './SportsbookGames.module.scss';
-import { observer } from 'mobx-react';
 
 type Date = {
   date: string;

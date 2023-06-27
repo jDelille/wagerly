@@ -3,11 +3,11 @@ import getFollowersCount from '@/app/actions/getFollowersCount';
 import getPostsByUsername from '@/app/actions/getPostsByUsername';
 import getUserByUsername from '@/app/actions/getUserByUsername';
 import FeedHeader from '@/app/components/feed/feed-header/FeedHeader';
+import PostSkeleton from '@/app/components/skeleton/post-skeleton/PostSkeleton';
+import ProfileHeaderSkeleton from '@/app/components/skeleton/profile/ProfileHeaderSkeleton';
 import dynamic from 'next/dynamic';
 
 import styles from './Page.module.scss';
-import ProfileHeaderSkeleton from '@/app/components/skeleton/profile/ProfileHeaderSkeleton';
-import PostSkeleton from '@/app/components/skeleton/post-skeleton/PostSkeleton';
 
 interface IParams {
  username?: string;

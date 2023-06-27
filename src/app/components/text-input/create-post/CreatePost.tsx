@@ -6,6 +6,7 @@ import CreateComment from '@/app/components/text-input/create-comment/CreateComm
 import postPreviewStore from '@/app/store/postPreviewStore';
 import Button from '@/app/ui/button/Button';
 import useInputLengthValidator from '@/app/utils/inputLengthValidator';
+import { User } from '@prisma/client';
 import axios from 'axios';
 import { observer } from 'mobx-react';
 import Image from 'next/image';
@@ -14,10 +15,9 @@ import { useRef, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { HiGif } from 'react-icons/hi2';
-import TagAndMentionInput from '../tag-and-mention-input/TagAndMentionInput';
 
+import TagAndMentionInput from '../tag-and-mention-input/TagAndMentionInput';
 import styles from './CreatePost.module.scss';
-import { User } from '@prisma/client';
 
 type Props = {
   users: User[]

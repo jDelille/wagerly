@@ -3,11 +3,11 @@
 import PostCard from '@/app/components/posts/post-card/PostCard';
 import { SafeUser } from '@/app/types/SafeUser';
 import { Post } from '@prisma/client';
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 type Props = {
  posts: any;
  currentUser: SafeUser | null;
-
 };
 
 const PostFeed: React.FC<Props> = ({

@@ -1,6 +1,7 @@
 import './styles/globals.scss';
 
 import getCurrentUser from './actions/getCurrentUser';
+import getUsers from './actions/getUsers';
 import Gamebar from './components/gamebar/Gamebar';
 import MobileTopNav from './components/mobile-navbar/mobile-top-nav/MobileTopNav';
 import BetSlip from './components/modals/bet-slip/BetSlip';
@@ -12,7 +13,6 @@ import Search from './components/search/Search';
 import CreatePost from './components/text-input/create-post/CreatePost';
 import Auth from './components/user/auth/Auth';
 import CurrentUserBox from './components/user/current-user-box/CurrentUserBox';
-import getUsers from './actions/getUsers';
 
 export const metadata = {
   title: 'Wagerly',
