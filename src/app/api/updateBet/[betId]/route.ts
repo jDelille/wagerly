@@ -81,12 +81,11 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 
 		const isHome = userBet.location === 'home';
 		const isAway = userBet.location === 'away';
+		const isSpread = userBet.type === 'Spread';
+		const isTotal = userBet.type === 'Total';
 
-		if (userBet.type === 'Spread' && isHome) {
+		if (isSpread && isHome) {
 			let homeScoreWithSpread = homeScore + betValue;
-
-			console.log(homeScore);
-			console.log(betValue);
 
 			if (homeScoreWithSpread > awayScore) {
 				result = 'win';
@@ -95,7 +94,7 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 			}
 		}
 
-		if (userBet.type === 'Spread' && isAway) {
+		if (isSpread && isAway) {
 			let awayScoreWithSpread = awayScore + betValue;
 
 			if (awayScoreWithSpread > homeScore) {
@@ -113,8 +112,6 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 				outcome: result,
 			},
 		});
-
-		
 
 		// const updatedUser = await prisma.user.update({
 		// 	where: {

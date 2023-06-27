@@ -44,7 +44,7 @@ const BetSlip: React.FC<Props> = ({ currentUser }) => {
       groupId: null,
       date,
       matchup,
-      bet: selectedBet,
+      bet: selectedBet.toString(),
       logo: selectedTeamLogo,
       name: selectedTeamName,
       description: selectedOddsDisplay,

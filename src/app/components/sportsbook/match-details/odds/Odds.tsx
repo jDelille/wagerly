@@ -34,8 +34,6 @@ const Odds: React.FC<Props> = ({
 
  const matchup = `${matchHeader.awayTeam.name} @ ${matchHeader.homeTeam.name}`;
 
- console.log(matchHeader)
-
  const addToBetStore = (value?: any, team?: string) => {
 
   betSlipModal.onOpen();
@@ -63,6 +61,8 @@ const Odds: React.FC<Props> = ({
    );
   }
  };
+
+ console.log(odds)
 
  return (
   <div className={styles.odds}>
@@ -110,7 +110,7 @@ const Odds: React.FC<Props> = ({
       addToBetStore({
        value: {
         odds: odds.overOdds.toString(),
-        label: `o ${odds.overUnder}`,
+        label: `o${odds.overUnder}`,
         team: matchHeader.homeTeam.name,
         type: 'Total',
        },
@@ -171,7 +171,7 @@ const Odds: React.FC<Props> = ({
       addToBetStore({
        value: {
         odds: odds.underOdds.toString(),
-        label: `u ${odds.overUnder}`,
+        label: `u${odds.overUnder}`,
         team: matchHeader.awayTeam.name,
         type: 'Total',
        },
