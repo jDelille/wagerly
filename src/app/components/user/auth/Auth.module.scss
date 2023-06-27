@@ -23,8 +23,8 @@
 				outline: 1px solid $chetwodeBlue;
 				color: $chetwodeBlue;
 				&:hover {
-					background-color: $chetwodeBlue;
-					color: $charade;
+					background-color: lighten($chetwodeBlue, 5%);
+					color: $white;
 				}
 			}
 		}
