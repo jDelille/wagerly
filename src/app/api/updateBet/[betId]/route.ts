@@ -5,6 +5,7 @@ import {
 	checkStatus,
 } from '@/app/api/sportsbookData';
 import { NextResponse } from 'next/server';
+import getCurrentUser from '@/app/actions/getCurrentUser';
 
 interface IParams {
 	betId: string;
@@ -13,6 +14,12 @@ interface IParams {
 
 export async function POST(request: Request, { params }: { params: IParams }) {
 	const { betId, userId } = params;
+
+	const currentUser = await getCurrentUser();
+
+	if (!currentUser) {
+		return;
+	}
 
 	const user = await prisma.user.findUnique({
 		where: {
