@@ -34,6 +34,8 @@ const Odds: React.FC<Props> = ({
 
  const matchup = `${matchHeader.awayTeam.name} @ ${matchHeader.homeTeam.name}`;
 
+ console.log(matchHeader)
+
  const addToBetStore = (value?: any, team?: string) => {
 
   betSlipModal.onOpen();
@@ -45,7 +47,9 @@ const Odds: React.FC<Props> = ({
   betSlipStore.setOddsDisplay(value.value.odds);
   betSlipStore.setPayoutMultiplier(1.95);
   betSlipStore.setType(value.value.type)
-
+  betSlipStore.setHomeId(matchHeader.homeTeam.id)
+  betSlipStore.setAwayId(matchHeader.awayTeam.id)
+  betSlipStore.setLocation(team as string)
 
   if (team === 'home') {
    betSlipStore.setSelectedTeamLogo(matchHeader.homeTeam.logo as string);

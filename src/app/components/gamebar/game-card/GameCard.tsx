@@ -92,12 +92,12 @@ const GameCard: React.FC<Props> = ({ match }) => {
 					{isScheduled ? (
 						<>
 							<span>{formattedTime}</span>
-							<span className={styles.station}>{tvStation}</span>
+							<span className={styles.station}>{tvStation || 'MLBN'}</span>
 						</>
 					) : (
 						<>
-							<strong className={styles.score}>{lowerTeam.score || 0}</strong>
 							<strong className={styles.score}>{upperTeam.score || 0}</strong>
+							<strong className={styles.score}>{lowerTeam.score || 0}</strong>
 						</>
 					)}
 				</div>

@@ -11,6 +11,30 @@
 	flex-direction: column;
 	gap: 15px;
 	position: relative;
+	.postBody {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		.win,
+		.loss {
+			padding: 1px 3px;
+			border-radius: 4px;
+			max-width: fit-content;
+			text-transform: uppercase;
+			font-weight: 500;
+			font-size: $fontSizeMd;
+		}
+		.loss {
+			background: rgba(223, 64, 90, 0.1);
+			border: 1px solid rgba(223, 64, 90, 0.5);
+			color: #df405a;
+		}
+		.win {
+			background: rgba(35, 138, 103, 0.1);
+			border: 1px solid rgba(35, 138, 103, 0.5);
+			color: #238a67;
+		}
+	}
 	.postPhoto,
 	.postGif {
 		max-height: 400px;

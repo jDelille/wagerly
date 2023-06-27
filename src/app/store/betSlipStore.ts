@@ -11,6 +11,9 @@ class BetSlipStore {
 	oddsDisplay: string = '';
 	payoutMultiplier: number = 0;
 	type: string = '';
+	homeId: string = '';
+	awayId: string = '';
+	location: string = '';
 
 	constructor() {
 		makeAutoObservable(this);
@@ -54,6 +57,18 @@ class BetSlipStore {
 
 	setType(type: string) {
 		this.type = type;
+	}
+
+	setHomeId(id: string) {
+		this.homeId = id;
+	}
+
+	setAwayId(id: string) {
+		this.awayId = id;
+	}
+
+	setLocation(location: string) {
+		this.location = location;
 	}
 }
 

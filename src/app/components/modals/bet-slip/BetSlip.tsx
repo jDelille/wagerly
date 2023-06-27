@@ -29,7 +29,7 @@ const BetSlip: React.FC<Props> = ({ currentUser }) => {
   const [postBody, setPostBody] = useState('')
 
 
-  const { date, matchup, selectedBet, selectedTeamLogo, selectedTeamName, oddsDisplay, selectedOdds, selectedOddsDisplay, payoutMultiplier, type } = betSlipStore
+  const { date, matchup, selectedBet, selectedTeamLogo, selectedTeamName, oddsDisplay, selectedOdds, selectedOddsDisplay, payoutMultiplier, type, homeId, awayId, location } = betSlipStore
 
   const onClose = () => {
     betSlipModal.onClose();
@@ -53,6 +53,10 @@ const BetSlip: React.FC<Props> = ({ currentUser }) => {
       payout,
       type,
       postBody,
+      homeId,
+      awayId,
+      outcome: '',
+      location
     }
 
     axios.post('/api/bet', payload)

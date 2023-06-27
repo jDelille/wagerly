@@ -75,13 +75,17 @@ const MatchDetails: React.FC<Props> = observer(({ matchId }) => {
 
 	const formattedDate = new Date(matchInfo?.date as string).toLocaleString("en-US", { month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "numeric" });
 
+
+
 	const matchHeader = {
 		homeTeam: {
+			id: homeTeam?.id,
 			name: homeTeam?.name,
 			abbreviation: homeTeam?.abbreviation,
 			logo: homeTeam?.logos[0].href
 		},
 		awayTeam: {
+			id: awayTeam?.id,
 			name: awayTeam?.name,
 			abbreviation: awayTeam?.abbreviation,
 			logo: awayTeam?.logos[0].href

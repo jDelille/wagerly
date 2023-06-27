@@ -172,8 +172,6 @@ export async function getScores(sport: string, league: string) {
 
 // match summary api
 
-//https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/summary?event=401472179
-
 export async function getMatchSummary(
 	sport: string,
 	league: string,
@@ -186,6 +184,72 @@ export async function getMatchSummary(
 
 		if (!res.ok) {
 			throw new Error('Failed to fetch match summary');
+		}
+
+		const data = await res.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+		throw error;
+	}
+}
+
+export async function checkStatus(sport: string, league: string, id: string) {
+	try {
+		const res = await fetch(
+			`http://sports.core.api.espn.com/v2/sports/${sport}/leagues/${league}/events/${id}/competitions/${id}/status?lang=en&region=us`
+		);
+
+		if (!res.ok) {
+			throw new Error('Failed to fetch match summary');
+		}
+
+		const data = await res.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+		throw error;
+	}
+}
+
+// http://sports.core.api.espn.com/v2/sports/${sport}/leagues/${league}/events/${gameId}/competitions/${gameId}/competitors/${homeId}/score?lang=en&region=us
+
+export async function checkHomeScore(
+	sport: string,
+	league: string,
+	id: string,
+	homeId: string
+) {
+	try {
+		const res = await fetch(
+			`http://sports.core.api.espn.com/v2/sports/${sport}/leagues/${league}/events/${id}/competitions/${id}/competitors/${homeId}/scores/2?lang=en&region=us`
+		);
+
+		if (!res.ok) {
+			throw new Error('Failed to fetch home score');
+		}
+
+		const data = await res.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+		throw error;
+	}
+}
+
+export async function checkAwayScore(
+	sport: string,
+	league: string,
+	id: string,
+	awayId: string
+) {
+	try {
+		const res = await fetch(
+			`http://sports.core.api.espn.com/v2/sports/${sport}/leagues/${league}/events/${id}/competitions/${id}/competitors/${awayId}/scores/2?lang=en&region=us`
+		);
+
+		if (!res.ok) {
+			throw new Error('Failed to fetch away score');
 		}
 
 		const data = await res.json();

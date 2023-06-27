@@ -79,6 +79,7 @@ model User {
   blockedUserIds      String[]
   mutedUserId         String[]
   likes               String[]
+  balance             Float?         @default(500)
 }
 
 model Poll {
@@ -122,7 +123,7 @@ model Bet {
 }
 
 model UserBet {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
   date        String
   matchup     String
   bet         String
@@ -135,6 +136,12 @@ model UserBet {
   Post        Post[]
   type        String
   body        String
+  homeId      String?
+  awayId      String?
+  outcome     String?
+  sport       String?
+  league      String?
+  location    String?
 }
 
 model Parlay {

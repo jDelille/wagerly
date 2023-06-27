@@ -2,15 +2,17 @@
 
 import { SafeUser } from '@/app/types/SafeUser';
 import Image from 'next/image';
-import { createContext, useState } from 'react';
-
+import { createContext, useEffect, useState, useCallback } from 'react';
 import PostCardBet from './post-card-bet/PostCardBet';
 import PostCardFooter from './post-card-footer/PostCardFooter';
 import PostCardHeader from './post-card-header/PostCardHeader';
-import PostCardParlay from './post-card-parlay/PostCardParlay';
 import PostCardPoll from './post-card-poll/PostCardPoll';
 import styles from './PostCard.module.scss';
 import Link from 'next/link';
+import extractMentions from '@/app/utils/extractMentions';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+
 
 export const PostContext = createContext<any>(null);
 
@@ -23,14 +25,19 @@ type Props = {
 
 const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
 
- const [localLike, setLocalLike] = useState(post.likedIds.includes(currentUser?.id as string))
+ const router = useRouter();
 
+ const [localLike, setLocalLike] = useState(post.likedIds.includes(currentUser?.id as string))
 
  const [localLikeCount, setLocalLikeCount] = useState(
   0 || post.likedIds.length);
 
-
  const [localBookmark, setLocalBookmark] = useState(currentUser?.bookmarks.includes(post.id))
+
+ const [status, setStatus] = useState<string>('')
+ const [outcome, setOutcome] = useState<string>('')
+ const [homeScore, setHomeScore] = useState()
+ const [awayScore, setAwayScore] = useState()
 
  const postBody = post?.Bet?.thoughts || post?.Parlay?.bets[0].thoughts || post?.body || post?.UserBet?.body
 
@@ -43,25 +50,12 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
   setLocalLikeCount
  }
 
- const extractMentions = (text: string) => {
-  const mentionRegex = /@(\w+)/g;
-  const mentions = [];
-  let match;
-
-  while ((match = mentionRegex.exec(text))) {
-   const username = match[1];
-   mentions.push(username);
-  }
-
-  return mentions;
- };
-
  const mentionedUsernames = extractMentions(postBody);
 
  const renderPostBodyWithLinks = (postBody: string, mentionedUsernames: any) => {
-  const parts = postBody.split(/(@\w+)/g);
+  const parts = postBody?.split(/(@\w+)/g);
 
-  return parts.map((part, index) => {
+  return parts?.map((part, index) => {
    if (mentionedUsernames.includes(part.slice(1))) {
     return (
      <Link href={`/user/${part.slice(1)}`} key={index} className={styles.taggedUsername}>
@@ -77,6 +71,24 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
  const renderedPostBody = renderPostBodyWithLinks(postBody, mentionedUsernames);
 
 
+ const onCheck = useCallback((id: string, userId: string) => {
+  if (post?.UserBet?.outcome !== '') {
+   return;
+  }
+
+  axios.post(`/api/updateBet/${id}?${userId}`).then(() => {
+   router.refresh()
+  }).catch((error) => {
+   console.log(error)
+  })
+
+ }, [post?.UserBet?.outcome, router])
+
+ useEffect(() => {
+  onCheck(post?.UserBet?.id, post.user.username)
+ }, [])
+
+
  return (
   <PostContext.Provider value={postContextValue}>
    <div className={styles.postCard}>
@@ -86,23 +98,15 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
     />
     <div className={styles.postBody}>
      <p>{renderedPostBody}</p>
+     {post?.UserBet && post?.UserBet.outcome !== '' && (
+      <span className={post?.UserBet?.outcome === 'win' ? styles.win : styles.loss}>{post?.UserBet?.outcome}</span>
+     )}
     </div>
-    {post.Parlay && post?.Parlay.bets?.length <= 1 || post.UserBet && (
-     <PostCardBet post={post.Parlay?.bets || post.UserBet} />
-    )}
-    {post.userBet && (
-     <PostCardBet post={post.userBet} />
 
+    {post.UserBet && (
+     <PostCardBet post={post.UserBet} />
     )}
-    {post.Parlay && post?.Parlay.bets?.length > 1 && (
-     <PostCardParlay
-      post={post.Parlay.bets}
-      odds={post.Parlay.odds}
-      wager={post.Parlay.wager}
-      payout={post.Parlay.payout}
-      isExpanded={isExpanded}
-     />
-    )}
+
     {post.Poll && (
      <div className={styles.postPoll}>
       <PostCardPoll

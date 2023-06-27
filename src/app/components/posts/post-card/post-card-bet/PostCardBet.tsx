@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 
 import styles from './PostCardBet.module.scss';
 
@@ -17,7 +16,8 @@ const PostCardBet: React.FC<Props> = ({ post: bet }) => {
    <div className={styles.bet}>
     <div className={styles.displayName}>
      <Image src={bet.logo} alt='logo' width={20} height={20} />
-     <strong>{bet.name}</strong>
+     <strong>{bet.name}
+     </strong>
     </div>
     <div className={styles.type}>
      <span>{bet.type}</span>
@@ -34,7 +34,7 @@ const PostCardBet: React.FC<Props> = ({ post: bet }) => {
     <p className={styles.odds}>
      {bet.odds}
     </p>
-    <Link href={`/sportsbook/${bet.description}`} className={styles.description}>View matchup</Link >
+    {/* <Link href={`/sportsbook/${bet.description}`} className={styles.description}>View matchup</Link > */}
    </div>
 
    <div className={styles.disclaimer}>
