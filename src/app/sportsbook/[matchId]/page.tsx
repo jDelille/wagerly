@@ -9,17 +9,21 @@ interface IParams {
  matchId?: string;
 }
 
-const DynamicMatchDetails = dynamic(() => import('../../components/sportsbook/match-details/MatchDetails'), {
- loading: () => <>
-  <PostSkeleton />
-  <PostSkeleton />
-  <PostSkeleton />
- </>
-})
+const DynamicMatchDetails = dynamic(
+ () => import('../../components/sportsbook/match-details/MatchDetails'),
+ {
+  loading: () => (
+   <>
+    <PostSkeleton />
+    <PostSkeleton />
+    <PostSkeleton />
+   </>
+  ),
+ }
+);
 
 const Match = async ({ params }: { params: IParams }) => {
-
- const currentUser = await getCurrentUser()
+ const currentUser = await getCurrentUser();
 
  return (
   <div className={styles.main}>
@@ -29,13 +33,15 @@ const Match = async ({ params }: { params: IParams }) => {
     isSportsbook={true}
     currentUserPhoto={currentUser?.photo as string}
     currentUsername={currentUser?.username as string}
-
    />
    <div className={styles.content}>
-    <DynamicMatchDetails matchId={params.matchId as string} />
+    <DynamicMatchDetails
+     matchId={params.matchId as string}
+     currentUserId={currentUser?.id}
+    />
    </div>
   </div>
  );
-}
+};
 
 export default Match;

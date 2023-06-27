@@ -14,6 +14,7 @@ type Props = {
  formattedDate: string;
  matchHeader: any;
  matchId: string;
+ currentUserId?: string;
 };
 
 const Odds: React.FC<Props> = ({
@@ -22,7 +23,8 @@ const Odds: React.FC<Props> = ({
  rightName,
  formattedDate,
  matchHeader,
- matchId
+ matchId,
+ currentUserId
 }) => {
  const betSlipModal = useBetSlipModal();
  // const cantBet = odds.eventStatus === 3
@@ -35,6 +37,10 @@ const Odds: React.FC<Props> = ({
  const matchup = `${matchHeader.awayTeam.name} @ ${matchHeader.homeTeam.name}`;
 
  const addToBetStore = (value?: any, team?: string) => {
+
+  if (!currentUserId) {
+   return;
+  }
 
   betSlipModal.onOpen();
   betSlipStore.setDate(formattedDate);

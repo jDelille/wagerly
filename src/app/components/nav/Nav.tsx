@@ -57,7 +57,7 @@ const Nav: React.FC<Props> = ({ currentUsername, hasNotification }) => {
       <div className={styles.links}>
         {!currentUsername ? (
           links.map((link) => {
-            if (link.label === 'Explore')
+            if (link.label === 'Explore' || link.label === 'Sportsbook')
               return (
                 <NavLink key={link.id} label={link.label} id={link.id} icon={link.icon} href={link.href} />
               )

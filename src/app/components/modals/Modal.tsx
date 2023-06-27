@@ -14,9 +14,12 @@ type Props = {
  body: React.ReactElement;
  actionLabel: string;
  disableButton?: boolean;
+ secondaryActionLabel?: string;
+ secondaryAction?: () => void;
+ title?: string;
 }
 
-const Modal: React.FC<Props> = ({ isOpen, onClose, onSubmit, disabled, body, actionLabel, disableButton }) => {
+const Modal: React.FC<Props> = ({ isOpen, onClose, onSubmit, disabled, body, actionLabel, disableButton, secondaryAction, secondaryActionLabel, title }) => {
 
  const [showModal, setShowModal] = useState(isOpen);
 
@@ -45,18 +48,25 @@ const Modal: React.FC<Props> = ({ isOpen, onClose, onSubmit, disabled, body, act
    <div className={styles.overlay}>
     <div className={showModal ? styles.showModal : styles.hideModal}>
      <div className={styles.header}>
+      <strong>{title}</strong>
       <AiOutlineClose size={20} color='#000' onClick={handleClose} />
      </div>
      <div className={styles.bodyContent}>
       {body}
      </div>
      <div className={styles.footer}>
-
       <Button
        label={actionLabel}
        onClick={onSubmit}
        isButtonDisabled={disableButton}
       />
+      {secondaryAction && (
+       <Button
+        label={secondaryActionLabel}
+        onClick={secondaryAction}
+        isButtonDisabled={disableButton}
+       />
+      )}
      </div>
     </div>
    </div>
