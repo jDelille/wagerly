@@ -79,7 +79,7 @@ model User {
   blockedUserIds      String[]
   mutedUserId         String[]
   likes               String[]
-  balance             Float?         @default(500)
+  balance             Float          @default(500)
 }
 
 model Poll {

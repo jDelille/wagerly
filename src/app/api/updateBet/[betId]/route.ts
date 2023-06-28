@@ -9,23 +9,10 @@ import { NextResponse } from 'next/server';
 
 interface IParams {
 	betId: string;
-	userId: string;
 }
 
 export async function POST(request: Request, { params }: { params: IParams }) {
-	const { betId, userId } = params;
-
-	const currentUser = await getCurrentUser();
-
-	if (!currentUser) {
-		return;
-	}
-
-	const user = await prisma.user.findUnique({
-		where: {
-			id: userId,
-		},
-	});
+	const { betId } = params;
 
 	const userBet = await prisma.userBet.findUnique({
 		where: {
@@ -90,6 +77,9 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 		const isAway = userBet.location === 'away';
 		const isSpread = userBet.type === 'Spread';
 		const isTotal = userBet.type === 'Total';
+		const isMoneyline = userBet.type === 'To win';
+
+		// spread
 
 		if (isSpread && isHome) {
 			let homeScoreWithSpread = homeScore + betValue;
@@ -111,6 +101,50 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 			}
 		}
 
+		// total
+
+		if (isTotal && isHome) {
+			let total = homeScore + awayScore;
+			const isOver = userBet.bet[0] === 'o';
+			if (isOver && total > betValue) {
+				result = 'win';
+			} else if (!isOver && total < betValue) {
+				result = 'win';
+			} else {
+				result = 'loss';
+			}
+		}
+
+		if (isTotal && isAway) {
+			let total = homeScore + awayScore;
+			const isOver = userBet.bet[0] === 'o';
+			if (isOver && total > betValue) {
+				result = 'win';
+			} else if (!isOver && total < betValue) {
+				result = 'win';
+			} else {
+				result = 'loss';
+			}
+		}
+
+		// moneyline
+
+		if (isMoneyline && isHome) {
+			if (homeScore > awayScore) {
+				result = 'win';
+			} else {
+				result = 'loss';
+			}
+		}
+
+		if (isMoneyline && isAway) {
+			if (awayScore > homeScore) {
+				result = 'win';
+			} else {
+				result = 'loss';
+			}
+		}
+
 		const updatedBet = await prisma.userBet.update({
 			where: {
 				id: betId,
@@ -119,15 +153,6 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 				outcome: result,
 			},
 		});
-
-		// const updatedUser = await prisma.user.update({
-		// 	where: {
-		// 		id: currentUser?.id
-		// 	}
-		// 	data: {
-
-		// 	}
-		// })
 		return NextResponse.json({ updatedBet });
 	}
 }

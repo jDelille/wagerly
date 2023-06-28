@@ -76,7 +76,7 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
    return;
   }
 
-  axios.post(`/api/updateBet/${id}?${userId}`).then(() => {
+  axios.post(`/api/updateBet/${id}`).then(() => {
    router.refresh()
   }).catch((error) => {
    console.log(error)
