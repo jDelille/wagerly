@@ -8,20 +8,30 @@
 	color: $charade;
 	padding: 25px 15px;
 	position: relative;
-	.displayName {
-		display: flex;
-		flex-direction: column;
-		gap: 0px;
-		strong {
-			font-weight: 600;
-			font-size: $fontSizeMd;
+	.user {
+		.displayName {
+			display: flex;
+			gap: 3px;
+			align-items: center;
+			strong {
+				font-weight: 600;
+				font-size: $fontSizeMd;
+			}
+			span {
+				font-weight: 500;
+				color: $lightText;
+				font-size: $fontSizeSm;
+			}
 		}
-		span {
+		.balance {
+			display: flex;
+			align-items: center;
 			font-weight: 500;
-			color: $lightText;
-			font-size: $fontSizeSm;
+			font-size: $fontSizeMd;
+			color: #4a4de7;
 		}
 	}
+
 	.menuButton {
 		margin-left: auto;
 		position: relative;

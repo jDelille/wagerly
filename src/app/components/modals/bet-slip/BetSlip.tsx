@@ -56,7 +56,7 @@ const BetSlip: React.FC<Props> = ({ currentUser }) => {
       homeId,
       awayId,
       outcome: '',
-      location
+      location,
     }
 
     axios.post('/api/bet', payload)

@@ -7,6 +7,8 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 
 import styles from './CurrentUserBox.module.scss';
 import CurrentUserMenu from './CurrentUserMenu';
+import { faCircleDollarToSlot, faSackDollar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
 	currentUser: SafeUser | null;
@@ -21,10 +23,15 @@ const CurrentUserBox: React.FC<Props> = ({ currentUser }) => {
 				photo={currentUser?.photo || '/images/placeholder.png'}
 				username={currentUser?.username}
 			/>
-			<div className={styles.displayName}>
-				<strong>{currentUser?.name}</strong>
-
-				<span>@{currentUser?.username}</span>
+			<div className={styles.user}>
+				<div className={styles.displayName}>
+					<strong>{currentUser?.name}</strong>
+					&bull;
+					<span>@{currentUser?.username}</span>
+				</div>
+				<div className={styles.balance}>
+					<span>Points {currentUser?.balance}</span>
+				</div>
 			</div>
 			<BsThreeDotsVertical
 				onClick={() => setIsMenuOpen(!isMenuOpen)}

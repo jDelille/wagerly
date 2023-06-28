@@ -71,7 +71,7 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
  const renderedPostBody = renderPostBodyWithLinks(postBody, mentionedUsernames);
 
 
- const onCheck = useCallback((id: string, userId: string) => {
+ const onCheck = useCallback((id: string) => {
   if (post?.UserBet?.outcome !== '') {
    return;
   }
@@ -85,7 +85,7 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
  }, [post?.UserBet?.outcome, router])
 
  useEffect(() => {
-  onCheck(post?.UserBet?.id, post.user.username)
+  onCheck(post?.UserBet?.id)
  }, [])
 
 

@@ -142,6 +142,7 @@ model UserBet {
   sport       String?
   league      String?
   location    String?
+  userId      String
 }
 
 model Parlay {
