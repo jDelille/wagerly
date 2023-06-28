@@ -91,12 +91,14 @@ const MatchCard: React.FC<Props> = observer(({ match, sport }) => {
      {(hasEnded || inProgress) && (
       <span className={styles.statusLine}>{statusLine}</span>
      )}
-     {isScheduled && !isNFL ? (
+     {isScheduled && !isNFL && (
       <div className={styles.statusLine}>
        <span>{upperTeam.abbrv} {awaySpreadOdds}</span>
        <span>{lowerTeam.abbrv} {homeSpreadOdds}</span>
       </div>
-     ) : (
+     )}
+
+     {isScheduled && isNFL && (
       <span className={styles.statusLine}>{statusLine}</span>
      )}
     </div>

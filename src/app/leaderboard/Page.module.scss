@@ -26,9 +26,9 @@
 				justify-content: center;
 			}
 			.placement {
+				justify-content: flex-start;
 				@include breakpoint(xs) {
 					width: 30px;
-					justify-content: flex-start;
 				}
 			}
 			.user {
@@ -68,9 +68,9 @@
 					justify-content: center;
 				}
 				.placement {
+					justify-content: flex-start;
 					@include breakpoint(xs) {
 						width: 30px;
-						justify-content: flex-start;
 					}
 				}
 				.user {
