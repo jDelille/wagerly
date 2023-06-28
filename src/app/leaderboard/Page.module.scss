@@ -1,0 +1,114 @@
+@use '@/app/styles/mixins' as *;
+@use '@/app/styles/variables' as *;
+@use '@/app/styles/breakpoints' as *;
+
+.main {
+	@include page();
+	padding-bottom: 0;
+	.content {
+		border: 1px solid $heather;
+		border-top: 0;
+		min-height: calc(100vh - 4rem - 1px);
+		.labels {
+			height: 45px;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			padding: 0 15px;
+			font-size: $fontSizeSm;
+			border-bottom: 1px solid $heather;
+			.placement,
+			.wins,
+			.losses {
+				width: 50px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.placement {
+				@include breakpoint(xs) {
+					width: 30px;
+					justify-content: flex-start;
+				}
+			}
+			.user {
+				width: 205px;
+				flex: 1;
+			}
+			.points {
+				width: 60px;
+			}
+		}
+		.users {
+			display: flex;
+			flex-direction: column;
+			.userCard {
+				display: flex;
+				align-items: center;
+				font-size: $fontSizeLg;
+				min-height: 55px;
+				border: 1px solid $heather;
+				padding: 15px;
+				border-right: 0;
+				border-left: 0;
+				border-top: 0;
+				@include breakpoint(xs) {
+					font-size: $fontSizeMd;
+				}
+				img {
+					max-width: 30px;
+					max-height: 30px;
+				}
+				.placement,
+				.wins,
+				.losses {
+					width: 50px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+				.placement {
+					@include breakpoint(xs) {
+						width: 30px;
+						justify-content: flex-start;
+					}
+				}
+				.user {
+					width: 205px;
+					flex: 1;
+					display: flex;
+					align-items: center;
+					gap: 10px;
+
+					.displayName {
+						display: flex;
+						flex-direction: column;
+						@include breakpoint(xs) {
+							font-size: $fontSizeSm;
+						}
+						strong {
+							font-weight: 500;
+						}
+						span {
+							color: gray;
+							font-size: $fontSizeSm;
+						}
+					}
+				}
+				.points {
+					width: 60px;
+					color: $chetwodeBlue;
+				}
+			}
+		}
+	}
+}
+
+.loading {
+	@include page();
+	padding-bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid $heather;
+}

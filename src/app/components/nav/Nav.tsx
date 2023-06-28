@@ -1,6 +1,6 @@
 'use client';
 
-import { faBaseballBatBall, faBell, faBookmark, faHashtag, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBaseballBatBall, faBell, faBookmark, faHashtag, faUser, faRankingStar } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Nav.module.scss';
 import NavLink from './NavLink';
@@ -29,19 +29,25 @@ const Nav: React.FC<Props> = ({ currentUsername, hasNotification }) => {
     },
     {
       id: 3,
+      label: 'Leaderboard',
+      icon: faRankingStar,
+      href: `/leaderboard`
+    },
+    {
+      id: 4,
       label: 'Profile',
       icon: faUser,
       href: `/user/${currentUsername}`
     },
     {
-      id: 4,
+      id: 5,
       label: 'Notifications',
       icon: faBell,
       href: `/notifications/${currentUsername}`,
       hasNotification: hasNotification
     },
     {
-      id: 5,
+      id: 6,
       label: 'Bookmarks',
       icon: faBookmark,
       href: `/bookmarks/${currentUsername}`

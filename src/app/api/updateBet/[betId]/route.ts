@@ -101,6 +101,9 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 					balance: {
 						increment: balanceChange,
 					},
+					earnings: {
+						increment: balanceChange,
+					},
 				},
 			});
 		};
