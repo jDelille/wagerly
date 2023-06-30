@@ -33,7 +33,7 @@ export default async function RootLayout({
       <body>
         <Providers>
           <div className='layout'>
-            <BetSlip currentUser={currentUser} />
+            <BetSlip currentUser={currentUser} users={users} />
             <NotLoggedInModal />
             <div className='left-sidebar'>
               {!currentUser ? (

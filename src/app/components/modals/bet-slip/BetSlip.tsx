@@ -7,19 +7,26 @@ import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import "react-toggle/style.css"
 import Modal from "../Modal";
 import styles from './BetSlip.module.scss';
+import Toggle from "react-toggle";
+import CreatePost from "../../text-input/create-post/CreatePost";
+import { User } from "@prisma/client";
 
-;
-
+enum STEPS {
+  BET = 0,
+  TEXT = 1,
+  ODDS = 2,
+}
 
 
 type Props = {
-  currentUser: SafeUser | null
+  currentUser: SafeUser | null;
+  users: User[];
 }
 
-const BetSlip: React.FC<Props> = ({ currentUser }) => {
+const BetSlip: React.FC<Props> = ({ currentUser, users }) => {
 
   const router = useRouter();
 
@@ -27,6 +34,7 @@ const BetSlip: React.FC<Props> = ({ currentUser }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [wager, setWager] = useState(10)
   const [postBody, setPostBody] = useState('')
+  const [showTextarea, setShowTextarea] = useState(false)
 
 
   const { date, matchup, selectedBet, selectedTeamLogo, selectedTeamName, oddsDisplay, selectedOdds, selectedOddsDisplay, payoutMultiplier, type, homeId, awayId, location } = betSlipStore
@@ -73,7 +81,7 @@ const BetSlip: React.FC<Props> = ({ currentUser }) => {
   }
 
   const bodyContent = (
-    <div>
+    <>
       <div className={styles.header}>
         <span>{date}</span>
         <strong>{matchup}</strong>
@@ -85,7 +93,6 @@ const BetSlip: React.FC<Props> = ({ currentUser }) => {
         <div className={styles.displayName}>
           <strong>{selectedTeamName} {selectedBet} </strong>
         </div>
-        <span className={styles.description}>{selectedOddsDisplay}</span>
 
         <div className={styles.odds}>
           <span>ODDS</span>
@@ -111,18 +118,31 @@ const BetSlip: React.FC<Props> = ({ currentUser }) => {
             <strong>${payout}</strong>
           </div>
 
-          <div className={styles.text}>
-            <textarea
-              placeholder="Share your thoughts on this bet."
-              value={postBody}
-              onChange={(e) => setPostBody(e.target.value)}
-            />
-          </div>
+          {/* <div className={styles.text}>
+            <CreatePost users={users} />
+          </div> */}
+
+
         </div>
+        {/* <div className={styles.advancedControls}>
+          <div className={styles.toggle}>
+            <div className={styles.text}>
+              <strong>Customize bet</strong>
+              <span>Add text, an image, or a gif to this bet post.</span>
+            </div>
+            <Toggle
+              id='text-toggle'
+              defaultChecked={false}
+              onChange={() => { setShowTextarea(!showTextarea) }} />
+          </div>
+          {showTextarea && (
+            <CreatePost users={users} />
+          )}
+        </div> */}
 
 
       </div>
-    </div>
+    </>
   )
 
 

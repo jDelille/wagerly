@@ -1,6 +1,6 @@
 'use client';
 
-import { NavLinks } from '@/app/constants/@Links';
+import { getNavLinks } from '@/app/constants/@Links';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signOut } from 'next-auth/react';
@@ -13,7 +13,10 @@ type Props = {
   currentUsername?: string;
 };
 
+
 const NavigationPanel: React.FC<Props> = ({ currentUsername }) => {
+  const navLinks = getNavLinks(currentUsername as string);
+
   return (
     <div className={styles.navigationPanel}>
       <div className={styles.logo}>
@@ -21,7 +24,7 @@ const NavigationPanel: React.FC<Props> = ({ currentUsername }) => {
       </div>
       <div className={styles.links}>
         {!currentUsername
-          ? NavLinks.navLinks.map((link) => {
+          ? navLinks.map((link) => {
             if (link.label === 'Explore')
               return (
                 <NavLink
@@ -32,7 +35,7 @@ const NavigationPanel: React.FC<Props> = ({ currentUsername }) => {
                 />
               );
           })
-          : NavLinks.navLinks.map((link) => (
+          : navLinks.map((link) => (
             <>
               <NavLink
                 key={link.id}

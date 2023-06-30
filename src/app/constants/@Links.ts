@@ -4,11 +4,12 @@ import {
 	faBookmark,
 	faHashtag,
 	faPenToSquare,
+	faRankingStar,
 	faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
-export const NavLinks = Object.freeze({
-	navLinks: [
+export const getNavLinks = (currentUsername: string) => {
+	return [
 		{
 			id: 1,
 			label: 'Explore',
@@ -27,18 +28,23 @@ export const NavLinks = Object.freeze({
 			icon: faPenToSquare,
 			href: '/create-post',
 		},
-		// {
-		// 	id: 4,
-		// 	label: 'Notifications',
-		// 	icon: faBell,
-		// 	href: `/notifications/${currentUsername}`,
-		// 	hasNotification: hasNotification,
-		// },
-		// {
-		// 	id: 5,
-		// 	label: 'Bookmarks',
-		// 	icon: faBookmark,
-		// 	href: `/bookmarks/${currentUsername}`,
-		// },
-	],
-});
+		{
+			id: 4,
+			label: 'Profile',
+			icon: faUser,
+			href: `/user/${currentUsername}`,
+		},
+		{
+			id: 5,
+			label: 'Leaderboard',
+			icon: faRankingStar,
+			href: '/leaderboard',
+		},
+		{
+			id: 6,
+			label: 'Bookmarks',
+			icon: faBookmark,
+			href: `/bookmarks/${currentUsername}`,
+		},
+	];
+};

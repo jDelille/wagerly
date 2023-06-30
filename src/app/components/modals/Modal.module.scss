@@ -4,6 +4,12 @@
 
 .overlay {
 	@include overlay();
+	@include breakpoint(xs) {
+		// display: block;
+		// min-height: 100vh;
+		// position: relative;
+		height: fit-content;
+	}
 }
 
 .showModal,
@@ -19,9 +25,10 @@
 	height: fit-content;
 	border: 1px solid $heather;
 	@include breakpoint(xs) {
+		position: relative;
 		min-width: 100%;
-		height: calc(100vh - 50px);
-		top: 0;
+		overflow-y: auto;
+		height: 100vh;
 	}
 	.header {
 		width: 100%;
@@ -40,7 +47,11 @@
 		}
 	}
 	.bodyContent {
-		padding: 0rem 1rem;
+		padding: 1rem;
+		padding-bottom: 0;
+		@include breakpoint(xs) {
+			min-height: fit-content;
+		}
 	}
 	.footer {
 		display: flex;
@@ -48,7 +59,7 @@
 		width: 100%;
 		gap: 10px;
 		padding: 1rem;
-
+		position: relative;
 		button {
 			height: 45px;
 			font-size: $fontSizeLg !important;
@@ -56,11 +67,10 @@
 			flex: 1;
 			outline: 1px solid $chetwodeBlue;
 			background-color: lighten($chetwodeBlue, 5%);
-
-			&:nth-of-type(1) {
-				background-color: $white;
-				color: $chetwodeBlue;
-			}
+			// &:nth-of-type(1) {
+			// 	background-color: $white;
+			// 	color: $chetwodeBlue;
+			// }
 			&:hover {
 				background-color: lighten($chetwodeBlue, 5%);
 				color: $white;
