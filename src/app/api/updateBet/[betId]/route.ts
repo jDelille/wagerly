@@ -34,6 +34,7 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 	}
 
 	const payout = Number(userBet.payout);
+	const wager = Number(userBet.wager);
 
 	let status = false;
 	const outcome = userBet.outcome;
@@ -92,7 +93,7 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 		const isTotal = userBet.type === 'Total';
 		const isMoneyline = userBet.type === 'To win';
 
-		const updateBalance = async (balanceChange: number) => {
+		const updateBalance = async (balanceChange: number, isWin: boolean) => {
 			updatedUser = await prisma.user.update({
 				where: {
 					id: user.id,
@@ -103,6 +104,12 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 					},
 					earnings: {
 						increment: balanceChange,
+					},
+					wins: {
+						increment: isWin ? 1 : 0,
+					},
+					losses: {
+						increment: isWin ? 0 : 1,
 					},
 				},
 			});
@@ -115,10 +122,10 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 
 			if (homeScoreWithSpread > awayScore) {
 				result = 'win';
-				updatedUser = await updateBalance(payout);
+				updatedUser = await updateBalance(payout, true);
 			} else {
 				result = 'loss';
-				updatedUser = await updateBalance(-payout);
+				updatedUser = await updateBalance(-wager, false);
 			}
 		}
 
@@ -127,10 +134,10 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 
 			if (awayScoreWithSpread > homeScore) {
 				result = 'win';
-				updatedUser = await updateBalance(payout);
+				updatedUser = await updateBalance(payout, true);
 			} else {
 				result = 'loss';
-				updatedUser = await updateBalance(-payout);
+				updatedUser = await updateBalance(-wager, false);
 			}
 		}
 
@@ -141,13 +148,13 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 			const isOver = userBet.bet[0] === 'o';
 			if (isOver && total > betValue) {
 				result = 'win';
-				updatedUser = await updateBalance(payout);
+				updatedUser = await updateBalance(payout, true);
 			} else if (!isOver && total < betValue) {
 				result = 'win';
-				updatedUser = await updateBalance(payout);
+				updatedUser = await updateBalance(payout, true);
 			} else {
 				result = 'loss';
-				updatedUser = await updateBalance(-payout);
+				updatedUser = await updateBalance(-wager, false);
 			}
 		}
 
@@ -156,13 +163,13 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 			const isOver = userBet.bet[0] === 'o';
 			if (isOver && total > betValue) {
 				result = 'win';
-				updatedUser = await updateBalance(payout);
+				updatedUser = await updateBalance(payout, true);
 			} else if (!isOver && total < betValue) {
 				result = 'win';
-				updatedUser = await updateBalance(payout);
+				updatedUser = await updateBalance(payout, true);
 			} else {
 				result = 'loss';
-				updatedUser = await updateBalance(-payout);
+				updatedUser = await updateBalance(-wager, false);
 			}
 		}
 
@@ -171,20 +178,20 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 		if (isMoneyline && isHome) {
 			if (homeScore > awayScore) {
 				result = 'win';
-				updatedUser = await updateBalance(payout);
+				updatedUser = await updateBalance(payout, true);
 			} else {
 				result = 'loss';
-				updatedUser = await updateBalance(-payout);
+				updatedUser = await updateBalance(-wager, false);
 			}
 		}
 
 		if (isMoneyline && isAway) {
 			if (awayScore > homeScore) {
 				result = 'win';
-				updatedUser = await updateBalance(payout);
+				updatedUser = await updateBalance(payout, true);
 			} else {
 				result = 'loss';
-				updatedUser = await updateBalance(-payout);
+				updatedUser = await updateBalance(-wager, false);
 			}
 		}
 

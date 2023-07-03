@@ -1,0 +1,76 @@
+@use '@/app/styles/variables' as *;
+@use '@/app/styles/breakpoints' as *;
+
+.userCard {
+	display: flex;
+	align-items: center;
+	font-size: $fontSizeLg;
+	min-height: 55px;
+	border: 1px solid $heather;
+	padding: 15px;
+	border-right: 0;
+	border-left: 0;
+	border-top: 0;
+	text-decoration: none;
+	color: $charade;
+	cursor: pointer;
+	transition: all 200ms ease-in-out;
+	&:nth-of-type(1) {
+		outline: 2px solid rgba(250, 218, 39, 0.5);
+		border: none;
+		outline-offset: -2px;
+	}
+	&:hover {
+		background-color: darken($white, 5%);
+	}
+	@include breakpoint(xs) {
+		font-size: $fontSizeMd;
+	}
+	img {
+		max-width: 30px;
+		max-height: 30px;
+	}
+	.placement,
+	.wins,
+	.losses {
+		width: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.placement {
+		justify-content: flex-start;
+		@include breakpoint(xs) {
+			width: 30px;
+		}
+	}
+	.user {
+		width: 205px;
+		flex: 1;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		.displayName {
+			display: flex;
+			flex-direction: column;
+			@include breakpoint(xs) {
+				font-size: $fontSizeSm;
+			}
+			strong {
+				font-weight: 500;
+				svg {
+					width: 15px;
+				}
+			}
+			span {
+				color: gray;
+				font-size: $fontSizeSm;
+			}
+		}
+	}
+	.points {
+		width: 60px;
+		color: $chetwodeBlue;
+	}
+}

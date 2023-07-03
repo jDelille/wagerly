@@ -30,7 +30,7 @@ const CurrentUserBox: React.FC<Props> = ({ currentUser }) => {
 					<span>@{currentUser?.username}</span>
 				</div>
 				<div className={styles.balance}>
-					<span>Earnings: {currentUser?.earnings || 0}</span>
+					<span>Earnings: {currentUser?.earnings && currentUser?.earnings.toFixed(2) || 0}</span>
 				</div>
 			</div>
 			<BsThreeDotsVertical

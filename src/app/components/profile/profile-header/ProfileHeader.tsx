@@ -145,7 +145,10 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
      {user?.totalBets} <span>{ProfileScreenString.bets}</span>
     </p>
     <p>
-     {0} <span>{ProfileScreenString.groups}</span>
+     {user.wins} <span>Wins</span>
+    </p>
+    <p>
+     {user.losses} <span>Losses</span>
     </p>
    </div>
   </div>

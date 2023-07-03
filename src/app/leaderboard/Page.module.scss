@@ -42,64 +42,7 @@
 		.users {
 			display: flex;
 			flex-direction: column;
-			.userCard {
-				display: flex;
-				align-items: center;
-				font-size: $fontSizeLg;
-				min-height: 55px;
-				border: 1px solid $heather;
-				padding: 15px;
-				border-right: 0;
-				border-left: 0;
-				border-top: 0;
-				@include breakpoint(xs) {
-					font-size: $fontSizeMd;
-				}
-				img {
-					max-width: 30px;
-					max-height: 30px;
-				}
-				.placement,
-				.wins,
-				.losses {
-					width: 50px;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-				}
-				.placement {
-					justify-content: flex-start;
-					@include breakpoint(xs) {
-						width: 30px;
-					}
-				}
-				.user {
-					width: 205px;
-					flex: 1;
-					display: flex;
-					align-items: center;
-					gap: 10px;
 
-					.displayName {
-						display: flex;
-						flex-direction: column;
-						@include breakpoint(xs) {
-							font-size: $fontSizeSm;
-						}
-						strong {
-							font-weight: 500;
-						}
-						span {
-							color: gray;
-							font-size: $fontSizeSm;
-						}
-					}
-				}
-				.points {
-					width: 60px;
-					color: $chetwodeBlue;
-				}
-			}
 		}
 	}
 }

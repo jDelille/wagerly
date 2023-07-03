@@ -81,6 +81,8 @@ model User {
   likes               String[]
   balance             Float          @default(500)
   earnings            Float?         @default(0)
+  wins                Float?         @default(0)
+  losses              Float?         @default(0)
 }
 
 model Poll {

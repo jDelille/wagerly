@@ -1,12 +1,10 @@
 
-import Image from 'next/image';
 import getCurrentUser from '../actions/getCurrentUser';
 import getUsers from '../actions/getUsers';
 import FeedHeader from '../components/feed/feed-header/FeedHeader';
+import LeaderboardUserCard from '../components/leaderboard-user-card/LeaderboardUserCard';
 
 import styles from './Page.module.scss';
-import Avatar from '../components/user/Avatar/Avatar';
-
 
 const Leaderboard = async () => {
 
@@ -33,20 +31,7 @@ const Leaderboard = async () => {
     </div>
     <div className={styles.users}>
      {sortedUsers.map((user, i) => (
-      <div key={user.id} className={styles.userCard}>
-       <span className={styles.placement}>{i + 1}</span>
-       <div className={styles.user}>
-        <Avatar photo={user.photo || '/images/placeholder.png'} />
-        <div className={styles.displayName}>
-         <strong>{user.name}</strong>
-         <span>@{user.username}</span>
-        </div>
-
-       </div>
-       <div className={styles.points}>{user.earnings || 0}</div>
-       <div className={styles.wins}>0</div>
-       <div className={styles.losses}>0</div>
-      </div>
+      <LeaderboardUserCard key={user.id} user={user} i={i} />
      ))}
     </div>
    </div>
