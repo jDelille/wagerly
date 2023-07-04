@@ -10,10 +10,14 @@
 		color: gray;
 		font-size: 14px;
 	}
+	.specialtiesList {
+		display: flex;
+		gap: 5px;
+	}
 }
 
 .sports {
-	margin-top: 3rem;
+	margin-top: 2rem;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 10px;

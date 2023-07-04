@@ -66,7 +66,16 @@ const Specialties: React.FC<Props> = ({ currentUser }) => {
     <>
       <div className={styles.header}>
         <strong>Your Specialties:</strong>
-        <span>{"You haven't selected any specialties yet!"}</span>
+        <div className={styles.specialtiesList}>
+          {currentUser?.specialties.length && currentUser?.specialties.length < 1 ? (
+            <span>{"You haven't selected any specialties yet!"}</span>
+          ) : (
+            currentUser?.specialties.map((sport) => (
+              <span key={sport}>{sport}</span>
+            ))
+          )}
+        </div>
+
       </div>
 
       <div className={styles.sports}>
