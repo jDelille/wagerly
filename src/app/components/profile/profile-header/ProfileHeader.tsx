@@ -107,8 +107,9 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
         ))
        )}
       </div>
-
-      <span className={styles.editSpecialties} onClick={specialtiesModal.onOpen}>Edit</span>
+      {currentUserId === user?.id && (
+       <span className={styles.editSpecialties} onClick={specialtiesModal.onOpen}>Edit</span>
+      )}
      </div>
 
      {/* <div className={styles.categories}>
