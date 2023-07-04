@@ -14,6 +14,7 @@ import { BiDotsVertical } from 'react-icons/bi';
 
 import ProfileMenu from './profile-menu/ProfileMenu';
 import styles from './ProfileHeader.module.scss';
+import useSpecialtiesModal from '@/app/hooks/useSpecialtiesModal';
 
 type Props = {
  user: User
@@ -28,6 +29,8 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
  const notLoggedInModal = useNotLoggedInModal();
+
+ const specialtiesModal = useSpecialtiesModal();
 
 
  let joinedDate = format(new Date(user?.createdAt), 'MMMM dd, yyyy');
@@ -92,6 +95,22 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
        </span>
       </p>
      )}
+
+     {/* <div className={styles.specialties}>
+      <strong>Specialties</strong>
+      <span>{"You haven't added any specialties yet!"}</span>
+      <span className={styles.editSpecialties} onClick={specialtiesModal.onOpen}>Edit</span>
+     </div> */}
+
+     {/* <div className={styles.categories}>
+      <strong>Open Bets</strong>
+      <div className={styles.betCategories}>
+       <span className={styles.category}>Today</span>
+       <span className={styles.category}>Upcoming</span>
+       <span className={styles.category}>Futures</span>
+      </div>
+      <span>No bets for this category</span>
+     </div> */}
 
      <div className={styles.links}>
       <div className={styles.link}>

@@ -11,8 +11,8 @@
 		display: flex;
 		gap: 10px;
 		img {
-			min-width: 75px;
-			min-height: 75px;
+			min-width: 65px;
+			min-height: 65px;
 		}
 		.displayName {
 			display: flex;
@@ -121,6 +121,60 @@
 						text-decoration: underline;
 					}
 				}
+			}
+		}
+
+		.specialties {
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+			position: relative;
+			strong {
+				font-size: $fontSizeLg;
+				font-weight: 600;
+			}
+			span {
+				color: gray;
+				font-weight: 400;
+			}
+			.editSpecialties {
+				color: $chetwodeBlue;
+				position: absolute;
+				top: 0;
+				right: 0;
+				text-decoration: none;
+			}
+		}
+
+		.categories {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			strong {
+				font-size: $fontSizeLg;
+				font-weight: 600;
+			}
+			.betCategories {
+				display: flex;
+				gap: 10px;
+				.category {
+					outline: 1px solid darken($heather, 25%);
+					color: $charade;
+					padding: 3px 12px;
+					border-radius: 22px;
+					text-transform: uppercase;
+					font-weight: 500;
+					font-size: $fontSizeSm;
+					&:nth-of-type(1) {
+						outline: 1px solid $chetwodeBlue;
+						background-color: lighten($chetwodeBlue, 35%);
+						color: $chetwodeBlue;
+					}
+				}
+			}
+			span {
+				color: gray;
+				font-weight: 400;
 			}
 		}
 	}

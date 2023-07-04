@@ -14,6 +14,7 @@ import CreatePost from './components/text-input/create-post/CreatePost';
 import Auth from './components/user/auth/Auth';
 import CurrentUserBox from './components/user/current-user-box/CurrentUserBox';
 import Providers from './components/Providers';
+import Specialties from './components/modals/specialties/Specialties';
 
 export const metadata = {
   title: 'Wagerly',
@@ -35,6 +36,7 @@ export default async function RootLayout({
           <div className='layout'>
             <BetSlip currentUser={currentUser} users={users} />
             <NotLoggedInModal />
+            <Specialties currentUser={currentUser} />
             <div className='left-sidebar'>
               {!currentUser ? (
                 <Auth currentUser={currentUser} />

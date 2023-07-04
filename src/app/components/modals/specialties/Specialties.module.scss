@@ -1,0 +1,12 @@
+.header {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	strong {
+		font-weight: 500;
+	}
+	span {
+		color: gray;
+		font-weight: 400;
+	}
+}
