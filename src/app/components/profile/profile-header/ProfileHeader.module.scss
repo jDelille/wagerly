@@ -127,12 +127,13 @@
 		.specialties {
 			display: flex;
 			flex-direction: column;
-			gap: 5px;
+			gap: 10px;
 			position: relative;
 			strong {
 				font-size: $fontSizeLg;
 				font-weight: 600;
 			}
+
 			span {
 				color: gray;
 				font-weight: 400;
@@ -143,6 +144,16 @@
 				top: 0;
 				right: 0;
 				text-decoration: none;
+			}
+			.sports {
+				display: flex;
+				gap: 3px;
+				.sport {
+					border: 1px solid $chetwodeBlue;
+					padding: 3px 16px;
+					border-radius: 12px;
+					color: $chetwodeBlue;
+				}
 			}
 		}
 

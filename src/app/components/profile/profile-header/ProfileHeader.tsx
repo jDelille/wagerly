@@ -96,11 +96,20 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
       </p>
      )}
 
-     {/* <div className={styles.specialties}>
+     <div className={styles.specialties}>
       <strong>Specialties</strong>
-      <span>{"You haven't added any specialties yet!"}</span>
+      <div className={styles.sports}>
+       {user.specialties.length < 1 ? (
+        <span>{"You haven't added any specialties yet!"}</span>
+       ) : (
+        user.specialties.map((sport) => (
+         <span key={sport} className={styles.sport}>{sport}</span>
+        ))
+       )}
+      </div>
+
       <span className={styles.editSpecialties} onClick={specialtiesModal.onOpen}>Edit</span>
-     </div> */}
+     </div>
 
      {/* <div className={styles.categories}>
       <strong>Open Bets</strong>

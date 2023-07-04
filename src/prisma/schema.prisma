@@ -83,6 +83,7 @@ model User {
   earnings            Float?         @default(0)
   wins                Float?         @default(0)
   losses              Float?         @default(0)
+  specialties         String[]
 }
 
 model Poll {

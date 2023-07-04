@@ -1,0 +1,44 @@
+@use '@/app/styles/variables' as *;
+@use '@/app/styles/mixins' as *;
+
+.overlay {
+	@include overlay();
+}
+
+.popup,
+.hidePopup {
+	background-color: $white;
+	border-radius: 12px;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	width: 500px;
+	min-height: 700px;
+	padding: 1rem;
+	transition: 300ms ease-in-out;
+	position: fixed;
+	opacity: 1;
+	.header {
+		display: flex;
+		align-items: center;
+		position: relative;
+		justify-content: flex-end;
+		svg {
+			font-size: 1.2rem;
+			cursor: pointer;
+		}
+	}
+	.title {
+		font-size: 12px;
+	}
+	.footer {
+		button {
+			max-width: fit-content;
+			margin: 1rem 0;
+			margin-left: auto;
+		}
+	}
+}
+
+.hidePopup {
+	transform: translateY(300px);
+	opacity: 0;
+}

@@ -51,8 +51,6 @@ export async function POST(request: Request) {
 		},
 	});
 
-	console.log(currentUser?.id);
-
 	const newPost = await prisma.post.create({
 		data: {
 			userId: currentUser.id,
