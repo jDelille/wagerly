@@ -110,11 +110,9 @@ const MatchCard: React.FC<Props> = observer(({ match, sport }) => {
       <>
        <strong className={styles.score}>{lowerTeam.score || 0}</strong>
        <strong className={styles.score}>{upperTeam.score || 0}</strong>
-      </>
-     )}
+       <span className={styles.time}>{tvStation || 'ESPN+'}</span>
 
-     {inProgress && (
-      <span className={styles.time}>{tvStation}</span>
+      </>
      )}
 
      {isScheduled && (
