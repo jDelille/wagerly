@@ -47,7 +47,7 @@ const GameCard: React.FC<Props> = ({ match }) => {
 		abbrv: match.competitions[0].competitors[1].team.abbreviation,
 	};
 
-	const nflPreviewOdds = isNFL ? match.competitions[0].odds[0].details : null
+	const nflPreviewOdds = isNFL ? match.competitions[0].odds?.[0].details : null
 
 	const inProgress = match.status.type.state === 'in';
 	const isScheduled = match.status.type.state === 'pre';
