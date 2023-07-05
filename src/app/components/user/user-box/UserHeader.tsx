@@ -91,13 +91,6 @@ const UserHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCount, 
     </div>
     <div className={styles.userInfo}>
      <p>
-      {followerCount} <span>{ProfileScreenString.followers}</span>
-     </p>
-     <p>
-      {user?.followingIds.length || 0}{' '}
-      <span>{ProfileScreenString.following}</span>
-     </p>
-     <p>
       {user?.totalBets} <span>{ProfileScreenString.bets}</span>
      </p>
      <p>
