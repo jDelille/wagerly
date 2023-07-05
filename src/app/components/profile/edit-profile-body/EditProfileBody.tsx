@@ -1,6 +1,5 @@
 'use client';
 
-import ImageUpload from '@/app/components/image-upload/ImageUpload';
 import EditProfileHeader from '@/app/components/profile/edit-profile-header/EditProfileHeader';
 import { SafeUser } from '@/app/types/SafeUser';
 import Input from '@/app/ui/input/Input';
@@ -10,6 +9,8 @@ import { useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 import styles from './EditProfileBody.module.scss';
+import ImageUpload from '../image-upload/ImageUpload';
+import CoverImageUpload from '../image-upload/CoverImageUpload';
 
 type Props = {
   currentUser: SafeUser | null;
@@ -20,6 +21,8 @@ const EditProfileBody: React.FC<Props> = ({ currentUser }) => {
   const router = useRouter();
 
   const [photo, setPhoto] = useState(currentUser?.photo)
+  const [coverPhoto, setCoverPhoto] = useState(currentUser?.coverPhoto || "")
+
   const [isLoading, setIsLoading] = useState(false)
 
   const {
@@ -60,7 +63,8 @@ const EditProfileBody: React.FC<Props> = ({ currentUser }) => {
 
     const payload = {
       ...data,
-      photo
+      photo,
+      coverPhoto
     }
 
     axios
@@ -83,7 +87,48 @@ const EditProfileBody: React.FC<Props> = ({ currentUser }) => {
     <>
       <EditProfileHeader onClick={handleSubmit(onSubmit)} />
       <div className={styles.editProfileBody}>
+        <h4>Basic Information</h4>
+        <Input
+          label='Display Name'
+          type='text'
+          value={name}
+          placeholder={currentUser?.name as string}
+          id='name'
+          register={register}
+          tabIndex={0}
+        />
+        <Input
+          label='Username'
+          type='text'
+          value={username}
+          placeholder={currentUser?.username as string}
+          id='username'
+          register={register}
+          tabIndex={0}
+        />
 
+        <div className={styles.imageUpload}>
+          <label>Profile picture</label>
+          <span>PNG, GIF or JPG. At most 2 MB. Will be downscaled to 400x400px</span>
+          <ImageUpload
+            onChange={(image) => setPhoto(image)}
+            setCustomValue={setCustomValue}
+            isRegister
+          />
+        </div>
+        <div className={styles.imageUpload}>
+          <label>Cover picture</label>
+          <span>PNG, GIF or JPG. At most 2 MB. Will be downscaled to 1500x500px</span>
+          <CoverImageUpload
+            onChange={(image) => setCoverPhoto(image)}
+            setCustomValue={setCustomValue}
+            isRegister
+          />
+        </div>
+
+
+
+        {/* 
         <div className={styles.avatar}>
           <label>Avatar</label>
           <div className={styles.img}>
@@ -96,28 +141,9 @@ const EditProfileBody: React.FC<Props> = ({ currentUser }) => {
           </div>
         </div>
 
-        <Input
-          label='Display Name'
-          type='text'
-          value={name}
-          placeholder={currentUser?.name as string}
-          id='name'
-          register={register}
-          tabIndex={0}
-        />
+         */}
 
-        <Input
-          label='Username'
-          type='text'
-          value={username}
-          placeholder={currentUser?.username as string}
-          id='username'
-          register={register}
-          tabIndex={0}
-
-        />
-
-        <div className={styles.bio}>
+        {/* <div className={styles.bio}>
           <label htmlFor="bio">Bio</label>
           <textarea
             placeholder={currentUser?.bio as string}
@@ -125,9 +151,9 @@ const EditProfileBody: React.FC<Props> = ({ currentUser }) => {
             value={bio}
             onChange={(e) => setCustomValue('bio', e.target.value)}
           />
-        </div>
+        </div> */}
 
-        <div className={styles.externalLinks}>
+        {/* <div className={styles.externalLinks}>
           <label className={styles.linksLogo}>Link your other socials</label>
           <Input
             label='Draftkings'
@@ -151,7 +177,7 @@ const EditProfileBody: React.FC<Props> = ({ currentUser }) => {
             hasLogo={true}
             logo='/images/betsperts.jpg'
           />
-        </div>
+        </div> */}
 
       </div>
     </>

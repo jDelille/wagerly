@@ -4,7 +4,8 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
 	const body = await request.json();
-	const { name, username, bio, photo, draftKings, betSperts } = body;
+	const { name, username, bio, photo, draftKings, betSperts, coverPhoto } =
+		body;
 	const currentUser = await getCurrentUser();
 
 	if (!currentUser) {
@@ -35,6 +36,10 @@ export async function POST(request: Request) {
 
 	if (betSperts) {
 		data.betSpertsLink = betSperts;
+	}
+
+	if (coverPhoto) {
+		data.coverPhoto = coverPhoto;
 	}
 
 	try {

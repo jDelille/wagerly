@@ -58,7 +58,10 @@ const NavigationPanel: React.FC<Props> = ({ currentUsername }) => {
           </>
         ) : (
           <div onClick={() => signOut()} className={styles.logoutLink}>
-            <FontAwesomeIcon icon={faRightFromBracket} color='#36393e' />
+            <div className={styles.iconWrapper}>
+              <FontAwesomeIcon icon={faRightFromBracket} color='#36393e' />
+            </div>
+
             <span>Logout</span>
           </div>
         )}

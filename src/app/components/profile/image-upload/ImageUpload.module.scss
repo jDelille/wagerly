@@ -1,0 +1,18 @@
+.imageUpload {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	position: relative;
+	button {
+		width: fit-content;
+		padding: 0 5px;
+	}
+	span {
+		height: 22px;
+		max-width: 143px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}

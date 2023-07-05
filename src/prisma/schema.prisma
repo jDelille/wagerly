@@ -84,6 +84,7 @@ model User {
   wins                Float?         @default(0)
   losses              Float?         @default(0)
   specialties         String[]
+  coverPhoto          String?
 }
 
 model Poll {

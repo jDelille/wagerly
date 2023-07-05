@@ -44,15 +44,23 @@
 		.link {
 			padding: 15px 0;
 			display: flex;
-			gap: 10px;
+			gap: 6px;
 			align-items: center;
-			height: 48px;
+			height: 45px;
 			text-decoration: none;
 			color: $charade;
-
-			svg {
-				font-size: 16px;
+			font-size: 15px;
+			font-weight: 500;
+			.iconWrapper {
+				width: 23px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				svg {
+					font-size: 14px;
+				}
 			}
+
 			a {
 				color: $charade;
 				text-decoration: none;
@@ -74,15 +82,27 @@
 		.logoutLink {
 			padding: 15px 0;
 			display: flex;
-			gap: 10px;
+			gap: 6px;
 			align-items: center;
-			height: 48px;
+			height: 45px;
 			text-decoration: none;
 			color: $charade;
+			font-size: 15px;
+			cursor: pointer;
+			font-weight: 500;
 			@include breakpoint(xs) {
 				padding-top: 0;
 				span {
 					display: none;
+				}
+			}
+			.iconWrapper {
+				width: 23px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				svg {
+					font-size: 14px;
 				}
 			}
 		}

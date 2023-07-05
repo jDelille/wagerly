@@ -4,11 +4,26 @@
 	padding: 2rem 1rem;
 	font-size: 12px;
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+	gap: 2rem;
+	position: relative;
+	p {
+		color: #282c37;
+		font-size: 16px;
+		line-height: 22px;
+		margin-bottom: 30px;
+		strong {
+			font-weight: 600;
+		}
+	}
+
 	button {
 		width: fit-content;
 		font-weight: 600;
 		font-size: $fontSizeMd;
+		position: absolute;
+		top: 2rem;
+		right: 1rem;
 		&:hover {
 			background-color: lighten($chetwodeBlue, 5%);
 		}

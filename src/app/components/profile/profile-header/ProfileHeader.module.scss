@@ -3,218 +3,253 @@
 
 .profileHeader {
 	background-color: lighten($white, 5%);
-	padding: 1rem;
 	border-bottom: 1px solid $heather;
 	border-top: none;
-
-	.top {
-		display: flex;
-		gap: 10px;
-		img {
-			min-width: 65px;
-			min-height: 65px;
-		}
-		.displayName {
-			display: flex;
-			flex-direction: column;
-			gap: 0px;
-			strong {
-				font-size: 28px;
-				@include breakpoint(xs) {
-					font-size: 20px;
-				}
-			}
-			span {
-				font-size: 16px;
-				@include breakpoint(xs) {
-					font-size: 14px;
-				}
-			}
-		}
-		.menu {
-			position: absolute;
-			right: 15px;
-			display: flex;
-			gap: 5px;
-			button,
-			.editProfileButton {
-				padding: 10px 10px;
-				font-size: $fontSizeMd;
-				background-color: $chetwodeBlue;
-				text-decoration: none;
-				color: $white;
-				border-radius: 4px;
-				font-weight: 600;
-				&:hover {
-					background-color: lighten($chetwodeBlue, 5%);
-				}
-			}
-			.userMenu {
-				background-color: lighten($white, 15%);
-				padding: 7px;
-				border-radius: 4px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				border: 1px solid $heather;
-				cursor: pointer;
-				transition: 200ms ease-in-out;
-				&:hover {
-					background-color: darken($white, 5%);
-				}
-			}
-		}
+	margin-bottom: -1.5rem;
+	.coverPhoto {
+		height: 145px;
+		background-color: $mystic;
+		position: relative;
 	}
-	.bio,
-	.noBioMessage {
-		padding: 1rem 0;
-		font-size: 13px;
-		color: $charade;
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-		gap: 1rem;
-		font-weight: 600;
-
-		.links {
+	.content {
+		position: relative;
+		top: -45px;
+		.top {
 			display: flex;
+			gap: 10px;
+			position: relative;
 			flex-direction: column;
-			gap: 2px;
-			background-color: $darkMystic;
-			border-radius: 4px;
-			width: 100%;
-			color: $charade;
-			.link {
-				text-transform: uppercase;
-				color: $charade;
-				font-weight: 600;
-				font-size: 13px;
-				border-top: 1px solid $heather;
-				padding: 10px;
+			width: 568px;
+			margin: 0 auto;
+			@include breakpoint(sm) {
+				width: 621px;
+			}
+			img {
+				min-width: 90px;
+				min-height: 90px;
+				outline: 2px solid $white;
+			}
+			.displayName {
 				display: flex;
 				flex-direction: column;
-				gap: 5px;
-				&:nth-of-type(1) {
-					border-top: none;
+				gap: 0px;
+				strong {
+					font-size: 17px;
+					@include breakpoint(xs) {
+						font-size: 20px;
+					}
 				}
-				.logo {
+				span {
+					font-size: 14px;
+					@include breakpoint(xs) {
+						font-size: 14px;
+					}
+				}
+			}
+			.menu {
+				position: absolute;
+				display: flex;
+				gap: 10px;
+				right: 0;
+				top: 55px;
+				button,
+				.editProfileButton {
+					padding: 10px 10px;
+					font-size: $fontSizeMd;
+					background-color: $chetwodeBlue;
+					text-decoration: none;
+					color: $white;
+					border-radius: 4px;
+					font-weight: 600;
+					&:hover {
+						background-color: lighten($chetwodeBlue, 5%);
+					}
+				}
+				.userMenu {
+					background-color: lighten($white, 15%);
+					padding: 7px;
+					border-radius: 4px;
 					display: flex;
 					align-items: center;
-					gap: 5px;
-				}
-				span,
-				a {
-					color: $charade;
-					font-size: 12px;
-					text-transform: none;
-					text-decoration: none;
-				}
-				a {
-					color: $chetwodeBlue;
-					display: inline-block;
-					max-width: 250px; /* Adjust this value as per your requirement */
-					overflow: hidden;
-					text-overflow: ellipsis;
-					white-space: nowrap;
+					justify-content: center;
+					border: 1px solid $heather;
+					cursor: pointer;
+					transition: 200ms ease-in-out;
 					&:hover {
-						cursor: pointer;
+						background-color: darken($white, 5%);
+					}
+				}
+			}
+		}
+		.middle {
+			margin: 0 auto;
+			position: relative;
+			width: 568px;
+			margin: 0 auto;
+			@include breakpoint(sm) {
+				width: 621px;
+			}
+			.bio,
+			.noBioMessage {
+				padding: 1rem 0;
+				font-size: 13px;
+				color: $charade;
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				gap: 1rem;
+				font-weight: 600;
+
+				.links {
+					display: flex;
+					flex-direction: column;
+					gap: 2px;
+					background-color: $darkMystic;
+					border-radius: 4px;
+					color: $charade;
+					width: 100%;
+					.link {
+						text-transform: uppercase;
+						color: $charade;
+						font-weight: 600;
+						font-size: 13px;
+						border-top: 1px solid $heather;
+						padding: 10px;
+						display: flex;
+						flex-direction: column;
+						gap: 5px;
+						&:nth-of-type(1) {
+							border-top: none;
+						}
+						.logo {
+							display: flex;
+							align-items: center;
+							gap: 5px;
+						}
+						span,
+						a {
+							color: $charade;
+							font-size: 12px;
+							text-transform: none;
+							text-decoration: none;
+						}
+						a {
+							color: $chetwodeBlue;
+							display: inline-block;
+							max-width: 250px; /* Adjust this value as per your requirement */
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+							&:hover {
+								cursor: pointer;
+								text-decoration: underline;
+							}
+						}
+					}
+				}
+
+				.specialties {
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					position: relative;
+					width: 100%;
+					margin: 0 auto;
+					strong {
+						font-size: $fontSizeLg;
+						font-weight: 600;
+					}
+
+					span {
+						color: gray;
+						font-weight: 400;
+					}
+					.editSpecialties {
+						color: $chetwodeBlue;
+						position: absolute;
+						top: 0;
+						right: 0;
+						text-decoration: none;
+					}
+					.sports {
+						display: flex;
+						gap: 3px;
+						.sport {
+							border: 1px solid $chetwodeBlue;
+							padding: 3px 16px;
+							border-radius: 12px;
+							color: $chetwodeBlue;
+						}
+					}
+				}
+
+				.categories {
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					strong {
+						font-size: $fontSizeLg;
+						font-weight: 600;
+					}
+					.betCategories {
+						display: flex;
+						gap: 10px;
+						.category {
+							outline: 1px solid darken($heather, 25%);
+							color: $charade;
+							padding: 3px 12px;
+							border-radius: 22px;
+							text-transform: uppercase;
+							font-weight: 500;
+							font-size: $fontSizeSm;
+							&:nth-of-type(1) {
+								outline: 1px solid $chetwodeBlue;
+								background-color: lighten($chetwodeBlue, 35%);
+								color: $chetwodeBlue;
+							}
+						}
+					}
+					span {
+						color: gray;
+						font-weight: 400;
+					}
+				}
+			}
+			.noBioMessage {
+				font-style: italic;
+				display: flex;
+				span {
+					color: $chetwodeBlue;
+					font-style: normal;
+					cursor: pointer;
+					width: fit-content;
+					&:hover {
 						text-decoration: underline;
 					}
 				}
 			}
 		}
 
-		.specialties {
+		.userInfo {
 			display: flex;
-			flex-direction: column;
-			gap: 10px;
-			position: relative;
-			strong {
-				font-size: $fontSizeLg;
-				font-weight: 600;
+			gap: 1rem;
+			align-items: center;
+			font-size: 13px;
+			padding-top: 10px;
+			font-weight: 600;
+			width: 100%;
+			width: 568px;
+			margin: 0 auto;
+			@include breakpoint(sm) {
+				width: 621px;
 			}
 
-			span {
-				color: gray;
-				font-weight: 400;
-			}
-			.editSpecialties {
-				color: $chetwodeBlue;
-				position: absolute;
-				top: 0;
-				right: 0;
-				text-decoration: none;
-			}
-			.sports {
-				display: flex;
-				gap: 3px;
-				.sport {
-					border: 1px solid $chetwodeBlue;
-					padding: 3px 16px;
-					border-radius: 12px;
-					color: $chetwodeBlue;
-				}
-			}
-		}
-
-		.categories {
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-			strong {
-				font-size: $fontSizeLg;
-				font-weight: 600;
-			}
-			.betCategories {
-				display: flex;
-				gap: 10px;
-				.category {
-					outline: 1px solid darken($heather, 25%);
-					color: $charade;
-					padding: 3px 12px;
-					border-radius: 22px;
-					text-transform: uppercase;
-					font-weight: 500;
-					font-size: $fontSizeSm;
-					&:nth-of-type(1) {
-						outline: 1px solid $chetwodeBlue;
-						background-color: lighten($chetwodeBlue, 35%);
-						color: $chetwodeBlue;
-					}
-				}
+			l p {
+				color: $charade;
 			}
 			span {
-				color: gray;
-				font-weight: 400;
+				color: $charade;
 			}
-		}
-	}
-	.noBioMessage {
-		font-style: italic;
-		display: flex;
-		span {
-			color: $chetwodeBlue;
-			font-style: normal;
-			cursor: pointer;
-			width: fit-content;
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-	}
-	.userInfo {
-		display: flex;
-		gap: 1rem;
-		align-items: center;
-		font-size: 13px;
-		padding-top: 10px;
-		font-weight: 600;
-
-		p {
-			color: $charade;
-		}
-		span {
-			color: $charade;
 		}
 	}
 }

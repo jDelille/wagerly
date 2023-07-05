@@ -48,138 +48,136 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
 
  return (
   <div className={styles.profileHeader}>
-   <div className={styles.top}>
-    <Avatar photo={user?.photo || '/images/placeholder.png'} />
-    <div className={styles.displayName}>
-     <strong>{user?.name}</strong>
-     <span>@{user?.username}</span>
-    </div>
-    <div className={styles.menu}>
-     {currentUserId === user?.id && (
-      <Link href={`/edit-profile/${user?.username}`} className={styles.editProfileButton}>Edit Profile</Link>
-     )}
-
-     {!currentUserId && (
-      <Button label={'Follow'} onClick={notLoggedInModal.onOpen} />
-     )}
-
-     {currentUserId && currentUserId !== user?.id && (
-      <Button label={isFollowing ? 'Unfollow' : 'Follow'} onClick={isFollowing ? handleUnfollow : handleFollow} />
-     )}
-     {currentUserId === user.id && (
-      <>
-       <div className={styles.userMenu} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        <BiDotsVertical size={22} />
-       </div>
-       {isMenuOpen && (
-        <ProfileMenu
-         setIsMenuOpen={setIsMenuOpen}
-         currentUserId={currentUserId as string}
-         user={user}
-        />
-       )}
-      </>
-     )}
-
-    </div>
+   <div className={styles.coverPhoto}>
+    {user?.coverPhoto && (
+     <Image src={user?.coverPhoto} alt='cover-photo' fill style={{ objectFit: 'cover' }} />
+    )}
    </div>
-   <div className={styles.middle}>
-    <div className={styles.bio}>
-     {bio && <p>{user?.bio} </p>}
-
-     {!bio && currentUserId === user?.id && (
-      <p className={styles.noBioMessage}>
-       {ProfileScreenString.noBioMessage}
-       <span >
-        {ProfileScreenString.editProfile}
-       </span>
-      </p>
-     )}
-
-     <div className={styles.specialties}>
-      <strong>Specialties</strong>
-      <div className={styles.sports}>
-       {user.specialties.length < 1 ? (
-        <span>{"You haven't added any specialties yet!"}</span>
-       ) : (
-        user.specialties.map((sport) => (
-         <span key={sport} className={styles.sport}>{sport}</span>
-        ))
-       )}
-      </div>
+   <div className={styles.content}>
+    <div className={styles.top}>
+     <Avatar photo={user?.photo || '/images/placeholder.png'} />
+     <div className={styles.displayName}>
+      <strong>{user?.name}</strong>
+      <span>@{user?.username}</span>
+     </div>
+     <div className={styles.menu}>
       {currentUserId === user?.id && (
-       <span className={styles.editSpecialties} onClick={specialtiesModal.onOpen}>Edit</span>
-      )}
-     </div>
-
-     {/* <div className={styles.categories}>
-      <strong>Open Bets</strong>
-      <div className={styles.betCategories}>
-       <span className={styles.category}>Today</span>
-       <span className={styles.category}>Upcoming</span>
-       <span className={styles.category}>Futures</span>
-      </div>
-      <span>No bets for this category</span>
-     </div> */}
-
-     <div className={styles.links}>
-      <div className={styles.link}>
-       <p>{ProfileScreenString.joined}</p>
-       <span>{joinedDate}</span>
-      </div>
-
-      {hasDraftkings && (
-       <div className={styles.link}>
-        <div className={styles.logo}>
-         <Image
-          src='/images/draftkings.png'
-          alt='draftkings logo'
-          width={15}
-          height={15}
-         />
-         <p>Draftkings</p>
-        </div>
-        <a target='_blank' href={user?.draftKingsLink as string}>{user?.draftKingsLink}</a>
-       </div>
+       <Link href={`/edit-profile/${user?.username}`} className={styles.editProfileButton}>Edit Profile</Link>
       )}
 
-      {hasBetSperts && (
-       <div className={styles.link}>
-        <div className={styles.logo}>
-         <Image
-          src='/images/betsperts.jpg'
-          alt='draftkings logo'
-          width={15}
-          height={15}
-         />
-         <p>Betsperts</p>
+      {!currentUserId && (
+       <Button label={'Follow'} onClick={notLoggedInModal.onOpen} />
+      )}
 
+      {currentUserId && currentUserId !== user?.id && (
+       <Button label={isFollowing ? 'Unfollow' : 'Follow'} onClick={isFollowing ? handleUnfollow : handleFollow} />
+      )}
+      {currentUserId === user.id && (
+       <>
+        <div className={styles.userMenu} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+         <BiDotsVertical size={22} />
         </div>
-        <a target='_blank' href={user?.betSpertsLink as string}>{user?.betSpertsLink}</a>
-       </div>
+        {isMenuOpen && (
+         <ProfileMenu
+          setIsMenuOpen={setIsMenuOpen}
+          currentUserId={currentUserId as string}
+          user={user}
+         />
+        )}
+       </>
       )}
 
      </div>
     </div>
+    <div className={styles.middle}>
+     <div className={styles.bio}>
+      {bio && <p>{user?.bio} </p>}
+
+      {!bio && currentUserId === user?.id && (
+       <p className={styles.noBioMessage}>
+        {ProfileScreenString.noBioMessage}
+        <span >
+         {ProfileScreenString.editProfile}
+        </span>
+       </p>
+      )}
+
+      <div className={styles.specialties}>
+       <strong>Specialties</strong>
+       <div className={styles.sports}>
+        {user.specialties.length < 1 ? (
+         <span>{"You haven't added any specialties yet!"}</span>
+        ) : (
+         user.specialties.map((sport) => (
+          <span key={sport} className={styles.sport}>{sport}</span>
+         ))
+        )}
+       </div>
+       {currentUserId === user?.id && (
+        <span className={styles.editSpecialties} onClick={specialtiesModal.onOpen}>Edit</span>
+       )}
+      </div>
+
+      <div className={styles.links}>
+       <div className={styles.link}>
+        <p>{ProfileScreenString.joined}</p>
+        <span>{joinedDate}</span>
+       </div>
+
+       {hasDraftkings && (
+        <div className={styles.link}>
+         <div className={styles.logo}>
+          <Image
+           src='/images/draftkings.png'
+           alt='draftkings logo'
+           width={15}
+           height={15}
+          />
+          <p>Draftkings</p>
+         </div>
+         <a target='_blank' href={user?.draftKingsLink as string}>{user?.draftKingsLink}</a>
+        </div>
+       )}
+
+       {hasBetSperts && (
+        <div className={styles.link}>
+         <div className={styles.logo}>
+          <Image
+           src='/images/betsperts.jpg'
+           alt='draftkings logo'
+           width={15}
+           height={15}
+          />
+          <p>Betsperts</p>
+
+         </div>
+         <a target='_blank' href={user?.betSpertsLink as string}>{user?.betSpertsLink}</a>
+        </div>
+       )}
+
+      </div>
+     </div>
+    </div>
+    <div className={styles.userInfo}>
+     <p>
+      {followerCount} <span>{ProfileScreenString.followers}</span>
+     </p>
+     <p>
+      {user?.followingIds.length || 0}{' '}
+      <span>{ProfileScreenString.following}</span>
+     </p>
+     <p>
+      {user?.totalBets} <span>{ProfileScreenString.bets}</span>
+     </p>
+     <p>
+      {user.wins} <span>Wins</span>
+     </p>
+     <p>
+      {user.losses} <span>Losses</span>
+     </p>
+    </div>
    </div>
-   <div className={styles.userInfo}>
-    <p>
-     {followerCount} <span>{ProfileScreenString.followers}</span>
-    </p>
-    <p>
-     {user?.followingIds.length || 0}{' '}
-     <span>{ProfileScreenString.following}</span>
-    </p>
-    <p>
-     {user?.totalBets} <span>{ProfileScreenString.bets}</span>
-    </p>
-    <p>
-     {user.wins} <span>Wins</span>
-    </p>
-    <p>
-     {user.losses} <span>Losses</span>
-    </p>
-   </div>
+
   </div>
  );
 }
