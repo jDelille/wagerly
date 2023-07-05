@@ -15,6 +15,7 @@ import { BiDotsVertical } from 'react-icons/bi';
 import ProfileMenu from './profile-menu/ProfileMenu';
 import styles from './ProfileHeader.module.scss';
 import useSpecialtiesModal from '@/app/hooks/useSpecialtiesModal';
+import Specialties from '../../popup/specialties/Specialties';
 
 type Props = {
  user: User
@@ -102,21 +103,38 @@ const ProfileHeader: React.FC<Props> = ({ user, currentUserId, bio, followerCoun
        </p>
       )}
 
-      <div className={styles.specialties}>
-       <strong>Specialties</strong>
-       <div className={styles.sports}>
-        {user.specialties.length < 1 ? (
-         <span>{"You haven't added any specialties yet!"}</span>
-        ) : (
-         user.specialties.map((sport) => (
-          <span key={sport} className={styles.sport}>{sport}</span>
-         ))
+      {currentUserId === user?.id && user.specialties.length < 1 && (
+       <div className={styles.specialties}>
+        <strong>Specialties</strong>
+        <div className={styles.sports}>
+         {user.specialties.length < 1 ? (
+          <span>{"You haven't added any specialties yet!"}</span>
+         ) : (
+          user.specialties.map((sport) => (
+           <span key={sport} className={styles.sport}>{sport}</span>
+          ))
+         )}
+        </div>
+        {currentUserId === user?.id && (
+         <span className={styles.editSpecialties} onClick={specialtiesModal.onOpen}>Edit</span>
         )}
        </div>
-       {currentUserId === user?.id && (
-        <span className={styles.editSpecialties} onClick={specialtiesModal.onOpen}>Edit</span>
-       )}
-      </div>
+      )}
+
+      {user.specialties.length > 1 && (
+       <div className={styles.specialties}>
+        <strong>Specialties</strong>
+        <div className={styles.sports}>
+         {user.specialties.map((sport) => (
+          <span key={sport} className={styles.sport}>{sport}</span>
+         ))}
+        </div>
+        {currentUserId === user?.id && (
+         <span className={styles.editSpecialties} onClick={specialtiesModal.onOpen}>Edit</span>
+        )}
+       </div>
+      )}
+
 
       <div className={styles.links}>
        <div className={styles.link}>
