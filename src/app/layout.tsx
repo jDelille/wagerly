@@ -2,7 +2,7 @@ import './styles/globals.scss';
 
 import getCurrentUser from './actions/getCurrentUser';
 import getUsers from './actions/getUsers';
-import BetSlip from './components/modals/bet-slip/BetSlip';
+import BetSlip from './components/popup/bet-slip/BetSlip';
 import NotLoggedInModal from './components/modals/not-logged-in/NotLoggedInModal';
 import Nav from './components/nav/Nav';
 import NavigationPanel from './components/navigation-panel/NavigationPanel';

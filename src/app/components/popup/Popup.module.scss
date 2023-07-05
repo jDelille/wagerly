@@ -12,11 +12,13 @@
 	border-radius: 12px;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	width: 500px;
-	min-height: 700px;
 	padding: 1rem;
 	transition: 300ms ease-in-out;
 	position: fixed;
 	opacity: 1;
+	min-height: fit-content;
+	border: 1px solid $heather;
+
 	@include breakpoint(xs) {
 		width: 100vw;
 		height: 100vh;
@@ -36,10 +38,13 @@
 		font-size: 12px;
 	}
 	.footer {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		justify-content: flex-end;
 		button {
 			max-width: fit-content;
 			margin: 1rem 0;
-			margin-left: auto;
 		}
 	}
 }

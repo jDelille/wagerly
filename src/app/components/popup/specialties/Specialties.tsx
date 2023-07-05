@@ -109,6 +109,7 @@ const Specialties: React.FC<Props> = ({ currentUser }) => {
       onSubmit={onSubmit}
       disabled={isLoading}
       body={bodyContent}
+      actionLabel='Save'
     />
   );
 }

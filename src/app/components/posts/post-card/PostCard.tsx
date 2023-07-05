@@ -103,9 +103,7 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
      )}
     </div>
 
-    {post.UserBet && (
-     <PostCardBet post={post.UserBet} />
-    )}
+
 
     {post.Poll && (
      <div className={styles.postPoll}>
@@ -117,10 +115,16 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
      </div>
 
     )}
-    {post?.photo && (
-     <div className={post?.photo.url ? styles.postGif : styles.postPhoto}>
+
+    {post.UserBet && (
+     <PostCardBet post={post.UserBet} />
+    )}
+
+
+    {post?.UserBet?.photo && (
+     <div className={post?.photo?.url ? styles.postGif : styles.postPhoto}>
       <Image
-       src={post?.photo.url || post?.photo}
+       src={post?.photo?.url || post?.UserBet?.photo}
        fill
        alt='Uploaded Image'
        className={styles.imagePreview}
@@ -132,6 +136,24 @@ const PostCard: React.FC<Props> = ({ post, isExpanded, currentUser }) => {
       />
      </div>
     )}
+    {post?.photo?.url && (
+     <div className={post?.photo?.url ? styles.postGif : styles.postPhoto}>
+      <Image
+       src={post?.photo?.url}
+       fill
+       alt='Uploaded Image'
+       className={styles.imagePreview}
+       style={{ objectFit: 'cover' }}
+       onClick={(e) => {
+        e.stopPropagation();
+        // setImageView(post?.photo.url || post?.photo);
+       }}
+      />
+     </div>
+    )}
+
+
+
     <PostCardFooter
      currentUser={currentUser}
      post={post}

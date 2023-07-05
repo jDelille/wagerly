@@ -28,6 +28,7 @@ export async function POST(request: Request) {
 		awayId,
 		outcome,
 		location,
+		photo,
 	} = body;
 
 	const newBet = await prisma.userBet.create({
@@ -48,6 +49,7 @@ export async function POST(request: Request) {
 			location,
 			body: postBody,
 			userId: currentUser?.id,
+			photo: photo,
 		},
 	});
 

@@ -6,10 +6,34 @@
 	flex-direction: column;
 	flex: 1;
 	align-items: center;
-	gap: 3px;
 
 	span {
 		font-size: $fontSizeSm;
+	}
+	.imageWrapper {
+		border: 1px solid lightgray;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 15px;
+		border-radius: 50%;
+		margin-bottom: 10px;
+		margin-top: 5px;
+	}
+	.odds {
+		background-color: #f1f2f3;
+		display: flex;
+		flex-direction: column;
+		padding: 5px 50px;
+		border-radius: 32px;
+		align-items: center;
+		margin-top: 10px;
+		span {
+			font-size: 12px;
+		}
+		strong {
+			font-size: 22px;
+		}
 	}
 }
 
@@ -17,7 +41,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 5px;
+	gap: 10px;
 	margin-top: 5px;
 	.text {
 		display: flex;
@@ -56,15 +80,14 @@
 		background-color: #f1f2f3;
 		display: flex;
 		flex-direction: column;
-		gap: 3px;
-		padding: 10px 50px;
+		padding: 5px 50px;
 		border-radius: 32px;
 		align-items: center;
 		span {
-			font-size: $fontSizeSm;
+			font-size: 12px;
 		}
 		strong {
-			font-size: 24px;
+			font-size: 22px;
 		}
 	}
 	.placeBet {

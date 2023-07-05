@@ -1,0 +1,138 @@
+@use '@/app/styles/variables' as *;
+
+.createBetPostText {
+	background-color: $white;
+	width: 100%;
+	min-height: 100px;
+	height: auto;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	max-height: 500px;
+	margin-top: 3.4rem;
+	background-color: $mystic;
+	border-radius: 4px;
+	.textarea {
+		padding: 10px;
+		width: 100%;
+		min-height: 100px;
+		height: fit-content;
+		resize: none;
+		border: none;
+		outline: none;
+		max-height: 300px;
+	}
+
+	.imagePreview {
+		max-height: 150px;
+		min-height: 150px;
+		height: 150px;
+		width: 100%;
+		position: relative;
+		margin-top: auto;
+		padding: 10px;
+		overflow: hidden;
+		border-radius: 4px !important;
+
+		img {
+			border-radius: 4px !important;
+		}
+		.closeImagePreview {
+			position: absolute;
+			top: 13px;
+			right: 13px;
+			z-index: 999;
+			cursor: pointer;
+		}
+	}
+	.createPostButtons {
+		height: 45px;
+		background-color: $darkMystic;
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		padding: 0 10px;
+		.icon {
+			display: flex;
+			gap: 5px;
+			align-items: center;
+			cursor: pointer;
+			&:nth-of-type(1) {
+				&:hover {
+					&::after {
+						position: absolute;
+						content: 'Post a photo';
+						background-color: $white;
+						color: $charade;
+						padding: 3px 5px;
+						border-radius: 2px;
+						font-size: $fontSizeXs;
+						bottom: 36px;
+						border: 1px solid $heather;
+					}
+				}
+			}
+			&:nth-of-type(2) {
+				padding: 2px 5px;
+				&:hover {
+					&::after {
+						position: absolute;
+						content: 'Post a gif';
+						background-color: $white;
+						color: $charade;
+						padding: 3px 5px;
+						border-radius: 2px;
+						font-size: $fontSizeXs;
+						bottom: 36px;
+						border: 1px solid $heather;
+					}
+				}
+			}
+			&:nth-of-type(3) {
+				padding: 2px 5px;
+				&:hover {
+					&::after {
+						position: absolute;
+						content: 'Post a poll';
+						background-color: $white;
+						color: $charade;
+						padding: 3px 5px;
+						border-radius: 2px;
+						font-size: $fontSizeXs;
+						bottom: 36px;
+						border: 1px solid $heather;
+					}
+				}
+			}
+			cursor: pointer;
+			&:hover {
+				background-color: darken($darkMystic, 5%);
+			}
+		}
+		.textCount {
+			margin-left: auto;
+			font-weight: 600;
+			font-size: 14px;
+			color: $charade;
+			.lengthError {
+				color: red;
+			}
+		}
+	}
+}
+
+.postButton {
+	margin-top: 15px;
+	padding: 0 10px;
+	display: none;
+	button {
+		position: unset !important;
+		margin-left: auto;
+		width: fit-content;
+		border: 1px solid $heather;
+		&:hover {
+			background-color: lighten($chetwodeBlue, 5%);
+		}
+	}
+}

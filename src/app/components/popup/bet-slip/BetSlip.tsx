@@ -8,16 +8,18 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import "react-toggle/style.css"
-import Modal from "../Modal";
+import Modal from "../../modals/Modal";
 import styles from './BetSlip.module.scss';
 import Toggle from "react-toggle";
 import CreatePost from "../../text-input/create-post/CreatePost";
 import { User } from "@prisma/client";
+import Popup from "../Popup";
+import CreateBetPostText from "../../text-input/create-bet-post-text/CreateBetPostText";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
-enum STEPS {
-  BET = 0,
+export enum STEPS {
+  ODDS = 0,
   TEXT = 1,
-  ODDS = 2,
 }
 
 
@@ -35,6 +37,7 @@ const BetSlip: React.FC<Props> = ({ currentUser, users }) => {
   const [wager, setWager] = useState(10)
   const [postBody, setPostBody] = useState('')
   const [showTextarea, setShowTextarea] = useState(false)
+  const [step, setStep] = useState(STEPS.ODDS)
 
 
   const { date, matchup, selectedBet, selectedTeamLogo, selectedTeamName, oddsDisplay, selectedOdds, selectedOddsDisplay, payoutMultiplier, type, homeId, awayId, location } = betSlipStore
@@ -43,9 +46,42 @@ const BetSlip: React.FC<Props> = ({ currentUser, users }) => {
     betSlipModal.onClose();
   }
 
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm<FieldValues>({
+    defaultValues: {
+      postBody: '',
+      photo: '',
+    },
+  });
+
+  const body = watch('postBody');
+  const postPhoto = watch('photo');
+  const postBodyLength = body.length || 0;
+
+  const setCustomValue = (id: string, value: any) => {
+    setValue(id, value, {
+      shouldDirty: true,
+      shouldValidate: true,
+      shouldTouch: true,
+    });
+  };
+
+
   const payout = (wager * payoutMultiplier).toFixed(2);
 
-  const onSubmit = () => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+
+    if (step === STEPS.ODDS) {
+      return setStep(STEPS.TEXT)
+    }
+
     setIsLoading(true);
 
     const payload = {
@@ -60,11 +96,12 @@ const BetSlip: React.FC<Props> = ({ currentUser, users }) => {
       wager,
       payout,
       type,
-      postBody,
       homeId,
       awayId,
       outcome: '',
       location,
+      postBody: data.postBody,
+      photo: data.photo.url
     }
 
     axios.post('/api/bet', payload)
@@ -80,7 +117,11 @@ const BetSlip: React.FC<Props> = ({ currentUser, users }) => {
       })
   }
 
-  const bodyContent = (
+  const onBack = () => {
+    setStep(STEPS.ODDS)
+  }
+
+  let bodyContent = (
     <>
       <div className={styles.header}>
         <span>{date}</span>
@@ -122,6 +163,7 @@ const BetSlip: React.FC<Props> = ({ currentUser, users }) => {
             <CreatePost users={users} />
           </div> */}
 
+          {/* <CreatePost users={users} /> */}
 
         </div>
         {/* <div className={styles.advancedControls}>
@@ -145,17 +187,51 @@ const BetSlip: React.FC<Props> = ({ currentUser, users }) => {
     </>
   )
 
+  if (step === STEPS.TEXT) {
+    bodyContent = (
+      <>
+        <div className={styles.header}>
+          <span>{date}</span>
+          <strong>{matchup}</strong>
+          <div className={styles.imageWrapper}>
+            <Image src={selectedTeamLogo} alt="logo" width={30} height={30} />
+          </div>
+          <div className={styles.displayName}>
+            <strong>{selectedTeamName} {selectedBet} </strong>
+          </div>
+          <div className={styles.odds}>
+            <span>ODDS</span>
+            <strong>{oddsDisplay}</strong>
+          </div>
+        </div>
+        <CreateBetPostText
+          users={users}
+          setCustomValue={setCustomValue}
+          postBody={body}
+          register={register}
+          errors={errors}
+          postPhoto={postPhoto}
+        />
+      </>
+
+    )
+  }
+
 
 
   return (
-    <Modal
+    <Popup
       onClose={onClose}
       isOpen={betSlipModal.isOpen}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       disabled={isLoading}
       body={bodyContent}
-      actionLabel={currentUser ? "Place bet" : "You must sign in to place a bet."}
-      disableButton={!currentUser}
+      actionLabel={step === STEPS.ODDS ? "Continue" : 'Place bet'}
+      step={step}
+      setStep={setStep}
+      secondaryActionLabel={step === STEPS.ODDS ? "" : 'Back'}
+      secondaryAction={onBack}
+    // disableButton={!currentUser}
     />
   );
 }
