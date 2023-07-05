@@ -1,0 +1,177 @@
+@use '@/app/styles/variables' as *;
+@use '@/app/styles/breakpoints' as *;
+
+.profileHeader {
+	background-color: lighten($white, 5%);
+	border-top: none;
+	margin-bottom: -1.5rem;
+	background-color: $darkerMystic;
+	border-radius: 6px;
+	overflow: hidden;
+	.coverPhoto {
+		height: 145px;
+		background-color: $mystic;
+		position: relative;
+	}
+	.content {
+		position: relative;
+		top: -30px;
+		.top {
+			display: flex;
+			gap: 10px;
+			position: relative;
+			flex-direction: column;
+			width: 558px;
+			margin: 0 auto;
+
+			@include breakpoint(sm) {
+				width: 100%;
+				padding: 0 10px;
+			}
+			@include breakpoint(xs) {
+				width: 100%;
+				padding: 0 10px;
+			}
+			img {
+				min-width: 60px;
+				min-height: 60px;
+				outline: 2px solid $white;
+			}
+			.displayName {
+				display: flex;
+				flex-direction: column;
+				gap: 0px;
+				strong {
+					font-size: 17px;
+					@include breakpoint(xs) {
+						font-size: 20px;
+					}
+				}
+				span {
+					font-size: 14px;
+					@include breakpoint(xs) {
+						font-size: 14px;
+					}
+				}
+			}
+			.menu {
+				position: absolute;
+				display: flex;
+				gap: 10px;
+				right: 0;
+				top: 55px;
+				@include breakpoint(sm) {
+					right: 10px;
+				}
+				@include breakpoint(xs) {
+					right: 10px;
+				}
+				button,
+				.editProfileButton {
+					padding: 10px 10px;
+					font-size: $fontSizeMd;
+					background-color: $chetwodeBlue;
+					text-decoration: none;
+					color: $white;
+					border-radius: 4px;
+					font-weight: 600;
+					&:hover {
+						background-color: lighten($chetwodeBlue, 5%);
+					}
+				}
+				.userMenu {
+					background-color: lighten($white, 15%);
+					padding: 7px;
+					border-radius: 4px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					border: 1px solid $heather;
+					cursor: pointer;
+					transition: 200ms ease-in-out;
+					&:hover {
+						background-color: darken($white, 5%);
+					}
+				}
+			}
+		}
+		.middle {
+			margin: 0 auto;
+			position: relative;
+			width: 558px;
+			margin: 0 auto;
+			@include breakpoint(sm) {
+				width: 100%;
+				padding: 0 10px;
+			}
+			@include breakpoint(xs) {
+				width: 100%;
+				padding: 0 10px;
+			}
+			.specialties {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				position: relative;
+				width: 100%;
+				margin: 0 auto;
+				padding: 10px 0;
+				strong {
+					font-size: $fontSizeMd;
+					font-weight: 600;
+				}
+
+				span {
+					color: gray;
+					font-weight: 400;
+				}
+				.editSpecialties {
+					color: $chetwodeBlue;
+					position: absolute;
+					top: 0;
+					right: 0;
+					text-decoration: none;
+				}
+				.sports {
+					display: flex;
+					gap: 3px;
+					span {
+						font-size: 12px;
+					}
+					.sport {
+						border: 1px solid $chetwodeBlue;
+						padding: 3px 12px;
+						border-radius: 12px;
+						color: $chetwodeBlue;
+					}
+				}
+			}
+		}
+
+		.userInfo {
+			display: flex;
+			gap: 1rem;
+			align-items: center;
+			font-size: 13px;
+			padding-top: 10px;
+			font-weight: 600;
+			width: 100%;
+			width: 558px;
+			margin: 0 auto;
+			@include breakpoint(sm) {
+				width: 100%;
+				padding: 0 10px;
+			}
+			@include breakpoint(xs) {
+				width: 100%;
+				padding: 0 10px;
+			}
+			p {
+				color: $charade;
+			}
+			span {
+				color: $charade;
+			}
+		}
+	}
+}

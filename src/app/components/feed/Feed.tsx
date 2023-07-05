@@ -28,6 +28,10 @@ const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage,
 
  const activeTab = tabStore.tab
 
+ const sortedUsers = users?.sort((a, b) => {
+  return b.totalBets - a.totalBets;
+ })
+
 
  return (
   <div className={isMainPage ? styles.mainPostFeed : styles.postFeed}>
@@ -45,8 +49,8 @@ const Feed: React.FC<Props> = observer(({ hideHeader, isMainPage, isProfilePage,
 
    {activeTab === 'People' && (
     <div className={styles.peopleFeed}>
-     {users?.map((user) => (
-      <UserBox key={user?.id} user={user} />
+     {sortedUsers?.map((user) => (
+      <UserBox key={user?.id} user={user} currentUser={currentUser} followerCount={0} />
      ))}
     </div>
    )}

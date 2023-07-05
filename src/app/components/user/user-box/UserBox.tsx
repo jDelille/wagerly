@@ -6,31 +6,28 @@ import { useRouter } from "next/navigation";
 import { FaUserPlus } from "react-icons/fa";
 
 import styles from './UserBox.module.scss';
+import ProfileHeader from "../../profile/profile-header/ProfileHeader";
+import { SafeUser } from "@/app/types/SafeUser";
+import UserHeader from "./UserHeader";
 
 type Props = {
  user: User
+ currentUser: SafeUser | null;
+ followerCount: number;
 }
 
-const UserBox: React.FC<Props> = ({ user }) => {
+const UserBox: React.FC<Props> = ({ user, currentUser, followerCount }) => {
 
  const router = useRouter();
 
  return (
   <div className={styles.peopleBox} onClick={() => router.push(`user/${user?.username}`)}>
-   <FaUserPlus className={styles.addUser} size="20" color="#20b46a" />
-
-   <div className={styles.top}>
-    <Avatar photo={user.photo as string || '/images/placeholder.png'} username={user.username} />
-    <div className={styles.displayName}>
-     <strong className={styles.name}>{user.name}</strong>
-     <span className={styles.username}>@{user.username}</span>
-    </div>
-   </div>
-
-   <div className={styles.bio}>
-    {user?.bio}
-   </div>
-
+   <UserHeader
+    user={user as any}
+    currentUserId={currentUser?.id}
+    bio={user?.bio as string}
+    followerCount={0}
+    followingIds={currentUser?.followingIds as string[]} />
   </div >
  );
 }
