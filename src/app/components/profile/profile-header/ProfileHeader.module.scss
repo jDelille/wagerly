@@ -22,7 +22,10 @@
 			width: 568px;
 			margin: 0 auto;
 			@include breakpoint(sm) {
-				width: 621px;
+				width: calc(100% - 20px);
+			}
+			@include breakpoint(xs) {
+				width: calc(100% - 40px);
 			}
 
 			img {
@@ -88,7 +91,10 @@
 			width: 568px;
 			margin: 0 auto;
 			@include breakpoint(sm) {
-				width: 621px;
+				width: calc(100% - 20px);
+			}
+			@include breakpoint(xs) {
+				width: calc(100% - 40px);
 			}
 			.bio,
 			.noBioMessage {
@@ -242,7 +248,10 @@
 			width: 568px;
 			margin: 0 auto;
 			@include breakpoint(sm) {
-				width: 621px;
+				width: calc(100% - 20px);
+			}
+			@include breakpoint(xs) {
+				width: calc(100% - 40px);
 			}
 
 			l p {
