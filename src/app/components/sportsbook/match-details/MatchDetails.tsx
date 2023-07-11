@@ -129,8 +129,8 @@ const MatchDetails: React.FC<Props> = observer(({ matchId, currentUserId }) => {
 			<ChanceToWin
 				homeName={matchHeader.homeTeam.name as string}
 				awayName={matchHeader.awayTeam.name as string}
-				homeChance={matchSummary?.predictor.homeTeam.gameProjection}
-				awayChance={matchSummary?.predictor.awayTeam.gameProjection}
+				homeChance={matchSummary?.predictor?.homeTeam.gameProjection}
+				awayChance={matchSummary?.predictor?.awayTeam.gameProjection}
 			/>
 		</div>
 	);
