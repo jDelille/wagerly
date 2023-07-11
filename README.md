@@ -3,7 +3,8 @@
 
 <hr />
 
-![mobile (6)](https://github.com/jDelille/wagerly-production/assets/84540947/e2f913a0-428d-4449-8c78-5bab3045c9f8)
+![mobile (18)](https://github.com/jDelille/wagerly-production/assets/84540947/e1a7101a-64ec-45e0-ba03-db4abfec3632)
+
 <hr />
 
 <div>
