@@ -11,6 +11,7 @@
 	padding-top: 0;
 	color: $charade;
 	padding-bottom: 2rem;
+	min-width: 600px;
 	@include breakpoint(sm) {
 		min-width: calc(100% - 284px);
 	}
