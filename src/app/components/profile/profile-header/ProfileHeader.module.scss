@@ -3,17 +3,17 @@
 
 .profileHeader {
 	background-color: lighten($white, 5%);
-	border-bottom: 1px solid $heather;
 	border-top: none;
-	margin-bottom: -1.5rem;
+	border-bottom: 1px solid $heather;
 	.coverPhoto {
 		height: 145px;
 		background-color: $mystic;
 		position: relative;
+		border: 1px solid $heather;
 	}
 	.content {
 		position: relative;
-		top: -45px;
+		top: -25px;
 		.top {
 			display: flex;
 			gap: 10px;
@@ -21,6 +21,7 @@
 			flex-direction: column;
 			width: 568px;
 			margin: 0 auto;
+			top: -15px;
 			@include breakpoint(sm) {
 				width: calc(100% - 20px);
 			}
@@ -32,6 +33,7 @@
 				min-width: 90px;
 				min-height: 90px;
 				outline: 2px solid $white;
+				border-radius: 2px !important;
 			}
 			.displayName {
 				display: flex;
@@ -99,6 +101,7 @@
 			.bio,
 			.noBioMessage {
 				padding: 1rem 0;
+				padding-top: 0;
 				font-size: 13px;
 				color: $charade;
 				display: flex;

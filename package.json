@@ -61,6 +61,6 @@
     "import-sort-cli": "^6.0.0",
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-module": "^6.0.0",
-    "prisma": "^4.13.0"
+    "prisma": "^5.0.0"
   }
 }

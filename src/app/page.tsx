@@ -7,6 +7,8 @@ import FeedHeader from './components/feed/feed-header/FeedHeader';
 import PostSkeleton from './components/skeleton/post-skeleton/PostSkeleton';
 import styles from './styles/App.module.scss';
 import getBets from './actions/getBets';
+import FeedHeaderSkeleton from './components/skeleton/feed-header/FeedHeaderSkeleton';
+import Loader from './components/loader/Loader';
 
 export default async function Home() {
 

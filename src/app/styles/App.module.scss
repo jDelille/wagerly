@@ -34,4 +34,6 @@
 	justify-content: center;
 	border: 1px solid $heather;
 	width: 600px;
+	padding-top: 50px;
+	min-height: calc(100vh - 45px);
 }

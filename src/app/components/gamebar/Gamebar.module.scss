@@ -18,7 +18,7 @@
 			display: none;
 		}
 		@include breakpoint(sm) {
-			background-color: $mystic;
+			background-color: $white;
 			left: unset;
 			transform: unset;
 			border-bottom: 1px solid $heather;

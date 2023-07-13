@@ -6,7 +6,7 @@ const Loader = () => {
  return (
   <ClipLoader
    color="#7289da"
-   size={125}
+   size={75}
   />
  );
 }

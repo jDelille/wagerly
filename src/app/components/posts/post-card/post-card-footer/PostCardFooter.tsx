@@ -6,11 +6,11 @@ import { SafeUser } from '@/app/types/SafeUser';
 import { Post } from '@prisma/client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useCallback, useContext, useState } from 'react';
+import { useCallback, useContext } from 'react';
 import { AiTwotoneLike } from 'react-icons/ai';
-import { BsFillBookmarkFill, BsShareFill, BsThreeDots } from 'react-icons/bs';
-import { FaReply } from 'react-icons/fa';
-
+import { BsFillBookmarkFill, BsShareFill } from 'react-icons/bs';
+import { faBookmark, faReply, faRetweet, faShareFromSquare, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PostContext } from '../PostCard';
 import styles from './PostCardFooter.module.scss';
 
@@ -78,11 +78,19 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
   return (
     <div className={styles.postCardFooter}>
       <div
+        className={styles.retweetIcon}
+        onClick={() => {
+          currentUser ? openPostPreview(post) : notLoggedInModal.onOpen();
+        }}>
+        <FontAwesomeIcon icon={faRetweet} color="#606984" />
+        <span>{post.comments.length || 0}</span>
+      </div>
+      <div
         className={styles.replyIcon}
         onClick={() => {
           currentUser ? openPostPreview(post) : notLoggedInModal.onOpen();
         }}>
-        <FaReply size={15} color='#606984' />
+        <FontAwesomeIcon icon={faReply} color="#606984" />
         <span>{post.comments.length || 0}</span>
       </div>
       {currentUser ? (
@@ -91,42 +99,38 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
           className={styles.mobileIcon}
           onClick={() => openPostPreview(post)}
         >
-          <FaReply size={15} color="#606984" />
+          <FontAwesomeIcon icon={faReply} color="#606984" />
           <span>{post.comments.length || 0}</span>
         </Link>
       ) : (
         <div className={styles.mobileIcon} onClick={() => notLoggedInModal.onOpen()}>
-          <FaReply size={15} color="#606984" />
+          <FontAwesomeIcon icon={faReply} color="#606984" />
           <span>{post.comments.length || 0}</span>
         </div>
       )}
       {localLike ? (
         <div className={styles.icon} onClick={toggleLike}>
-          <AiTwotoneLike size={15} color='#606984' className={styles.liked} />
+          <FontAwesomeIcon icon={faThumbsUp} color="#36393e" />
           <span>{localLikeCount || 0}</span>
         </div>
       ) : (
         <div className={styles.icon} onClick={toggleLike}>
-          <AiTwotoneLike size={15} color='#606984' className={''} />
+          <FontAwesomeIcon icon={faThumbsUp} color="#2f89fc" />
           <span>{localLikeCount || 0}</span>
         </div>
       )}
       {localBookmark ? (
         <div className={styles.icon} onClick={handleUnBookmarkPost}>
-          <BsFillBookmarkFill
-            size={15}
-            color='#606984'
-            className={styles.bookmarked}
-          />
+          <FontAwesomeIcon icon={faBookmark} color="#ff304f" />
         </div>
       ) : (
         <div className={styles.icon} onClick={toggleBookmark}>
-          <BsFillBookmarkFill size={15} color='#606984' className={''} />
+          <FontAwesomeIcon icon={faBookmark} color="#606984" />
         </div>
       )}
 
       <div className={styles.icon}>
-        <BsShareFill size={15} color='#606984' />
+        <FontAwesomeIcon icon={faShareFromSquare} color="#606984" />
       </div>
     </div>
   );
