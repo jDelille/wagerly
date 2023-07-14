@@ -90,7 +90,7 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
           currentUser ? handleRetweet() : notLoggedInModal.onOpen();
         }}>
         <FontAwesomeIcon icon={faRetweet} color="#606984" />
-        <span>{post.comments.length}</span>
+        {/* <span>{post.comments.length}</span> */}
       </div>
       <div
         className={styles.replyIcon}
@@ -98,7 +98,7 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
           currentUser ? openPostPreview(post) : notLoggedInModal.onOpen();
         }}>
         <FontAwesomeIcon icon={faReply} color="#606984" />
-        <span>{post.comments.length || 0}</span>
+        {/* <span>{post.comments.length || 0}</span> */}
       </div>
       {currentUser ? (
         <Link
@@ -107,23 +107,23 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
           onClick={() => openPostPreview(post)}
         >
           <FontAwesomeIcon icon={faReply} color="#606984" />
-          <span>{post.comments.length || 0}</span>
+          {/* <span>{post.comments.length || 0}</span> */}
         </Link>
       ) : (
         <div className={styles.mobileIcon} onClick={() => notLoggedInModal.onOpen()}>
           <FontAwesomeIcon icon={faReply} color="#606984" />
-          <span>{post.comments.length || 0}</span>
+          {/* <span>{post.comments.length || 0}</span> */}
         </div>
       )}
       {localLike ? (
         <div className={styles.icon} onClick={toggleLike}>
           <FontAwesomeIcon icon={faThumbsUp} color="#2f89fc" />
-          <span>{localLikeCount || 0}</span>
+          {/* <span>{localLikeCount || 0}</span> */}
         </div>
       ) : (
         <div className={styles.icon} onClick={toggleLike}>
           <FontAwesomeIcon icon={faThumbsUp} color="#606984" />
-          <span>{localLikeCount || 0}</span>
+          {/* <span>{localLikeCount || 0}</span> */}
         </div>
       )}
       {localBookmark ? (
