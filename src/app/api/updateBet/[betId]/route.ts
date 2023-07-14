@@ -70,7 +70,6 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 				matchId,
 				homeId as string
 			);
-			console.log(homeData);
 			homeScore = homeData.value;
 			const awayData = await checkAwayScore(
 				'baseball',

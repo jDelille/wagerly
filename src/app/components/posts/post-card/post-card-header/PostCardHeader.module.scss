@@ -3,6 +3,19 @@
 .postCardHeader {
 	display: flex;
 	gap: 10px;
+	flex-direction: column;
+	.retweetLabel {
+		display: flex;
+		gap: 5px;
+		align-items: center;
+		font-size: $fontSizeSm;
+		font-weight: 600;
+		color: #606984;
+	}
+	.headerContent {
+		display: flex;
+		gap: 10px;
+	}
 	.displayName {
 		display: flex;
 		flex-direction: column;

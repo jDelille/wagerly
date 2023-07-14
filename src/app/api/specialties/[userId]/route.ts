@@ -15,13 +15,9 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 
 	const { userId } = params;
 
-	console.log(userId);
-
 	const body = await request.json();
 
 	const { selectedSports } = body;
-
-	console.log(selectedSports);
 
 	const updatedUser = await prisma.user.update({
 		where: {

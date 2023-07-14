@@ -11,29 +11,30 @@ datasource db {
 }
 
 model Post {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  body          String?
-  photo         Json?
-  userId        String    @db.ObjectId
-  user          User      @relation(fields: [userId], references: [id])
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  Bet           Bet?      @relation(fields: [betId], references: [id])
-  betId         String?   @db.ObjectId
-  UserBet       UserBet?  @relation(fields: [userBetId], references: [id])
-  userBetId     String?   @db.ObjectId
-  Parlay        Parlay?   @relation(fields: [parlayId], references: [id])
-  parlayId      String?   @db.ObjectId
-  Poll          Poll?     @relation(fields: [pollId], references: [id])
-  pollId        String?   @db.ObjectId
-  likedIds      String[]  @db.ObjectId
-  commentedIds  String[]  @db.ObjectId
-  comments      Comment[]
-  taggedUserIds String[]  @db.ObjectId
-  isPinned      Boolean?  @default(false)
-  Group         Group?    @relation(fields: [groupId], references: [id])
-  groupId       String?   @db.ObjectId
-  tags          String[]
+  id                    String    @id @default(auto()) @map("_id") @db.ObjectId
+  body                  String?
+  photo                 Json?
+  userId                String    @db.ObjectId
+  user                  User      @relation(fields: [userId], references: [id])
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  Bet                   Bet?      @relation(fields: [betId], references: [id])
+  betId                 String?   @db.ObjectId
+  UserBet               UserBet?  @relation(fields: [userBetId], references: [id])
+  userBetId             String?   @db.ObjectId
+  Parlay                Parlay?   @relation(fields: [parlayId], references: [id])
+  parlayId              String?   @db.ObjectId
+  Poll                  Poll?     @relation(fields: [pollId], references: [id])
+  pollId                String?   @db.ObjectId
+  likedIds              String[]  @db.ObjectId
+  commentedIds          String[]  @db.ObjectId
+  comments              Comment[]
+  taggedUserIds         String[]  @db.ObjectId
+  isPinned              Boolean?  @default(false)
+  Group                 Group?    @relation(fields: [groupId], references: [id])
+  groupId               String?   @db.ObjectId
+  tags                  String[]
+  retweetedFromUsername String?
 }
 
 model Comment {

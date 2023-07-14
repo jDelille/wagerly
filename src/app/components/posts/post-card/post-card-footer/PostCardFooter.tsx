@@ -13,6 +13,7 @@ import { faBookmark, faReply, faRetweet, faShareFromSquare, faThumbsUp } from '@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PostContext } from '../PostCard';
 import styles from './PostCardFooter.module.scss';
+import useRetweet from '@/app/hooks/useRetweet';
 
 type Props = {
   currentUser: SafeUser | null;
@@ -35,6 +36,8 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
   const { handleBookmarkPost, handleUnBookmarkPost } = useBookmarkPost(post.id);
 
   const { handleLikePost, handleUnLikePost } = useLikePost(post.id);
+
+  const { handleRetweet } = useRetweet(post)
 
   const toggleLike = useCallback(() => {
     if (!currentUser) {
@@ -75,15 +78,19 @@ const PostCardFooter: React.FC<Props> = ({ currentUser, post }) => {
     postPreviewStore.setPost(post);
   };
 
+  const toggleRetweet = () => {
+
+  }
+
   return (
     <div className={styles.postCardFooter}>
       <div
         className={styles.retweetIcon}
         onClick={() => {
-          currentUser ? openPostPreview(post) : notLoggedInModal.onOpen();
+          currentUser ? handleRetweet() : notLoggedInModal.onOpen();
         }}>
         <FontAwesomeIcon icon={faRetweet} color="#606984" />
-        <span>{post.comments.length || 0}</span>
+        <span>{post.comments.length}</span>
       </div>
       <div
         className={styles.replyIcon}

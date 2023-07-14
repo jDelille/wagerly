@@ -68,8 +68,6 @@ const Odds: React.FC<Props> = ({
   }
  };
 
- console.log(odds)
-
  return (
   <div className={styles.odds}>
    <strong className={styles.title}>Matchup Odds</strong>
